@@ -5,22 +5,7 @@ use App\Models\ProductCategoryPivot;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-    Route::get('/sitemap', function(){
-        SitemapGenerator::create('https://kiblegah.test/')->getSitemap()->writeToDisk('public', 'sitemap.xml');
-    });
-
     Auth::routes();
-
-
-
-    Route::get('/kat', function() {
-        $p = Product::all();
-
-        foreach ($p as $item){
-            ProductCategoryPivot::updateOrCreate(['category_id' => 9, 'product_id' => $item->id]);
-        }
-    });
-
 
     Route::get('/urunsayfasi', function(){
        return view('frontend.product.index');

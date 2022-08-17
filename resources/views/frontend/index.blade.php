@@ -68,11 +68,12 @@
                                     }
                                 }
                             }'>
+                        @foreach($Products as $item)
                         <div class="product product-11 text-center">
                             <span class="product-label label-circle label-new">Yeni</span>
 
                             <figure class="product-media">
-                                <a href="{{ route('urunler')}}">
+                                <a href="{{ route('urun' , $item->slug)}}">
                                     <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLW0Jd9wrIg2-KBP7049yZNGX_yp4LJFh7VBEfHcKZ1Hc-0g9DMUdzyNbocnBeQzrRuagYfTWimOTnJcabtiqoV0jgEHv-TNwFLjj91LMnYIGaUqIYMKBZuiLndlga7VbXIZ-_T-Sf2_-P2xgkq96r_9sw_s956-no_900x.jpg?v=1660233813" alt="Product image" class="product-image">
                                     <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
                                 </a>
@@ -85,197 +86,14 @@
                             <div class="product-body">
                                 <h3 class="product-title"><a href="{{ route('urunler')}}">Kitap Adı Gelecek</a></h3>
                                 <div class="product-price">
-                                    251,00₺
+                                    {{ $item->price }}₺
                                 </div>
                             </div>
                             <div class="product-action">
                                 <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
                             </div>
                         </div>
-                        <div class="product product-11 text-center">
-                            <span class="product-label label-circle label-new">Yeni</span>
-
-                            <figure class="product-media">
-                                <a href="{{ route('urunler')}}">
-                                    <img src="/frontend/assets/images/demos/demo-2/products/product-1-1.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                                </div>
-                            </figure>
-
-                            <div class="product-body">
-                                <h3 class="product-title"><a href="{{ route('urunler')}}">Kitap Adı Gelecek</a></h3>
-                                <div class="product-price">
-                                    251,00₺
-                                </div>
-                            </div>
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                            </div>
-                        </div>
-                        <div class="product product-11 text-center">
-                            <span class="product-label label-circle label-new">Yeni</span>
-
-                            <figure class="product-media">
-                                <a href="{{ route('urunler')}}">
-                                    <img src="/frontend/assets/images/demos/demo-2/products/product-1-1.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                                </div>
-                            </figure>
-
-                            <div class="product-body">
-                                <h3 class="product-title"><a href="{{ route('urunler')}}">Kitap Adı Gelecek</a></h3>
-                                <div class="product-price">
-                                    251,00₺
-                                </div>
-                            </div>
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                            </div>
-                        </div>
-                        <div class="product product-11 text-center">
-                            <span class="product-label label-circle label-new">Yeni</span>
-
-                            <figure class="product-media">
-                                <a href="{{ route('urunler')}}">
-                                    <img src="/frontend/assets/images/demos/demo-2/products/product-1-1.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                                </div>
-                            </figure>
-
-                            <div class="product-body">
-                                <h3 class="product-title"><a href="{{ route('urunler')}}">Kitap Adı Gelecek</a></h3>
-                                <div class="product-price">
-                                    251,00₺
-                                </div>
-                            </div>
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                            </div>
-                        </div>
-                        <div class="product product-11 text-center">
-                            <span class="product-label label-circle label-new">Yeni</span>
-
-                            <figure class="product-media">
-                                <a href="{{ route('urunler')}}">
-                                    <img src="/frontend/assets/images/demos/demo-2/products/product-1-1.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                                </div>
-                            </figure>
-
-                            <div class="product-body">
-                                <h3 class="product-title"><a href="{{ route('urunler')}}">Kitap Adı Gelecek</a></h3>
-                                <div class="product-price">
-                                    251,00₺
-                                </div>
-                            </div>
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                            </div>
-                        </div>
-                        <div class="product product-11 text-center">
-                            <span class="product-label label-circle label-new">Yeni</span>
-
-                            <figure class="product-media">
-                                <a href="{{ route('urunler')}}">
-                                    <img src="/frontend/assets/images/demos/demo-2/products/product-1-1.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                                </div>
-                            </figure>
-
-                            <div class="product-body">
-                                <h3 class="product-title"><a href="{{ route('urunler')}}">Kitap Adı Gelecek</a></h3>
-                                <div class="product-price">
-                                    251,00₺
-                                </div>
-                            </div>
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                            </div>
-                        </div>
-                        <div class="product product-11 text-center">
-                            <span class="product-label label-circle label-new">Yeni</span>
-
-                            <figure class="product-media">
-                                <a href="{{ route('urunler')}}">
-                                    <img src="/frontend/assets/images/demos/demo-2/products/product-1-1.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                                </div>
-                            </figure>
-
-                            <div class="product-body">
-                                <h3 class="product-title"><a href="{{ route('urunler')}}">Kitap Adı Gelecek</a></h3>
-                                <div class="product-price">
-                                    251,00₺
-                                </div>
-                            </div>
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                            </div>
-                        </div>
-                        <div class="product product-11 text-center">
-                            <span class="product-label label-circle label-new">Yeni</span>
-
-                            <figure class="product-media">
-                                <a href="{{ route('urunler')}}">
-                                    <img src="/frontend/assets/images/demos/demo-2/products/product-1-1.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                                </div>
-                            </figure>
-
-                            <div class="product-body">
-                                <h3 class="product-title"><a href="{{ route('urunler')}}">Kitap Adı Gelecek</a></h3>
-                                <div class="product-price">
-                                    251,00₺
-                                </div>
-                            </div>
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                            </div>
-                        </div>
-                        <div class="product product-11 text-center">
-                            <span class="product-label label-circle label-new">Yeni</span>
-
-                            <figure class="product-media">
-                                <a href="{{ route('urunler')}}">
-                                    <img src="/frontend/assets/images/demos/demo-2/products/product-1-1.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                                </div>
-                            </figure>
-
-                            <div class="product-body">
-                                <h3 class="product-title"><a href="{{ route('urunler')}}">Kitap Adı Gelecek</a></h3>
-                                <div class="product-price">
-                                    251,00₺
-                                </div>
-                            </div>
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="tab-pane p-0 fade" id="products-sale-tab" role="tabpanel" aria-labelledby="products-sale-link">
@@ -1040,7 +858,7 @@
                         </a>
 
                         <div class="banner-content banner-content-top banner-content-center">
-                            <h4 class="banner-subtitle">The Best Choice</h4><
+                            <h4 class="banner-subtitle">The Best Choice</h4>
                             <h3 class="banner-title">AGEN</h3>
                             <div class="banner-text text-primary">$49.99</div><!-- End .banner-text -->
                             <a href="#" class="btn btn-outline-gray banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>

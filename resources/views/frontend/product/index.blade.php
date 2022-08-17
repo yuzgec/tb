@@ -7,7 +7,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Anasayfa</a></li>
                 <li class="breadcrumb-item"><a href="#">Kategori</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Ürün Adı</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $Detay->title }}</li>
             </ol>
 
             <nav class="product-pager ml-auto" aria-label="Product">
@@ -62,42 +62,42 @@
 
                     <div class="col-md-6">
                         <div class="product-details">
-                            <h1 class="product-title">Ürün Adı Gelecek</h1><!-- End .product-title -->
+                            <h1 class="product-title">{{ $Detay->title }}</h1><!-- End .product-title -->
 
                             <div class="ratings-container">
                                 <div class="ratings">
                                     <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
-                                </div><!-- End .ratings -->
+                                </div>
+
                                 <a class="ratings-text" href="#product-review-link" id="review-link">( 2 Yorum )</a>
-                            </div><!-- End .rating-container -->
+                            </div>
 
                             <div class="product-price">
-                                84.00₺
-                            </div><!-- End .product-price -->
+                                {{ $Detay->price }}₺
+                            </div>
 
                             <div class="product-content">
-                                <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing. Sed lectus. </p>
-                            </div><!-- End .product-content -->
-
-
-
-
+                                {{ $Detay->shortdesc }}
+                            </div>
+                            <form action="{{ route('sepeteekle') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $Detay->id }}">
                             <div class="details-filter-row details-row-size">
                                 <label for="qty">Adet:</label>
                                 <div class="product-details-quantity">
-                                    <input type="number" id="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                    <input type="number" id="qty" name="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
                                 </div><!-- End .product-details-quantity -->
                             </div><!-- End .details-filter-row -->
 
                             <div class="product-details-action">
-                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
+                                <button type="submit"  class="btn-product btn-cart"><span>Sepete Ekle</span></button>
 
                                 <div class="details-action-wrapper">
                                     <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Favorilere Ekle</span></a>
                                     <a href="#" class="btn-product btn-compare" title="Compare"><span>Tavsiye Et</span></a>
                                 </div><!-- End .details-action-wrapper -->
                             </div><!-- End .product-details-action -->
-
+                            </form>
                             <div class="product-details-footer">
                                 <div class="product-cat">
                                     <span>Kategori:</span>
@@ -136,7 +136,7 @@
                     <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel" aria-labelledby="product-desc-link">
                         <div class="product-desc-content">
                             <h3>Ürün Açıklaması</h3>
-
+                            {{ $Detay->desc }}
                         </div><!-- End .product-desc-content -->
                     </div><!-- .End .tab-pane -->
                     <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel" aria-labelledby="product-shipping-link">

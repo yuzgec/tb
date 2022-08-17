@@ -28,7 +28,7 @@
 
             <div class="header-right">
                 <div class="account">
-                    <a href="/" title="My account">
+                    <a href="{{ route('go') }}" title="Hesabım">
                         <div class="icon">
                             <i class="icon-user"></i>
                         </div>
@@ -50,44 +50,53 @@
                     <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                         <div class="icon">
                             <i class="icon-shopping-cart"></i>
-                            <span class="cart-count">2</span>
+                            <span class="cart-count">{{ Cart::content()->count() }}</span>
                         </div>
                         <p>Sepetim</p>
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <div class="dropdown-cart-products">
-                            <div class="product">
-                                <div class="product-cart-details">
-                                    <h4 class="product-title">
-                                        <a href="{{ route('urunler')}}">Ürün Adı</a>
-                                    </h4>
+                    @if (Cart::content()->count() > 0)
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-cart-products">
+                                @foreach(Cart::content() as $c)
 
-                                    <span class="cart-product-info">
-                                        <span class="cart-product-qty">1</span>
-                                        x 76.00₺
-                                    </span>
-                                </div>
+                                    <div class="product">
+                                        <div class="product-cart-details">
+                                            <h4 class="product-title">
+                                                <a href="{{ route('urun', $c->options->url) }}">{{$c->name}}</a>
+                                            </h4>
 
-                                <figure class="product-image-container">
-                                    <a href="{{ route('urunler')}}" class="product-image">
-                                        <img src="assets/images/products/cart/product-2.jpg" alt="product">
-                                    </a>
-                                </figure>
-                                <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
+                                            <span class="cart-product-info">
+                                            <span class="cart-product-qty">{{$c->qty}}</span>
+                                            x {{money($c->price)}}₺
+                                        </span>
+                                        </div>
+                                        <figure class="product-image-container">
+                                            <a href="{{ route('urun', $c->options->url) }}" class="product-image">
+                                                <img src="{{ $c->options->image }}" alt="{{$c->name}}">
+                                            </a>
+                                        </figure>
+                                        <form id="form" method="post" action="{{route('sepetcikar',$c->rowId )}}">
+                                            @csrf
+                                            <a  href="javascript:{}" onclick="document.getElementById('form').submit()" class="btn-remove" title="Ürünü Çıkar">
+                                                <i class="icon-close"></i>
+                                            </a>
+                                        </form>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="dropdown-cart-total">
+                                <span>Toplam</span>
+                                <span class="cart-total-price">{{ Cart::total() }}₺</span>
+                            </div>
+                            <div class="dropdown-cart-action">
+                                <a href="{{route('sepet')}}" class="btn btn-primary text-white">Sepetim</a>
+                                <a href="{{route('siparis')}}" class="btn btn-outline-primary-2">
+                                    <span>Ödeme</span><i class="icon-long-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
-
-                        <div class="dropdown-cart-total">
-                            <span>Toplam</span>
-                            <span class="cart-total-price">76.00₺</span>
-                        </div>
-
-                        <div class="dropdown-cart-action">
-                            <a href="/" class="btn btn-primary">Sepetim</a>
-                            <a href="/" class="btn btn-outline-primary-2"><span>Ödeme</span><i class="icon-long-arrow-right"></i></a>
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -98,40 +107,10 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
-                        <li>
-                            <a href="/" class="sf-with-ul">Türk Edebiyatı</a>
 
-                            <ul>
-                                <li><a href="/">Roman</a></li>
-                                <li><a href="/">Hikaye</a></li>
-                                <li><a href="/">Şiir</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="/" class="sf-with-ul">Dünya Edebiyatı</a>
-
-                            <ul>
-                                <li><a href="/">Roman</a></li>
-                                <li><a href="/">Hikaye</a></li>
-                                <li><a href="/">Şiir</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="/" class="sf-with-ul">İlk Baskılar</a>
-
-                            <ul>
-                                <li><a href="/">Roman</a></li>
-                                <li><a href="/">Hikaye</a></li>
-                                <li><a href="/">Şiir</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/" class="">İmzalılar</a></li>
-                        <li><a href="/" class="">Yabancı Dil</a></li>
-                        <li><a href="/" class="">Baskısı Olmayanlar</a></li>
-                        <li><a href="/" class="">Özel Baskılar</a></li>
-                        <li><a href="/" class="">Sanat</a></li>
-                        <li><a href="/" class="">Plak</a></li>
-                        <li><a href="/" class="">Dini Kitaplar</a></li>
+                        @foreach($Product_Categories as $item)
+                        <li><a href="{{ route('kategori', $item->slug) }}" class="">{{ $item->title }}</a></li>
+                        @endforeach
                     </ul><!-- End .menu -->
                 </nav><!-- End .main-nav -->
 

@@ -16,7 +16,6 @@ class ProductController extends Controller
     public function index()
     {
         $All = Product::with('getCategory')->orderBy('rank')->get();
-        //dd($All);
         $Kategori = ProductCategory::all();
         return view('backend.product.index', compact('All', 'Kategori'));
     }
@@ -80,7 +79,7 @@ class ProductController extends Controller
             }
         }
 
-        toast(SWEETALERT_MESSAGE_CREATE,'success');
+        //toast(SWEETALERT_MESSAGE_CREATE,'success');
         return redirect()->route('product.index');
 
     }

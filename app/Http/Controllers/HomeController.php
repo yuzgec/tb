@@ -27,10 +27,10 @@ class HomeController extends Controller
 
     public function index()
     {
-
+        $Product_Categories = ProductCategory::with('cat')->where('status', 1)->get();
         $Products = Product::select('id', 'title', 'price', 'old_price', 'slug','bestselling')->orderBy('rank')->get();
         $Slider = Slider::with('getProduct')->where('status', 1)->get();
-        return view('frontend.index', compact('Products','Slider'));
+        return view('frontend.index', compact('Products','Slider', 'Product_Categories'));
     }
 
     public function kategori($url){
@@ -52,7 +52,7 @@ class HomeController extends Controller
             ->select('products.id','products.title','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
             ->orderBy('products.rank','ASC')->paginate(9);
         //dd($Pro);
-        return view('frontend.kategori.index', compact('Detay', 'ProductList'));
+        return view('frontend.category.index', compact('Detay', 'ProductList'));
     }
     public function kurumsal($url){
         $Detay = Page::where('slug', $url)->firstOrFail();
@@ -71,9 +71,9 @@ class HomeController extends Controller
     }
     public function sepet(){
 
-        if (Cart::content()->count() === 0){
+    /*    if (Cart::content()->count() === 0){
             return redirect()->route('home');
-        }
+        }*/
         //dd(Cart::content());
 
         $Products = Product::select('id', 'title', 'price', 'old_price', 'slug', 'campagin_price')->orderBy('rank')->get();
@@ -100,13 +100,12 @@ class HomeController extends Controller
         views($Detay)->cooldown(60)->record();
         $Count = views($Detay)->unique()->period(Period::create(Carbon::today()))->count();;
         $Comments = Comment::where('product_id', $Detay->id)->where('status', 1)->paginate(40);
-        $Province = DB::table('sehir')->get();
         $Productssss = Product::with('getCategory')->where('status', 1)->whereHas('getCategory', function ($query) use ($Detay){
             $query->where('category_id','=',$Detay->getCategory->category_id);
         })->orderBy('rank','ASC')->get();
         //dd($Productssss);
 
-        return view('frontend.urun.index', compact('Detay','Count','Comments','Province', 'Productssss'));
+        return view('frontend.product.index', compact('Detay','Count','Comments', 'Productssss'));
     }
     public function kargosorgulama(){
         return view('frontend.kargo.index');
@@ -274,6 +273,7 @@ class HomeController extends Controller
                 'image' => (!$p->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg' : $p->getFirstMediaUrl('page', 'small'),
                 'cargo' => 0,
                 'campagin' => $campagin,
+                'url' => asset($p->url)
             ]
         ]);
 
