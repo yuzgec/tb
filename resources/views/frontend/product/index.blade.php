@@ -34,7 +34,7 @@
                                 <figure class="product-main-image">
                                     <img id="product-zoom"
                                          src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}"
-                                         data-zoom-image="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'img')}}"
+                                         data-zoom-image="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'img')}}"
                                          alt="{{ $Detay->title }}"
                                     >
 
