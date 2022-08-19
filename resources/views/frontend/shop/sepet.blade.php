@@ -96,17 +96,6 @@
                                     <td>{{ cargo(Cart::total()) }}</td>
                                 </tr>
 
-                                <tr class="summary-shipping-row">
-                                    <td>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
-                                            <label class="custom-control-label" for="free-shipping">Ücretsiz Kargo</label>
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                </tr>
-
-
                                 <tr class="summary-total">
                                     <td>Toplam:</td>
                                     <td>{{cargoToplam(Cart::total())}}₺</td>
