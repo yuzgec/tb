@@ -75,7 +75,10 @@ class ProductController extends Controller
 
         $New->save();
 
-        if ($request->input('category')){
+        if($request->input('category')) {
+            foreach($request->input('category') as $pc) {
+                ProductCategoryPivot::where(['product_id' => $New->id])->delete();
+            }
             foreach($request->input('category') as $pc) {
                 ProductCategoryPivot::updateOrCreate(['category_id' => $pc, 'product_id' => $New->id]);
             }
