@@ -25,5 +25,4 @@ class Project extends Model implements HasMedia
     public function category(){
         return $this->hasMany('App\Models\ProjectCategory', 'id', 'category');
     }
-
 }

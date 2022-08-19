@@ -85,14 +85,13 @@
                         <p>Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır </p>
                         <div class="widget-about-info">
                             <div class="row">
-                                <div class="col-sm-6 col-md-4">
+                                <div class="col-sm-12 col-12">
                                     <span class="widget-about-title">Müşteri Hizmetleri</span>
                                     <a href="tel:123456789">0 212 222 22 22</a>
                                 </div>
-                                <div class="col-sm-6 col-md-8">
-                                    <span class="widget-about-title">Ödeme</span>
+                                <div class="col-sm-12 col-12 mt-3">
                                     <figure class="footer-payments">
-                                        <img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
+                                        <img src="/frontend/assets/images/iyzico.png" alt="İyzico" >
                                     </figure>
                                 </div>
                             </div>

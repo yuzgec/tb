@@ -34,6 +34,11 @@ class ProductCategory extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null): void
     {
+
+        $this->addMediaConversion('img')
+            ->width(400)
+            ->nonOptimized();
+
         $this->addMediaConversion('thumb')
             ->width(400)
             ->nonOptimized();
