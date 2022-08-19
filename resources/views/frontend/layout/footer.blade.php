@@ -116,7 +116,7 @@
                     <div class="widget">
                         <h4 class="widget-title">Müşteri Hizmetleri</h4>
                         <ul class="widget-list">
-                            @foreach($Pages->where('id', 2) as $item)
+                            @foreach($Pages->where('category', 2) as $item)
                             <li><a href="#">{{ $item->title }}</a></li>
                             @endforeach
                         </ul>
