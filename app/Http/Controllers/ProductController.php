@@ -77,7 +77,7 @@ class ProductController extends Controller
 
         if ($request->input('category')){
             foreach($request->input('category') as $pc) {
-                ProductCategoryPivot::create(['category_id' => $pc, 'product_id' => $New->id]);
+                ProductCategoryPivot::updateOrCreate(['category_id' => $pc, 'product_id' => $New->id]);
             }
         }
 
