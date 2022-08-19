@@ -116,12 +116,9 @@
                     <div class="widget">
                         <h4 class="widget-title">Müşteri Hizmetleri</h4>
                         <ul class="widget-list">
-                            <li><a href="#">Ödeme Araçları</a></li>
-                            <li><a href="#">Teslimat</a></li>
-                            <li><a href="#">İptal & İADE</a></li>
-                            <li><a href="#">Hesabım</a></li>
-                            <li><a href="#">Teslimat</a></li>
-                            <li><a href="#">İptal & İADE</a></li>
+                            @foreach($Pages->where('id', 2) as $item)
+                            <li><a href="#">{{ $item->title }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
