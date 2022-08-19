@@ -157,6 +157,7 @@ class ProductController extends Controller
         }
 
         toast(SWEETALERT_MESSAGE_UPDATE,'success');
+
         return redirect()->route('product.index');
 
     }

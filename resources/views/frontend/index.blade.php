@@ -74,8 +74,7 @@
 
                             <figure class="product-media">
                                 <a href="{{ route('urun' , $item->slug)}}">
-                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLW0Jd9wrIg2-KBP7049yZNGX_yp4LJFh7VBEfHcKZ1Hc-0g9DMUdzyNbocnBeQzrRuagYfTWimOTnJcabtiqoV0jgEHv-TNwFLjj91LMnYIGaUqIYMKBZuiLndlga7VbXIZ-_T-Sf2_-P2xgkq96r_9sw_s956-no_900x.jpg?v=1660233813" alt="Product image" class="product-image">
-                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
+                                    <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $item->title }}">
                                 </a>
 
                                 <div class="product-action-vertical">
@@ -84,13 +83,13 @@
                             </figure>
 
                             <div class="product-body">
-                                <h3 class="product-title"><a href="{{ route('urunler')}}">Kitap Adı Gelecek</a></h3>
+                                <h3 class="product-title"><a href="{{ route('urunler')}}">{{ $item->title }}</a></h3>
                                 <div class="product-price">
                                     {{ $item->price }}₺
                                 </div>
                             </div>
                             <div class="product-action">
-                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
+                                <a href="{{ route('urun' , $item->slug)}}" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
                             </div>
                         </div>
                         @endforeach
