@@ -54,7 +54,13 @@
                                     </div>
                                 </td>
                                 <td class="total-col">{{ money($cart->qty * $cart->price)}}₺</td>
-                                <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+
+                                <td class="remove-col">
+                                    <form action="{{ route('sepetcikar', $cart->rowId) }}" method="POST">
+                                        @csrf
+                                        <button class="btn-remove" type="submit"><i class="icon-close"></i></button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                             </tbody>
