@@ -34,7 +34,7 @@
             if ($toplam >= CARGO_LIMIT) {
                 return 'Ücretsiz Kargo';
             } else {
-                return money(CARGO_PRICE);
+                return money(CARGO_PRICE.'₺');
             }
         }
         return;

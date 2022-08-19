@@ -15,21 +15,21 @@
                     <div class="toolbox">
                         <div class="toolbox-left">
                             <div class="toolbox-info">
-                                Showing <span>9 of 56</span> Products
+                                ({{$ProductList->count()}}) adet ürün listelenmiştir.
                             </div><!-- End .toolbox-info -->
                         </div><!-- End .toolbox-left -->
 
                         <div class="toolbox-right">
                             <div class="toolbox-sort">
-                                <label for="sortby">Sort by:</label>
+                                <label for="sortby">Sıralama:</label>
                                 <div class="select-custom">
                                     <select name="sortby" id="sortby" class="form-control">
-                                        <option value="popularity" selected="selected">Most Popular</option>
-                                        <option value="rating">Most Rated</option>
-                                        <option value="date">Date</option>
+                                        <option value="popularity" selected="selected">Yeni Eklenenler</option>
+                                        <option value="rating">Fiyat Artan</option>
+                                        <option value="date">Fiyat Azalan</option>
                                     </select>
                                 </div>
-                            </div><!-- End .toolbox-sort -->
+                            </div>
                             <div class="toolbox-layout">
                                 <a href="category-list.html" class="btn-layout">
                                     <svg width="16" height="10">
@@ -109,7 +109,7 @@
 
                             @endforeach
 
-                        </div><!-- End .row -->
+                        </div>
                     </div><!-- End .products -->
 
                 </div><!-- End .col-lg-9 -->
@@ -140,16 +140,14 @@
                                             <span class="item-count">3</span>
                                         </div>
                                         @endforeach
-
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-
-                    </div><!-- End .sidebar sidebar-shop -->
-                </aside><!-- End .col-lg-3 -->
-            </div><!-- End .row -->
-        </div><!-- End .container -->
-    </div><!-- End .page-content -->
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
 @endsection

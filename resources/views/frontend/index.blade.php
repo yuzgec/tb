@@ -588,116 +588,19 @@
                                 }
                             }
                         }'>
-            <div class="banner banner-cat">
-                <a href="#">
+            @foreach($Product_Categories as $item)
+             <div class="banner banner-cat">
+                <a href="{{ route('kategori', $item->slug) }}" class="">
                     <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVHPxAKjHrTj9em5W4GaO6IVAD2DdkuoeLUG22OirZsg_3pGNfWbIdO8SINE0Tj840lS3zayUm0LOAFtZwKPOtRerttwix2ZWmyezkl8BuOxVUva4U5RxVU09i-xrGF6yHBxikcg_aJjD93md-enp-UzQ_s1148-no_900x.jpg?v=1654206373" alt="Banner">
                 </a>
 
                 <div class="banner-content banner-content-static text-center">
-                    <h3 class="banner-title">Kategori Adı</h3>
+                    <h3 class="banner-title">{{ $item->title }}</h3>
                     <h4 class="banner-subtitle">18 Ürün</h4>
                     <a href="#" class="banner-link">Ürünleri İncele</a>
                 </div>
             </div>
-            <div class="banner banner-cat">
-                <a href="#">
-                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVHPxAKjHrTj9em5W4GaO6IVAD2DdkuoeLUG22OirZsg_3pGNfWbIdO8SINE0Tj840lS3zayUm0LOAFtZwKPOtRerttwix2ZWmyezkl8BuOxVUva4U5RxVU09i-xrGF6yHBxikcg_aJjD93md-enp-UzQ_s1148-no_900x.jpg?v=1654206373" alt="Banner">
-                </a>
-
-                <div class="banner-content banner-content-static text-center">
-                    <h3 class="banner-title">Kategori Adı</h3>
-                    <h4 class="banner-subtitle">54 Ürün</h4>
-                    <a href="#" class="banner-link">Ürünleri İncele</a>
-                </div>
-            </div>
-            <div class="banner banner-cat">
-                <a href="#">
-                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVHPxAKjHrTj9em5W4GaO6IVAD2DdkuoeLUG22OirZsg_3pGNfWbIdO8SINE0Tj840lS3zayUm0LOAFtZwKPOtRerttwix2ZWmyezkl8BuOxVUva4U5RxVU09i-xrGF6yHBxikcg_aJjD93md-enp-UzQ_s1148-no_900x.jpg?v=1654206373" alt="Banner">
-                </a>
-
-                <div class="banner-content banner-content-static text-center">
-                    <h3 class="banner-title">Kategori Adı</h3>
-                    <h4 class="banner-subtitle">18 Ürün</h4>
-                    <a href="#" class="banner-link">Ürünleri İncele</a>
-                </div>
-            </div>
-            <div class="banner banner-cat">
-                <a href="#">
-                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVHPxAKjHrTj9em5W4GaO6IVAD2DdkuoeLUG22OirZsg_3pGNfWbIdO8SINE0Tj840lS3zayUm0LOAFtZwKPOtRerttwix2ZWmyezkl8BuOxVUva4U5RxVU09i-xrGF6yHBxikcg_aJjD93md-enp-UzQ_s1148-no_900x.jpg?v=1654206373" alt="Banner">
-                </a>
-
-                <div class="banner-content banner-content-static text-center">
-                    <h3 class="banner-title">Kategori Adı</h3>
-                    <h4 class="banner-subtitle">37 Ürün</h4>
-                    <a href="#" class="banner-link">Ürünleri İncele</a>
-                </div>
-            </div>
-            <div class="banner banner-cat">
-                <a href="#">
-                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVHPxAKjHrTj9em5W4GaO6IVAD2DdkuoeLUG22OirZsg_3pGNfWbIdO8SINE0Tj840lS3zayUm0LOAFtZwKPOtRerttwix2ZWmyezkl8BuOxVUva4U5RxVU09i-xrGF6yHBxikcg_aJjD93md-enp-UzQ_s1148-no_900x.jpg?v=1654206373" alt="Banner">
-                </a>
-
-                <div class="banner-content banner-content-static text-center">
-                    <h3 class="banner-title">Kategori Adı</h3>
-                    <h4 class="banner-subtitle">85 Ürün</h4>
-                    <a href="#" class="banner-link">Ürünleri İncele</a>
-                </div>
-            </div>
-            <div class="banner banner-cat">
-                <a href="#">
-                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVHPxAKjHrTj9em5W4GaO6IVAD2DdkuoeLUG22OirZsg_3pGNfWbIdO8SINE0Tj840lS3zayUm0LOAFtZwKPOtRerttwix2ZWmyezkl8BuOxVUva4U5RxVU09i-xrGF6yHBxikcg_aJjD93md-enp-UzQ_s1148-no_900x.jpg?v=1654206373" alt="Banner">
-                </a>
-
-                <div class="banner-content banner-content-static text-center">
-                    <h3 class="banner-title">Kategori Adı</h3>
-                    <h4 class="banner-subtitle">14 Ürün</h4>
-                    <a href="#" class="banner-link">Ürünleri İncele</a>
-                </div>
-            </div>
-            <div class="banner banner-cat">
-                <a href="#">
-                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVHPxAKjHrTj9em5W4GaO6IVAD2DdkuoeLUG22OirZsg_3pGNfWbIdO8SINE0Tj840lS3zayUm0LOAFtZwKPOtRerttwix2ZWmyezkl8BuOxVUva4U5RxVU09i-xrGF6yHBxikcg_aJjD93md-enp-UzQ_s1148-no_900x.jpg?v=1654206373" alt="Banner">
-                </a>
-
-                <div class="banner-content banner-content-static text-center">
-                    <h3 class="banner-title">Kategori Adı</h3>
-                    <h4 class="banner-subtitle">42 Ürün</h4>
-                    <a href="#" class="banner-link">Ürünleri İncele</a>
-                </div>
-            </div>
-            <div class="banner banner-cat">
-                <a href="#">
-                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVHPxAKjHrTj9em5W4GaO6IVAD2DdkuoeLUG22OirZsg_3pGNfWbIdO8SINE0Tj840lS3zayUm0LOAFtZwKPOtRerttwix2ZWmyezkl8BuOxVUva4U5RxVU09i-xrGF6yHBxikcg_aJjD93md-enp-UzQ_s1148-no_900x.jpg?v=1654206373" alt="Banner">
-                </a>
-
-                <div class="banner-content banner-content-static text-center">
-                    <h3 class="banner-title">Kategori Adı</h3>
-                    <h4 class="banner-subtitle">50 Ürün</h4>
-                    <a href="#" class="banner-link">Ürünleri İncele</a>
-                </div>
-            </div>
-            <div class="banner banner-cat">
-                <a href="#">
-                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVHPxAKjHrTj9em5W4GaO6IVAD2DdkuoeLUG22OirZsg_3pGNfWbIdO8SINE0Tj840lS3zayUm0LOAFtZwKPOtRerttwix2ZWmyezkl8BuOxVUva4U5RxVU09i-xrGF6yHBxikcg_aJjD93md-enp-UzQ_s1148-no_900x.jpg?v=1654206373" alt="Banner">
-                </a>
-
-                <div class="banner-content banner-content-static text-center">
-                    <h3 class="banner-title">Kategori Adı</h3>
-                    <h4 class="banner-subtitle">20 Ürün</h4>
-                    <a href="#" class="banner-link">Ürünleri İncele</a>
-                </div>
-            </div>
-            <div class="banner banner-cat">
-                <a href="#">
-                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVHPxAKjHrTj9em5W4GaO6IVAD2DdkuoeLUG22OirZsg_3pGNfWbIdO8SINE0Tj840lS3zayUm0LOAFtZwKPOtRerttwix2ZWmyezkl8BuOxVUva4U5RxVU09i-xrGF6yHBxikcg_aJjD93md-enp-UzQ_s1148-no_900x.jpg?v=1654206373" alt="Banner">
-                </a>
-
-                <div class="banner-content banner-content-static text-center">
-                    <h3 class="banner-title">Kategori Adı</h3>
-                    <h4 class="banner-subtitle">18 Ürün</h4>
-                    <a href="#" class="banner-link">Ürünleri İncele</a>
-                </div>
-            </div>
+                @endforeach
 
         </div>
 
