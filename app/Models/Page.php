@@ -10,10 +10,12 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Page extends Model implements HasMedia
 {
-    use HasFactory,SoftDeletes,InteractsWithMedia,LogsActivity;
+    use HasFactory,SoftDeletes,InteractsWithMedia,LogsActivity,HasSlug;
 
     protected $guarded = [];
     protected $table = 'page';
@@ -25,5 +27,12 @@ class Page extends Model implements HasMedia
 
     public function getCategory(){
         return $this->belongsTo('App\Models\PageCategory', 'category');
+    }
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
     }
 }

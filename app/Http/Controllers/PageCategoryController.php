@@ -27,7 +27,6 @@ class PageCategoryController extends Controller
         $New = new PageCategory;
 
         $New->title = $request->title;
-        $New->slug = seo($request->title);
 
         $New->short = $request->short;
         $New->desc = $request->desc;
@@ -73,7 +72,6 @@ class PageCategoryController extends Controller
         $Update = PageCategory::findOrFail($id);
 
         $Update->title = $request->title;
-        $Update->slug = seo($request->title);
         $Update->short = $request->short;
         $Update->desc = $request->desc;
 
