@@ -89,11 +89,11 @@
                                 <tbody>
                                 <tr class="summary-subtotal">
                                     <td>Ara Toplam:</td>
-                                    <td>{{ cargo(Cart::total()) }}</td>
+                                    <td>{{ money(Cart::subtotal()) }}₺</td>
                                 </tr>
                                 <tr class="summary-shipping">
                                     <td>Kargo Ücreti:</td>
-                                    <td>&nbsp;</td>
+                                    <td>{{ cargo(Cart::total()) }}</td>
                                 </tr>
 
                                 <tr class="summary-shipping-row">
