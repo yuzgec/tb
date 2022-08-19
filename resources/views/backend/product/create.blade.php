@@ -16,7 +16,19 @@
                 <div class="card-body">
 
                 <x-form-inputtext label="Adı Giriniz" name="title"/>
-                <x-form-select label="Kategori" name="category[]" multiple :list="$Kategori"/>
+
+                    <div class="form-group mb-3 row">
+                        <label class="form-label col-3 col-form-label">Kategori </label>
+                        <div class="col">
+                            <select class="form-select" multiple name="category[]">
+                                @foreach($Product_Categories as $pc)
+                                    <option value="{{ $pc->id }}">
+                                        {{ $pc->title }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 <x-form-inputtext label="Kampanya Link" name="external"/>
                 <x-form-inputtext label="Ürün Kodu " name="sku"/>
 
