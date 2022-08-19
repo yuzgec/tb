@@ -7,7 +7,17 @@ use Illuminate\Support\Facades\Route;
 
     Auth::routes();
 
-    Route::get('/urunsayfasi', function(){
+
+    Route::get('/kat', function() {
+        $p = Product::all();
+
+        foreach ($p as $item){
+            ProductCategoryPivot::updateOrCreate(['category_id' => 9, 'product_id' => $item->id]);
+        }
+    });
+
+
+Route::get('/urunsayfasi', function(){
        return view('frontend.product.index');
     })->name('urunler');
 

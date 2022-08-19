@@ -11,10 +11,13 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
+
 
 class ProductCategory extends Model implements HasMedia
 {
-    use HasFactory, SoftDeletes,InteractsWithMedia,NodeTrait,LogsActivity;
+    use HasFactory, SoftDeletes,InteractsWithMedia,NodeTrait,LogsActivity,HasSlug;
 
     protected $guarded = [];
     protected $table = 'product_categories';
@@ -40,4 +43,20 @@ class ProductCategory extends Model implements HasMedia
             ->nonOptimized();
     }
 
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
+    }
 }

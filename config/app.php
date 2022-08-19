@@ -184,6 +184,7 @@ return [
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Cviebrock\EloquentSluggable\ServiceProvider::class,
 
         /*
          * Package Service Providers...

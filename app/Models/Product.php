@@ -12,10 +12,12 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use Spatie\Sluggable\SlugOptions;
+use Spatie\Sluggable\HasSlug;
 
 class Product extends Model implements HasMedia,Viewable
 {
-    use HasFactory,SoftDeletes,InteractsWithMedia,LogsActivity,InteractsWithViews;
+    use HasFactory,SoftDeletes,InteractsWithMedia,LogsActivity,InteractsWithViews,HasSlug;
 
     protected $guarded = [];
     protected $table = 'products';
@@ -47,5 +49,12 @@ class Product extends Model implements HasMedia,Viewable
         $this->addMediaConversion('small')
             ->width(150)
             ->nonOptimized();
+    }
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
     }
 }

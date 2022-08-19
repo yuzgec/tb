@@ -29,17 +29,15 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        //dd($request);
+        //dd($request->all());
         $New = new Product;
         $New->title = $request->title;
-        $New->slug = seo($request->title);
         $New->external = $request->external;
 
         $New->price = $request->price;
         $New->old_price = $request->old_price;
         $New->campagin_price = $request->campagin_price;
         $New->sku = $request->sku;
-        $New->external = $request->external;
 
         $New->short = $request->short;
         $New->note = $request->note;
@@ -61,6 +59,9 @@ class ProductController extends Controller
         $New->seo_title = $request->seo_title;
 
 
+        //dd($request->input('category'));
+
+
         if($request->hasfile('image')){
             $New->addMedia($request->image)->toMediaCollection('page');
         }
@@ -71,6 +72,7 @@ class ProductController extends Controller
             }
         }
         //dd($request->input('category'));
+
         $New->save();
 
         if ($request->input('category')){
@@ -78,6 +80,8 @@ class ProductController extends Controller
                 ProductCategoryPivot::updateOrCreate(['category_id' => $pc, 'product_id' => $New->id]);
             }
         }
+
+
 
         //toast(SWEETALERT_MESSAGE_CREATE,'success');
         return redirect()->route('product.index');
