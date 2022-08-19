@@ -1,258 +1,204 @@
 @extends('frontend.layout.app')
 @section('title', 'Siparişi Tamamla | '.config('app.name'))
 @section('content')
-
-    <div class="bg-gray-13 bg-md-transparent">
+    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         <div class="container">
-            <div class="my-md-3">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="{{ route('home') }}">Anasayfa</a></li>
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Siparişi Tamamla</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
+            <h1 class="page-title">Checkout<span>Shop</span></h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
 
-    <div class="container">
-            <form action="{{ route('kaydet') }}" method="POST">
-                @csrf()
-                <div class="row">
-                    <div class="col-lg-7">
-                        <div class="pb-2 mb-2">
-                            <div class="border-bottom border-color-1 mb-5">
-                                <h3 class="section-title mb-0 pb-2 font-size-25">İletişim <b>Bilgileri</b></h3>
-                            </div>
+    <div class="page-content">
+        <div class="checkout">
+            <div class="container">
+
+                <form action="#">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>First Name *</label>
+                                    <input type="text" class="form-control" required>
+                                </div><!-- End .col-sm-6 -->
+
+                                <div class="col-sm-6">
+                                    <label>Last Name *</label>
+                                    <input type="text" class="form-control" required>
+                                </div><!-- End .col-sm-6 -->
+                            </div><!-- End .row -->
+
+                            <label>Company Name (Optional)</label>
+                            <input type="text" class="form-control">
+
+                            <label>Country *</label>
+                            <input type="text" class="form-control" required>
+
+                            <label>Street address *</label>
+                            <input type="text" class="form-control" placeholder="House number and Street name" required>
+                            <input type="text" class="form-control" placeholder="Appartments, suite, unit etc ..." required>
 
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="js-form-message mb-3">
-                                        <label class="form-label">
-                                            Adınız
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <input value="{{old('name')}}" type="text" class="form-control  @if($errors->has('name')) is-invalid @endif" name="name" placeholder="Adınız" autocomplete="off">
-                                        @if($errors->has('name'))
-                                            <div class="invalid-feedback">{{$errors->first('name')}}</div>
-                                        @endif
+                                <div class="col-sm-6">
+                                    <label>Town / City *</label>
+                                    <input type="text" class="form-control" required>
+                                </div><!-- End .col-sm-6 -->
 
-                                    </div>
-                                </div>
+                                <div class="col-sm-6">
+                                    <label>State / County *</label>
+                                    <input type="text" class="form-control" required>
+                                </div><!-- End .col-sm-6 -->
+                            </div><!-- End .row -->
 
-                                <div class="col-md-6">
-                                    <div class="js-form-message mb-3">
-                                        <label class="form-label">
-                                            Soyadınız
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <input value="{{old('surname')}}" type="text" class="form-control @if($errors->has('surname')) is-invalid @endif" name="surname" placeholder="Soyadınız" autocomplete="off">
-                                        @if($errors->has('surname'))
-                                            <div class="invalid-feedback">{{$errors->first('surname')}}</div>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="w-100"></div>
-                                <div class="col-md-6">
-                                    <div class="js-form-message mb-3">
-                                        <label class="form-label">
-                                            Email Adresiniz
-                                        </label>
-                                        <input value="{{old('email')}}" type="text" class="form-control @if($errors->has('email')) is-invalid @endif"  name="email" placeholder="Email. Zorunlu Değildir">
-                                        @if($errors->has('email'))
-                                            <div class="invalid-feedback">{{$errors->first('email')}}</div>
-                                        @endif
-                                    </div>
-                                </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>Postcode / ZIP *</label>
+                                    <input type="text" class="form-control" required>
+                                </div><!-- End .col-sm-6 -->
 
-                                <div class="col-md-6">
-                                    <div class="js-form-message mb-3">
-                                        <label class="form-label">
-                                            Telefon Numaranız <span class="text-danger">*</span>
-                                        </label>
-                                        <input value="{{old('phone')}}" type="text" class="form-control @if($errors->has('phone')) is-invalid @endif" name="phone" placeholder="Telefon Numaranız">
-                                        @if($errors->has('phone'))
-                                            <div class="invalid-feedback">{{$errors->first('phone')}}</div>
-                                        @endif
-                                    </div>
-                                </div>
+                                <div class="col-sm-6">
+                                    <label>Phone *</label>
+                                    <input type="tel" class="form-control" required>
+                                </div><!-- End .col-sm-6 -->
+                            </div><!-- End .row -->
 
+                            <label>Email address *</label>
+                            <input type="email" class="form-control" required>
 
-                                <div class="col-md-12">
-                                    <div class="js-form-message mb-3">
-                                        <label class="form-label">
-                                            Açık Adresiniz<span class="text-danger">*</span>
-                                        </label>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkout-create-acc">
+                                <label class="custom-control-label" for="checkout-create-acc">Create an account?</label>
+                            </div><!-- End .custom-checkbox -->
 
-                                        <div class="input-group">
-                                            <textarea class="form-control p-5 @if($errors->has('address')) is-invalid @endif" rows="4" name="address" placeholder="Açık Adresinizi Yazınız">{{old('address')}}</textarea>
-                                            @if($errors->has('address'))
-                                                <div class="invalid-feedback">{{$errors->first('address')}}</div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkout-diff-address">
+                                <label class="custom-control-label" for="checkout-diff-address">Ship to a different address?</label>
+                            </div><!-- End .custom-checkbox -->
 
-                                <div class="col-md-6">
-                                    <div class="js-form-message mb-6">
-                                        <label class="form-label">
-                                            İl
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <select class="form-control @if($errors->has('province')) is-invalid @endif" name="province">
-                                            <option value="">İl Seçiniz</option>
-                                            @foreach($Province as $item)
-                                                <option value="{{ $item->sehir_title }}" {{ (old('province') == $item->sehir_title) ? 'selected' : null }} }}>{{ $item->sehir_title }}</option>
-                                            @endforeach
-                                        </select>
-                                        @if($errors->has('province'))
-                                            <div class="invalid-feedback">{{$errors->first('province')}}</div>
-                                        @endif
-                                    </div>
+                            <label>Order notes (optional)</label>
+                            <textarea class="form-control" cols="30" rows="4" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+                        </div><!-- End .col-lg-9 -->
+                        <aside class="col-lg-3">
+                            <div class="summary">
+                                <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
 
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="js-form-message mb-3">
-                                        <label class="form-label">
-                                            İlçe <span class="text-danger">*</span>
-                                        </label>
-                                        <input value="{{old('city')}}" type="text" class="form-control @if($errors->has('city')) is-invalid @endif"  name="city" placeholder="İlçe">
-                                        @if($errors->has('city'))
-                                            <div class="invalid-feedback">{{$errors->first('city')}}</div>
-                                        @endif
-                                    </div>
-                                </div>
+                                <table class="table table-summary">
+                                    <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Total</th>
+                                    </tr>
+                                    </thead>
 
-                                <div class="w-100"></div>
-                                <div class="col-md-12">
-                                    <div class="js-form-message mb-3">
-                                        <label class="form-label">
-                                            Sipariş Notu
-                                        </label>
-                                        <div class="input-group">
-                                            <textarea  class="form-control p-5" rows="4" name="note" placeholder=" Varsa Sipariş ile ilgili notunuz"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <tbody>
+                                    <tr>
+                                        <td><a href="#">Beige knitted elastic runner shoes</a></td>
+                                        <td>$84.00</td>
+                                    </tr>
 
-                            </div>
+                                    <tr>
+                                        <td><a href="#">Blue utility pinafore denimdress</a></td>
+                                        <td>$76,00</td>
+                                    </tr>
+                                    <tr class="summary-subtotal">
+                                        <td>Subtotal:</td>
+                                        <td>$160.00</td>
+                                    </tr><!-- End .summary-subtotal -->
+                                    <tr>
+                                        <td>Shipping:</td>
+                                        <td>Free shipping</td>
+                                    </tr>
+                                    <tr class="summary-total">
+                                        <td>Total:</td>
+                                        <td>$160.00</td>
+                                    </tr><!-- End .summary-total -->
+                                    </tbody>
+                                </table><!-- End .table table-summary -->
 
-                        </div>
-                    </div>
-                    <div class="col-lg-5 mb-7 mb-lg-0">
-                        <div class="pl-lg-3 ">
-                            <div class="bg-gray-1 rounded-lg">
-                                <div class="p-4 mb-4 checkout-table">
-                                    <div class="border-bottom border-color-1 mb-5">
-                                        <h3 class="section-title mb-0 pb-2 font-size-25">Sepetiniz</h3>
-                                    </div>
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th class="product-name">Ürün Adı</th>
-                                            <th class="product-total">Fiyatı</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach(Cart::content() as $cart)
-                                            <tr class="cart_item">
-                                                <td>{{ $cart->name }} <strong class="product-quantity">× {{ $cart->qty }}</strong></td>
-                                                <td>{{ money($cart->qty *  $cart->price)  }}₺</td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <th>Ara Toplam</th>
-                                            <td>{{money(Cart::subtotal())}}₺</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Kargo</th>
-                                            <td>{{ cargo(Cart::total()) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Toplam</th>
-                                            <td><strong>{{cargoToplam(Cart::total())}}₺</strong></td>
-                                        </tr>
-                                        </tfoot>
-                                    </table>
-
-                                    <div class="border-top border-width-3 border-color-1 pt-3 mb-3">
-                                        <div id="basicsAccordion1">
-                                            <div class="border-bottom border-color-1 border-dotted-bottom">
-                                                <div class="p-3" id="basicsHeadingOne">
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" class="custom-control-input" id="stylishRadio1" name="stylishRadio" checked>
-                                                        <label class="custom-control-label form-label" for="stylishRadio1"
-                                                               data-toggle="collapse"
-                                                               data-target="#basicsCollapseOnee"
-                                                               aria-expanded="true"
-                                                               aria-controls="basicsCollapseOnee">
-                                                            Kapıda Ödeme
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div id="basicsCollapseOnee" class="collapse show border-top border-color-1 border-dotted-top bg-dark-lighter"
-                                                     aria-labelledby="basicsHeadingOne"
-                                                     data-parent="#basicsAccordion1">
-                                                    <div class="p-4">
-                                                        Siparişinizin ödemesini kapıda nakit olarak kolayca ve güvenli bir şekilde yapabilirsiniz.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary-dark-w btn-block btn-pill font-size-20 mb-3 py-3">Siparişi Tamamla</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </form>
-
-            <div class="col">
-                <ul class="row list-unstyled products-group no-gutters">
-                    @foreach($Product as $item)
-                        <li class="col-6 col-md-3 product-item p-1">
-                            <div class="js-slide products-group">
-                                <div class="product-item__outer h-100">
-                                    <div class="product-item__inner px-xl-4 p-3 border border-width-1 border-purple borders-radius-5">
-                                        <div class="product-item__body pb-xl-2">
-                                            <h5 class="mb-1 product-item__title">
-                                                <a href="{{ route('urun', $item->slug) }}" class="text-gray-60  font-weight-bold" title="{{ $item->title }}"> {{ $item->title }}</a>
-                                            </h5>
-                                            <div class="mb-2">
-                                                <a href="{{ route('urun', $item->slug) }}" class="d-block text-center" title="{{ $item->title }}">
-                                                    <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/frontend/resimyok.jpg': $item->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $item->title }}">
+                                <div class="accordion-summary" id="accordion-payment">
+                                    <div class="card">
+                                        <div class="card-header" id="heading-1">
+                                            <h2 class="card-title">
+                                                <a role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+                                                    Direct bank transfer
                                                 </a>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-center mb-1 text-center">
-                                                <div class="prodcut-priceflex-wrap position-relative text-center">
-                                                    <div class="text-center">
-                                                        <ins class="font-size-20 text-black text-decoration-none mr-2 font-weight-bold text-center">
-                                                            {{ money($item->price) }}₺ -
-                                                            <del class="font-size-1">
-                                                                {{ money($item->old_price) }}
-                                                            </del>
-                                                        </ins>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-item__footer">
-                                            <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                <a  class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Süper Hızlı Gönderi</a>
-                                                <a  class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Ücretsiz Kargo</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-    </div>
+                                            </h2>
+                                        </div><!-- End .card-header -->
+                                        <div id="collapse-1" class="collapse show" aria-labelledby="heading-1" data-parent="#accordion-payment">
+                                            <div class="card-body">
+                                                Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
+                                            </div><!-- End .card-body -->
+                                        </div><!-- End .collapse -->
+                                    </div><!-- End .card -->
+
+                                    <div class="card">
+                                        <div class="card-header" id="heading-2">
+                                            <h2 class="card-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+                                                    Check payments
+                                                </a>
+                                            </h2>
+                                        </div><!-- End .card-header -->
+                                        <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#accordion-payment">
+                                            <div class="card-body">
+                                                Ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
+                                            </div><!-- End .card-body -->
+                                        </div><!-- End .collapse -->
+                                    </div><!-- End .card -->
+
+                                    <div class="card">
+                                        <div class="card-header" id="heading-3">
+                                            <h2 class="card-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
+                                                    Cash on delivery
+                                                </a>
+                                            </h2>
+                                        </div><!-- End .card-header -->
+                                        <div id="collapse-3" class="collapse" aria-labelledby="heading-3" data-parent="#accordion-payment">
+                                            <div class="card-body">Quisque volutpat mattis eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
+                                            </div><!-- End .card-body -->
+                                        </div><!-- End .collapse -->
+                                    </div><!-- End .card -->
+
+                                    <div class="card">
+                                        <div class="card-header" id="heading-4">
+                                            <h2 class="card-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
+                                                    PayPal <small class="float-right paypal-link">What is PayPal?</small>
+                                                </a>
+                                            </h2>
+                                        </div><!-- End .card-header -->
+                                        <div id="collapse-4" class="collapse" aria-labelledby="heading-4" data-parent="#accordion-payment">
+                                            <div class="card-body">
+                                                Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum.
+                                            </div><!-- End .card-body -->
+                                        </div><!-- End .collapse -->
+                                    </div><!-- End .card -->
+
+                                    <div class="card">
+                                        <div class="card-header" id="heading-5">
+                                            <h2 class="card-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
+                                                    Credit Card (Stripe)
+                                                    <img src="assets/images/payments-summary.png" alt="payments cards">
+                                                </a>
+                                            </h2>
+                                        </div><!-- End .card-header -->
+                                        <div id="collapse-5" class="collapse" aria-labelledby="heading-5" data-parent="#accordion-payment">
+                                            <div class="card-body"> Donec nec justo eget felis facilisis fermentum.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Lorem ipsum dolor sit ame.
+                                            </div><!-- End .card-body -->
+                                        </div><!-- End .collapse -->
+                                    </div><!-- End .card -->
+                                </div><!-- End .accordion -->
+
+                                <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+                                    <span class="btn-text">Place Order</span>
+                                    <span class="btn-hover-text">Proceed to Checkout</span>
+                                </button>
+                            </div><!-- End .summary -->
+                        </aside><!-- End .col-lg-3 -->
+                    </div><!-- End .row -->
+                </form>
+            </div><!-- End .container -->
+        </div><!-- End .checkout -->
+    </div><!-- End .page-content -->
 @endsection

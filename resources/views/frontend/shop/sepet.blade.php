@@ -1,19 +1,19 @@
 @extends('frontend.layout.app')
 @section('title', 'Sepetim  | '.config('app.name'))
 @section('content')
-    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+    <div class="page-header text-center" style="background-image: url('/frontend/assets/images/page-header-bg.jpg')">
         <div class="container">
             <h1 class="page-title">Sepetim<span>TB Kitap</span></h1>
-        </div><!-- End .container -->
-    </div><!-- End .page-header -->
+        </div>
+    </div>
     <nav aria-label="breadcrumb" class="breadcrumb-nav">
         <div class="container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Anasayfa</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Anasayfa</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Sepetim</li>
             </ol>
-        </div><!-- End .container -->
-    </nav><!-- End .breadcrumb-nav -->
+        </div>
+    </nav>
 
     <div class="page-content">
         <div class="cart">
@@ -32,32 +32,33 @@
                             </thead>
 
                             <tbody>
+                            @foreach(Cart::content() as $cart)
                             <tr>
                                 <td class="product-col">
                                     <div class="product">
                                         <figure class="product-media">
-                                            <a href="#">
-                                                <img src="assets/images/products/table/product-1.jpg" alt="Product image">
+                                            <a href="{{ route('urun', $cart->options->url) }}">
+                                                <img src="{{ $cart->options->image }}" alt="{{ $cart->name }}">
                                             </a>
                                         </figure>
 
                                         <h3 class="product-title">
-                                            <a href="#">Beige knitted elastic runner shoes</a>
-                                        </h3><!-- End .product-title -->
-                                    </div><!-- End .product -->
+                                            <a href="{{ route('urun', $cart->options->url) }}">{{ $cart->name }}</a>
+                                        </h3>
+                                    </div>
                                 </td>
-                                <td class="price-col">$84.00</td>
+                                <td class="price-col">{{ money($cart->price)}}</td>
                                 <td class="quantity-col">
                                     <div class="cart-product-quantity">
                                         <input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
-                                    </div><!-- End .cart-product-quantity -->
+                                    </div>
                                 </td>
-                                <td class="total-col">$84.00</td>
+                                <td class="total-col">{{ money($cart->qty * $cart->price)}}₺</td>
                                 <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
                             </tr>
-
+                            @endforeach
                             </tbody>
-                        </table><!-- End .table table-wishlist -->
+                        </table>
 
                         <div class="cart-bottom">
                             <div class="cart-discount">
@@ -66,26 +67,26 @@
                                         <input type="text" class="form-control" required placeholder="Varsa İndirim Kupunu">
                                         <div class="input-group-append">
                                             <button class="btn btn-outline-primary-2" type="submit"><i class="icon-long-arrow-right"></i></button>
-                                        </div><!-- .End .input-group-append -->
-                                    </div><!-- End .input-group -->
+                                        </div>
+                                    </div>
                                 </form>
-                            </div><!-- End .cart-discount -->
+                            </div>
 
 
-                        </div><!-- End .cart-bottom -->
-                    </div><!-- End .col-lg-9 -->
+                        </div>
+                    </div>
                     <aside class="col-lg-3">
                         <div class="summary summary-cart">
-                            <h3 class="summary-title">sepet Toplam</h3><!-- End .summary-title -->
+                            <h3 class="summary-title">Sepet Toplam</h3><!-- End .summary-title -->
 
                             <table class="table table-summary">
                                 <tbody>
                                 <tr class="summary-subtotal">
                                     <td>Ara Toplam:</td>
-                                    <td>160.00₺</td>
-                                </tr><!-- End .summary-subtotal -->
+                                    <td>{{ cargo(Cart::total()) }}</td>
+                                </tr>
                                 <tr class="summary-shipping">
-                                    <td>Shipping:</td>
+                                    <td>Kargo Ücreti:</td>
                                     <td>&nbsp;</td>
                                 </tr>
 
@@ -94,23 +95,23 @@
                                         <div class="custom-control custom-radio">
                                             <input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
                                             <label class="custom-control-label" for="free-shipping">Ücretsiz Kargo</label>
-                                        </div><!-- End .custom-control -->
+                                        </div>
                                     </td>
-                                    <td>$0.00</td>
-                                </tr><!-- End .summary-shipping-row -->
+                                    <td></td>
+                                </tr>
 
 
                                 <tr class="summary-total">
                                     <td>Toplam:</td>
-                                    <td>160.00₺</td>
-                                </tr><!-- End .summary-total -->
+                                    <td>{{cargoToplam(Cart::total())}}₺</td>
+                                </tr>
                                 </tbody>
-                            </table><!-- End .table table-summary -->
+                            </table>
 
-                            <a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">ÖDEME SAYFASINA GİT</a>
-                        </div><!-- End .summary -->
+                            <a href="{{ route('siparis') }}" class="btn btn-outline-primary-2 btn-order btn-block">ÖDEME SAYFASINA GİT</a>
+                        </div>
 
-                        <a href="category.html" class="btn btn-outline-dark-2 btn-block mb-3"><span>ALIŞVERİŞE DEVAM ET</span><i class="icon-refresh"></i></a>
+                        <a href="{{ route('home') }}" class="btn btn-outline-dark-2 btn-block mb-3"><span>ALIŞVERİŞE DEVAM ET</span><i class="icon-refresh"></i></a>
                     </aside><!-- End .col-lg-3 -->
                 </div><!-- End .row -->
             </div><!-- End .container -->

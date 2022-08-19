@@ -70,9 +70,9 @@ class HomeController extends Controller
     }
     public function sepet(){
 
-    /*    if (Cart::content()->count() === 0){
+        if (Cart::content()->count() === 0){
             return redirect()->route('home');
-        }*/
+        }
         //dd(Cart::content());
 
         $Products = Product::select('id', 'title', 'price', 'old_price', 'slug', 'campagin_price')->orderBy('rank')->get();
@@ -82,8 +82,7 @@ class HomeController extends Controller
         if (Cart::content()->count() === 0){
             return redirect()->route('home');
         }
-        $Province = DB::table('sehir')->get();
-        return view('frontend.shop.siparis', compact('Province'));
+        return view('frontend.shop.siparis');
     }
     public function urun($url){
 
@@ -273,7 +272,7 @@ class HomeController extends Controller
                 'image' => (!$p->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg' : $p->getFirstMediaUrl('page', 'small'),
                 'cargo' => 0,
                 'campagin' => $campagin,
-                'url' => asset($p->url)
+                'url' => $p->slug
             ]
         ]);
 

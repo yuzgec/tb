@@ -81,7 +81,7 @@
                             </div>
 
                             <div class="product-content">
-                                {{ $Detay->short }}
+                                {!! $Detay->short  !!}
                             </div>
 
                             <form action="{{ route('sepeteekle') }}" method="POST">

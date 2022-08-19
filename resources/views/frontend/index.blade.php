@@ -83,7 +83,7 @@
                             </figure>
 
                             <div class="product-body">
-                                <h3 class="product-title"><a href="{{ route('urunler')}}">{{ $item->title }}</a></h3>
+                                <h3 class="product-title"><a href="{{ route('urun' , $item->slug)}}">{{ $item->title }}</a></h3>
                                 <div class="product-price">
                                     {{ $item->price }}₺
                                 </div>
