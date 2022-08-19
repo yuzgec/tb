@@ -77,7 +77,7 @@ class ProductController extends Controller
 
         if ($request->input('category')){
             foreach($request->input('category') as $pc) {
-                ProductCategoryPivot::updateOrCreate(['category_id' => $pc, 'product_id' => $New->id]);
+                ProductCategoryPivot::create(['category_id' => $pc, 'product_id' => $New->id]);
             }
         }
 
@@ -111,7 +111,6 @@ class ProductController extends Controller
         $Update->old_price = $request->old_price;
         $Update->campagin_price = $request->campagin_price;
         $Update->sku = $request->sku;
-        $Update->external = $request->external;
 
         $Update->short = $request->short;
         $Update->note = $request->note;
