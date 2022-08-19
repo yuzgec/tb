@@ -55,11 +55,11 @@
                 </div>
             </div>
         </div>
-    </div><!-- End .icon-boxes-container -->
+    </div>
     <div class="footer-newsletter bg-image" style="background-image: url(/frontend/assets/images/backgrounds/bg-2.jpg)">
         <div class="container">
             <div class="heading text-center">
-                <h3 class="title">GHaber Bülteminize Katılın</h3><!-- End .title -->
+                <h3 class="title">Haber Bülteminize Katılın</h3><!-- End .title -->
                 <p class="title-desc">Sitemize yüklenen kitap ve ürünlerden ilk siz haberdar olun</p><!-- End .title-desc -->
             </div>
 
@@ -117,7 +117,7 @@
                         <h4 class="widget-title">Müşteri Hizmetleri</h4>
                         <ul class="widget-list">
                             @foreach($Pages->where('category', 2) as $item)
-                            <li><a href="#">{{ $item->title }}</a></li>
+                            <li><a href="{{ route('kurumsal', $item->slug) }}">{{ $item->title }}</a></li>
                             @endforeach
                         </ul>
                     </div>

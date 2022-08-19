@@ -63,7 +63,7 @@ class HomeController extends Controller
         SEOTools::opengraph()->addProperty('type', 'page');
         SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
 
-        return view('frontend.kurumsal.index', compact('Detay'));
+        return view('frontend.page.index', compact('Detay'));
     }
     public function iletisim(){
         return view('frontend.sayfa.iletisim');
@@ -373,78 +373,4 @@ class HomeController extends Controller
         return view('frontend.shop.kampanya', compact('Detay', 'Count', 'Comments', 'Stock'));
     }
 
-    public function kiblegahkampanya(){
-        $Detay = Product::with('getCategory')->where('id',40)->firstOrFail();
-        $Stock = DB::table('campagin_stock')->where('product_id', $Detay->id)->first();
-
-        SEOTools::setTitle($Detay->title);
-        SEOTools::setDescription($Detay->seo_desc);
-        SEOTools::opengraph()->setUrl(url()->current());
-        SEOTools::setCanonical(route('urun', $Detay->slug));
-        SEOTools::opengraph()->addProperty('type', 'product');
-
-        SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
-
-        views($Detay)->cooldown(60)->record();
-        $Count = views($Detay)->unique()->period(Period::create(Carbon::today()))->count();;
-        $Comments = Comment::where('product_id', $Detay->id)->where('status', 1)->paginate(40);
-        return view('frontend.shop.kampanyakiblegah', compact('Detay', 'Count', 'Comments', 'Stock'));
-    }
-
-
-    public function sozcukkampanya(){
-        $Detay = Product::with('getCategory')->where('id',41)->firstOrFail();
-        $Stock = DB::table('campagin_stock')->where('product_id', $Detay->id)->first();
-
-        SEOTools::setTitle($Detay->title);
-        SEOTools::setDescription($Detay->seo_desc);
-        SEOTools::opengraph()->setUrl(url()->current());
-        SEOTools::setCanonical(route('urun', $Detay->slug));
-        SEOTools::opengraph()->addProperty('type', 'product');
-
-        SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
-
-        views($Detay)->cooldown(60)->record();
-        $Count = views($Detay)->unique()->period(Period::create(Carbon::today()))->count();;
-        $Comments = Comment::where('product_id', $Detay->id)->where('status', 1)->paginate(40);
-        return view('frontend.shop.sozcukkampanya', compact('Detay', 'Count', 'Comments', 'Stock'));
-    }
-
-
-    public function hayvankampanya(){
-        $Detay = Product::with('getCategory')->where('id',43)->firstOrFail();
-        $Stock = DB::table('campagin_stock')->where('product_id', $Detay->id)->first();
-
-        SEOTools::setTitle($Detay->title);
-        SEOTools::setDescription($Detay->seo_desc);
-        SEOTools::opengraph()->setUrl(url()->current());
-        SEOTools::setCanonical(route('urun', $Detay->slug));
-        SEOTools::opengraph()->addProperty('type', 'product');
-
-        SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
-
-        views($Detay)->cooldown(60)->record();
-        $Count = views($Detay)->unique()->period(Period::create(Carbon::today()))->count();;
-        $Comments = Comment::where('product_id', $Detay->id)->where('status', 1)->paginate(40);
-        return view('frontend.shop.hayvankampanya', compact('Detay', 'Count', 'Comments', 'Stock'));
-    }
-
-
-    public function ilmihalkampanya(){
-        $Detay = Product::with('getCategory')->where('id',42)->firstOrFail();
-        $Stock = DB::table('campagin_stock')->where('product_id', $Detay->id)->first();
-
-        SEOTools::setTitle($Detay->title);
-        SEOTools::setDescription($Detay->seo_desc);
-        SEOTools::opengraph()->setUrl(url()->current());
-        SEOTools::setCanonical(route('urun', $Detay->slug));
-        SEOTools::opengraph()->addProperty('type', 'product');
-
-        SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
-
-        views($Detay)->cooldown(60)->record();
-        $Count = views($Detay)->unique()->period(Period::create(Carbon::today()))->count();;
-        $Comments = Comment::where('product_id', $Detay->id)->where('status', 1)->paginate(40);
-        return view('frontend.shop.ilmihalkampanya', compact('Detay', 'Count', 'Comments', 'Stock'));
-    }
 }
