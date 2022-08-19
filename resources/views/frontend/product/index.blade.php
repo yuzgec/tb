@@ -60,7 +60,7 @@
                                         <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="product side">
                                     </a>
                                 </div><!-- End .product-image-gallery -->
-                            </div><!-- End .row -->
+                            </div>
                         </div><!-- End .product-gallery -->
                     </div><!-- End .col-md-6 -->
 
@@ -77,12 +77,13 @@
                             </div>
 
                             <div class="product-price">
-                                {{ $Detay->price }}₺
+                                {{ $Detay->price }}₺ - <del>{{ $Detay->old_price }}₺</del>
                             </div>
 
                             <div class="product-content">
-                                {{ $Detay->shortdesc }}
+                                {{ $Detay->short }}
                             </div>
+
                             <form action="{{ route('sepeteekle') }}" method="POST">
                             @csrf
                             <input type="hidden" name="id" value="{{ $Detay->id }}">
@@ -90,8 +91,8 @@
                                 <label for="qty">Adet:</label>
                                 <div class="product-details-quantity">
                                     <input type="number" id="qty" name="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
-                                </div><!-- End .product-details-quantity -->
-                            </div><!-- End .details-filter-row -->
+                                </div>
+                            </div>
 
                             <div class="product-details-action">
                                 <button type="submit"  class="btn-product btn-cart"><span>Sepete Ekle</span></button>
@@ -99,14 +100,14 @@
                                 <div class="details-action-wrapper">
                                     <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Favorilere Ekle</span></a>
                                     <a href="#" class="btn-product btn-compare" title="Compare"><span>Tavsiye Et</span></a>
-                                </div><!-- End .details-action-wrapper -->
-                            </div><!-- End .product-details-action -->
+                                </div>
+                            </div>
                             </form>
                             <div class="product-details-footer">
                                 <div class="product-cat">
                                     <span>Kategori:</span>
                                     <a href="#">Türk Edebiyatı</a>,
-                                </div><!-- End .product-cat -->
+                                </div>
 
                                 <div class="social-icons social-icons-sm">
                                     <span class="social-label">Paylaş:</span>
@@ -115,11 +116,11 @@
                                     <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
                                     <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
                                 </div>
-                            </div><!-- End .product-details-footer -->
-                        </div><!-- End .product-details -->
-                    </div><!-- End .col-md-6 -->
-                </div><!-- End .row -->
-            </div><!-- End .product-details-top -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="product-details-tab">
                 <ul class="nav nav-pills justify-content-center" role="tablist">
@@ -141,13 +142,13 @@
                         <div class="product-desc-content">
                             <h3>Ürün Açıklaması</h3>
                             {!!  $Detay->desc !!}
-                        </div><!-- End .product-desc-content -->
-                    </div><!-- .End .tab-pane -->
+                        </div>
+                    </div>
                     <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel" aria-labelledby="product-shipping-link">
                         <div class="product-desc-content">
                             <h3>Teslimat & İADE</h3>
-                          </div><!-- End .product-desc-content -->
-                    </div><!-- .End .tab-pane -->
+                          </div>
+                    </div>
                     <div class="tab-pane fade" id="product-review-tab" role="tabpanel" aria-labelledby="product-review-link">
                         <div class="reviews">
                             <h3>Yorumlar (2)</h3>
@@ -158,24 +159,24 @@
                                         <div class="ratings-container">
                                             <div class="ratings">
                                                 <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
-                                            </div><!-- End .ratings -->
-                                        </div><!-- End .rating-container -->
+                                            </div>
+                                        </div>
                                         <span class="review-date">6 days ago</span>
-                                    </div><!-- End .col -->
+                                    </div>
                                     <div class="col">
                                         <h4>Good, perfect size</h4>
 
                                         <div class="review-content">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus cum dolores assumenda asperiores facilis porro reprehenderit animi culpa atque blanditiis commodi perspiciatis doloremque, possimus, explicabo, autem fugit beatae quae voluptas!</p>
-                                        </div><!-- End .review-content -->
+                                        </div>
 
                                         <div class="review-action">
                                             <a href="#"><i class="icon-thumbs-up"></i>Helpful (2)</a>
                                             <a href="#"><i class="icon-thumbs-down"></i>Unhelpful (0)</a>
-                                        </div><!-- End .review-action -->
-                                    </div><!-- End .col-auto -->
-                                </div><!-- End .row -->
-                            </div><!-- End .review -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="review">
                                 <div class="row no-gutters">
@@ -187,27 +188,27 @@
                                             </div><!-- End .ratings -->
                                         </div><!-- End .rating-container -->
                                         <span class="review-date">5 days ago</span>
-                                    </div><!-- End .col -->
+                                    </div>
                                     <div class="col">
                                         <h4>Very good</h4>
 
                                         <div class="review-content">
                                             <p>Sed, molestias, tempore? Ex dolor esse iure hic veniam laborum blanditiis laudantium iste amet. Cum non voluptate eos enim, ab cumque nam, modi, quas iure illum repellendus, blanditiis perspiciatis beatae!</p>
-                                        </div><!-- End .review-content -->
+                                        </div>
 
                                         <div class="review-action">
                                             <a href="#"><i class="icon-thumbs-up"></i>Helpful (0)</a>
                                             <a href="#"><i class="icon-thumbs-down"></i>Unhelpful (0)</a>
-                                        </div><!-- End .review-action -->
-                                    </div><!-- End .col-auto -->
-                                </div><!-- End .row -->
-                            </div><!-- End .review -->
-                        </div><!-- End .reviews -->
-                    </div><!-- .End .tab-pane -->
-                </div><!-- End .tab-content -->
-            </div><!-- End .product-details-tab -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <h2 class="title text-center mb-4">En Son Baktıklarınız</h2><!-- End .title text-center -->
+            <h2 class="title text-center mb-4">En Son Baktıklarınız</h2>
 
             <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
                  data-owl-options='{
