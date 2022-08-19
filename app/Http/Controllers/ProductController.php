@@ -103,7 +103,6 @@ class ProductController extends Controller
         $Update = Product::with('getCategory')->findOrFail($id);
 
         $Update->title = $request->title;
-        $Update->slug = seo($request->title);
 
         $Update->external = $request->external;
 
