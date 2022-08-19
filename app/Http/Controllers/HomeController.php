@@ -32,7 +32,6 @@ class HomeController extends Controller
         $Slider = Slider::with('getProduct')->where('status', 1)->get();
         return view('frontend.index', compact('Products','Slider', 'Product_Categories'));
     }
-
     public function kategori($url){
         $Detay = ProductCategory::where('slug', $url)->select('id','title','slug')->first();
 
@@ -98,6 +97,7 @@ class HomeController extends Controller
         SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
 
         views($Detay)->cooldown(60)->record();
+
         $Count = views($Detay)->unique()->period(Period::create(Carbon::today()))->count();;
         $Comments = Comment::where('product_id', $Detay->id)->where('status', 1)->paginate(40);
         $Productssss = Product::with('getCategory')->where('status', 1)->whereHas('getCategory', function ($query) use ($Detay){

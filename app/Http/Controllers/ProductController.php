@@ -81,9 +81,7 @@ class ProductController extends Controller
             }
         }
 
-
-
-        //toast(SWEETALERT_MESSAGE_CREATE,'success');
+        toast(SWEETALERT_MESSAGE_CREATE,'success');
         return redirect()->route('product.index');
 
     }

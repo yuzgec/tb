@@ -28,7 +28,7 @@ class Product extends Model implements HasMedia,Viewable
     }
 
     public function getCategory(){
-        return $this->hasOne(ProductCategoryPivot::class);
+        return $this->belongsTo(ProductCategoryPivot::class, 'id', 'product_id');
     }
 
     public function getComment(){
