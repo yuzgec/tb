@@ -77,9 +77,11 @@
                             </div>
 
                             <div class="product-price">
-                                <span class="new-price">{{ $Detay->price }}₺</span>
-                                <span class="old-price">{{ $Detay->old_price }}₺</span>
-                                <p class="badge badge-warning ml-3" style="font-size:12px">&15 İndirim</p>
+                                <span class="new-price">{{ money($Detay->price) }}₺</span>
+                                <span class="old-price">{{ money($Detay->old_price) }}₺</span>
+                                <p class="badge badge-warning ml-3" style="font-size:12px">
+                                    %{{ abs(round( $Detay->price * 100 /$Detay->old_price - 100)) }} indirim
+                                </p>
                             </div>
 
                             <div class="product-content">
@@ -87,24 +89,24 @@
                             </div>
 
                             <form action="{{ route('sepeteekle') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $Detay->id }}">
-                            <div class="details-filter-row details-row-size">
-                                <label for="qty">Adet:</label>
-                                <div class="product-details-quantity">
-                                    <input type="number" id="qty" name="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $Detay->id }}">
+                                <div class="details-filter-row details-row-size">
+                                    <label for="qty">Adet:</label>
+                                    <div class="product-details-quantity">
+                                        <input type="number" id="qty" name="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="product-details-action">
-                                <button type="submit"  class="btn-product btn-cart"><span>Sepete Ekle</span></button>
-
-                                <div class="details-action-wrapper">
-                                    <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Favorilere Ekle</span></a>
-                                    <a href="#" class="btn-product btn-compare" title="Compare"><span>Tavsiye Et</span></a>
+                                <div class="product-details-action">
+                                    <button type="submit"  class="btn-product btn-cart"><span>Sepete Ekle</span></button>
+                                    <div class="details-action-wrapper">
+                                        <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Favorilere Ekle</span></a>
+                                        <a href="#" class="btn-product btn-compare" title="Compare"><span>Tavsiye Et</span></a>
+                                    </div>
                                 </div>
-                            </div>
                             </form>
+
                             <div class="product-details-footer">
                                 <div class="product-cat">
                                     <span>Kategori:</span>
@@ -113,10 +115,15 @@
 
                                 <div class="social-icons social-icons-sm">
                                     <span class="social-label">Paylaş:</span>
-                                    <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                                    <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                                    <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                                    <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('urun', $Detay->slug) }}" class="social-icon" title="Facebook" target="_blank">
+                                        <i class="icon-facebook-f"></i>
+                                    </a>
+                                    <a href="https://twitter.com/share?url={{ route('urun', $Detay->slug) }}&text={{ $Detay->title }}" class="social-icon" title="Twitter" target="_blank">
+                                        <i class="icon-twitter"></i>
+                                    </a>
+                                    <a href="http://pinterest.com/pin/create/button/?url={{ route('urun', $Detay->slug) }}&media={{$Detay->getFirstMediaUrl('page', 'thumb')}}&description={{ $Detay->title }}" class="social-icon" title="Pinterest" target="_blank">
+                                        <i class="icon-pinterest"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>

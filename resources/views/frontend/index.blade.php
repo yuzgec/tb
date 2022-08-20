@@ -556,53 +556,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-
-    <div class="container">
-        <h2 class="title text-center mb-3 mt-3">Kitap Kategorileri</h2><!-- End .title mb-2 -->
-
-        <div class="owl-carousel owl-simple" data-toggle="owl"
-             data-owl-options='{
-                            "nav": false,
-                            "dots": true,
-                            "margin": 20,
-                            "loop": false,
-                            "responsive": {
-                                "0": {
-                                    "items":1
-                                },
-                                "480": {
-                                    "items":2
-                                },
-                                "768": {
-                                    "items":3
-                                },
-                                "992": {
-                                    "items":4
-                                },
-                                "1200": {
-                                    "items":4,
-                                    "nav": true,
-                                    "dots": false
-                                }
-                            }
-                        }'>
-            @foreach($Product_Categories as $item)
-             <div class="banner banner-cat">
-                <a href="{{ route('kategori', $item->slug) }}" title="{{ $item->title }}">
-                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVHPxAKjHrTj9em5W4GaO6IVAD2DdkuoeLUG22OirZsg_3pGNfWbIdO8SINE0Tj840lS3zayUm0LOAFtZwKPOtRerttwix2ZWmyezkl8BuOxVUva4U5RxVU09i-xrGF6yHBxikcg_aJjD93md-enp-UzQ_s1148-no_900x.jpg?v=1654206373" alt="Banner">
-                </a>
-
-                <div class="banner-content banner-content-static text-center">
-                    <h3 class="banner-title">{{ $item->title }}</h3>
-                    <h4 class="banner-subtitle">{{ $Product_Categories->where('id', $item->id)->count() }} Ürün</h4>
-                    <a href="{{ route('kategori', $item->slug) }}" class="banner-link">Ürünleri İncele</a>
-                </div>
-            </div>
-            @endforeach
-
-        </div>
 
     </div>
 
