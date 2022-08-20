@@ -69,7 +69,7 @@
                                 }
                             }'>
                         @foreach($Products as $item)
-                        <div class="product product-11 text-center">
+                        <div class="product product-2 text-center">
                             <span class="product-label label-circle label-new">Yeni</span>
 
                             <figure class="product-media">
@@ -1241,7 +1241,7 @@
             </div>
         </div>
     </div>
-    <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
+   {{-- <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
         <div class="row justify-content-center">
             <div class="col-10">
                 <div class="row no-gutters bg-white newsletter-popup-content">
@@ -1270,7 +1270,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}}
 
 @endsection
 

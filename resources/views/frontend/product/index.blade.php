@@ -70,14 +70,16 @@
 
                             <div class="ratings-container">
                                 <div class="ratings">
-                                    <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
+                                    <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
                                 </div>
 
                                 <a class="ratings-text" href="#product-review-link" id="review-link">( 2 Yorum )</a>
                             </div>
 
                             <div class="product-price">
-                                {{ $Detay->price }}₺ - <del>{{ $Detay->old_price }}₺</del>
+                                <span class="new-price">{{ $Detay->price }}₺</span>
+                                <span class="old-price">{{ $Detay->old_price }}₺</span>
+                                <p class="badge badge-warning ml-3" style="font-size:12px">&15 İndirim</p>
                             </div>
 
                             <div class="product-content">
