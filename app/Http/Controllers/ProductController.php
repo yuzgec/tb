@@ -100,7 +100,9 @@ class ProductController extends Controller
     {
         $Edit = Product::with('getCategory')->find($id);
         $Pivot = ProductCategoryPivot::where(['product_id'=> $id])->get();
-        return view('backend.product.edit', compact('Edit','Pivot'));
+        $Years =  Years::all();
+        $Author = Author::all();
+        return view('backend.product.edit', compact('Edit','Pivot', 'Years', 'Author'));
     }
 
     public function update(ProductRequest $request, $id)

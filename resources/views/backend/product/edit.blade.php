@@ -33,6 +33,34 @@
                     <x-form-inputtext label="Başlık Adı Giriniz" name="title"/>
 
                     <div class="form-group mb-3 row">
+                        <label class="form-label col-3 col-form-label">Yazar / Tarih </label>
+                        <div class="col-5">
+                            <select class="form-select" name="author">
+                                <option value=""> Yazar Seçiniz</option>
+                                @foreach($Author as $item)
+                                    <option value="{{ $item->id }}"
+                                        {{ ($item->id == $Edit->author) ?  'selected' : null }} >
+                                        {{ $item->title }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <select class="form-select" name="year">
+                                <option value=""> Yıl Seçiniz</option>
+                                @foreach($Years as $item)
+                                    <option value="{{ $item->title }}"
+                                        {{ ($item->title == $Edit->year) ?  'selected' : null }} >
+                                        {{ $item->title }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group mb-3 row">
                         <label class="form-label col-3 col-form-label">Kategori </label>
                         <div class="col">
                             <select class="form-select" multiple name="category[]">

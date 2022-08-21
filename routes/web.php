@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
     Auth::routes();
 
 
-    Route::get('/kat', function() {
+ /*   Route::get('/kat', function() {
         $p = Product::all();
 
         foreach ($p as $item){
@@ -16,8 +16,16 @@ use Illuminate\Support\Facades\Route;
         }
     });
 
+    Route::get('years', function (){
 
-    Route::get('/urunsayfasi', function(){
+        for ($i = 1900; $i <= 2022;  $i++){
+            \App\Models\Years::updateOrCreate(['title' => $i]);
+        }
+
+    });*/
+
+
+Route::get('/urunsayfasi', function(){
        return view('frontend.product.index');
     })->name('urunler');
 
