@@ -5,12 +5,11 @@
     <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
         <div class="container d-flex align-items-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Anasayfa</a></li>
-                <li class="breadcrumb-item"><a href="#">Kategori</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}l">Anasayfa</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $Detay->title }}</li>
             </ol>
 
-            <nav class="product-pager ml-auto" aria-label="Product">
+         {{--   <nav class="product-pager ml-auto" aria-label="Product">
                 <a class="product-pager-link product-pager-prev" href="#" aria-label="Previous" tabindex="-1">
                     <i class="icon-angle-left"></i>
                     <span>Geri</span>
@@ -20,9 +19,9 @@
                     <span>İleri</span>
                     <i class="icon-angle-right"></i>
                 </a>
-            </nav><!-- End .pager-nav -->
-        </div><!-- End .container -->
-    </nav><!-- End .breadcrumb-nav -->
+            </nav>--}}
+        </div>
+    </nav>
 
     <div class="page-content">
         <div class="container">
