@@ -31,18 +31,9 @@ class Page extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null): void
     {
-
-        $this->addMediaConversion('img')
-            ->width(750)
-            ->nonOptimized();
-
-        $this->addMediaConversion('thumb')
-            ->width(400)
-            ->nonOptimized();
-
-        $this->addMediaConversion('small')
-            ->width(150)
-            ->nonOptimized();
+        $this->addMediaConversion('img')->width(750)->nonOptimized();
+        $this->addMediaConversion('thumb')->width(400)->nonOptimized();
+        $this->addMediaConversion('small')->width(150)->nonOptimized();
     }
 
     public function getSlugOptions() : SlugOptions

@@ -37,18 +37,9 @@ class Product extends Model implements HasMedia,Viewable
 
     public function registerMediaConversions(Media $media = null): void
     {
-
-        $this->addMediaConversion('img')
-            ->width(750)
-            ->nonOptimized();
-
-        $this->addMediaConversion('thumb')
-            ->width(400)
-            ->nonOptimized();
-
-        $this->addMediaConversion('small')
-            ->width(150)
-            ->nonOptimized();
+        $this->addMediaConversion('img')->width(1000)->nonOptimized();
+        $this->addMediaConversion('thumb')->width(400)->nonOptimized();
+        $this->addMediaConversion('small')->width(150)->nonOptimized();
     }
 
     public function getSlugOptions() : SlugOptions
