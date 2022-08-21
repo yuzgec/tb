@@ -16,16 +16,8 @@ use Illuminate\Support\Facades\Route;
         }
     });
 
-    Route::get('years', function (){
 
-        for ($i = 1900; $i <= 2022;  $i++){
-            \App\Models\Years::updateOrCreate(['title' => $i]);
-        }
-
-    });
-
-
-Route::get('/urunsayfasi', function(){
+    Route::get('/urunsayfasi', function(){
        return view('frontend.product.index');
     })->name('urunler');
 
@@ -87,5 +79,5 @@ Route::get('/urunsayfasi', function(){
         Route::auto('/product-categories', ProductCategoryController::class);
         Route::auto('/campagin', CampaginController::class);
         Route::auto('/comment', CommentController::class);
-        Route::auto('/comment', AuthorController::class);
+        Route::auto('/author', AuthorController::class);
     });

@@ -23,6 +23,7 @@
             </div>
 
             @livewire('backend.products')
+
             <div class="table-responsive p-2">
                 <table class="table table-hover table-striped table-bordered table-center">
                     <thead>

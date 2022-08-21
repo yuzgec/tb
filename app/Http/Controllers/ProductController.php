@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\Author;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductCategoryPivot;
+use App\Models\Years;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -23,7 +25,10 @@ class ProductController extends Controller
     public function create()
     {
         $Kategori = ProductCategory::pluck('title', 'id');
-        return view('backend.product.create',  compact('Kategori'));
+        $Years =  Years::all();
+        $Author = Author::all();
+        //dd($Years);
+        return view('backend.product.create',  compact('Kategori', 'Years', 'Author'));
     }
 
 
@@ -57,7 +62,8 @@ class ProductController extends Controller
         $New->seo_key = $request->seo_key;
         $New->seo_title = $request->seo_title;
 
-
+        $New->author = $request->author;
+        $New->year = $request->year;
         //dd($request->input('category'));
 
 
@@ -127,6 +133,10 @@ class ProductController extends Controller
         $Update->seo_desc = $request->seo_desc;
         $Update->seo_key = $request->seo_key;
         $Update->seo_title = $request->seo_title;
+
+
+        $Update->author = $request->author;
+        $Update->year = $request->year;
 
         if($request->removeImage == "1"){
             $Update->media()->where('collection_name', 'page')->delete();

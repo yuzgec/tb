@@ -17,18 +17,44 @@
 
                 <x-form-inputtext label="Adı Giriniz" name="title"/>
 
-                    <div class="form-group mb-3 row">
-                        <label class="form-label col-3 col-form-label">Kategori </label>
-                        <div class="col">
-                            <select class="form-select" multiple name="category[]">
-                                @foreach($Product_Categories as $pc)
-                                    <option value="{{ $pc->id }}">
-                                        {{ $pc->title }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
+                <div class="form-group mb-3 row">
+                    <label class="form-label col-3 col-form-label">Yazar / Tarih </label>
+                    <div class="col-5">
+                        <select class="form-select" name="author">
+                            <option value=""> Yazar Seçiniz</option>
+                            @foreach($Author as $item)
+                                <option value="{{ $item->id }}">
+                                    {{ $item->title }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
+                    <div class="col-4">
+                        <select class="form-select" name="year">
+                        <option value=""> Yıl Seçiniz</option>
+                        @foreach($Years as $item)
+                                <option value="{{ $item->title }}">
+                                    {{ $item->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-group mb-3 row">
+                    <label class="form-label col-3 col-form-label">Kategori </label>
+                    <div class="col">
+                        <select class="form-select" multiple name="category[]">
+                            @foreach($Product_Categories as $pc)
+                                <option value="{{ $pc->id }}">
+                                    {{ $pc->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
                 <x-form-inputtext label="Kampanya Link" name="external"/>
                 <x-form-inputtext label="Ürün Kodu " name="sku"/>
 
@@ -50,6 +76,7 @@
                         </label>
                     </div>
                 </div>
+
                 <div class="form-group mb-3 row">
                     <label class="form-label col-3 col-form-label"> </label>
                     <div class="col-3">
