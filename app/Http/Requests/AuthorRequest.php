@@ -14,7 +14,7 @@ class AuthorRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'                 => 'required|min:6|max:99|unique:author,title,'.$this->id,
+            'title'                 => 'required|min:6|max:99|unique:authors,title,'.$this->id,
             'image'                 => 'image|max:2048|mimes:jpg,jpeg,png,gif',
             'gallery.*'             => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
