@@ -34,7 +34,6 @@ class Team extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')
             ->width(400)
-            ->height(250)
             ->nonOptimized();
     }
 }

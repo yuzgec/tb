@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Years extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+    protected $table = 'years';
+
+    public $timestamps = false;
+
 }
