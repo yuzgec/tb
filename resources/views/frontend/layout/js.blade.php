@@ -14,6 +14,7 @@
 <script src="/frontend/assets/js/jquery.countdown.min.js"></script>
 <script src="/frontend/assets/js/main.js"></script>
 <script src="/frontend/assets/js/demos/demo-2.js"></script>
+<script src="/frontend/assets/js/jquery.sticky-kit.min.js"></script>
 
 <livewire:scripts />
 
