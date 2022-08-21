@@ -8,7 +8,7 @@
         @yield('customCSS')
     </head>
     <body>
-    <div class="page-wrapper">
+
         @include('frontend.layout.header')
 
             <main class="main">
@@ -16,8 +16,10 @@
             </main>
 
         @include('frontend.layout.footer')
+
         @include('frontend.layout.js')
+
         @yield('customJS')
-    </div>
+
     </body>
 </html>
