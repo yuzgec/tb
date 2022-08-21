@@ -64,8 +64,6 @@ Route::get('/urunsayfasi', function(){
         Route::auto('/page-categories', PageCategoryController::class);
         Route::auto('/blog', BlogController::class);
         Route::auto('/blog-categories', BlogCategoryController::class);
-        Route::auto('/service', ServiceController::class);
-        Route::auto('/service-categories', ServiceCategoryController::class);
         Route::auto('/banner', BannerController::class);
         Route::auto('/banner-area', BannerAreaController::class);
         Route::auto('/faq', FaqController::class);
@@ -73,16 +71,11 @@ Route::get('/urunsayfasi', function(){
         Route::auto('/gallery', GalleryController::class);
         Route::auto('/gallery-categories', GalleryCategoryController::class);
         Route::auto('/price', PriceController::class);
-        Route::auto('/price-categories', PriceCategoryController::class);
-        Route::auto('/project', ProjectController::class);
-        Route::auto('/project-categories', ProjectCategoryController::class);
         Route::auto('/slider', SliderController::class);
         Route::auto('/video', VideoController::class);
         Route::auto('/video-categories', VideoCategoryController::class);
         Route::auto('/settings', SettingController::class);
         Route::auto('/contact', ContactController::class);
-        Route::auto('/team', TeamController::class);
-        Route::auto('/team-categories', TeamCategoryController::class);
         Route::auto('/product', ProductController::class);
         Route::auto('/product-categories', ProductCategoryController::class);
         Route::auto('/campagin', CampaginController::class);

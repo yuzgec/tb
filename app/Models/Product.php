@@ -34,6 +34,9 @@ class Product extends Model implements HasMedia,Viewable
     public function getComment(){
         return $this->belongsTo(Comment::class, 'id', 'product_id');
     }
+    public function getAuthor(){
+        return $this->hasOne(Author::class, 'id','author');
+    }
 
     public function registerMediaConversions(Media $media = null): void
     {

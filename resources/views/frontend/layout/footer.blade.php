@@ -65,13 +65,29 @@
 
             <div class="row">
                 <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-                    <form action="#">
+                    <form action="{{ route('mailsubcribes') }}" method="POST">
+                        @csrf
                         <div class="input-group">
-                            <input type="email" class="form-control" placeholder="Email Adresinizi Giriniz" aria-label="Email Adress" aria-describedby="newsletter-btn" required>
+                            <input value="{{old('email_address')}}"
+                                   name="email"
+                                   class="form-control"
+                                   placeholder="Email Adresinizi Giriniz">
+
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit" id="newsletter-btn"><span>Abone Ol</span><i class="icon-long-arrow-right"></i></button>
+                                <button class="btn btn-primary"
+                                        type="submit"
+                                        id="newsletter-btn">
+                                    <span>Abone Ol</span><i class="icon-long-arrow-right"></i>
+                                </button>
                             </div>
                         </div>
+
+                        @if($errors->has('email_address'))
+                            <div class="invalid-feedback"
+                                 style="display: block;color:white">
+                                {{$errors->first('email_address')}}
+                            </div>
+                        @endif
                     </form>
                 </div>
             </div>

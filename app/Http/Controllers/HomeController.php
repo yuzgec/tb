@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MailRequest;
 use App\Http\Requests\OrderRequest;
 use App\Http\Requests\SearchRequest;
 use App\Models\Basket;
@@ -86,8 +87,8 @@ class HomeController extends Controller
     }
     public function urun($url){
 
-        $Detay = Product::with('getCategory')->where('slug', $url)->firstOrFail();
-        //dd($Detay->getCategory->category_id);
+        $Detay = Product::with(['getCategory', 'getAuthor'])->where('slug', $url)->firstOrFail();
+        //dd($Detay);
         SEOTools::setTitle($Detay->title);
         SEOTools::setDescription($Detay->seo_desc);
         SEOTools::opengraph()->setUrl(url()->current());
@@ -300,9 +301,10 @@ class HomeController extends Controller
         toast(SWEETALERT_MESSAGE_DELETE,'success');
         return redirect()->route('home');
     }
-    public function mailsubcribes(Request $request){
+    public function mailsubcribes(MailRequest $request){
+        //dd($request->all());
         MailSubcribes::create(['email_address' => $request->email, 'ip_address' => $request->ip()]);
-        toast(SWEETALERT_MESSAGE_DELETE,'success');
+        toast('Email Adresiz Bülten Listesine Eklendi','success');
         return redirect()->route('home');
     }
     public function search(SearchRequest $request){
