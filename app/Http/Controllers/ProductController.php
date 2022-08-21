@@ -45,7 +45,6 @@ class ProductController extends Controller
         $New->featrues = $request->featrues;
         $New->desc = $request->desc;
 
-
         $New->freecargo = $request->freecargo;
         $New->fastkargo = $request->fastkargo;
         $New->bigopportunity = $request->bigopportunity;
