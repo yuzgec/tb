@@ -31,11 +31,11 @@ class ViewShareProvider extends ServiceProvider
             $Product_Categories = Cache::remember('product_categories',now()->addHour(10), function () { return ProductCategory::with('cat')->where('status', 1)->get();});
             $Product = Cache::remember('product',now()->addHour(10), function () { return Product::with('getCategory')->where('status', 1)->orderBy('rank','ASC')->get();});*/
             //dd($Product->getCategory);
+
             $Pages =  Page::with('getCategory')->get();
             $Page_Categories = PageCategory::all();
             $Product_Categories = ProductCategory::with('cat')->where('status', 1)->get();
             $Product = Product::with('getCategory')->where('status', 1)->orderBy('rank','ASC')->get();
-
 
             View::share([
                 'Pages' => $Pages,

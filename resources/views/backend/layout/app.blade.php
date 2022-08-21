@@ -26,8 +26,8 @@
                     <div class="col-auto ms-auto d-print-none">
                         <div class="btn-list">
                           <span class="d-none d-sm-inline">
-                            <a href="#" class="btn btn-white">
-                              İletişime Geç
+                            <a href=" {{ route('home') }}" class="btn btn-white" target="_blank">
+                              Site Anasyafa
                             </a>
                           </span>
                             <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-report">

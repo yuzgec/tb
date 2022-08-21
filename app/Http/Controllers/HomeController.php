@@ -66,7 +66,7 @@ class HomeController extends Controller
         return view('frontend.page.index', compact('Detay'));
     }
     public function iletisim(){
-        return view('frontend.sayfa.iletisim');
+        return view('frontend.page.contactus');
     }
     public function sepet(){
 

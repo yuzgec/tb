@@ -53,19 +53,19 @@
                     <x-form-inputtext label="Kampanya Link" name="external"/>
                     <div class="form-group mb-3 row">
                         <label class="form-label col-3 col-form-label">Fiyat / Eski / Özel</label>
-                        <div class="col-3">
+                        <div class="col-12 col-md-3">
                             <div class="input-group mb-2">
                                 <span class="input-group-text">₺</span>
                                 <input type="text" class="form-control" name="price" placeholder="Fiyat Giriniz" autocomplete="off" value="{{$Edit->price }}">
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-12 col-md-3">
                             <div class="input-group mb-2">
                                 <span class="input-group-text">₺</span>
                                 <input type="text" class="form-control" name="old_price" placeholder="Eski Fiyat Giriniz" autocomplete="off" value="{{$Edit->old_price }}">
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-12 col-md-3">
                             <div class="input-group mb-2">
                                 <span class="input-group-text">₺</span>
                                 <input type="text" class="form-control" name="campagin_price" placeholder="Özel Fiyat Giriniz" autocomplete="off" value="{{$Edit->campagin_price }}">

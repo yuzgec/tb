@@ -8,9 +8,12 @@
 <script src="/frontend/assets/js/superfish.min.js"></script>
 <script src="/frontend/assets/js/owl.carousel.min.js"></script>
 <script src="/frontend/assets/js/jquery.plugin.min.js"></script>
+<script src="/frontend/assets/js/jquery.elevateZoom.min.js"></script>
+<script src="/frontend/assets/js/bootstrap-input-spinner.js"></script>
 <script src="/frontend/assets/js/jquery.magnific-popup.min.js"></script>
 <script src="/frontend/assets/js/jquery.countdown.min.js"></script>
 <script src="/frontend/assets/js/main.js"></script>
 <script src="/frontend/assets/js/demos/demo-2.js"></script>
+
 <livewire:scripts />
 

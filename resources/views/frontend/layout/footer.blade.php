@@ -105,9 +105,9 @@
                         <ul class="widget-list">
                             <li><a href="">Hakkımızda</a></li>
                             <li><a href="#">S.S.S</a></li>
-                            <li><a href="">İletişim</a></li>
-                            <li><a href="">Giriş Yap</a></li>
-                            <li><a href="">Kayıt Ol</a></li>
+                            <li><a href="{{ route('iletisim') }}">İletişim</a></li>
+                            <li><a href="{{ route('login') }}">Giriş Yap</a></li>
+                            <li><a href="{{ route('register') }}">Kayıt Ol</a></li>
                         </ul>
                     </div>
                 </div>

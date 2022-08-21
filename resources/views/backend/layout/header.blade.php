@@ -38,7 +38,10 @@
                     <a href="#" class="dropdown-item">Duyurular</a>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">Ayarlar</a>
-                    <a href="#" class="dropdown-item">Güvenli Çıkış</a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="dropdown-item">Güvenli Çıkış</button>
+                    </form>
                 </div>
             </div>
         </div>
