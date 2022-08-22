@@ -26,7 +26,6 @@
                 <table class="table table-hover table-striped table-bordered table-center">
                     <thead>
                         <tr>
-                            <th>Resim</th>
                             <th>Başlık</th>
                             <th>Durum</th>
                             <th class="d-none d-lg-table-cell">Oluşturma Tarihi</th>
@@ -36,9 +35,7 @@
                     <tbody id="orders">
                     @foreach($All as $item)
                     <tr id="page_{{$item->id}}">
-                        <td>
-                            <span class="avatar me-2" style="background-image: url({{ (!$item->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg': $item->getFirstMediaUrl('page', 'small')}})"></span>
-                        </td>
+
                         <td>
                             <div class="font-weight-medium">{{ $item->title }}</div>
                         </td>

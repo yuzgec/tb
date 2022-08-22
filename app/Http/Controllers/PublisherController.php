@@ -10,7 +10,7 @@ class PublisherController extends Controller
 
     public function index()
     {
-        $All = Publisher::all();
+        $All = Publisher::paginate(100);
         return view('backend.publisher.index', compact('All'));
     }
 
