@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Language;
 use Illuminate\Http\Request;
 
 class LanguageController extends Controller
@@ -80,5 +81,17 @@ class LanguageController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getOrder(Request $request){
+        foreach($request->get('page') as  $key => $rank ){
+            Language::where('id',$rank)->update(['rank'=>$key]);
+        }
+    }
+
+    public function getSwitch(Request $request){
+        $update=Language::findOrFail($request->id);
+        $update->status = $request->status == "true" ? 1 : 0 ;
+        $update->save();
     }
 }
