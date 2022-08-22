@@ -28,13 +28,7 @@ class KategoriSeeder extends Seeder
         BlogCategory::create(['title' => 'Etkinlikler', 'slug' => 'etkinlikler']);
         FaqCategory::create(['title' => 'Genel Kategori', 'slug' => 'genel-kategori']);
         GalleryCategory::create(['title' => 'Genel Kategori', 'slug' => 'genel-kategori']);
-        PriceCategory::create(['title' => 'Genel Kategori', 'slug' => 'genel-kategori']);
-        ProjectCategory::create(['title' => 'Genel Kategori', 'slug' => 'genel-kategori']);
-        ServiceCategory::create(['title' => 'Klasik Jazz', 'slug' => 'klasik-jazz']);
-        ServiceCategory::create(['title' => 'Pop & Rock', 'slug' => 'pop-rock']);
         VideoCategory::create(['title' => 'Genel Kategori', 'slug' => 'genel-kategori']);
-        TeamCategory::create(['title' => 'Genel Kategori', 'slug' => 'genel-kategori']);
-
         ProductCategory::create(['title' => 'Dini İçerikli Ürünler', 'slug' => 'dini-icerikli-urunler']);
         ProductCategory::create(['title' => 'Zeka Akıl Oyunlari', 'slug' => 'zeka-akil-oyunlari']);
         ProductCategory::create(['title' => 'Ahşap Oyunlar', 'slug' => 'ahsap-oyunlar']);

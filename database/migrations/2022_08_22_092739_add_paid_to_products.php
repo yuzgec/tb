@@ -10,8 +10,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->integer('author')->nullable();
-            $table->integer('year')->nullable();
+            $table->integer('publisher')->nullable();
+            $table->integer('language')->nullable();
         });
     }
 

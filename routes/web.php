@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
     Auth::routes();
 
 
- /*   Route::get('/kat', function() {
+   Route::get('/kat', function() {
         $p = Product::all();
 
         foreach ($p as $item){
@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('years', function (){
 
-        for ($i = 1900; $i <= 2022;  $i++){
+        for ($i = 1800; $i <= 2022;  $i++){
             \App\Models\Years::updateOrCreate(['title' => $i]);
         }
 
-    });*/
+    });
 
 
 Route::get('/urunsayfasi', function(){
@@ -81,4 +81,6 @@ Route::get('/urunsayfasi', function(){
         Route::auto('/campagin', CampaginController::class);
         Route::auto('/comment', CommentController::class);
         Route::auto('/author', AuthorController::class);
+        Route::auto('/publisher', PublisherController::class);
+        Route::auto('/language', LanguageController::class);
     });
