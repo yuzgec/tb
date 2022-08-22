@@ -28,14 +28,14 @@ class HomeController extends Controller
 
     public function index()
     {
-        $Product_Categories = ProductCategory::with('cat')->where('status', 1)->get();
+        $Product_Categories = ProductCategory::with('cat')->where('status', 1)->get()->toFlatTree();
         $Products = Product::select('id', 'title', 'price', 'old_price', 'slug','bestselling')->orderBy('rank')->get();
         $Slider = Slider::with('getProduct')->where('status', 1)->get();
         return view('frontend.index', compact('Products','Slider', 'Product_Categories'));
     }
     public function kategori($url){
-        $Detay = ProductCategory::where('slug', $url)->select('id','title','slug')->first();
 
+        $Detay = ProductCategory::where('slug', $url)->select('id','title','slug')->first();
         SEOTools::setTitle($Detay->title);
         SEOTools::setDescription($Detay->seo_desc);
         SEOTools::opengraph()->setUrl(url()->current());

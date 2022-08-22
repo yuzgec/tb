@@ -5,8 +5,8 @@
     define('SWEETALERT_MESSAGE_CREATE', 'Eklendi');
     define('SWEETALERT_MESSAGE_UPDATE', 'Güncellendi');
     define('SWEETALERT_MESSAGE_DELETE', 'Silindi');
-    define('CARGO_LIMIT', 100);
-    define('CARGO_PRICE', 29.90);
+    define('CARGO_LIMIT', 200);
+    define('CARGO_PRICE', 17.90);
     define('MAIL_SEND', 'siparis@kiblegahaileoyunlari.com.tr');
 
     function cartControl($id, $text = null){

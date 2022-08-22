@@ -108,11 +108,18 @@
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
 
-                        @foreach($Product_Categories as $item)
-                        <li><a href="{{ route('kategori', $item->slug) }}" class="">{{ $item->title }}</a></li>
+                        @foreach($Product_Categories->where('parent_id' , 0) as $item)
+                        <li><a href="{{ route('kategori', $item->slug) }}" class="">{{ $item->title }}</a>
+                            <ul style="display: none;">
+                                @foreach($Product_Categories->where('parent_id' , $item->id) as $itemm)
+                                    <li><a href="{{ route('kategori', $itemm->slug) }}">{{ $itemm->title }}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
                         @endforeach
-                    </ul><!-- End .menu -->
-                </nav><!-- End .main-nav -->
+
+                    </ul>
+                </nav>
 
                 <button class="mobile-menu-toggler">
                     <span class="sr-only">Toggle mobile menu</span>

@@ -30,7 +30,7 @@
 
                     <div class="col-md-6">
                         <div class="product-gallery product-gallery-separated">
-                            <span class="product-label label-sale">Sale</span>
+                            <span class="product-label label-sale">İn</span>
                             <figure class="product-separated-item">
                                 <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="{{ (!$Detay->getFirstMediaUrl('page', 'img')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $Detay->title }}">
 
@@ -49,14 +49,6 @@
                     <div class="col-md-6">
                         <div class="product-details sticky-content">
                             <h1 class="product-title">{{ $Detay->title }}</h1>
-
-                            <div class="ratings-container">
-                                <div class="ratings">
-                                    <div class="ratings-val" style="width: 100%;"></div>
-                                </div>
-
-                                <a class="ratings-text" href="#product-review-link" id="review-link">( 2 Yorum )</a>
-                            </div>
 
                             <div class="product-price">
                                 <span class="new-price">{{ money($Detay->price) }}₺</span>
@@ -117,15 +109,15 @@
                                                 Ürün Açıklaması
                                             </a>
                                         </h2>
-                                    </div><!-- End .card-header -->
+                                    </div>
                                     <div id="product-accordion-desc" class="collapse" aria-labelledby="product-desc-heading" data-parent="#product-accordion">
                                         <div class="card-body">
                                             <div class="product-desc-content">
                                                 {!!  $Detay->desc !!}
-                                            </div><!-- End .product-desc-content -->
-                                        </div><!-- End .card-body -->
-                                    </div><!-- End .collapse -->
-                                </div><!-- End .card -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="card card-box card-sm">
                                     <div class="card-header" id="product-shipping-heading">
@@ -134,56 +126,16 @@
                                                 Teslimat & İADE
                                             </a>
                                         </h2>
-                                    </div><!-- End .card-header -->
+                                    </div>
                                     <div id="product-accordion-shipping" class="collapse" aria-labelledby="product-shipping-heading" data-parent="#product-accordion">
                                         <div class="card-body">
                                             <div class="product-desc-content">
 
-                                            </div><!-- End .product-desc-content -->
-                                        </div><!-- End .card-body -->
-                                    </div><!-- End .collapse -->
-                                </div><!-- End .card -->
-
-                                <div class="card card-box card-sm">
-                                    <div class="card-header" id="product-review-heading">
-                                        <h2 class="card-title">
-                                            <a class="collapsed" role="button" data-toggle="collapse" href="#product-accordion-review" aria-expanded="false" aria-controls="product-accordion-review">
-                                                Yourumlar (1)
-                                            </a>
-                                        </h2>
-                                    </div><!-- End .card-header -->
-                                    <div id="product-accordion-review" class="collapse" aria-labelledby="product-review-heading" data-parent="#product-accordion">
-                                        <div class="card-body">
-                                            <div class="reviews">
-                                                <div class="review">
-                                                    <div class="row no-gutters">
-                                                        <div class="col-auto">
-                                                            <h4><a href="#">Ahmet A.</a></h4>
-                                                            <div class="ratings-container">
-                                                                <div class="ratings">
-                                                                    <div class="ratings-val" style="width: 1000%;"></div><!-- End .ratings-val -->
-                                                                </div><!-- End .ratings -->
-                                                            </div><!-- End .rating-container -->
-                                                            <span class="review-date">1 Hafta Önce</span>
-                                                        </div><!-- End .col -->
-                                                        <div class="col">
-                                                            <h4>Hızlı bir şekilde elime ulaştı</h4>
-
-                                                            <div class="review-content">
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus cum dolores assumenda asperiores facilis porro reprehenderit animi culpa atque blanditiis commodi perspiciatis doloremque, possimus, explicabo, autem fugit beatae quae voluptas!</p>
-                                                            </div><!-- End .review-content -->
-
-
-                                                        </div><!-- End .col-auto -->
-                                                    </div><!-- End .row -->
-                                                </div><!-- End .review -->
-
-
-                                            </div><!-- End .reviews -->
-                                        </div><!-- End .card-body -->
-                                    </div><!-- End .collapse -->
-                                </div><!-- End .card -->
-                            </div><!-- End .accordion -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
