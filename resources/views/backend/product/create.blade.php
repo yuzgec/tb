@@ -37,13 +37,34 @@
                             @endforeach
                         </select>
                     </div>
+                </div>
 
+                <div class="form-group mb-3 row">
+                    <label class="form-label col-3 col-form-label">Yayınevi </label>
+                    <div class="col-5">
+                        <select class="form-control single" data-placeholder="Yayınevi Seçiniz" multiple name="author">
+                            @foreach($Publisher as $item)
+                                <option value="{{ $item->id }}">
+                                    {{ $item->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-select single" data-placeholder="Dil Seçiniz"  name="year">
+                            @foreach($Language as $item)
+                                <option value="{{ $item->title }}">
+                                    {{ $item->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group mb-3 row">
                     <label class="form-label col-3 col-form-label">Kategori </label>
                     <div class="col">
-                        <select class="form-select multi" data-placeholder="Yıl Seçiniz" multiple name="category[]">
+                        <select class="form-select multi" data-placeholder="Kategori Seçiniz" multiple name="category[]">
                             @foreach($Product_Categories as $pc)
                                 <option value="{{ $pc->id }}">
                                     {{ $pc->title }}

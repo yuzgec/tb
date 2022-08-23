@@ -10,6 +10,6 @@ class Language extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $table = 'publishers';
+    protected $table = 'languages';
 
 }

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Author;
+use App\Models\Language;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductCategoryPivot;
+use App\Models\Publisher;
 use App\Models\Years;
 use Illuminate\Http\Request;
 
@@ -25,8 +27,12 @@ class ProductController extends Controller
         $Kategori = ProductCategory::get()->toFlatTree();
         $Years =  Years::all();
         $Author = Author::all();
-        //dd($Years);
-        return view('backend.product.create',  compact('Kategori', 'Years', 'Author'));
+        $Publisher = Publisher::all();
+        $Language = Language::all();
+
+        //dd($Language);
+        return view('backend.product.create',
+            compact('Kategori', 'Years', 'Author',  'Publisher', 'Language'));
     }
 
 
