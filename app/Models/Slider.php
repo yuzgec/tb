@@ -18,13 +18,7 @@ class Slider extends Model implements HasMedia
     public $timestamps = false;
 
     public function getProduct(){
-        return $this->belongsTo('App\Models\Product','product_id','id');
+        return $this->belongsTo(Product::class,'product_id','id');
     }
 
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaConversion('thumb')
-            ->width(500)
-            ->nonOptimized();
-    }
 }

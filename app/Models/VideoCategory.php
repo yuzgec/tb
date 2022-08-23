@@ -19,7 +19,7 @@ class VideoCategory extends Model implements HasMedia
 
     function getCategoryCount()
     {
-        return $this->hasMany('App\Models\Video', 'category')->count();
+        return $this->hasMany(Video::class, 'category')->count();
     }
 
     public function getActivitylogOptions(): LogOptions

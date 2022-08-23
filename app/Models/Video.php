@@ -19,12 +19,11 @@ class Video extends Model implements HasMedia
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()
-            ->logOnly(['title', 'slug']);
+        return LogOptions::defaults()->logOnly(['title', 'slug']);
     }
 
     public function getCategory(){
-        return $this->belongsTo('App\Models\VideoCategory', 'category');
+        return $this->belongsTo(VideoCategory::class, 'category');
     }
 
 }

@@ -4,7 +4,7 @@
 
     <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         <div class="container">
-            <h1 class="page-title">Kategoriler<span>TB Kitap</span></h1>
+            <h1 class="page-title">{{ $Detay->title }}<span>TB Kitap</span></h1>
         </div>
     </div>
 
@@ -16,8 +16,8 @@
                         <div class="toolbox-left">
                             <div class="toolbox-info">
                                 ({{$ProductList->count()}}) adet ürün listelenmiştir.
-                            </div><!-- End .toolbox-info -->
-                        </div><!-- End .toolbox-left -->
+                            </div>
+                        </div>
 
                         <div class="toolbox-right">
                             <div class="toolbox-sort">

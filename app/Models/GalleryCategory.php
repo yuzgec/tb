@@ -13,16 +13,14 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class GalleryCategory extends Model implements HasMedia
 {
-    use HasFactory, SoftDeletes,InteractsWithMedia,NodeTrait;
+    use HasFactory,SoftDeletes,InteractsWithMedia,NodeTrait;
 
     protected $guarded = [];
     protected $table = 'gallery_categories';
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()
-            ->logOnly(['title', 'slug']);
-        // Chain fluent methods for configuration options
+        return LogOptions::defaults()->logOnly(['title', 'slug']);
     }
 
     function getCategoryCount()
@@ -32,9 +30,6 @@ class GalleryCategory extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('thumb')
-            ->width(400)
-            ->height(250)
-            ->nonOptimized();
+        $this->addMediaConversion('thumb')->width(400)->nonOptimized();
     }
 }

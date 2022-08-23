@@ -27,4 +27,11 @@ class Blog extends Model implements HasMedia
         return $this->belongsTo('App\Models\BlogCategory', 'category');
     }
 
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('img')->width(1000)->nonOptimized();
+        $this->addMediaConversion('thumb')->width(400)->nonOptimized();
+        $this->addMediaConversion('small')->width(150)->nonOptimized();
+    }
+
 }

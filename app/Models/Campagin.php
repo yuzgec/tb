@@ -12,7 +12,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Campagin extends Model implements HasMedia
 {
-    use HasFactory, SoftDeletes, InteractsWithMedia, LogsActivity;
+    use HasFactory,SoftDeletes,InteractsWithMedia,LogsActivity;
 
     protected $guarded = [];
     protected $table = 'campagins';
@@ -24,12 +24,7 @@ class Campagin extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('thumb')
-            ->width(400)
-            ->nonOptimized();
-
-        $this->addMediaConversion('small')
-            ->width(150)
-            ->nonOptimized();
+        $this->addMediaConversion('thumb')->width(400)->nonOptimized();
+        $this->addMediaConversion('small')->width(150)->nonOptimized();
     }
 }

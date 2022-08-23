@@ -15,9 +15,6 @@ class Contact extends Model
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('thumb')
-            ->width(400)
-            ->height(250)
-            ->nonOptimized();
+        $this->addMediaConversion('thumb')->width(400)->nonOptimized();
     }
 }

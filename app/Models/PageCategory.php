@@ -25,7 +25,7 @@ class PageCategory extends Model implements HasMedia
 
     function getCategoryCount()
     {
-        return $this->hasMany('App\Models\Page', 'category')->count();
+        return $this->hasMany(Page::class, 'category')->count();
     }
 
     public function getActivitylogOptions(): LogOptions
@@ -35,9 +35,7 @@ class PageCategory extends Model implements HasMedia
 
     public function getSlugOptions() : SlugOptions
     {
-        return SlugOptions::create()
-            ->generateSlugsFrom('title')
-            ->saveSlugsTo('slug');
+        return SlugOptions::create()->generateSlugsFrom('title')->saveSlugsTo('slug');
     }
 
 }

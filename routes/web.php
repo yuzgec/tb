@@ -83,4 +83,5 @@ Route::get('/urunsayfasi', function(){
         Route::auto('/author', AuthorController::class);
         Route::auto('/publisher', PublisherController::class);
         Route::auto('/language', LanguageController::class);
+        Route::auto('/translator', TranslatorController::class);
     });

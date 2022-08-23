@@ -21,14 +21,12 @@ class BlogCategory extends Model implements HasMedia
 
     function getCategoryCount()
     {
-        return $this->hasMany('App\Models\Blog', 'category')->count();
+        return $this->hasMany(Blog::class, 'category')->count();
     }
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()
-            ->logOnly(['title', 'slug']);
-        // Chain fluent methods for configuration options
+        return LogOptions::defaults()->logOnly(['title', 'slug']);
     }
 
 

@@ -22,11 +22,6 @@ class Product extends Model implements HasMedia,Viewable
     protected $guarded = [];
     protected $table = 'products';
 
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()->logOnly(['title', 'slug', 'price']);
-    }
-
     public function getCategory(){
         return $this->belongsTo(ProductCategoryPivot::class, 'id', 'product_id');
     }
@@ -34,6 +29,7 @@ class Product extends Model implements HasMedia,Viewable
     public function getComment(){
         return $this->belongsTo(Comment::class, 'id', 'product_id');
     }
+
     public function getAuthor(){
         return $this->hasOne(Author::class, 'id','author');
     }
@@ -45,10 +41,13 @@ class Product extends Model implements HasMedia,Viewable
         $this->addMediaConversion('small')->width(150)->nonOptimized();
     }
 
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()->logOnly(['title', 'slug', 'price']);
+    }
+
     public function getSlugOptions() : SlugOptions
     {
-        return SlugOptions::create()
-            ->generateSlugsFrom('title')
-            ->saveSlugsTo('slug');
+        return SlugOptions::create()->generateSlugsFrom('title')->saveSlugsTo('slug');
     }
 }

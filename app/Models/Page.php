@@ -25,6 +25,11 @@ class Page extends Model implements HasMedia
         return LogOptions::defaults()->logOnly(['title', 'slug']);
     }
 
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()->generateSlugsFrom('title')->saveSlugsTo('slug');
+    }
+
     public function getCategory(){
         return $this->belongsTo('App\Models\PageCategory', 'category');
     }
@@ -36,10 +41,5 @@ class Page extends Model implements HasMedia
         $this->addMediaConversion('small')->width(150)->nonOptimized();
     }
 
-    public function getSlugOptions() : SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('title')
-            ->saveSlugsTo('slug');
-    }
+
 }

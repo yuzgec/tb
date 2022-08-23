@@ -21,31 +21,18 @@ class Author extends Model implements HasMedia
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()
-            ->logOnly(['title', 'slug']);
+        return LogOptions::defaults()->logOnly(['title', 'slug']);
     }
 
     public function getSlugOptions() : SlugOptions
     {
-        return SlugOptions::create()
-            ->generateSlugsFrom('title')
-            ->saveSlugsTo('slug');
+        return SlugOptions::create()->generateSlugsFrom('title')->saveSlugsTo('slug');
     }
 
     public function registerMediaConversions(Media $media = null): void
     {
-
-        $this->addMediaConversion('img')
-            ->width(1000)
-            ->nonOptimized();
-
-
-        $this->addMediaConversion('thumb')
-            ->width(400)
-            ->nonOptimized();
-
-        $this->addMediaConversion('small')
-            ->width(100)
-            ->nonOptimized();
+        $this->addMediaConversion('img')->width(1000)->nonOptimized();
+        $this->addMediaConversion('thumb')->width(400)->nonOptimized();
+        $this->addMediaConversion('small')->width(100)->nonOptimized();
     }
 }
