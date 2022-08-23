@@ -20,8 +20,7 @@
                 <div class="form-group mb-3 row">
                     <label class="form-label col-3 col-form-label">Yazar / Tarih </label>
                     <div class="col-5">
-                        <select class="form-select" name="author">
-                            <option value=""> Yazar Seçiniz</option>
+                        <select class="form-control multi" data-placeholder="Yazar Seçiniz" multiple name="author">
                             @foreach($Author as $item)
                                 <option value="{{ $item->id }}">
                                     {{ $item->title }}
@@ -30,8 +29,7 @@
                         </select>
                     </div>
                     <div class="col-4">
-                        <select class="form-select" name="year">
-                        <option value=""> Yıl Seçiniz</option>
+                        <select class="form-select single" data-placeholder="Yıl Seçiniz"  name="year">
                         @foreach($Years as $item)
                                 <option value="{{ $item->title }}">
                                     {{ $item->title }}
@@ -45,7 +43,7 @@
                 <div class="form-group mb-3 row">
                     <label class="form-label col-3 col-form-label">Kategori </label>
                     <div class="col">
-                        <select class="form-select" multiple name="category[]">
+                        <select class="form-select multi" data-placeholder="Yıl Seçiniz" multiple name="category[]">
                             @foreach($Product_Categories as $pc)
                                 <option value="{{ $pc->id }}">
                                     {{ $pc->title }}
@@ -166,10 +164,23 @@
     </div>
     {{Form::close()}}
 @endsection
+@section('customCSS')
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
 @section('customJS')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
     <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('.single').select2();
+        });
+
+        $(document).ready(function() {
+            $('.multi').select2();
+        });
+
         $('input[type="checkbox"]').on('change', function(){
             this.value ^= 1;
         });
