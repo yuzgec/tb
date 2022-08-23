@@ -65,10 +65,11 @@
                     <label class="form-label col-3 col-form-label">Kategori </label>
                     <div class="col">
                         <select class="form-control multi" data-placeholder="Kategori Seçiniz" multiple name="category[]">
-                            @foreach($Product_Categories as $pc)
-                                <option value="{{ $pc->id }}">
-                                    {{ $pc->title }}
-                                </option>
+                            @foreach($Product_Categories->where('parent_id', 0) as $pc)
+                                <option value="{{ $pc->id }}">{{ $pc->title }}</option>
+                                @foreach($Product_Categories->where('parent_id', $pc->id) as $item)
+                                    <option value="{{ $item->id}}">{{ $item->title }}</option>
+                                @endforeach
                             @endforeach
                         </select>
                     </div>
@@ -187,7 +188,7 @@
 @section('customCSS')
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <link href="/backend/css/select2theme.css" rel="stylesheet" />
 
 @endsection
 @section('customJS')
@@ -203,7 +204,8 @@
 
         $(document).ready(function() {
             $('.multi').select2({
-                theme: 'bootstrap-5'
+                theme: 'bootstrap-5',
+                closeOnSelect: false
             });
         });
 
