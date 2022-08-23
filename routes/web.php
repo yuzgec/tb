@@ -34,7 +34,7 @@ Route::get('/urunsayfasi', function(){
     })->name('kategoriler');
 
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/kategori/{url}', 'HomeController@kategori')->name('kategori');
+    Route::get('/kategori/{url}/{sub?}', 'HomeController@kategori')->name('kategori');
     Route::get('/kargosorgulama', 'HomeController@kargosorgulama')->name('kargosorgulama');
     Route::get('/kargosorgulamaGet', 'HomeController@kargosorgulamaget')->name('kargosorgulamaget');
     Route::get('/sepet', 'HomeController@sepet')->name('sepet');
