@@ -17,7 +17,7 @@
 
                 <x-form-inputtext label="Adı Giriniz" name="title"/>
 
-                <div class="form-group mb-3 row">
+                <div class="form-group mb-3 row mt">
                     <label class="form-label col-3 col-form-label">Yazar / Tarih </label>
                     <div class="col-5">
                         <select class="form-control multi" data-placeholder="Yazar Seçiniz" multiple name="author">
@@ -29,7 +29,7 @@
                         </select>
                     </div>
                     <div class="col-4">
-                        <select class="form-select single" data-placeholder="Yıl Seçiniz"  name="year">
+                        <select class="form-control single" data-placeholder="Yıl Seçiniz"  name="year">
                         @foreach($Years as $item)
                                 <option value="{{ $item->title }}">
                                     {{ $item->title }}
@@ -42,7 +42,7 @@
                 <div class="form-group mb-3 row">
                     <label class="form-label col-3 col-form-label">Yayınevi </label>
                     <div class="col-5">
-                        <select class="form-control single" data-placeholder="Yayınevi Seçiniz" multiple name="author">
+                        <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="author">
                             @foreach($Publisher as $item)
                                 <option value="{{ $item->id }}">
                                     {{ $item->title }}
@@ -51,7 +51,7 @@
                         </select>
                     </div>
                     <div class="col-4">
-                        <select class="form-select single" data-placeholder="Dil Seçiniz"  name="year">
+                        <select class="form-control single" data-placeholder="Dil Seçiniz"  name="year">
                             @foreach($Language as $item)
                                 <option value="{{ $item->title }}">
                                     {{ $item->title }}
@@ -64,7 +64,7 @@
                 <div class="form-group mb-3 row">
                     <label class="form-label col-3 col-form-label">Kategori </label>
                     <div class="col">
-                        <select class="form-select multi" data-placeholder="Kategori Seçiniz" multiple name="category[]">
+                        <select class="form-control multi" data-placeholder="Kategori Seçiniz" multiple name="category[]">
                             @foreach($Product_Categories as $pc)
                                 <option value="{{ $pc->id }}">
                                     {{ $pc->title }}
@@ -74,7 +74,6 @@
                     </div>
                 </div>
 
-                <x-form-inputtext label="Kampanya Link" name="external"/>
                 <x-form-inputtext label="Ürün Kodu " name="sku"/>
 
                 <div class="form-group mb-3 row">
@@ -188,6 +187,8 @@
 @section('customCSS')
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
 @endsection
 @section('customJS')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -195,11 +196,15 @@
     <script type="text/javascript">
 
         $(document).ready(function() {
-            $('.single').select2();
+            $('.single').select2({
+                theme: 'bootstrap-5'
+            });
         });
 
         $(document).ready(function() {
-            $('.multi').select2();
+            $('.multi').select2({
+                theme: 'bootstrap-5'
+            });
         });
 
         $('input[type="checkbox"]').on('change', function(){

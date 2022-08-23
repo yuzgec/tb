@@ -41,7 +41,6 @@ class ProductController extends Controller
         //dd($request->all());
         $New = new Product;
         $New->title = $request->title;
-        $New->external = $request->external;
 
         $New->price = $request->price;
         $New->old_price = $request->old_price;
@@ -114,8 +113,6 @@ class ProductController extends Controller
         $Update = Product::with('getCategory')->findOrFail($id);
 
         $Update->title = $request->title;
-
-        $Update->external = $request->external;
 
         $Update->price = $request->price;
         $Update->old_price = $request->old_price;
