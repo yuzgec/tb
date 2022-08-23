@@ -10,7 +10,8 @@ class PublisherController extends Controller
 
     public function index()
     {
-        $All = Publisher::paginate(100);
+        $All = Publisher::all();
+        //dd($All);
         return view('backend.publisher.index', compact('All'));
     }
 
@@ -23,11 +24,12 @@ class PublisherController extends Controller
     {
         $New = new Publisher;
         $New->title = $request->title;
-
         $New->save();
 
         toast(SWEETALERT_MESSAGE_CREATE,'success');
-        return view('backend.publisher.index');
+
+        return redirect()->route('publisher.index');
+
 
     }
 
@@ -46,11 +48,10 @@ class PublisherController extends Controller
     {
         $Update = new Publisher;
         $Update->title = $request->title;
-
         $Update->save();
 
         toast(SWEETALERT_MESSAGE_CREATE,'success');
-        return view('backend.publisher.index');
+        return redirect()->route('publisher.index');
     }
 
     public function destroy($id)

@@ -35,7 +35,6 @@
                     <tbody id="orders">
                     @foreach($All as $item)
                     <tr id="page_{{$item->id}}">
-
                         <td>
                             <div class="font-weight-medium">{{ $item->title }}</div>
                         </td>

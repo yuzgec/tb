@@ -25,124 +25,172 @@
 
     <div class="page-content">
         <div class="container">
-            <div class="product-details-top">
-                <div class="row">
+            <div class="row">
+                    <div class="col-lg-9">
+                        <div class="product-details-top">
 
-                    <div class="col-md-6">
-                        <div class="product-gallery product-gallery-separated">
-                            <span class="product-label label-sale">İn</span>
-                            <figure class="product-separated-item">
-                                <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="{{ (!$Detay->getFirstMediaUrl('page', 'img')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $Detay->title }}">
+                            <div class="row">
 
-                                <a href="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'img')}}" id="btn-separated-gallery" class="btn-product-gallery">
-                                    <i class="icon-arrows"></i>
-                                </a>
-                            </figure>
-                            @foreach($Detay->getMedia('gallery') as $item)
-                            <figure class="product-separated-item">
-                                {{ $item }}
-                            </figure>
-                            @endforeach
-                        </div>
-                    </div>
+                                <div class="col-md-6">
+                                    <div class="product-gallery product-gallery-separated">
+                                        <span class="product-label label-sale">İn</span>
+                                        <figure class="product-separated-item">
+                                            <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="{{ (!$Detay->getFirstMediaUrl('page', 'img')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $Detay->title }}">
 
-                    <div class="col-md-6">
-                        <div class="product-details sticky-content">
-                            <h1 class="product-title">{{ $Detay->title }}</h1>
-
-                            <div class="product-price">
-                                <span class="new-price">{{ money($Detay->price) }}₺</span>
-                                <span class="old-price">{{ money($Detay->old_price) }}₺</span>
-                                <p class="badge badge-warning ml-3" style="font-size:12px">
-                                    %{{ abs(round( $Detay->price * 100 /$Detay->old_price - 100)) }} indirim
-                                </p>
-                            </div>
-
-                            <div class="product-content">
-                                {!! $Detay->short  !!}
-                            </div>
-
-                            <form action="{{ route('sepeteekle') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $Detay->id }}">
-                                <div class="details-filter-row details-row-size">
-                                    <label for="qty">Adet:</label>
-                                    <div class="product-details-quantity">
-                                        <input type="number" id="qty" name="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
-                                    </div>
-                                </div>
-
-                                <div class="product-details-action">
-                                    <button type="submit"  class="btn-product btn-cart"><span>Sepete Ekle</span></button>
-                                    <div class="details-action-wrapper">
-                                        <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Favorilere Ekle</span></a>
-                                        <a href="#" class="btn-product btn-compare" title="Compare"><span>Tavsiye Et</span></a>
-                                    </div>
-                                </div>
-                            </form>
-
-                            <div class="product-details-footer">
-                                <div class="product-cat">
-                                    <span>Kategori:</span>
-                                    <a href="#">Türk Edebiyatı</a>,
-                                </div>
-
-                                <div class="social-icons social-icons-sm">
-                                    <span class="social-label">Paylaş:</span>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('urun', $Detay->slug) }}" class="social-icon" title="Facebook" target="_blank">
-                                        <i class="icon-facebook-f"></i>
-                                    </a>
-                                    <a href="https://twitter.com/share?url={{ route('urun', $Detay->slug) }}&text={{ $Detay->title }}" class="social-icon" title="Twitter" target="_blank">
-                                        <i class="icon-twitter"></i>
-                                    </a>
-                                    <a href="http://pinterest.com/pin/create/button/?url={{ route('urun', $Detay->slug) }}&media={{$Detay->getFirstMediaUrl('page', 'thumb')}}&description={{ $Detay->title }}" class="social-icon" title="Pinterest" target="_blank">
-                                        <i class="icon-pinterest"></i>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="accordion accordion-plus product-details-accordion" id="product-accordion">
-                                <div class="card card-box card-sm">
-                                    <div class="card-header" id="product-desc-heading">
-                                        <h2 class="card-title">
-                                            <a class="collapsed" role="button" data-toggle="collapse" href="#product-accordion-desc" aria-expanded="false" aria-controls="product-accordion-desc">
-                                                Ürün Açıklaması
+                                            <a href="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'img')}}" id="btn-separated-gallery" class="btn-product-gallery">
+                                                <i class="icon-arrows"></i>
                                             </a>
-                                        </h2>
+                                        </figure>
+                                        @foreach($Detay->getMedia('gallery') as $item)
+                                        <figure class="product-separated-item">
+                                            {{ $item }}
+                                        </figure>
+                                        @endforeach
                                     </div>
-                                    <div id="product-accordion-desc" class="collapse" aria-labelledby="product-desc-heading" data-parent="#product-accordion">
-                                        <div class="card-body">
-                                            <div class="product-desc-content">
-                                                {!!  $Detay->desc !!}
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="product-details ">
+                                <h1 class="product-title">{{ $Detay->title }}</h1>
+
+                                <div class="product-price">
+                                    <span class="new-price">{{ money($Detay->price) }}₺</span>
+                                    <span class="old-price">{{ money($Detay->old_price) }}₺</span>
+                                    <p class="badge badge-warning ml-3" style="font-size:12px">
+                                        %{{ abs(round( $Detay->price * 100 /$Detay->old_price - 100)) }} indirim
+                                    </p>
+                                </div>
+
+                                <div class="product-content">
+                                    {!! $Detay->short  !!}
+                                </div>
+
+                                <form action="{{ route('sepeteekle') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $Detay->id }}">
+                                    <div class="details-filter-row details-row-size">
+                                        <label for="qty">Adet:</label>
+                                        <div class="product-details-quantity">
+                                            <input type="number" id="qty" name="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-details-action">
+                                        <button type="submit"  class="btn-product btn-cart"><span>Sepete Ekle</span></button>
+                                        <div class="details-action-wrapper">
+                                            <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Favorilere Ekle</span></a>
+                                            <a href="#" class="btn-product btn-compare" title="Compare"><span>Tavsiye Et</span></a>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div class="product-details-footer">
+                                    <div class="product-cat">
+                                        <span>Kategori:</span>
+                                        <a href="#">Türk Edebiyatı</a>,
+                                    </div>
+
+                                    <div class="social-icons social-icons-sm">
+                                        <span class="social-label">Paylaş:</span>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('urun', $Detay->slug) }}" class="social-icon" title="Facebook" target="_blank">
+                                            <i class="icon-facebook-f"></i>
+                                        </a>
+                                        <a href="https://twitter.com/share?url={{ route('urun', $Detay->slug) }}&text={{ $Detay->title }}" class="social-icon" title="Twitter" target="_blank">
+                                            <i class="icon-twitter"></i>
+                                        </a>
+                                        <a href="http://pinterest.com/pin/create/button/?url={{ route('urun', $Detay->slug) }}&media={{$Detay->getFirstMediaUrl('page', 'thumb')}}&description={{ $Detay->title }}" class="social-icon" title="Pinterest" target="_blank">
+                                            <i class="icon-pinterest"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="accordion accordion-plus product-details-accordion" id="product-accordion">
+                                    <div class="card card-box card-sm">
+                                        <div class="card-header" id="product-desc-heading">
+                                            <h2 class="card-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#product-accordion-desc" aria-expanded="false" aria-controls="product-accordion-desc">
+                                                    Ürün Açıklaması
+                                                </a>
+                                            </h2>
+                                        </div>
+                                        <div id="product-accordion-desc" class="collapse" aria-labelledby="product-desc-heading" data-parent="#product-accordion">
+                                            <div class="card-body">
+                                                <div class="product-desc-content">
+                                                    {!!  $Detay->desc !!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card card-box card-sm">
+                                        <div class="card-header" id="product-shipping-heading">
+                                            <h2 class="card-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#product-accordion-shipping" aria-expanded="false" aria-controls="product-accordion-shipping">
+                                                    Teslimat & İADE
+                                                </a>
+                                            </h2>
+                                        </div>
+                                        <div id="product-accordion-shipping" class="collapse" aria-labelledby="product-shipping-heading" data-parent="#product-accordion">
+                                            <div class="card-body">
+                                                <div class="product-desc-content">
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="card card-box card-sm">
-                                    <div class="card-header" id="product-shipping-heading">
-                                        <h2 class="card-title">
-                                            <a class="collapsed" role="button" data-toggle="collapse" href="#product-accordion-shipping" aria-expanded="false" aria-controls="product-accordion-shipping">
-                                                Teslimat & İADE
-                                            </a>
-                                        </h2>
-                                    </div>
-                                    <div id="product-accordion-shipping" class="collapse" aria-labelledby="product-shipping-heading" data-parent="#product-accordion">
-                                        <div class="card-body">
-                                            <div class="product-desc-content">
-
-                                            </div>
-                                        </div>
-                                    </div>
+                            </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
+
+                    <aside class="col-lg-3">
+                        <div class="sidebar sidebar-product">
+                            <div class="widget widget-products">
+                                <h4 class="widget-title">Türk Edebiyatı</h4>
+
+                                <div class="products">
+                                    @foreach($Productssss as $item)
+                                    <div class="product product-sm">
+                                        <figure class="product-media">
+                                            <a href="{{ route('urun' , $item->slug)}}">
+                                                <img src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'small')}}" alt="Product image" class="product-image">
+                                            </a>
+                                        </figure>
+
+                                        <div class="product-body">
+                                            <h5 class="product-title"><a href="product.html">Light brown studded Wide fit wedges</a></h5><!-- End .product-title -->
+                                            <div class="product-price">
+                                                <span class="new-price">{{ money($Detay->price) }}₺</span>
+                                                <span class="old-price">{{ money($Detay->old_price) }}₺</span>
+                                            </div><!-- End .product-price -->
+                                        </div><!-- End .product-body -->
+                                    </div>
+                                    @endforeach
+                                </div>
+
+                                <a href="{{ route('home') }}" class="btn btn-outline-dark-3"><span>Diğer Ürünler</span><i class="icon-long-arrow-right"></i></a>
+                            </div><!-- End .widget widget-products -->
+
+                            <div class="widget widget-banner-sidebar">
+                                <div class="banner-sidebar-title">ad box 280 x 280</div><!-- End .ad-title -->
+
+                                <div class="banner-sidebar banner-overlay">
+                                    <a href="#">
+                                        <img src="assets/images/blog/sidebar/banner.jpg" alt="banner">
+                                    </a>
+                                </div><!-- End .banner-ad -->
+                            </div><!-- End .widget -->
+                        </div><!-- End .sidebar sidebar-product -->
+                    </aside><!-- End .col-lg-3 -->
                 </div>
+
+        </div>
+
             </div>
-{{--
-            <div class="product-details-tab">
+{{--            <div class="product-details-tab">
                 <ul class="nav nav-pills justify-content-center" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="product-desc-link" data-toggle="tab" href="#product-desc-tab" role="tab"

@@ -5,7 +5,6 @@
     <div class="col-12 col-md-12">
         <div class="card">
             {{Form::open(['route' => 'publisher.store', 'enctype' => 'multipart/form-data'])}}
-
                 <div class="card-header d-flex justify-content-between">
                     <x-add title="Yayınevi"></x-add>
                     <div>
