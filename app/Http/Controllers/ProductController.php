@@ -8,10 +8,8 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductCategoryPivot;
 use App\Models\Years;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
+
 
 class ProductController extends Controller
 {
@@ -24,7 +22,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $Kategori = ProductCategory::pluck('title', 'id');
+        $Kategori = ProductCategory::get()->toFlatTree();
         $Years =  Years::all();
         $Author = Author::all();
         //dd($Years);
