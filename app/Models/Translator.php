@@ -17,7 +17,7 @@ class Translator extends Model implements HasMedia
 {
     use HasFactory, SoftDeletes,InteractsWithMedia,LogsActivity,HasSlug;
     protected $guarded = [];
-    protected $table = 'translator';
+    protected $table = 'translators';
 
     public function getActivitylogOptions(): LogOptions
     {
