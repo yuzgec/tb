@@ -152,7 +152,7 @@
                                 <h4 class="widget-title">Türk Edebiyatı</h4>
 
                                 <div class="products">
-                                    @foreach($Productssss as $item)
+                                    @foreach($Productssss->take(5) as $item)
                                     <div class="product product-sm">
                                         <figure class="product-media">
                                             <a href="{{ route('urun' , $item->slug)}}">
@@ -161,7 +161,7 @@
                                         </figure>
 
                                         <div class="product-body">
-                                            <h5 class="product-title"><a href="product.html">Light brown studded Wide fit wedges</a></h5><!-- End .product-title -->
+                                            <h5 class="product-title"><a href="{{ route('urun' , $item->slug)}}">{{ $item->title }}</a></h5><!-- End .product-title -->
                                             <div class="product-price">
                                                 <span class="new-price">{{ money($Detay->price) }}₺</span>
                                                 <span class="old-price">{{ money($Detay->old_price) }}₺</span>
