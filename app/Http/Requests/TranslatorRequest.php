@@ -14,7 +14,7 @@ class TranslatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'                 => 'required|min:6|max:99|unique:translator,title,'.$this->id,
+            'title'                 => 'required|min:6|max:99|unique:translators,title,'.$this->id,
             'image'                 => 'image|max:2048|mimes:jpg,jpeg,png,gif',
             'gallery.*'             => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];

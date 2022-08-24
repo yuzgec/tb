@@ -102,7 +102,7 @@ class AuthorController extends Controller
     }
 
     public function getTrash(){
-        $Trash = AuthoronlyTrashed()->orderBy('deleted_at','desc')->get();
+        $Trash = Author::onlyTrashed()->orderBy('deleted_at','desc')->get();
         return view('backend.author.trash', compact('Trash'));
     }
 

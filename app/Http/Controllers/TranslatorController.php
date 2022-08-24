@@ -99,7 +99,7 @@ class TranslatorController extends Controller
     }
 
     public function getTrash(){
-        $Trash = TranslatoronlyTrashed()->orderBy('deleted_at','desc')->get();
+        $Trash = Translator::onlyTrashed()->orderBy('deleted_at','desc')->get();
         return view('backend.translator.trash', compact('Trash'));
     }
 

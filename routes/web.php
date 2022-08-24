@@ -49,7 +49,6 @@ Route::get('/urunsayfasi', function(){
     Route::post('/sepet-bosalt}', 'HomeController@cartdestroy')->name('sepetbosalt');
     Route::get('/kurumsal/{url}', 'HomeController@kurumsal')->name('kurumsal');
 
-
     Route::post('/siparis/kaydet', 'HomeController@kaydet')->name('kaydet');
     Route::get('/siparis/sonuc', 'HomeController@sonuc')->name('sonuc');
 
