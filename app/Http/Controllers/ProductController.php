@@ -17,7 +17,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $All = Product::with('getCategory')->orderBy('rank')->paginate(50);
+        $All = Product::with('getCategory')->orderBy('rank')->paginate(30);
         $Kategori = ProductCategory::all();
         return view('backend.product.index', compact('All', 'Kategori'));
     }
