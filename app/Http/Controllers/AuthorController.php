@@ -13,7 +13,7 @@ class AuthorController extends Controller
 {
     public function index()
     {
-        $All = Author::orderBy('rank')->get();
+        $All = Author::orderBy('rank')->paginate(50);
         return view('backend.author.index', compact('All'));
     }
 

@@ -6,7 +6,7 @@
     <table class="table table-hover table-striped table-bordered table-center">
         <thead>
         <tr>
-            <th>Resim {{ $term }}</th>
+            <th>Resim</th>
             <th>Başlık</th>
             <th>Durum</th>
             <th class="d-none d-lg-table-cell">Fiyat</th>

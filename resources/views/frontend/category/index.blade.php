@@ -118,14 +118,14 @@
                         <div class="widget widget-clean">
                             <label>Filtrele:</label>
                             <a href="#" class="sidebar-filter-clear">Temizle</a>
-                        </div><!-- End .widget widget-clean -->
+                        </div>
 
                         <div class="widget widget-collapsible">
                             <h3 class="widget-title">
                                 <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
                                     Kategoriler
                                 </a>
-                            </h3><!-- End .widget-title -->
+                            </h3>
 
                             <div class="collapse show" id="widget-1">
                                 <div class="widget-body">
