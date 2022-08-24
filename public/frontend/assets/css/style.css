@@ -196,7 +196,7 @@ blockquote {
     line-height: 1; }
     blockquote cite span {
       display: block;
-      font-weight: 300;
+      font-weight: 500;
       font-size: 1.4rem; }
   blockquote.text-white cite {
     color: #cccccc; }
@@ -462,7 +462,7 @@ blockquote {
     height: auto; }
 
 .header-top {
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.3rem;
   line-height: 1.5;
   letter-spacing: 0;
@@ -702,7 +702,7 @@ blockquote {
 
 .compare-product-title {
   color: #666666;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.3rem;
   line-height: 1.35;
   margin: 0;
@@ -964,7 +964,7 @@ blockquote {
     border-radius: 30px; }
   .header-search-extended .form-control,
   .header-search-extended select {
-    font-weight: 300; }
+    font-weight: 500; }
   .header-search-extended .form-control {
     height: 44px;
     padding-top: 1.2rem;
@@ -1426,7 +1426,7 @@ blockquote {
   line-height: 1.5; }
   .menu li > a {
     color: #999999;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.3rem;
     letter-spacing: 0;
     padding-top: .5rem;
@@ -1565,7 +1565,7 @@ blockquote {
   transition: background-position .6s linear, box-shadow .3s; }
 
 .demo-title {
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.3rem;
   letter-spacing: .01em; }
 
@@ -1704,7 +1704,7 @@ blockquote {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); }
   .category-dropdown .dropdown-item {
     color: #666;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.4rem;
     line-height: 1.5;
     letter-spacing: -.01em;
@@ -1818,7 +1818,7 @@ blockquote {
       margin-top: -.6rem; }
   .menu-vertical li > a {
     color: #666;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.3rem;
     letter-spacing: 0;
     padding-top: .6rem;
@@ -1834,7 +1834,7 @@ blockquote {
     .menu-vertical > li > a {
       display: block;
       color: #666;
-      font-weight: 300;
+      font-weight: 500;
       font-size: 1.4rem;
       line-height: 1.5;
       letter-spacing: -.01em;
@@ -2199,7 +2199,7 @@ a {
 p {
   margin-bottom: 0;
   font-size: 1.4rem;
-  font-weight: 300;
+  font-weight: 500;
   font-family: 'Roboto Slab', serif;
   letter-spacing: 0;
   color: #777; }
@@ -2234,7 +2234,7 @@ p {
   .header-2 .header-search .search-wrapper-wide {
     width: unset; }
   .header-2 .header-top {
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.4rem;
     background-color: #f8f8f8; }
     .header-2 .header-top .header-left {
@@ -2410,7 +2410,7 @@ p {
     margin-left: 2rem; }
 .header-4 .header-dropdown > a,
 .header-4 .header-dropdown > span {
-  font-weight: 300;
+  font-weight: 500;
   text-transform: initial; }
 .header-4 .header-menu {
   margin-top: 0; }
@@ -3203,7 +3203,7 @@ p {
   .header-12 .account > a p {
     margin-top: .3rem;
     font-size: 1.1rem;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 0;
     transition: color .3s; }
   .header-12 .cart-dropdown:hover > a,
@@ -3374,7 +3374,7 @@ p {
 .header-13 {
   background-color: #fff; }
   .header-13 .header-top {
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.3rem; }
   .header-13 .header-dropdown {
     padding-top: .85rem;
@@ -3485,7 +3485,7 @@ p {
 .header-14 {
   background-color: #fff; }
   .header-14 .header-top {
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.4rem;
     letter-spacing: 0; }
     .header-14 .header-top .header-left {
@@ -3703,7 +3703,7 @@ p {
   .header-14 .cart-txt,
   .header-14 .compare-txt {
     font-size: 1.1rem;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 0;
     color: #777;
     margin-top: .3rem;
@@ -3895,7 +3895,7 @@ p {
     color: #cc9966; }
 .header-25 .menu.sf-arrows > li > .sf-with-ul:after {
   right: 1.2rem !important;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: -.01em; }
 
 @media screen and (max-width: 991px) {
@@ -5009,7 +5009,7 @@ a:focus {
     padding-left: 1rem;
     border-radius: 0;
     font-size: 1.3rem;
-    font-weight: 300;
+    font-weight: 500;
     background: transparent;
     color: #fff; }
     .header-27 .form-control::placeholder {
@@ -6258,7 +6258,7 @@ a:focus {
 /* Footer */
 .footer {
   width: 100%;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.4rem;
   color: #777;
   background-color: #fff; }
@@ -6447,7 +6447,7 @@ a:focus {
 
 .widget-about-title {
   display: block;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.3rem;
   color: #333333;
   letter-spacing: 0;
@@ -6481,7 +6481,7 @@ a:focus {
     padding: 1.25rem 2rem;
     font-size: 1.4rem;
     line-height: 1.5;
-    font-weight: 300;
+    font-weight: 500;
     color: #999999;
     background-color: #fff;
     border: none;
@@ -6602,7 +6602,7 @@ a:focus {
   padding: 0; }
 
 .breadcrumb-item {
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.4rem;
   line-height: 1.5;
   letter-spacing: 0;
@@ -6661,14 +6661,14 @@ a:focus {
       margin-bottom: 2.4rem; }
 
 .title-separator {
-  font-weight: 300;
+  font-weight: 500;
   color: #cccccc; }
   .text-white .title-separator {
     color: #777; }
 
 .title-desc {
   color: #777;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.4rem;
   line-height: 1.5;
   letter-spacing: -.01em;
@@ -6708,7 +6708,7 @@ a:focus {
 /* Icon boxes */
 .icon-box {
   color: #777;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.6rem;
   line-height: 1.5;
   letter-spacing: -.01em;
@@ -7681,7 +7681,7 @@ a:focus {
 
 .product-cat {
   color: #777;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.3rem;
   line-height: 1.2;
   letter-spacing: -.01em;
@@ -7971,7 +7971,7 @@ a:focus {
     bottom: 0;
     align-items: center;
     display: inline-flex;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.1rem;
     white-space: nowrap;
     letter-spacing: 0;
@@ -8572,7 +8572,7 @@ a:focus {
     padding: 3.4rem 0 0; }
   .product.product-list .product-content {
     color: #777;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.4rem;
     line-height: 1.43;
     padding-top: 1rem;
@@ -8750,7 +8750,7 @@ a:focus {
 
 .banner-subtitle {
   color: #777;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.6rem;
   line-height: 1.2;
   letter-spacing: 0;
@@ -8916,7 +8916,7 @@ a:focus {
   font-weight: 400;
   margin-bottom: 1.6rem; }
   .video-banner-poster .video-banner-title span {
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.6rem; }
 
 .video-poster {
@@ -8949,7 +8949,7 @@ a:focus {
     font-weight: 400;
     margin-bottom: 1.2rem; }
     .video-box-content .video-banner-title span {
-      font-weight: 300;
+      font-weight: 500;
       font-size: 1.8rem;
       margin-bottom: .6rem; }
   .video-box-content p:not(:last-child) {
@@ -9297,7 +9297,7 @@ a:focus {
   padding: .85rem 2rem;
   font-size: 1.4rem;
   line-height: 1.5;
-  font-weight: 300;
+  font-weight: 500;
   color: #777;
   background-color: #fafafa;
   border: 1px solid #ebebeb;
@@ -9339,7 +9339,7 @@ textarea.form-control {
 
 label {
   color: #666666;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.4rem;
   margin: 0 0 1.1rem; }
 
@@ -9835,7 +9835,7 @@ small.form-text {
 /*--------------------- 4.20.Alerts -------------------- */
 /* Alerts */
 .alert {
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.4rem;
   line-height: 1.43;
   letter-spacing: -.01em;
@@ -9851,7 +9851,7 @@ small.form-text {
       color: rgba(255, 255, 255, 0.9); }
   .alert .close {
     color: rgba(255, 255, 255, 0.5);
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.6rem;
     line-height: 1;
     top: 50%;
@@ -10150,7 +10150,7 @@ button:focus {
 
 .intro-subtitle {
   color: #fff;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.4rem;
   letter-spacing: -.01em;
   margin-bottom: .5rem; }
@@ -10713,7 +10713,7 @@ button:focus {
     margin: 0; }
   .toolbox .form-control {
     color: #999999;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.2rem;
     padding: .45rem 1rem;
     height: 30px;
@@ -10877,7 +10877,7 @@ button:focus {
   min-width: 2.5rem;
   height: 2rem;
   margin-top: -1rem;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.3rem;
   line-height: 1;
   border-radius: .6rem;
@@ -11368,7 +11368,7 @@ button:focus {
   .product-desc-content blockquote p {
     margin-bottom: 0; }
   .product-desc-content blockquote cite {
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.4rem;
     letter-spacing: 0; }
 
@@ -11866,7 +11866,7 @@ button:focus {
   .menu-cat a {
     display: inline-block;
     color: #333333;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.4rem;
     line-height: 1.5;
     padding-top: .4rem;
@@ -11990,7 +11990,7 @@ button:focus {
 .widget-search .form-control {
   height: 40px;
   padding: .95rem 5rem .95rem 1.4rem;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.3rem;
   background-color: transparent;
   margin-bottom: 0; }
@@ -12020,7 +12020,7 @@ button:focus {
 .widget-cats a {
   color: #333;
   display: block;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.4rem;
   line-height: 1.5; }
   .widget-cats a span {
@@ -12034,7 +12034,7 @@ button:focus {
 .banner-sidebar-title {
   color: #777;
   text-align: center;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.3rem;
   line-height: 1;
   letter-spacing: -.01em;
@@ -12065,7 +12065,7 @@ button:focus {
   .posts-list span {
     display: block;
     color: #cccccc;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.4rem;
     line-height: 1.25;
     letter-spacing: -.01em;
@@ -12098,7 +12098,7 @@ button:focus {
   .tagcloud a {
     display: block;
     color: #777;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.4rem;
     line-height: 1.4;
     border-radius: .3rem;
@@ -12262,7 +12262,7 @@ button:focus {
   .entry-tags a {
     display: block;
     color: #777;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.4rem;
     line-height: 1.4;
     border-radius: .3rem;
@@ -12455,7 +12455,7 @@ button:focus {
   position: absolute;
   right: 0;
   top: 0;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.4rem;
   line-height: 1;
   letter-spacing: -.01em;
@@ -12488,7 +12488,7 @@ button:focus {
 
 .comment-date {
   color: #ccc;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.3rem;
   line-height: 1; }
 
@@ -12680,7 +12680,7 @@ button:focus {
       color: #c96; }
 
 .portfolio-tags {
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.3rem;
   letter-spacing: -.01em; }
   .portfolio-tags a {
@@ -12800,7 +12800,7 @@ button:focus {
   .member-title span {
     display: block;
     color: #999999;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.4rem;
     margin-top: .3rem; }
 
@@ -12952,7 +12952,7 @@ button:focus {
   color: #777; }
   .store address,
   .store div {
-    font-weight: 300;
+    font-weight: 500;
     font-style: normal;
     margin-bottom: 0; }
   .store a:not(.btn) {
@@ -12998,7 +12998,7 @@ button:focus {
     margin-bottom: 1.6rem; }
   .contact-box address,
   .contact-box div {
-    font-weight: 300;
+    font-weight: 500;
     font-style: normal; }
   .contact-box a {
     color: inherit; }
@@ -13083,7 +13083,7 @@ button:focus {
 
 .btn.btn-login {
   color: #333333;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.4rem;
   line-height: 1.5;
   display: flex;
@@ -13367,13 +13367,13 @@ button:focus {
   margin-bottom: 3.2rem; }
   .accordion-summary .card {
     color: #999999;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.2rem;
     line-height: 1.67;
     border: none;
     background-color: transparent; }
   .accordion-summary .card-title {
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.4rem;
     color: #333333;
     letter-spacing: 0; }
@@ -13719,7 +13719,7 @@ button:focus {
   .table.table-summary .summary-shipping-estimate a {
     margin-top: .6rem;
     display: inline-block;
-    font-weight: 300;
+    font-weight: 500;
     color: #999999;
     font-size: 1.4rem;
     border-bottom: 0.1rem solid #999999; }
@@ -13765,7 +13765,7 @@ button:focus {
   .nav-dashboard .nav-link {
     overflow: hidden;
     position: relative;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.4rem;
     line-height: 1.5;
     padding: 1.4rem 0;
@@ -13897,7 +13897,7 @@ button:focus {
   min-height: 53px;
   padding-bottom: .7rem; }
   .coming-countdown .countdown-section {
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.4rem;
     line-height: 1;
     letter-spacing: 0; }

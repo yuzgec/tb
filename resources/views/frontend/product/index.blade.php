@@ -59,6 +59,15 @@
                                     <p class="badge badge-warning ml-3" style="font-size:12px">
                                         %{{ abs(round( $Detay->price * 100 /$Detay->old_price - 100)) }} indirim
                                     </p>
+
+                                </div>
+
+                                <div class="product-content">
+                                    Kitap Adı :  <br>
+                                    Yazar Adı :  <br>
+                                    Çevirmen :  <br>
+                                    Dili :  <br>
+                                    Yayınevi :  <br>
                                 </div>
 
                                 <div class="product-content">
@@ -76,7 +85,17 @@
                                     </div>
 
                                     <div class="product-details-action">
-                                        <button type="submit"  class="btn-product btn-cart"><span>Sepete Ekle</span></button>
+                                        <button type="submit" class="btn btn-warning mr-2">
+                                            <span>Sepete Ekle</span>
+                                        </button>
+                                        <a href="#" class="btn btn-success">
+                                            <span>Whatsapp Sipariş</span>
+                                        </a>
+
+                                    </div>
+
+                                    <div class="product-details-action">
+
                                         <div class="details-action-wrapper">
                                             <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Favorilere Ekle</span></a>
                                             <a href="#" class="btn-product btn-compare" title="Compare"><span>Tavsiye Et</span></a>
@@ -113,7 +132,7 @@
                                                 </a>
                                             </h2>
                                         </div>
-                                        <div id="product-accordion-desc" class="collapse" aria-labelledby="product-desc-heading" data-parent="#product-accordion">
+                                        <div id="product-accordion-desc" class="collapse show" aria-labelledby="product-desc-heading" data-parent="#product-accordion">
                                             <div class="card-body">
                                                 <div class="product-desc-content">
                                                     {!!  $Detay->desc !!}
@@ -125,7 +144,7 @@
                                     <div class="card card-box card-sm">
                                         <div class="card-header" id="product-shipping-heading">
                                             <h2 class="card-title">
-                                                <a class="collapsed" role="button" data-toggle="collapse" href="#product-accordion-shipping" aria-expanded="false" aria-controls="product-accordion-shipping">
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#product-accordion-shipping" aria-expanded="true" aria-controls="product-accordion-shipping">
                                                     Teslimat & İADE
                                                 </a>
                                             </h2>
