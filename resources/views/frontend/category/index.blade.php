@@ -122,42 +122,28 @@
 
                         <div class="widget widget-collapsible">
                             <h3 class="widget-title">
-                                <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
                                     Kategoriler
-                                </a>
                             </h3>
 
-                            <div class="collapse show" id="widget-1">
-                                <div class="widget-body">
+                            <nav class="mobile-nav">
+                                        <ul class="mobile-menu">
 
-                                    <div class="tab-content">
-                                        <div class="tab-pane fade show active" id="mobile-menu-tab" role="tabpanel" aria-labelledby="mobile-menu-link">
-                                            <nav class="mobile-nav">
-                                                <ul class="mobile-menu">
-                                                    <li class="active">
-                                                        <a href="{{ route('home') }}">Anasayfa</a>
-                                                    </li>
+                                            @foreach($Product_Categories->where('parent_id' , 0) as $item)
+                                                <li><a href="{{ route('kategori', $item->slug) }}" class="text-dark">{{ $item->title }}</a>
+                                                @if($Product_Categories->where('parent_id' , 0)->count() > 0)
+                                                    <ul style="display: none;">
+                                                        @foreach($Product_Categories->where('parent_id' , $item->id) as $itemm)
+                                                            <li><a href="{{ route('kategori', [$item->slug, $itemm->slug]) }}" class="text-dark">{{ $itemm->title }}</a></li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
 
-                                                    @foreach($Product_Categories->where('parent_id' , 0) as $item)
-                                                        <li><a href="{{ route('kategori', $item->slug) }}" class="">{{ $item->title }}</a>
-                                                            @if($Product_Categories->where('parent_id' , 0)->count() > 0)
-                                                                <ul style="display: none;">
-                                                                    @foreach($Product_Categories->where('parent_id' , $item->id) as $itemm)
-                                                                        <li><a href="{{ route('kategori', [$item->slug, $itemm->slug]) }}">{{ $itemm->title }}</a></li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            @endif
+                                                </li>
+                                            @endforeach
 
-                                                        </li>
-                                                    @endforeach
+                                        </ul>
+                                    </nav>
 
-                                                </ul>
-                                            </nav>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                     </div>
