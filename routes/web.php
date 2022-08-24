@@ -69,7 +69,6 @@ Route::get('/urunsayfasi', function(){
         Route::auto('/faq-categories', FaqCategoryController::class);
         Route::auto('/gallery', GalleryController::class);
         Route::auto('/gallery-categories', GalleryCategoryController::class);
-        Route::auto('/price', PriceController::class);
         Route::auto('/slider', SliderController::class);
         Route::auto('/video', VideoController::class);
         Route::auto('/video-categories', VideoCategoryController::class);
