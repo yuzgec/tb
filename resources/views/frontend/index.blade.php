@@ -2,7 +2,7 @@
 @section('content')
     @include('backend.layout.alert')
     <div class="intro-slider-container">
-        <div class="owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": false}'>
+        <div class="owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": true}'>
             <div class="intro-slide"
                  style="background-image: url(https://cdn.shopify.com/s/files/1/0406/2511/1196/files/2_22WK27_AGUB_Report_Desktop_1800x.jpg?v=1656957213);">
             </div>

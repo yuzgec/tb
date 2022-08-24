@@ -51,16 +51,16 @@
 
                                 <div class="col-md-6">
                                     <div class="product-details ">
-                                <h1 class="product-title">{{ $Detay->title }}</h1>
+                                    <h1 class="product-title">{{ $Detay->title }}</h1>
 
-                                <div class="product-price">
-                                    <span class="new-price">{{ money($Detay->price) }}₺</span>
-                                    <span class="old-price">{{ money($Detay->old_price) }}₺</span>
-                                    <p class="badge badge-warning ml-3" style="font-size:12px">
-                                        %{{ abs(round( $Detay->price * 100 /$Detay->old_price - 100)) }} indirim
-                                    </p>
+                                    <div class="product-price">
+                                        <span class="new-price">{{ money($Detay->price) }}₺</span>
+                                        <span class="old-price">{{ money($Detay->old_price) }}₺</span>
+                                        <p class="badge badge-warning ml-3" style="font-size:12px">
+                                            %{{ abs(round( $Detay->price * 100 /$Detay->old_price - 100)) }} indirim
+                                        </p>
 
-                                </div>
+                                    </div>
 
                                 <div class="product-content">
                                     Kitap Adı :  <br>
@@ -68,6 +68,7 @@
                                     Çevirmen :  <br>
                                     Dili :  <br>
                                     Yayınevi :  <br>
+                                    Kondisyon :  <br>
                                 </div>
 
                                 <div class="product-content">
@@ -77,19 +78,14 @@
                                 <form action="{{ route('sepeteekle') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $Detay->id }}">
-                                    <div class="details-filter-row details-row-size">
-                                        <label for="qty">Adet:</label>
-                                        <div class="product-details-quantity">
-                                            <input type="number" id="qty" name="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
-                                        </div>
-                                    </div>
+                                    <input type="hidden" name="qty" value="1">
 
                                     <div class="product-details-action">
                                         <button type="submit" class="btn btn-warning mr-2">
                                             <span>Sepete Ekle</span>
                                         </button>
                                         <a href="#" class="btn btn-success">
-                                            <span>Whatsapp Sipariş</span>
+                                            <span>Şimdi Satın Al</span>
                                         </a>
 
                                     </div>
@@ -106,7 +102,7 @@
                                 <div class="product-details-footer">
                                     <div class="product-cat">
                                         <span>Kategori:</span>
-                                        <a href="#">Türk Edebiyatı</a>,
+                                        <a href="#">Türk Edebiyatı</a>
                                     </div>
 
                                     <div class="social-icons social-icons-sm">
@@ -123,46 +119,66 @@
                                     </div>
                                 </div>
 
-                                <div class="accordion accordion-plus product-details-accordion" id="product-accordion">
-                                    <div class="card card-box card-sm">
-                                        <div class="card-header" id="product-desc-heading">
-                                            <h2 class="card-title">
-                                                <a class="collapsed" role="button" data-toggle="collapse" href="#product-accordion-desc" aria-expanded="false" aria-controls="product-accordion-desc">
-                                                    Ürün Açıklaması
-                                                </a>
-                                            </h2>
-                                        </div>
-                                        <div id="product-accordion-desc" class="collapse show" aria-labelledby="product-desc-heading" data-parent="#product-accordion">
-                                            <div class="card-body">
-                                                <div class="product-desc-content">
-                                                    {!!  $Detay->desc !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="card card-box card-sm">
-                                        <div class="card-header" id="product-shipping-heading">
-                                            <h2 class="card-title">
-                                                <a class="collapsed" role="button" data-toggle="collapse" href="#product-accordion-shipping" aria-expanded="true" aria-controls="product-accordion-shipping">
-                                                    Teslimat & İADE
-                                                </a>
-                                            </h2>
-                                        </div>
-                                        <div id="product-accordion-shipping" class="collapse" aria-labelledby="product-shipping-heading" data-parent="#product-accordion">
-                                            <div class="card-body">
-                                                <div class="product-desc-content">
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
                             </div>
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="product-details-tab">
+                            <ul class="nav nav-pills justify-content-center" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="product-desc-link"
+                                       data-toggle="tab" href="#product-desc-tab"
+                                       role="tab" aria-controls="product-desc-tab" aria-selected="true">Açıklama</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="product-info-link"
+                                       data-toggle="tab" href="#product-info-tab"
+                                       role="tab" aria-controls="product-info-tab"
+                                       aria-selected="false">Teslimat & İADE</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="product-shipping-link"
+                                       data-toggle="tab" href="#product-shipping-tab"
+                                       role="tab" aria-controls="product-shipping-tab" aria-selected="false">Yazar Bilgi</a>
+                                </li>
+
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel"
+                                     aria-labelledby="product-desc-link">
+                                    <div class="product-desc-content">
+                                        <h3>Ürün Açıklaması</h3>
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="product-info-tab" role="tabpanel"
+                                     aria-labelledby="product-info-link">
+                                    <div class="product-desc-content">
+                                        <h3>Teslimat & İADE Koşulları</h3>
+                                        <p>İade süresi teslimat tarihinden itibaren 15 gündür.
+                                            Sipariş İade Süreci
+                                            Siparişinizdeki ürün veya ürünler elinize ulaştıktan sonra sebep veya mazeret belirterek iade talep oluşturabilirsiniz. İade talep edilebilmesi için ürün özelliklerinin Sitede belirtilen özelliklerden farklı olması veya hasarlı olduğunun kargo tutanağı ile kayıt altına alınmış olması şartı aranır.
+                                            İade etmek istediğiniz ürünler için iade talebi oluşturduktan sonra talebiniz şirketimizin onayı için iletilir. Sistem tarafından verilen kargo koduyla ürünler müşteri tarafından kargoya verilir. Şirketimiz, ürünlerin kendisine ulaşması sonrasında iade talebini onaylar veya gerekçenin geçerli olmaması durumunda bunu reddeder. Onay halinde para iadesi gerçekleştirilir.
+                                            Para İadesi: Kredi Kartı, Banka Kartı veya Puanla Yapılan Ödemelerin İadesi
+                                            Kredi kartı veya banka kartı ile yapılan ödemelerin iadesi ödemenin yapıldığı karta gerçekleştirilir. Alışverişin yapıldığı aynı gün içerisinde yapılan iadeler bazı bankalar tarafından hesap ekstresine yansıtılmayarak alışveriş kaydı doğrudan iptal edilebilmektedir. Ayrıca para iadelerinin hesap ekstrelerine veya hesaba yansıtılması bankadan bankaya değişmekte ve 1-15 gün arasında sürebilmektedir. Hesap ekstrenizde göremediğiniz iptal-iade işlemleriniz için öncelikle bankanıza danışmalısınız.
+                                            TBKİTAP</p>
+
+                                    </div><!-- End .product-desc-content -->
+                                </div><!-- .End .tab-pane -->
+                                <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel"
+                                     aria-labelledby="product-shipping-link">
+                                    <div class="product-desc-content">
+                                        <h3>Orhan Veli</h3>
+                                        </div><!-- End .product-desc-content -->
+                                </div><!-- .End .tab-pane -->
+                            </div>
+                        </div>
+
                     </div>
 
                     <aside class="col-lg-3">

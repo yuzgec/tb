@@ -49,9 +49,7 @@
                                 </td>
                                 <td class="price-col">{{ money($cart->price)}}</td>
                                 <td class="quantity-col">
-                                    <div class="cart-product-quantity">
-                                        <input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
-                                    </div>
+                                   X {{ $cart->qty }}
                                 </td>
                                 <td class="total-col">{{ money($cart->qty * $cart->price)}}₺</td>
 
