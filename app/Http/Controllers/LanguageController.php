@@ -7,80 +7,60 @@ use Illuminate\Http\Request;
 
 class LanguageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $All = Language::all();
+        //dd($All);
+        return view('backend.language.index', compact('All'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('backend.language.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $New = new Language;
+        $New->title = $request->title;
+        $New->save();
+
+        toast(SWEETALERT_MESSAGE_CREATE,'success');
+
+        return redirect()->route('language.index');
+
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $Edit = Language::findOrFail($id);
+        return view('backend.language.edit', compact('Edit'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $Update = new Language;
+        $Update->title = $request->title;
+        $Update->save();
+
+        toast(SWEETALERT_MESSAGE_CREATE,'success');
+        return redirect()->route('language.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $Delete = Language::findOrFail($id);
+        $Delete->delete();
+
+        toast(SWEETALERT_MESSAGE_DELETE,'success');
+        return redirect()->route('language.index');
     }
 
     public function getOrder(Request $request){
