@@ -27,7 +27,6 @@
                         <li class="active">
                             <a href="{{ route('home') }}">Anasayfa</a>
                         </li>
-
                         @foreach($Product_Categories->where('parent_id' , 0) as $item)
                             <li><a href="{{ route('kategori', $item->slug) }}" class="">{{ $item->title }}</a>
                                 @if($Product_Categories->where('parent_id' , 0)->count() > 0)
@@ -37,10 +36,8 @@
                                         @endforeach
                                     </ul>
                                 @endif
-
                             </li>
                         @endforeach
-
                     </ul>
                 </nav>
             </div>

@@ -30,51 +30,9 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="toolbox-layout">
-                                <a href="category-list.html" class="btn-layout">
-                                    <svg width="16" height="10">
-                                        <rect x="0" y="0" width="4" height="4" />
-                                        <rect x="6" y="0" width="10" height="4" />
-                                        <rect x="0" y="6" width="4" height="4" />
-                                        <rect x="6" y="6" width="10" height="4" />
-                                    </svg>
-                                </a>
 
-                                <a href="category-2cols.html" class="btn-layout active">
-                                    <svg width="10" height="10">
-                                        <rect x="0" y="0" width="4" height="4" />
-                                        <rect x="6" y="0" width="4" height="4" />
-                                        <rect x="0" y="6" width="4" height="4" />
-                                        <rect x="6" y="6" width="4" height="4" />
-                                    </svg>
-                                </a>
-
-                                <a href="category.html" class="btn-layout">
-                                    <svg width="16" height="10">
-                                        <rect x="0" y="0" width="4" height="4" />
-                                        <rect x="6" y="0" width="4" height="4" />
-                                        <rect x="12" y="0" width="4" height="4" />
-                                        <rect x="0" y="6" width="4" height="4" />
-                                        <rect x="6" y="6" width="4" height="4" />
-                                        <rect x="12" y="6" width="4" height="4" />
-                                    </svg>
-                                </a>
-
-                                <a href="category-4cols.html" class="btn-layout">
-                                    <svg width="22" height="10">
-                                        <rect x="0" y="0" width="4" height="4" />
-                                        <rect x="6" y="0" width="4" height="4" />
-                                        <rect x="12" y="0" width="4" height="4" />
-                                        <rect x="18" y="0" width="4" height="4" />
-                                        <rect x="0" y="6" width="4" height="4" />
-                                        <rect x="6" y="6" width="4" height="4" />
-                                        <rect x="12" y="6" width="4" height="4" />
-                                        <rect x="18" y="6" width="4" height="4" />
-                                    </svg>
-                                </a>
-                            </div><!-- End .toolbox-layout -->
-                        </div><!-- End .toolbox-right -->
-                    </div><!-- End .toolbox -->
+                        </div>
+                    </div>
 
                     <div class="products mb-3">
                         <div class="row justify-content-center">
@@ -104,45 +62,46 @@
                                             <a href="{{ route('urun' , $item->slug)}}" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
                                         </div>
                                     </div>
-
-                            </div><!-- End .col-sm-6 -->
-
+                            </div>
                             @endforeach
-
                         </div>
-                    </div><!-- End .products -->
+                    </div>
 
-                </div><!-- End .col-lg-9 -->
+                </div>
                 <aside class="col-lg-3 order-lg-first">
                     <div class="sidebar sidebar-shop">
-                        <div class="widget widget-clean">
-                            <label>Filtrele:</label>
-                            <a href="#" class="sidebar-filter-clear">Temizle</a>
-                        </div>
 
                         <div class="widget widget-collapsible">
                             <h3 class="widget-title">
                                     Kategoriler
                             </h3>
+                            <div class="mobile-menu-light">
 
                             <nav class="mobile-nav">
-                                        <ul class="mobile-menu">
+                                <ul class="mobile-menu">
 
-                                            @foreach($Product_Categories->where('parent_id' , 0) as $item)
-                                                <li><a href="{{ route('kategori', $item->slug) }}" class="text-dark">{{ $item->title }}</a>
-                                                @if($Product_Categories->where('parent_id' , 0)->count() > 0)
-                                                    <ul style="display: none;">
-                                                        @foreach($Product_Categories->where('parent_id' , $item->id) as $itemm)
-                                                            <li><a href="{{ route('kategori', [$item->slug, $itemm->slug]) }}" class="text-dark">{{ $itemm->title }}</a></li>
-                                                        @endforeach
-                                                    </ul>
-                                                @endif
+                                    @foreach($Product_Categories->where('parent_id' , 0) as $item)
+                                        <li>
+                                            <a href="{{ route('kategori', $item->slug) }}"
+                                               class="text-dark"><i class="icon-angle-right"></i>{{ $item->title }}
+                                            </a>
+                                            @if($Product_Categories->where('parent_id' , 0)->count() > 0)
+                                                <ul style="display: none;">
+                                                    @foreach($Product_Categories->where('parent_id' , $item->id) as $itemm)
+                                                        <li>
+                                                            <a href="{{ route('kategori', [$item->slug, $itemm->slug]) }}"
+                                                               class="text-dark">{{ $itemm->title }}
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        </li>
+                                    @endforeach
 
-                                                </li>
-                                            @endforeach
-
-                                        </ul>
-                                    </nav>
+                                </ul>
+                            </nav>
+                            </div>
 
                         </div>
 
