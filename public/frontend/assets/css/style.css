@@ -1,61 +1,6 @@
 @charset "UTF-8";
-/*--------------------- TABLE OF CONTENTS --------------- */
-/*--------------------- 1.    GENERAL STYLES ------------------- */
-/*--------------------- 2.    HEADERS ------------------- */
-/*--------------------- 2.1   Menu ------------------- */
-/*--------------------- 2.2   Vertical Menu ------------------- */
-/*--------------------- 2.3   Sticky Header ------------------- */
-/*--------------------- 2.4   Mobile Menu ------------------- */
-/*--------------------- 3.    FOOTERS ------------------- */
-/*--------------------- 4.    ELEMENTS ------------------- */
-/*--------------------- 4.1.  Page Header -------------------- */
-/*--------------------- 4.2.  BreadCrumbs -------------------- */
-/*--------------------- 4.3.  Titles -------------------- */
-/*--------------------- 4.4.  Icon boxes -------------------- */
-/*--------------------- 4.5.  Cards -------------------- */
-/*--------------------- 4.6.  Tabs -------------------- */
-/*--------------------- 4.7.  Buttons -------------------- */
-/*--------------------- 4.8.  Products -------------------- */
-/*--------------------- 4.9.  Banners -------------------- */
-/*--------------------- 4.10. Banners Video -------------------- */
-/*--------------------- 4.11. Banners Category -------------------- */
-/*--------------------- 4.12. Social Icons -------------------- */
-/*--------------------- 4.13. Testimonials -------------------- */
-/*--------------------- 4.14. Forms -------------------- */
-/*--------------------- 4.15. Call to Actions -------------------- */
-/*--------------------- 4.16. Tables -------------------- */
-/*--------------------- 4.17. Counters -------------------- */
-/*--------------------- 4.18. Pagination -------------------- */
-/*--------------------- 4.19. Modals -------------------- */
-/*--------------------- 4.20. Alerts -------------------- */
-/*--------------------- 4.21. Instagram Feeds -------------------- */
-/*--------------------- 5.    PAGES -------------------- */
-/*--------------------- 5.1.  Home -------------------- */
-/*--------------------- 5.2.  Category -------------------- */
-/*--------------------- 5.3.  Product Pages -------------------- */
-/*--------------------- 5.4.  Blog -------------------- */
-/*--------------------- 5.5.  Single/Blog Post -------------------- */
-/*--------------------- 5.6.  Portfolio -------------------- */
-/*--------------------- 5.7.  About -------------------- */
-/*--------------------- 5.8.  About 2 -------------------- */
-/*--------------------- 5.9.  Contact -------------------- */
-/*--------------------- 5.10. Contact 2 -------------------- */
-/*--------------------- 5.11. Login -------------------- */
-/*--------------------- 5.12. Category Banner Page -------------------- */
-/*--------------------- 5.13. Checkout -------------------- */
-/*--------------------- 5.14. Wishlist -------------------- */
-/*--------------------- 5.15. Cart -------------------- */
-/*--------------------- 5.16. Dashboard -------------------- */
-/*--------------------- 5.17. 404 -------------------- */
-/*--------------------- 5.18. Coming Soon -------------------- */
-/*--------------------- 6.    SPACING & HELPERS -------------------- */
-/*--------------------- 7.    FONT ICONS -------------------- */
-/*--------------------- END of TABLE OF CONTENTS  ---------- */
-/* Main CSS File */
-/* Fonts */
-@import url("https://fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800");
-/* font-family: 'Poppins', sans-serif; */
-/*--------------------- 1.General Styles ---------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
 html {
   font-size: 62.5%;
   -webkit-text-size-adjust: 100%;
@@ -2249,13 +2194,13 @@ blockquote {
 
 /* Header 2 */
 a {
-  font-family: 'Poppins'; }
+  font-family: 'Roboto Slab', serif; }
 
 p {
   margin-bottom: 0;
   font-size: 1.4rem;
   font-weight: 300;
-  font-family: 'Poppins';
+  font-family: 'Roboto Slab', serif;
   letter-spacing: 0;
   color: #777; }
 
@@ -2272,7 +2217,7 @@ p {
       height: 38px; }
     .header-2 .header-search-extended .form-control {
       padding: 1.2rem 2.4rem 1rem 2rem;
-      font-family: 'Poppins';
+      font-family: 'Roboto Slab', serif;
       letter-spacing: -.01em; }
     .header-2 .header-search-extended .btn {
       height: 42px;
@@ -8529,7 +8474,7 @@ a:focus {
 .product.product-10 .product-title a {
   font-size: 1.3rem;
   font-weight: 400;
-  font-family: 'Poppins';
+  font-family: 'Roboto Slab', serif;
   letter-spacing: 0;
   color: #333; }
   .product.product-10 .product-title a:hover, .product.product-10 .product-title a:focus {
@@ -8538,18 +8483,18 @@ a:focus {
   margin-top: .8rem;
   font-size: 1.3rem;
   font-weight: 700;
-  font-family: 'Poppins';
+  font-family: 'Roboto Slab', serif;
   letter-spacing: 0;
   color: #333333; }
 .product.product-10 .new-price {
   font-size: 1.3rem;
   font-weight: 700;
-  font-family: 'Poppins';
+  font-family: 'Roboto Slab', serif;
   letter-spacing: 0; }
 .product.product-10 .old-price {
   font-size: 1.3rem;
   font-weight: 400;
-  font-family: 'Poppins';
+  font-family: 'Roboto Slab', serif;
   letter-spacing: 0;
   text-decoration: none; }
 .product.product-10 .product-label {
@@ -8557,7 +8502,7 @@ a:focus {
   text-transform: uppercase;
   font-size: 1.3rem;
   font-weight: 700;
-  font-family: 'Poppins';
+  font-family: 'Roboto Slab', serif;
   letter-spacing: -.01em; }
 .product.product-10 .product-label.label-deal {
   color: #fff;
@@ -10101,7 +10046,7 @@ small.form-text {
 .element-type {
   font-size: 1.3rem;
   font-weight: 400;
-  font-family: 'Poppins';
+  font-family: 'Roboto Slab', serif;
   letter-spacing: .01em;
   color: #666;
   text-transform: uppercase; }
