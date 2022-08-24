@@ -42,7 +42,7 @@
                         <td>
                             <div class="font-weight-medium">{{ $item->title }}</div>
                         </td>
-                        <td class="text-center">
+                        <td class="d-flex align-items-center justify-content-center">
                             <label class="form-check form-check-single form-switch">
                                 <input class="form-check-input switch" status-id="{{ $item->id }}"  type="checkbox" @if ($item->status == 1) checked @endif>
                             </label>

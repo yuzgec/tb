@@ -1742,7 +1742,7 @@ textarea.form-control-lg {
     opacity: 0.7; }
 
 .form-switch {
-  padding-left: 2.5rem; }
+  padding-left: 0rem; }
   .form-switch .form-check-input {
     width: 2rem;
     margin-left: -2.5rem;
