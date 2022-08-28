@@ -102,7 +102,7 @@
         </div>
     </div>
 
-    <div class="header-bottom sticky-header">
+    <div class="header-bottom sticky-header" style="background: #f29200">
         <div class="container">
             <div class="col-12">
                 <nav class="main-nav">

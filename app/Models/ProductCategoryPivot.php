@@ -14,7 +14,6 @@ class ProductCategoryPivot extends Model
 
     public $timestamps = false;
 
-
     public function getCategoryCount()
     {
         return $this->hasMany(ProductCategory::class, 'id')->count();

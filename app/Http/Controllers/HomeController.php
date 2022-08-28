@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MailRequest;
 use App\Http\Requests\OrderRequest;
 use App\Http\Requests\SearchRequest;
+use App\Models\Author;
 use App\Models\Basket;
 use App\Models\Comment;
 use App\Models\MailSubcribes;
@@ -87,8 +88,18 @@ class HomeController extends Controller
     }
     public function urun($url){
 
-        $Detay = Product::with(['getCategory', 'getAuthor'])->where('slug', $url)->firstOrFail();
+        $Detay = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator'])
+                ->where('slug', $url)
+                ->firstOrFail();
         //dd($Detay);
+
+        $author = [];
+        foreach ($Detay->getAuthor as $item){
+            $author[] = $item->author_id;
+        }
+
+        $Author = Author::select('title', 'slug', 'id')->whereIn('id',$author)->get();
+
         SEOTools::setTitle($Detay->title);
         SEOTools::setDescription($Detay->seo_desc);
         SEOTools::opengraph()->setUrl(url()->current());
@@ -97,15 +108,13 @@ class HomeController extends Controller
         SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
 
         views($Detay)->cooldown(60)->record();
+        $Count = views($Detay)->unique()->period(Period::create(Carbon::today()))->count();
 
-        $Count = views($Detay)->unique()->period(Period::create(Carbon::today()))->count();;
-        $Comments = Comment::where('product_id', $Detay->id)->where('status', 1)->paginate(40);
         $Productssss = Product::with('getCategory')->where('status', 1)->whereHas('getCategory', function ($query) use ($Detay){
             $query->where('category_id','=',$Detay->getCategory->category_id);
         })->orderBy('rank','ASC')->get();
-        //dd($Productssss);
 
-        return view('frontend.product.index', compact('Detay','Count','Comments', 'Productssss'));
+        return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author'));
     }
     public function kargosorgulama(){
         return view('frontend.kargo.index');

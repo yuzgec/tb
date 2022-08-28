@@ -46,7 +46,7 @@ class LanguageController extends Controller
 
     public function update(Request $request, $id)
     {
-        $Update = new Language;
+        $Update = Language::findOrFail($id);
         $Update->title = $request->title;
         $Update->save();
 

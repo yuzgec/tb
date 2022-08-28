@@ -8,18 +8,6 @@
                 <li class="breadcrumb-item"><a href="{{ route('home') }}l">Anasayfa</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $Detay->title }}</li>
             </ol>
-
-         {{--   <nav class="product-pager ml-auto" aria-label="Product">
-                <a class="product-pager-link product-pager-prev" href="#" aria-label="Previous" tabindex="-1">
-                    <i class="icon-angle-left"></i>
-                    <span>Geri</span>
-                </a>
-
-                <a class="product-pager-link product-pager-next" href="#" aria-label="Next" tabindex="-1">
-                    <span>İleri</span>
-                    <i class="icon-angle-right"></i>
-                </a>
-            </nav>--}}
         </div>
     </nav>
 
@@ -32,21 +20,36 @@
                             <div class="row">
 
                                 <div class="col-md-6">
-                                    <div class="product-gallery product-gallery-separated">
-                                        <span class="product-label label-sale">İn</span>
-                                        <figure class="product-separated-item">
-                                            <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="{{ (!$Detay->getFirstMediaUrl('page', 'img')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $Detay->title }}">
 
-                                            <a href="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'img')}}" id="btn-separated-gallery" class="btn-product-gallery">
+                                    <div class="product-gallery">
+                                        <figure class="product-main-image">
+                                            <span class="product-label label-sale">İndirim</span>
+                                            <img id="product-zoom" src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="assets/images/products/single/fullwidth/3-big.jpg" alt="product image">
+
+                                            <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                                                 <i class="icon-arrows"></i>
                                             </a>
                                         </figure>
-                                        @foreach($Detay->getMedia('gallery') as $item)
-                                        <figure class="product-separated-item">
-                                            {{ $item }}
-                                        </figure>
-                                        @endforeach
-                                    </div>
+
+                                        <div id="product-zoom-gallery" class="product-image-gallery max-col-6">
+                                            <a class="product-gallery-item" href="#" data-image="a{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="assets/images/products/single/fullwidth/1-big.jpg">
+                                                <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="product side">
+                                            </a>
+
+                                            <a class="product-gallery-item" href="#" data-image="a{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="assets/images/products/single/fullwidth/2-big.jpg">
+                                                <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="product cross">
+                                            </a>
+
+                                            <a class="product-gallery-item active" href="#" data-image="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="assets/images/products/single/fullwidth/3-big.jpg">
+                                                <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="product with model">
+                                            </a>
+
+                                            <a class="product-gallery-item" href="#" data-image="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="assets/images/products/single/fullwidth/4-big.jpg">
+                                                <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="product back">
+                                            </a>
+
+                                        </div><!-- End .product-image-gallery -->
+                                    </div><!-- End .product-gallery -->
                                 </div>
 
                                 <div class="col-md-6">
@@ -62,13 +65,25 @@
 
                                     </div>
 
-                                <div class="product-content">
-                                    Kitap Adı :  <br>
-                                    Yazar Adı :  <br>
-                                    Çevirmen :  <br>
-                                    Dili :  <br>
-                                    Yayınevi :  <br>
-                                    Kondisyon :  <br>
+                                <div class="product-content" >
+                                    <div>Kitap Adı : {{ $Detay->title }} </div>
+                                    <div>Yazar Adı :
+                                        @foreach($Author as $item)
+                                          <a href="{{ route('yazar', $item->slug) }}">{{ $item->title }}</a>,
+                                        @endforeach
+                                    </div>
+                                    <div>Çevirmen : {{ $Detay->getTranslator->title }} </div>
+                                    <div>Dili :  {{ $Detay->getLanguage->title }}</div>
+                                    <div>Yayınevi :  {{ $Detay->getPublisher->title }}</div>
+                                    <div class="d-flex">
+                                        <div>Kondisyon : </div>
+                                          <div class="ratings-container align-items-center justify-content-center"
+                                               style="margin-top:5px">
+                                            <div class="ratings">
+                                                <div class="ratings-val" style="width: {{ condition($Detay->condition) }}%" title="{{ conditionText($Detay->condition) }}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="product-content">
@@ -119,65 +134,12 @@
                                     </div>
                                 </div>
 
-
-
-
                             </div>
                                 </div>
                             </div>
                         </div>
 
 
-                        <div class="product-details-tab">
-                            <ul class="nav nav-pills justify-content-center" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="product-desc-link"
-                                       data-toggle="tab" href="#product-desc-tab"
-                                       role="tab" aria-controls="product-desc-tab" aria-selected="true">Açıklama</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="product-info-link"
-                                       data-toggle="tab" href="#product-info-tab"
-                                       role="tab" aria-controls="product-info-tab"
-                                       aria-selected="false">Teslimat & İADE</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="product-shipping-link"
-                                       data-toggle="tab" href="#product-shipping-tab"
-                                       role="tab" aria-controls="product-shipping-tab" aria-selected="false">Yazar Bilgi</a>
-                                </li>
-
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel"
-                                     aria-labelledby="product-desc-link">
-                                    <div class="product-desc-content">
-                                        <h3>Ürün Açıklaması</h3>
-
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="product-info-tab" role="tabpanel"
-                                     aria-labelledby="product-info-link">
-                                    <div class="product-desc-content">
-                                        <h3>Teslimat & İADE Koşulları</h3>
-                                        <p>İade süresi teslimat tarihinden itibaren 15 gündür.
-                                            Sipariş İade Süreci
-                                            Siparişinizdeki ürün veya ürünler elinize ulaştıktan sonra sebep veya mazeret belirterek iade talep oluşturabilirsiniz. İade talep edilebilmesi için ürün özelliklerinin Sitede belirtilen özelliklerden farklı olması veya hasarlı olduğunun kargo tutanağı ile kayıt altına alınmış olması şartı aranır.
-                                            İade etmek istediğiniz ürünler için iade talebi oluşturduktan sonra talebiniz şirketimizin onayı için iletilir. Sistem tarafından verilen kargo koduyla ürünler müşteri tarafından kargoya verilir. Şirketimiz, ürünlerin kendisine ulaşması sonrasında iade talebini onaylar veya gerekçenin geçerli olmaması durumunda bunu reddeder. Onay halinde para iadesi gerçekleştirilir.
-                                            Para İadesi: Kredi Kartı, Banka Kartı veya Puanla Yapılan Ödemelerin İadesi
-                                            Kredi kartı veya banka kartı ile yapılan ödemelerin iadesi ödemenin yapıldığı karta gerçekleştirilir. Alışverişin yapıldığı aynı gün içerisinde yapılan iadeler bazı bankalar tarafından hesap ekstresine yansıtılmayarak alışveriş kaydı doğrudan iptal edilebilmektedir. Ayrıca para iadelerinin hesap ekstrelerine veya hesaba yansıtılması bankadan bankaya değişmekte ve 1-15 gün arasında sürebilmektedir. Hesap ekstrenizde göremediğiniz iptal-iade işlemleriniz için öncelikle bankanıza danışmalısınız.
-                                            TBKİTAP</p>
-
-                                    </div><!-- End .product-desc-content -->
-                                </div><!-- .End .tab-pane -->
-                                <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel"
-                                     aria-labelledby="product-shipping-link">
-                                    <div class="product-desc-content">
-                                        <h3>Orhan Veli</h3>
-                                        </div><!-- End .product-desc-content -->
-                                </div><!-- .End .tab-pane -->
-                            </div>
-                        </div>
 
                     </div>
 
@@ -220,6 +182,63 @@
                             </div><!-- End .widget -->
                         </div><!-- End .sidebar sidebar-product -->
                     </aside><!-- End .col-lg-3 -->
+
+                <div class="col-12">
+                    <div class="accordion accordion-plus product-details-accordion" id="product-accordion">
+                        <div class="card card-box card-sm">
+                            <div class="card-header" id="product-desc-heading">
+                                <h2 class="card-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" href="#aciklama" aria-expanded="false" aria-controls="product-accordion-desc">
+                                        Ürün Açıklaması
+                                    </a>
+                                </h2>
+                            </div>
+                            <div id="aciklama" class="collapse show" aria-labelledby="product-desc-heading" data-parent="#product-accordion">
+                                <div class="card-body">
+                                    <div class="product-desc-content">
+                                        {!!  $Detay->desc !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-box card-sm">
+                            <div class="card-header" id="product-shipping-heading">
+                                <h2 class="card-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" href="#teslimat-iade" aria-expanded="true" aria-controls="product-accordion-shipping">
+                                        Teslimat & İADE
+                                    </a>
+                                </h2>
+                            </div>
+                            <div id="teslimat-iade" class="collapse show" aria-labelledby="product-shipping-heading" data-parent="#product-accordion">
+                                <div class="card-body">
+                                    <div class="product-desc-content">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-box card-sm">
+                            <div class="card-header" id="product-shipping-heading">
+                                <h2 class="card-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" href="#yazar" aria-expanded="true" aria-controls="product-accordion-shipping">
+                                        Yazar Adı Gelecek
+                                    </a>
+                                </h2>
+                            </div>
+                            <div id="yazar" class="collapse show" aria-labelledby="product-shipping-heading" data-parent="#product-accordion">
+                                <div class="card-body">
+                                    <div class="product-desc-content">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
                 </div>
 
         </div>
@@ -310,11 +329,12 @@
                     </div>
                 </div>
             </div>--}}
+            <div class="container">
+                <div class="row">
+                    <h2 class="title text-center mb-4">En Son Baktıklarınız</h2>
 
-            <h2 class="title text-center mb-4">En Son Baktıklarınız</h2>
-
-            <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
-                 data-owl-options='{
+                    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
+                         data-owl-options='{
                             "nav": false,
                             "dots": true,
                             "margin": 20,
@@ -339,224 +359,228 @@
                                 }
                             }
                         }'>
-                <div class="product product-11 text-center">
+                        <div class="product product-11 text-center">
 
-                    <figure class="product-media">
-                        <a href="{{ route('urunler')}}">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
-                        </a>
+                            <figure class="product-media">
+                                <a href="{{ route('urunler')}}">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
+                                </a>
 
-                        <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+                                </div>
+                            </figure>
+
+                            <div class="product-body">
+                                <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
+                                    </a></h3>
+                                <div class="product-price">
+                                    251,00₺
+                                </div>
+                            </div>
+                            <div class="product-action">
+                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
+                            </div>
                         </div>
-                    </figure>
+                        <div class="product product-11 text-center">
 
-                    <div class="product-body">
-                        <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
-                            </a></h3>
-                        <div class="product-price">
-                            251,00₺
+                            <figure class="product-media">
+                                <a href="{{ route('urunler')}}">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+                                </div>
+                            </figure>
+
+                            <div class="product-body">
+                                <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
+                                    </a></h3>
+                                <div class="product-price">
+                                    251,00₺
+                                </div>
+                            </div>
+                            <div class="product-action">
+                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="product-action">
-                        <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                    </div>
+                        <div class="product product-11 text-center">
+
+                            <figure class="product-media">
+                                <a href="{{ route('urunler')}}">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+                                </div>
+                            </figure>
+
+                            <div class="product-body">
+                                <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
+                                    </a></h3>
+                                <div class="product-price">
+                                    251,00₺
+                                </div>
+                            </div>
+                            <div class="product-action">
+                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
+                            </div>
+                        </div>
+                        <div class="product product-11 text-center">
+
+                            <figure class="product-media">
+                                <a href="{{ route('urunler')}}">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+                                </div>
+                            </figure>
+
+                            <div class="product-body">
+                                <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
+                                    </a></h3>
+                                <div class="product-price">
+                                    251,00₺
+                                </div>
+                            </div>
+                            <div class="product-action">
+                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
+                            </div>
+                        </div>
+                        <div class="product product-11 text-center">
+
+                            <figure class="product-media">
+                                <a href="{{ route('urunler')}}">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+                                </div>
+                            </figure>
+
+                            <div class="product-body">
+                                <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
+                                    </a></h3>
+                                <div class="product-price">
+                                    251,00₺
+                                </div>
+                            </div>
+                            <div class="product-action">
+                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
+                            </div>
+                        </div>
+                        <div class="product product-11 text-center">
+
+                            <figure class="product-media">
+                                <a href="{{ route('urunler')}}">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+                                </div>
+                            </figure>
+
+                            <div class="product-body">
+                                <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
+                                    </a></h3>
+                                <div class="product-price">
+                                    251,00₺
+                                </div>
+                            </div>
+                            <div class="product-action">
+                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
+                            </div>
+                        </div>
+                        <div class="product product-11 text-center">
+
+                            <figure class="product-media">
+                                <a href="{{ route('urunler')}}">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+                                </div>
+                            </figure>
+
+                            <div class="product-body">
+                                <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
+                                    </a></h3>
+                                <div class="product-price">
+                                    251,00₺
+                                </div>
+                            </div>
+                            <div class="product-action">
+                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
+                            </div>
+                        </div>
+                        <div class="product product-11 text-center">
+
+                            <figure class="product-media">
+                                <a href="{{ route('urunler')}}">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+                                </div>
+                            </figure>
+
+                            <div class="product-body">
+                                <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
+                                    </a></h3>
+                                <div class="product-price">
+                                    251,00₺
+                                </div>
+                            </div>
+                            <div class="product-action">
+                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
+                            </div>
+                        </div>
+                        <div class="product product-11 text-center">
+
+                            <figure class="product-media">
+                                <a href="{{ route('urunler')}}">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
+                                    <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+                                </div>
+                            </figure>
+
+                            <div class="product-body">
+                                <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
+                                    </a></h3>
+                                <div class="product-price">
+                                    251,00₺
+                                </div>
+                            </div>
+                            <div class="product-action">
+                                <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
+                            </div>
+                        </div>
+                    </div><!-- End .owl-carousel -->
+
+
                 </div>
-                <div class="product product-11 text-center">
-
-                    <figure class="product-media">
-                        <a href="{{ route('urunler')}}">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
-                        </a>
-
-                        <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                        </div>
-                    </figure>
-
-                    <div class="product-body">
-                        <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
-                            </a></h3>
-                        <div class="product-price">
-                            251,00₺
-                        </div>
-                    </div>
-                    <div class="product-action">
-                        <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                    </div>
-                </div>
-                <div class="product product-11 text-center">
-
-                    <figure class="product-media">
-                        <a href="{{ route('urunler')}}">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
-                        </a>
-
-                        <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                        </div>
-                    </figure>
-
-                    <div class="product-body">
-                        <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
-                            </a></h3>
-                        <div class="product-price">
-                            251,00₺
-                        </div>
-                    </div>
-                    <div class="product-action">
-                        <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                    </div>
-                </div>
-                <div class="product product-11 text-center">
-
-                    <figure class="product-media">
-                        <a href="{{ route('urunler')}}">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
-                        </a>
-
-                        <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                        </div>
-                    </figure>
-
-                    <div class="product-body">
-                        <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
-                            </a></h3>
-                        <div class="product-price">
-                            251,00₺
-                        </div>
-                    </div>
-                    <div class="product-action">
-                        <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                    </div>
-                </div>
-                <div class="product product-11 text-center">
-
-                    <figure class="product-media">
-                        <a href="{{ route('urunler')}}">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
-                        </a>
-
-                        <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                        </div>
-                    </figure>
-
-                    <div class="product-body">
-                        <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
-                            </a></h3>
-                        <div class="product-price">
-                            251,00₺
-                        </div>
-                    </div>
-                    <div class="product-action">
-                        <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                    </div>
-                </div>
-                <div class="product product-11 text-center">
-
-                    <figure class="product-media">
-                        <a href="{{ route('urunler')}}">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
-                        </a>
-
-                        <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                        </div>
-                    </figure>
-
-                    <div class="product-body">
-                        <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
-                            </a></h3>
-                        <div class="product-price">
-                            251,00₺
-                        </div>
-                    </div>
-                    <div class="product-action">
-                        <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                    </div>
-                </div>
-                <div class="product product-11 text-center">
-
-                    <figure class="product-media">
-                        <a href="{{ route('urunler')}}">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
-                        </a>
-
-                        <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                        </div>
-                    </figure>
-
-                    <div class="product-body">
-                        <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
-                            </a></h3>
-                        <div class="product-price">
-                            251,00₺
-                        </div>
-                    </div>
-                    <div class="product-action">
-                        <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                    </div>
-                </div>
-                <div class="product product-11 text-center">
-
-                    <figure class="product-media">
-                        <a href="{{ route('urunler')}}">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
-                        </a>
-
-                        <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                        </div>
-                    </figure>
-
-                    <div class="product-body">
-                        <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
-                            </a></h3>
-                        <div class="product-price">
-                            251,00₺
-                        </div>
-                    </div>
-                    <div class="product-action">
-                        <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                    </div>
-                </div>
-                <div class="product product-11 text-center">
-
-                    <figure class="product-media">
-                        <a href="{{ route('urunler')}}">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVOy04pxFwITdjJ86ChQIZ69QG7S7RAr8b5I-xs4-yExiR-wM9jeXTFUqc7dqUmnkKklipzDIuOfLT2iGf96VhiQ1nquGIXA9gwq-Zatb1LxOAr2Ld-rNhM1SLsGRciReszl9mIdzjITvaOtZWDJ3uA8Q_s1000-no_900x.jpg?v=1650414603" alt="Product image" class="product-image">
-                            <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/AM-JKLVI_b4iJ2q1INuCQQ743RPd0XskcmpkiP5lkHypiyuCkrve5G5dBaiHSASGtGq8Mgdow1Oc4vdETVbaClvlnTOOHhz8AJ5Zh_A0DV3FUFE5_XSpeA29YNgM3izV8zKAxd6NgGxT4Y5zEAeOHqL04QXxng_s956-no.jpg?v=1660233814" alt="Product image" class="product-image-hover">
-                        </a>
-
-                        <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                        </div>
-                    </figure>
-
-                    <div class="product-body">
-                        <h3 class="product-title"><a href="{{ route('urunler')}}">Pachinko (Trade) by Min Jin Lee
-                            </a></h3>
-                        <div class="product-price">
-                            251,00₺
-                        </div>
-                    </div>
-                    <div class="product-action">
-                        <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                    </div>
-                </div>
-            </div><!-- End .owl-carousel -->
-        </div><!-- End .container -->
+            </div>
+            </div><!-- End .container -->
     </div><!-- End .page-content -->
 @endsection
 @section('custumJS')

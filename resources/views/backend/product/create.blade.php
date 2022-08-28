@@ -20,7 +20,7 @@
                 <div class="form-group mb-3 row mt">
                     <label class="form-label col-3 col-form-label">Yazar / Tarih </label>
                     <div class="col-5">
-                        <select class="form-control multi" data-placeholder="Yazar Seçiniz" multiple name="author">
+                        <select class="form-control multi" data-placeholder="Yazar Seçiniz" multiple name="author[]">
                             @foreach($Author as $item)
                                 <option value="{{ $item->id }}">
                                     {{ $item->title }}
@@ -40,10 +40,10 @@
                 </div>
 
                 <div class="form-group mb-3 row">
-                    <label class="form-label col-3 col-form-label">Yayınevi </label>
+                    <label class="form-label col-3 col-form-label">Çevirmen </label>
                     <div class="col-5">
-                        <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="author">
-                            @foreach($Publisher as $item)
+                        <select class="form-control single" data-placeholder="Çevirmen Seçiniz" name="translator">
+                            @foreach($Translator as $item)
                                 <option value="{{ $item->id }}">
                                     {{ $item->title }}
                                 </option>
@@ -51,15 +51,29 @@
                         </select>
                     </div>
                     <div class="col-4">
-                        <select class="form-control single" data-placeholder="Dil Seçiniz"  name="year">
+                        <select class="form-control single" data-placeholder="Dil Seçiniz"  name="language">
                             @foreach($Language as $item)
-                                <option value="{{ $item->title }}">
+                                <option value="{{ $item->id }}">
                                     {{ $item->title }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
                 </div>
+
+                <div class="form-group mb-3 row">
+                        <label class="form-label col-3 col-form-label">Yayınevi </label>
+                        <div class="col">
+                            <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="publisher">
+                                @foreach($Publisher as $item)
+                                    <option value="{{ $item->id }}">
+                                        {{ $item->title }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                    </div>
 
                 <div class="form-group mb-3 row">
                     <label class="form-label col-3 col-form-label">Kategori </label>
@@ -72,6 +86,30 @@
                                 @endforeach
                             @endforeach
                         </select>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3 row">
+                    <label class="form-label col-3 col-form-label">Seçenek </label>
+                    <div class="col-6 col-md-2">
+                        <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek1
+                            <input class="form-check-input switch" name="option1" type="checkbox" value="0">
+                        </label>
+                    </div>
+                    <div class="col-6 col-md-2">
+                        <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek2
+                            <input class="form-check-input switch" name="option2" type="checkbox" value="0">
+                        </label>
+                    </div>
+                    <div class="col-6 col-md-2">
+                        <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek3
+                            <input class="form-check-input switch" name="option3" type="checkbox" value="0">
+                        </label>
+                    </div>
+                    <div class="col-6 col-md-2">
+                        <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek4
+                            <input class="form-check-input switch" name="option4" type="checkbox" value="0">
+                        </label>
                     </div>
                 </div>
 

@@ -31,14 +31,26 @@ class Product extends Model implements HasMedia,Viewable
     }
 
     public function getAuthor(){
-        return $this->hasOne(Author::class, 'id','author');
+        return $this->hasMany(AuthorPivot::class, 'product_id', 'id');
+    }
+
+    public function getLanguage(){
+        return $this->hasOne(Language::class, 'id', 'language');
+    }
+
+    public function getTranslator(){
+        return $this->hasOne(Translator::class, 'id','translator');
+    }
+
+    public function getPublisher(){
+        return $this->hasOne(Publisher::class,'id','publisher');
     }
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('img')->width(1000)->nonOptimized();
-        $this->addMediaConversion('thumb')->width(400)->nonOptimized();
-        $this->addMediaConversion('small')->width(150)->nonOptimized();
+        $this->addMediaConversion('img')->width(1000)->height(1000)->nonOptimized();
+        $this->addMediaConversion('thumb')->width(400)->height(400)->nonOptimized();
+        $this->addMediaConversion('small')->width(150)->height(150)->nonOptimized();
     }
 
     public function getActivitylogOptions(): LogOptions
