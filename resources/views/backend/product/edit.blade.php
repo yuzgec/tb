@@ -39,7 +39,7 @@
                                 @foreach($Author as $item)
                                     <option value="{{ $item->id }}"
                                         @foreach($Edit->getAuthor as $ss)
-                                            {{ ($ss->product_id == $Edit->id) ? 'selected' : null }}
+                                            {{ ($ss->author_id == $item->id) ? 'selected' : null }}
                                         @endforeach>
                                         {{ $item->title }}
                                     </option>
@@ -63,7 +63,8 @@
                         <div class="col-5">
                             <select class="form-control single" data-placeholder="Çevirmen Seçiniz" name="translator">
                                 @foreach($Translator as $item)
-                                    <option value="{{ $item->id }}">
+                                    <option value="{{ $item->id }}"
+                                            @if($item->title ==  $Edit->translator) ? selected :  null @endif>
                                         {{ $item->title }}
                                     </option>
                                 @endforeach
@@ -72,7 +73,8 @@
                         <div class="col-4">
                             <select class="form-control single" data-placeholder="Dil Seçiniz"  name="language">
                                 @foreach($Language as $item)
-                                    <option value="{{ $item->id }}">
+                                    <option value="{{ $item->id }}"
+                                    @if($item->id ==  $Edit->language) ? selected :  null @endif>
                                         {{ $item->title }}
                                     </option>
                                 @endforeach
@@ -85,7 +87,8 @@
                         <div class="col">
                             <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="publisher">
                                 @foreach($Publisher as $item)
-                                    <option value="{{ $item->id }}">
+                                    <option value="{{ $item->id }}"
+                                        @if($item->id ==  $Edit->publisher) ? selected :  null @endif>
                                         {{ $item->title }}
                                     </option>
                                 @endforeach
@@ -98,21 +101,13 @@
                         <label class="form-label col-3 col-form-label">Kategori </label>
                         <div class="col">
                             <select class="form-control multi" data-placeholder="Kategori Seçiniz" multiple name="category[]">
-                                @foreach($Product_Categories->where('parent_id', 0) as $pc)
-                                    <option value="{{ $pc->id }}"
-
+                                @foreach($Product_Categories as $item)
+                                    <option value="{{ $item->id }}"
                                     @foreach($Pivot as $ss)
-                                        {{ ($ss->category_id == $pc->id) ? 'selected' : null }}
+                                        {{ ($ss->category_id == $item->id) ? 'selected' : null }}
                                     @endforeach
-                                    >{{ $pc->title }}</option>
-                                    @foreach($Product_Categories->where('parent_id', $pc->id) as $item)
-                                        <option value="{{ $item->id}}"
+                                    >{{ $item->title }}</option>
 
-                                        @foreach($Pivot as $ss)
-                                            {{ ($ss->category_id == $item->id) ? 'selected' : null }}
-                                            @endforeach
-                                        >{{ $pc->title.' - '.$item->title }}</option>
-                                    @endforeach
                                 @endforeach
                             </select>
                         </div>
