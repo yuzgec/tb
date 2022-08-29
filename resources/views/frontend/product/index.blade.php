@@ -221,28 +221,39 @@
                             <div id="teslimat-iade" class="collapse show" aria-labelledby="product-shipping-heading" data-parent="#product-accordion">
                                 <div class="card-body">
                                     <div class="product-desc-content">
-
+                                        <div class="p-5">
+                                            <p>İade süresi teslimat tarihinden itibaren 15 gündür.</p>
+                                            <br><h5><b>Sipariş İade Süreci</b></h5>
+                                            <p>Siparişinizdeki ürün veya ürünler elinize ulaştıktan sonra sebep veya mazeret belirterek iade talep oluşturabilirsiniz. İade talep edilebilmesi için ürün özelliklerinin Sitede belirtilen özelliklerden farklı olması veya hasarlı olduğunun kargo tutanağı ile kayıt altına alınmış olması şartı aranır.</p>
+                                            <br>
+                                            <p>İade etmek istediğiniz ürünler için iade talebi oluşturduktan sonra talebiniz şirketimizin onayı için iletilir. Sistem tarafından verilen kargo koduyla ürünler müşteri tarafından kargoya verilir. Şirketimiz, ürünlerin kendisine ulaşması sonrasında iade talebini onaylar veya gerekçenin geçerli olmaması durumunda bunu reddeder. Onay halinde para iadesi gerçekleştirilir.</p>
+                                            <br><p>Para İadesi: Kredi Kartı, Banka Kartı veya Puanla Yapılan Ödemelerin İadesi</p>
+                                            <p>Kredi kartı veya banka kartı ile yapılan ödemelerin iadesi ödemenin yapıldığı karta gerçekleştirilir. Alışverişin yapıldığı aynı gün içerisinde yapılan iadeler bazı bankalar tarafından hesap ekstresine yansıtılmayarak alışveriş kaydı doğrudan iptal edilebilmektedir. Ayrıca para iadelerinin hesap ekstrelerine veya hesaba yansıtılması bankadan bankaya değişmekte ve 1-15 gün arasında sürebilmektedir. Hesap ekstrenizde göremediğiniz iptal-iade işlemleriniz için öncelikle bankanıza danışmalısınız.</p>
+                                            TBKİTAP
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                        @foreach($Author as $item)
                         <div class="card card-box card-sm">
                             <div class="card-header" id="product-shipping-heading">
                                 <h2 class="card-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" href="#yazar" aria-expanded="true" aria-controls="product-accordion-shipping">
-                                        Yazar Adı Gelecek
+                                    <a class="collapsed" role="button" data-toggle="collapse" href="#{{$item->slug}}" aria-expanded="true" aria-controls="product-accordion-shipping">
+                                        {{ $item->title }}
                                     </a>
                                 </h2>
                             </div>
-                            <div id="yazar" class="collapse show" aria-labelledby="product-shipping-heading" data-parent="#product-accordion">
+                            <div id="{{$item->slug}}" class="collapse show" aria-labelledby="product-shipping-heading" data-parent="#product-accordion">
                                 <div class="card-body">
                                     <div class="product-desc-content">
-
+                                        {!! $item->desc !!}
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
+
                     </div>
 
 
