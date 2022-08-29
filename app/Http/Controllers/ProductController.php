@@ -192,9 +192,6 @@ class ProductController extends Controller
 
         if($request->input('author')) {
             foreach($request->input('author') as $pc) {
-                AuthorPivot::where(['author_id' => $Update->id])->delete();
-            }
-            foreach($request->input('author') as $pc) {
                 AuthorPivot::updateOrCreate(['author_id' => $pc, 'product_id' => $Update->id]);
             }
         }
