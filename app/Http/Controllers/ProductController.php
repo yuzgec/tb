@@ -95,7 +95,7 @@ class ProductController extends Controller
 
             if ($request->input('author')) {
                 foreach ($request->input('author') as $pc) {
-                    AuthorPivot::updateOrCreate(['authors_id' => $pc, 'product_id' => $New->id]);
+                    AuthorPivot::updateOrCreate(['author_id' => $pc, 'product_id' => $New->id]);
                 }
             }
 
@@ -119,91 +119,105 @@ class ProductController extends Controller
     {
         $Edit = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])->find($id);
         $Pivot = ProductCategoryPivot::where(['product_id'=> $id])->get();
-        //dd($Pivot);
+        //dd($Edit);
         $Years =  Years::all();
         $Author = Author::all();
         $Publisher = Publisher::all();
         $Language = Language::all();
         $Translator = Translator::all();
 
-        //dd($Edit);
 
-        return view('backend.product.edit', compact('Edit','Pivot', 'Years', 'Author', 'Publisher', 'Language', 'Translator'));
+        $a= [];
+        foreach ($Edit->getAuthor as $item){
+            $a[] = $item->author_id;
+        }
+
+        $Authors = AuthorPivot::select('author_id')->whereIn('author_id',$a)->get();
+
+
+        //dd($Edit->getAuthor);
+
+
+
+        return view('backend.product.edit', compact('Edit','Pivot', 'Years', 'Author', 'Authors','Publisher', 'Language', 'Translator'));
     }
 
     public function update(ProductRequest $request, $id)
     {
-        $Update = Product::with('getCategory')->findOrFail($id);
+       //dd($request->input('category'));
+        DB::transaction(function () use ($request, $id) {
+            $Update = Product::findOrFail($id);
 
-        $Update->title = $request->title;
+            $Update->title = $request->title;
 
-        $Update->price = $request->price;
-        $Update->old_price = $request->old_price;
-        $Update->campagin_price = $request->campagin_price;
-        $Update->sku = $request->sku;
+            $Update->price = $request->price;
+            $Update->old_price = $request->old_price;
+            $Update->campagin_price = $request->campagin_price;
+            $Update->sku = $request->sku;
 
-        $Update->short = $request->short;
-        $Update->note = $request->note;
-        $Update->cargo = $request->cargo;
-        $Update->featrues = $request->featrues;
-        $Update->desc = $request->desc;
+            $Update->short = $request->short;
+            $Update->note = $request->note;
+            $Update->cargo = $request->cargo;
+            $Update->featrues = $request->featrues;
+            $Update->desc = $request->desc;
 
-        $Update->opportunity = $request->opportunity;
-        $Update->offer = $request->offer;
-        $Update->bestselling = $request->bestselling;
+            $Update->opportunity = $request->opportunity;
+            $Update->offer = $request->offer;
+            $Update->bestselling = $request->bestselling;
 
-        $Update->freecargo = $request->freecargo;
-        $Update->fastkargo = $request->fastkargo;
-        $Update->bigopportunity = $request->bigopportunity;
+            $Update->freecargo = $request->freecargo;
+            $Update->fastkargo = $request->fastkargo;
+            $Update->bigopportunity = $request->bigopportunity;
 
-        $Update->option1 = $request->option1;
-        $Update->option2 = $request->option2;
-        $Update->option3 = $request->option3;
-        $Update->option4 = $request->option4;
+            $Update->option1 = $request->option1;
+            $Update->option2 = $request->option2;
+            $Update->option3 = $request->option3;
+            $Update->option4 = $request->option4;
 
+            $Update->language = $request->language;
+            $Update->publisher = $request->publisher;
+            $Update->translator = $request->translator;
+            $Update->year = $request->year;
 
-        $Update->language = $request->language;
-        $Update->publisher = $request->publisher;
-        $Update->translator = $request->translator;
-        $Update->year = $request->year;
+            $Update->seo_desc = $request->seo_desc;
+            $Update->seo_key = $request->seo_key;
+            $Update->seo_title = $request->seo_title;
 
-        $Update->seo_desc = $request->seo_desc;
-        $Update->seo_key = $request->seo_key;
-        $Update->seo_title = $request->seo_title;
-
-        $Update->year = $request->year;
-
-        if($request->removeImage == "1"){
-            $Update->media()->where('collection_name', 'page')->delete();
-        }
-
-        if ($request->hasFile('image')) {
-            $Update->media()->where('collection_name', 'page')->delete();
-            $Update->addMedia($request->image)->toMediaCollection('page');
-        }
-
-        if($request->hasfile('gallery')) {
-            foreach ($request->gallery as $item){
-                $Update->addMedia($item)->toMediaCollection('gallery');
+            if ($request->removeImage == "1") {
+                $Update->media()->where('collection_name', 'page')->delete();
             }
-        }
 
-        $Update->save();
+            if ($request->hasFile('image')) {
+                $Update->media()->where('collection_name', 'page')->delete();
+                $Update->addMedia($request->image)->toMediaCollection('page');
+            }
 
-        if($request->input('author')) {
-            foreach($request->input('author') as $pc) {
-                AuthorPivot::updateOrCreate(['author_id' => $pc, 'product_id' => $Update->id]);
+            if ($request->hasfile('gallery')) {
+                foreach ($request->gallery as $item) {
+                    $Update->addMedia($item)->toMediaCollection('gallery');
+                }
             }
-        }
 
-        if($request->input('category')) {
-            foreach($request->input('category') as $pc) {
-                ProductCategoryPivot::where(['product_id' => $Update->id])->delete();
+            $Update->save();
+
+            if ($request->input('author')) {
+                foreach ($request->input('author') as $pc) {
+                    AuthorPivot::where(['product_id' => $Update->id])->delete();
+                }
+                 foreach ($request->input('author') as $pc) {
+                    AuthorPivot::updateOrCreate(['author_id' => $pc, 'product_id' => $Update->id]);
+                }
             }
-            foreach($request->input('category') as $pc) {
-                ProductCategoryPivot::updateOrCreate(['category_id' => $pc, 'product_id' => $Update->id]);
+
+            if ($request->input('category')) {
+                foreach ($request->input('category') as $pc) {
+                    ProductCategoryPivot::where(['product_id' => $Update->id])->delete();
+                }
+                foreach ($request->input('category') as $pc) {
+                    ProductCategoryPivot::updateOrCreate(['category_id' => $pc, 'product_id' => $Update->id]);
+                }
             }
-        }
+        });
 
         toast(SWEETALERT_MESSAGE_UPDATE,'success');
 

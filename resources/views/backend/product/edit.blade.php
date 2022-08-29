@@ -35,7 +35,7 @@
                     <div class="form-group mb-3 row mt">
                         <label class="form-label col-3 col-form-label">Yazar / Tarih </label>
                         <div class="col-5">
-                            <select class="form-control multi" data-placeholder="Yazar Seçiniz" multiple name="author[]">
+                            <select class="form-control yazar" data-placeholder="Yazar Seçiniz" multiple name="author[]">
                                 @foreach($Author as $item)
                                     <option value="{{ $item->id }}"
                                         @foreach($Edit->getAuthor as $ss)
@@ -157,9 +157,6 @@
                         </div>
                     </div>
 
-
-
-
                     <x-form-inputtext label="Ürün Kodu " name="sku"/>
 
                     <div class="form-group mb-3 row">
@@ -206,7 +203,6 @@
                         </div>
                     </div>
 
-
                     <div class="form-group mb-3 row">
                         <label class="form-label col-3 col-form-label"> </label>
                         <div class="col-3">
@@ -232,7 +228,6 @@
                     <x-form-textarea label="Açıklama" name="desc" :ck/>
                     <x-form-textarea label="Ürün Sayfa Notu" name="note" ck="note"/>
                     <x-form-textarea label="Ürün Kargo Mesaj" name="cargo" :ck=null/>
-
 
                     <div class="card-header mb-2">
                         <h4 class="card-title">
@@ -345,6 +340,10 @@
         });
 
         $(document).ready(function() {
+            $('.yazar').select2({
+                theme: 'bootstrap-5',
+                closeOnSelect: true
+            });
             $('.multi').select2({
                 theme: 'bootstrap-5',
                 closeOnSelect: true
