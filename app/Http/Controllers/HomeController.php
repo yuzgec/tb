@@ -88,7 +88,7 @@ class HomeController extends Controller
     }
     public function urun($url){
 
-        $Detay = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator'])
+        $Detay = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
                 ->where('slug', $url)
                 ->firstOrFail();
         //dd($Detay);

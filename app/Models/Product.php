@@ -38,6 +38,10 @@ class Product extends Model implements HasMedia,Viewable
         return $this->hasOne(Language::class, 'id', 'language');
     }
 
+    public function getYear(){
+        return $this->hasOne(Years::class, 'title', 'year');
+    }
+
     public function getTranslator(){
         return $this->hasOne(Translator::class, 'id','translator');
     }

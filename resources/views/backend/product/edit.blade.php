@@ -32,25 +32,60 @@
                 <div class="card-body">
                     <x-form-inputtext label="Başlık Adı Giriniz" name="title"/>
 
-                    <div class="form-group mb-3 row">
+                    <div class="form-group mb-3 row mt">
                         <label class="form-label col-3 col-form-label">Yazar / Tarih </label>
                         <div class="col-5">
-                            <select class="form-select" name="author">
-                                <option value=""> Yazar Seçiniz</option>
+                            <select class="form-control multi" data-placeholder="Yazar Seçiniz" multiple name="author[]">
                                 @foreach($Author as $item)
                                     <option value="{{ $item->id }}"
-                                        {{ ($item->id == $Edit->author) ?  'selected' : null }} >
+                                        @foreach($Edit->getAuthor as $ss)
+                                            {{ ($ss->product_id == $Edit->id) ? 'selected' : null }}
+                                        @endforeach>
                                         {{ $item->title }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-4">
-                            <select class="form-select" name="year">
-                                <option value=""> Yıl Seçiniz</option>
+                            <select class="form-control single" data-placeholder="Yıl Seçiniz"  name="year">
                                 @foreach($Years as $item)
                                     <option value="{{ $item->title }}"
-                                        {{ ($item->title == $Edit->year) ?  'selected' : null }} >
+                                    @if($item->title ==  $Edit->year) ? selected :  null @endif>
+                                        {{ $item->title }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3 row">
+                        <label class="form-label col-3 col-form-label">Çevirmen </label>
+                        <div class="col-5">
+                            <select class="form-control single" data-placeholder="Çevirmen Seçiniz" name="translator">
+                                @foreach($Translator as $item)
+                                    <option value="{{ $item->id }}">
+                                        {{ $item->title }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <select class="form-control single" data-placeholder="Dil Seçiniz"  name="language">
+                                @foreach($Language as $item)
+                                    <option value="{{ $item->id }}">
+                                        {{ $item->title }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3 row">
+                        <label class="form-label col-3 col-form-label">Yayınevi </label>
+                        <div class="col">
+                            <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="publisher">
+                                @foreach($Publisher as $item)
+                                    <option value="{{ $item->id }}">
                                         {{ $item->title }}
                                     </option>
                                 @endforeach
@@ -59,26 +94,79 @@
 
                     </div>
 
-
                     <div class="form-group mb-3 row">
                         <label class="form-label col-3 col-form-label">Kategori </label>
                         <div class="col">
-                            <select class="form-select" multiple name="category[]">
-                                @foreach($Product_Categories as $pc)
+                            <select class="form-control multi" data-placeholder="Kategori Seçiniz" multiple name="category[]">
+                                @foreach($Product_Categories->where('parent_id', 0) as $pc)
                                     <option value="{{ $pc->id }}"
+
+                                    @foreach($Pivot as $ss)
+                                        {{ ($ss->category_id == $pc->id) ? 'selected' : null }}
+                                    @endforeach
+                                    >{{ $pc->title }}</option>
+                                    @foreach($Product_Categories->where('parent_id', $pc->id) as $item)
+                                        <option value="{{ $item->id}}"
+
                                         @foreach($Pivot as $ss)
-                                            {{ ($ss->category_id == $pc->id) ? 'selected' : null }}
-                                        @endforeach
-                                    >
-                                    {{ $pc->title }}
-                                    </option>
+                                            {{ ($ss->category_id == $item->id) ? 'selected' : null }}
+                                            @endforeach
+                                        >{{ $pc->title.' - '.$item->title }}</option>
+                                    @endforeach
                                 @endforeach
                             </select>
                         </div>
                     </div>
 
+                    <div class="form-group mb-3 row">
+                        <label class="form-label col-3 col-form-label">Seçenek </label>
+                        <div class="col-6 col-md-2">
+                            <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek1
+                                <input class="form-check-input switch"
+                                       name="option1"
+                                       type="checkbox"
+                                       value="{{ $Edit->option1 }}"
+                                       @if ( $Edit->option1 == 1) ?? checked @endif
+                                >
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek2
+                                <input class="form-check-input switch"
+                                       name="option2"
+                                       type="checkbox"
+                                       value="{{ $Edit->option2 }}"
+                                       @if ( $Edit->option2 == 1) ?? checked @endif
+                                >
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek3
+                                <input class="form-check-input switch"
+                                       name="option3"
+                                       type="checkbox"
+                                       value="{{ $Edit->option3 }}"
+                                       @if ( $Edit->option3 == 1) ?? checked @endif
+                                >
+                            </label>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek4
+                                <input class="form-check-input switch"
+                                       name="option4"
+                                       type="checkbox"
+                                       value="{{ $Edit->option4 }}"
+                                       @if ( $Edit->option4 == 1) ?? checked @endif
+                                >
+                            </label>
+                        </div>
+                    </div>
+
+
+
+
                     <x-form-inputtext label="Ürün Kodu " name="sku"/>
-                    <x-form-inputtext label="Kampanya Link" name="external"/>
+
                     <div class="form-group mb-3 row">
                         <label class="form-label col-3 col-form-label">Fiyat / Eski / Özel</label>
                         <div class="col-12 col-md-3">
@@ -246,15 +334,27 @@
     </div>
 
 @endsection
-
-
+@section('customCSS')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="/backend/css/select2theme.css" rel="stylesheet" />
+@endsection
 @section('customJS')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function() {
-            $("img").addClass("img-fluid");
-        })
+            $('.single').select2({
+                theme: 'bootstrap-5'
+            });
+        });
+
+        $(document).ready(function() {
+            $('.multi').select2({
+                theme: 'bootstrap-5',
+                closeOnSelect: true
+            });
+        });
 
         $('input[type="checkbox"]').on('change', function(){
             this.value ^= 1;
@@ -265,18 +365,8 @@
                 { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold']},
                 { name: 'paragraph',items: [ 'BulletedList']},
                 { name: 'colors', items: [ 'TextColor' ]},
-                { name: 'insert', items : [ 'Table']},
                 { name: 'styles', items: [ 'Format', 'FontSize']},
-            ],
-        });
-        CKEDITOR.replace('note', {
-            height : 100,
-            toolbar: [
-                { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold']},
-                { name: 'paragraph',items: [ 'BulletedList']},
-                { name: 'colors', items: [ 'TextColor' ]},
-                { name: 'insert', items : [ 'Table']},
-                { name: 'styles', items: [ 'Format', 'FontSize']},
+
             ],
         });
         CKEDITOR.replace( 'aciklama', {

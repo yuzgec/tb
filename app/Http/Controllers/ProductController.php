@@ -73,6 +73,7 @@ class ProductController extends Controller
             $New->language = $request->language;
             $New->publisher = $request->publisher;
             $New->translator = $request->translator;
+            $New->year = $request->year;
 
             $New->seo_desc = $request->seo_desc;
             $New->seo_key = $request->seo_key;
@@ -116,11 +117,18 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $Edit = Product::with('getCategory')->find($id);
+        $Edit = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])->find($id);
         $Pivot = ProductCategoryPivot::where(['product_id'=> $id])->get();
+        //dd($Pivot);
         $Years =  Years::all();
         $Author = Author::all();
-        return view('backend.product.edit', compact('Edit','Pivot', 'Years', 'Author'));
+        $Publisher = Publisher::all();
+        $Language = Language::all();
+        $Translator = Translator::all();
+
+        //dd($Edit);
+
+        return view('backend.product.edit', compact('Edit','Pivot', 'Years', 'Author', 'Publisher', 'Language', 'Translator'));
     }
 
     public function update(ProductRequest $request, $id)
@@ -157,6 +165,7 @@ class ProductController extends Controller
         $Update->language = $request->language;
         $Update->publisher = $request->publisher;
         $Update->translator = $request->translator;
+        $Update->year = $request->year;
 
         $Update->seo_desc = $request->seo_desc;
         $Update->seo_key = $request->seo_key;

@@ -23,7 +23,7 @@
             </div>
 
             <div class="table-responsive p-2">
-                <table class="table table-hover table-striped table-bordered table-center">
+                <table class="table table-hover table-striped table-bordered">
                     <thead>
                     <tr>
                         <th>Resim</th>
@@ -41,9 +41,9 @@
                                 <span class="avatar me-2" style="background-image: url({{ (!$item->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg': $item->getFirstMediaUrl('page', 'small')}})"></span>
                             </td>
                             <td>
-                                <div class="font-weight-medium">{{ $item->title }}</div>
+                                <div class="font-weight-medium"><a href="{{ route('product.edit', $item->id) }}" title="{{ $item->title }} -  Düzenle">{{ $item->title }}</a></div>
                             </td>
-                            <td class="d-flex align-items-center justify-content-center">
+                            <td>
                                 <label class="form-check form-check-single form-switch">
                                     <input class="form-check-input switch" status-id="{{ $item->id }}"  type="checkbox" @if ($item->status == 1) checked @endif>
                                 </label>

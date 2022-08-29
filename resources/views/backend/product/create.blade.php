@@ -224,10 +224,8 @@
     {{Form::close()}}
 @endsection
 @section('customCSS')
-
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="/backend/css/select2theme.css" rel="stylesheet" />
-
 @endsection
 @section('customJS')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -243,7 +241,7 @@
         $(document).ready(function() {
             $('.multi').select2({
                 theme: 'bootstrap-5',
-                closeOnSelect: false
+                closeOnSelect: true
             });
         });
 

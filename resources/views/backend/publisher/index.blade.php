@@ -23,7 +23,7 @@
             </div>
 
             <div class="table-responsive p-2">
-                <table class="table table-hover table-striped table-bordered table-center">
+                <table class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>Başlık</th>
@@ -38,7 +38,7 @@
                         <td>
                             <div class="font-weight-medium">{{ $item->title }}</div>
                         </td>
-                        <td class="d-flex align-items-center justify-content-center">
+                        <td>
                             <label class="form-check form-check-single form-switch">
                                 <input class="form-check-input switch" status-id="{{ $item->id }}"  type="checkbox" @if ($item->status == 1) checked @endif>
                             </label>
