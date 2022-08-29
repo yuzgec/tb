@@ -16,6 +16,7 @@
                 <div class="card-body">
 
                 <x-form-inputtext label="Adı Giriniz" name="title"/>
+                <x-form-inputtext label="Ürün Kodu " name="sku"/>
 
                 <div class="form-group mb-3 row mt">
                     <label class="form-label col-3 col-form-label">Yazar / Tarih </label>
@@ -30,7 +31,8 @@
                     </div>
                     <div class="col-4">
                         <select class="form-control single" data-placeholder="Yıl Seçiniz"  name="year">
-                        @foreach($Years as $item)
+                            <option value="">Yıl Seçiniz</option>
+                            @foreach($Years as $item)
                                 <option value="{{ $item->title }}">
                                     {{ $item->title }}
                                 </option>
@@ -43,6 +45,7 @@
                     <label class="form-label col-3 col-form-label">Çevirmen </label>
                     <div class="col-5">
                         <select class="form-control single" data-placeholder="Çevirmen Seçiniz" name="translator">
+                            <option value="">Çevirmen Seçiniz</option>
                             @foreach($Translator as $item)
                                 <option value="{{ $item->id }}">
                                     {{ $item->title }}
@@ -52,7 +55,8 @@
                     </div>
                     <div class="col-4">
                         <select class="form-control single" data-placeholder="Dil Seçiniz"  name="language">
-                            @foreach($Language as $item)
+                        <option value="">Dil Seçiniz</option>
+                        @foreach($Language as $item)
                                 <option value="{{ $item->id }}">
                                     {{ $item->title }}
                                 </option>
@@ -65,7 +69,9 @@
                         <label class="form-label col-3 col-form-label">Yayınevi </label>
                         <div class="col">
                             <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="publisher">
-                                @foreach($Publisher as $item)
+                            <option value="">Yayınevi Seçiniz</option>
+
+                            @foreach($Publisher as $item)
                                     <option value="{{ $item->id }}">
                                         {{ $item->title }}
                                     </option>
@@ -113,7 +119,6 @@
                     </div>
                 </div>
 
-                <x-form-inputtext label="Ürün Kodu " name="sku"/>
 
                 <div class="form-group mb-3 row">
                     <label class="form-label col-3 col-form-label">Listele </label>
@@ -234,11 +239,9 @@
 
         $(document).ready(function() {
             $('.single').select2({
-                theme: 'bootstrap-5'
+                theme: 'bootstrap-5',
             });
-        });
 
-        $(document).ready(function() {
             $('.multi').select2({
                 theme: 'bootstrap-5',
                 closeOnSelect: true

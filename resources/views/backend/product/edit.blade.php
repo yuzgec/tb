@@ -31,7 +31,7 @@
                 </div>
                 <div class="card-body">
                     <x-form-inputtext label="Başlık Adı Giriniz" name="title"/>
-
+                    <x-form-inputtext label="Ürün Kodu " name="sku"/>
                     <div class="form-group mb-3 row mt">
                         <label class="form-label col-3 col-form-label">Yazar / Tarih </label>
                         <div class="col-5">
@@ -157,7 +157,6 @@
                         </div>
                     </div>
 
-                    <x-form-inputtext label="Ürün Kodu " name="sku"/>
 
                     <div class="form-group mb-3 row">
                         <label class="form-label col-3 col-form-label">Fiyat / Eski / Özel</label>
