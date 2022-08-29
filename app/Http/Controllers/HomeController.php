@@ -363,25 +363,19 @@ class HomeController extends Controller
         return redirect()->route('siparis');
 
     }
-    public function kampanya(){
 
+    public function yazar($slug){
+        $Detay = Author::where('slug', $slug)->first();
 
-        $Detay = Product::with('getCategory')->where('opportunity', 1)->firstOrFail();
-        $Stock = DB::table('campagin_stock')->where('product_id', $Detay->id)->first();
-
-        SEOTools::setTitle($Detay->title);
+        SEOTools::setTitle($Detay->title."'a ait kitaplar");
         SEOTools::setDescription($Detay->seo_desc);
         SEOTools::opengraph()->setUrl(url()->current());
         SEOTools::setCanonical(route('urun', $Detay->slug));
         SEOTools::opengraph()->addProperty('type', 'product');
-
         SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
 
-        views($Detay)->cooldown(60)->record();
-        $Count = views($Detay)->unique()->period(Period::create(Carbon::today()))->count();;
-        $Comments = Comment::where('product_id', $Detay->id)->where('status', 1)->paginate(40);
-
-        return view('frontend.shop.kampanya', compact('Detay', 'Count', 'Comments', 'Stock'));
+        return view('frontend.author.index', compact('Detay'));
     }
+
 
 }

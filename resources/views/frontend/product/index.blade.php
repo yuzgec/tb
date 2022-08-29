@@ -72,9 +72,16 @@
                                           <a href="{{ route('yazar', $item->slug) }}">{{ $item->title }}</a>,
                                         @endforeach
                                     </div>
+                                    @if($Detay->getTranslator)
                                     <div>Çevirmen : {{ $Detay->getTranslator->title }} </div>
+                                    @endif
+                                    @if($Detay->getLanguage)
                                     <div>Dili :  {{ $Detay->getLanguage->title }}</div>
+                                    @endif
+                                    @if($Detay->getPublisher)
                                     <div>Yayınevi :  {{ $Detay->getPublisher->title }}</div>
+                                    @endif
+                                    @if($Detay->condition)
                                     <div class="d-flex">
                                         <div>Kondisyon : </div>
                                           <div class="ratings-container align-items-center justify-content-center"
@@ -84,6 +91,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                 </div>
 
                                 <div class="product-content">

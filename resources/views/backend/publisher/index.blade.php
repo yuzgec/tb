@@ -7,7 +7,7 @@
                 <div>
                     <h4 class="card-title">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                        Yayınevi Listesi
+                        Yayınevi Listesi [{{ $All->total() }}]
                     </h4>
                 </div>
                 <div class="d-flex justify-content-between">
@@ -96,6 +96,20 @@
                         </div>
                     </div>
                     @endforeach
+                    <div class="row">
+                        <div class="d-flex justify-content-between">
+
+                            <div class="col-12 col-md-9">{{ $All->appends(['siralama' => 'publisher'])->links() }}</div>
+                            <div class="col-12 col-md-3">
+                                <div class="input-icon mb-3">
+                                    <input type="text" value="" class="form-control" placeholder="Arama…">
+                                    <span class="input-icon-addon">
+                                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="10" cy="10" r="7"></circle><line x1="21" y1="21" x2="15" y2="15"></line></svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </tbody>
                 </table>
             </div>
