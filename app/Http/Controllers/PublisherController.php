@@ -10,7 +10,7 @@ class PublisherController extends Controller
 
     public function index()
     {
-        $All = Publisher::all();
+        $All = Publisher::orderBy('rank')->paginate(30);
         //dd($All);
         return view('backend.publisher.index', compact('All'));
     }

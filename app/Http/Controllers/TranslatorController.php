@@ -10,7 +10,7 @@ class TranslatorController extends Controller
 {
     public function index()
     {
-        $All = Translator::orderBy('rank')->get();
+        $All = Translator::orderBy('rank')->paginate(30);
         return view('backend.translator.index', compact('All'));
     }
 
