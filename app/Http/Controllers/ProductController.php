@@ -74,6 +74,7 @@ class ProductController extends Controller
             $New->publisher = $request->publisher;
             $New->translator = $request->translator;
             $New->year = $request->year;
+            $New->condition = $request->condition;
 
             $New->seo_desc = $request->seo_desc;
             $New->seo_key = $request->seo_key;
@@ -178,6 +179,7 @@ class ProductController extends Controller
             $Update->publisher = $request->publisher;
             $Update->translator = $request->translator;
             $Update->year = $request->year;
+            $Update->condition = $request->condition;
 
             $Update->seo_desc = $request->seo_desc;
             $Update->seo_key = $request->seo_key;
