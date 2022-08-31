@@ -66,11 +66,10 @@
                 </div>
 
                 <div class="form-group mb-3 row">
-                        <label class="form-label col-3 col-form-label">Yayınevi </label>
-                        <div class="col">
+                        <label class="form-label col-3 col-form-label">Yayınevi / Kondisyon</label>
+                        <div class="col-5">
                             <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="publisher">
                             <option value="">Yayınevi Seçiniz</option>
-
                             @foreach($Publisher as $item)
                                     <option value="{{ $item->id }}">
                                         {{ $item->title }}
@@ -78,6 +77,11 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <div class="col-4">
+                            <input type="text" class="form-control" name="condition" value="{{old('condition')}}" placeholder="1 ile 5 arasında bir sayı giriniz">
+                        </div>
+
 
                     </div>
 

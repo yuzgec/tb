@@ -87,7 +87,7 @@
 
                     <div class="form-group mb-3 row">
                         <label class="form-label col-3 col-form-label">Yayınevi </label>
-                        <div class="col">
+                        <div class="col-5">
                             <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="publisher">
                                 <option value="">Yayınevi Seçiniz</option>
                                 @foreach($Publisher as $item)
@@ -97,6 +97,10 @@
                                     </option>
                                 @endforeach
                             </select>
+                        </div>
+
+                        <div class="col-4">
+                            <input type="text" class="form-control" name="condition" pattern="([1-5]{1})$" value="{{ $Edit->condition }}" placeholder="1 ile 5 arasında bir sayı giriniz">
                         </div>
 
                     </div>
