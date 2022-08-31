@@ -66,7 +66,6 @@
                                     </div>
 
                                 <div class="product-content" >
-                                    <div>Kitap Adı : {{ $Detay->title }} </div>
                                     <div>Yazar Adı :
                                         @foreach($Author as $item)
                                           <a href="{{ route('yazar', $item->slug) }}">{{ $item->title }}</a>,

@@ -34,7 +34,7 @@ class ViewShareProvider extends ServiceProvider
 
             $Pages =  Page::with('getCategory')->get();
             $Page_Categories = PageCategory::all();
-            $Product_Categories = ProductCategory::with('cat')->where('status', 1)->get();
+            $Product_Categories = ProductCategory::with('cat')->where('status', 1)->get()->toFlatTree();
             $Product = Product::with('getCategory')->where('status', 1)->orderBy('rank','ASC')->get();
 
             View::share([
