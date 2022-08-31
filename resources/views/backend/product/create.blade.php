@@ -89,11 +89,8 @@
                     <label class="form-label col-3 col-form-label">Kategori </label>
                     <div class="col">
                         <select class="form-control multi" data-placeholder="Kategori Seçiniz" multiple name="category[]">
-                            @foreach($Product_Categories->where('parent_id', 0) as $pc)
-                                <option value="{{ $pc->id }}">{{ $pc->title }}</option>
-                                @foreach($Product_Categories->where('parent_id', $pc->id) as $item)
-                                    <option value="{{ $item->id}}">{{ $pc->title.' - '.$item->title }}</option>
-                                @endforeach
+                            @foreach($Product_Categories as $item)
+                                <option value="{{ $item->id }}">{{ ($item->parent_id == 0 ) ? $item->title : '-- '.$item->title }}</option>
                             @endforeach
                         </select>
                     </div>

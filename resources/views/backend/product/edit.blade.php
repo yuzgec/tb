@@ -114,7 +114,7 @@
                                     @foreach($Pivot as $ss)
                                         {{ ($ss->category_id == $item->id) ? 'selected' : null }}
                                     @endforeach
-                                    >{{ $item->title }}</option>
+                                    >{{ ($item->parent_id == 0 ) ? $item->title : '-- '.$item->title }}</option>
                                 @endforeach
                             </select>
                         </div>
