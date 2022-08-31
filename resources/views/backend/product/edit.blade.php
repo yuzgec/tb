@@ -48,6 +48,7 @@
                         </div>
                         <div class="col-4">
                             <select class="form-control single" data-placeholder="Yıl Seçiniz"  name="year">
+                                <option value="">Yıl Seçiniz</option>
                                 @foreach($Years as $item)
                                     <option value="{{ $item->title }}"
                                     @if($item->title ==  $Edit->year) ? selected :  null @endif>
@@ -62,6 +63,7 @@
                         <label class="form-label col-3 col-form-label">Çevirmen </label>
                         <div class="col-5">
                             <select class="form-control single" data-placeholder="Çevirmen Seçiniz" name="translator">
+                                <option value="">Çevirmen Seçiniz</option>
                                 @foreach($Translator as $item)
                                     <option value="{{ $item->id }}"
                                             @if($item->title ==  $Edit->translator) ? selected :  null @endif>
@@ -72,6 +74,7 @@
                         </div>
                         <div class="col-4">
                             <select class="form-control single" data-placeholder="Dil Seçiniz"  name="language">
+                                <option value="">Dİl Seçiniz</option>
                                 @foreach($Language as $item)
                                     <option value="{{ $item->id }}"
                                     @if($item->id ==  $Edit->language) ? selected :  null @endif>
@@ -86,6 +89,7 @@
                         <label class="form-label col-3 col-form-label">Yayınevi </label>
                         <div class="col">
                             <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="publisher">
+                                <option value="">Yayınevi Seçiniz</option>
                                 @foreach($Publisher as $item)
                                     <option value="{{ $item->id }}"
                                         @if($item->id ==  $Edit->publisher) ? selected :  null @endif>
@@ -107,7 +111,6 @@
                                         {{ ($ss->category_id == $item->id) ? 'selected' : null }}
                                     @endforeach
                                     >{{ $item->title }}</option>
-
                                 @endforeach
                             </select>
                         </div>

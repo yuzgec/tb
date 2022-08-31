@@ -25,8 +25,15 @@
                                 <div class="select-custom">
                                     <select name="sortby" id="sortby" class="form-control">
                                         <option value="popularity" selected="selected">Yeni Eklenenler</option>
-                                        <option value="rating">Fiyat Artan</option>
-                                        <option value="date">Fiyat Azalan</option>
+                                        <option value="rating">Düşük Fiyat</option>
+                                        <option value="date">Yüksek Fiyat</option>
+                                        <option value="date">Eser Adı A-Z</option>
+                                        <option value="date">Eser Adı Z-A</option>
+                                        <option value="date">Yazar Adı A-Z</option>
+                                        <option value="date">Yazar Adı Z-A</option>
+                                        <option value="date">Basım Tarihi Eski</option>
+                                        <option value="date">Basım Tarihi Yeni</option>
+                                        <option value="date">Yeni Gelenler</option>
                                     </select>
                                 </div>
                             </div>
@@ -82,8 +89,8 @@
 
                                     @foreach($Product_Categories->where('parent_id' , 0) as $item)
                                         <li>
-                                            <a href="{{ route('kategori', $item->slug) }}"
-                                               class="text-dark"><i class="icon-angle-right"></i>{{ $item->title }}
+                                            <a href="{{ route('kategori', $item->slug) }}" class="text-dark">
+                                                <i class="icon-angle-right"></i>{{ $item->title }}
                                             </a>
                                             @if($Product_Categories->where('parent_id' , 0)->count() > 0)
                                                 <ul style="display: none;">
