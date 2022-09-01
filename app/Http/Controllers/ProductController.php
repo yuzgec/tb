@@ -14,6 +14,7 @@ use App\Models\Translator;
 use App\Models\Years;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 
 
 class ProductController extends Controller
@@ -82,7 +83,9 @@ class ProductController extends Controller
             //dd($request->input('category'));
 
             if ($request->hasfile('image')) {
-                $New->addMedia($request->image)->toMediaCollection('page');
+                $New->addMedia($request->image)->toMediaCollection('page')->optimize([Jpegoptim::class => [
+                    '--all-progressive',
+                ]]);
             }
 
             if ($request->hasfile('gallery')) {

@@ -90,7 +90,9 @@
                     <div class="col">
                         <select class="form-control multi" data-placeholder="Kategori Seçiniz" multiple name="category[]">
                             @foreach($Product_Categories as $item)
-                                <option value="{{ $item->id }}">{{ ($item->parent_id == 0 ) ? $item->title : '-- '.$item->title }}</option>
+                                <option value="{{ $item->id }}">
+                                    {{ ($item->parent_id == 0 ) ? $item->title : '-- '.$item->title }}
+                                </option>
                             @endforeach
                         </select>
                     </div>

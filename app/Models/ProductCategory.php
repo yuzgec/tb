@@ -29,9 +29,9 @@ class ProductCategory extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('img')->width(1000)->nonOptimized();
-        $this->addMediaConversion('thumb')->width(400)->nonOptimized();
-        $this->addMediaConversion('small')->width(150)->nonOptimized();
+        $this->addMediaConversion('img')->width(1000)->optimize();
+        $this->addMediaConversion('thumb')->width(400)->optimize();
+        $this->addMediaConversion('small')->width(150)->optimize();
     }
 
     public function getActivitylogOptions(): LogOptions
