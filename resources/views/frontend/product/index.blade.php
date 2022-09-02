@@ -48,8 +48,8 @@
                                                 <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="product back">
                                             </a>
 
-                                        </div><!-- End .product-image-gallery -->
-                                    </div><!-- End .product-gallery -->
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="col-md-6">
@@ -58,8 +58,8 @@
 
                                     <div class="product-price">
                                         <span class="new-price">{{ money($Detay->price) }}₺</span>
-                                        <span class="old-price">{{ money($Detay->old_price) }}₺</span>
                                         @if($Detay->old_price)
+                                        <span class="old-price">{{ money($Detay->old_price) }}₺</span>
                                         <p class="badge badge-warning ml-3" style="font-size:12px">
                                             %{{ abs(round( $Detay->price * 100 /$Detay->old_price - 100)) }} indirim
                                         </p>

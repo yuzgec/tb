@@ -68,7 +68,7 @@
                                     }
                                 }
                             }'>
-                        @foreach($Products as $item)
+                        @foreach($Products->take(8) as $item)
                         <div class="product product-2 text-center">
                             <span class="product-label label-circle label-new">Yeni</span>
 
