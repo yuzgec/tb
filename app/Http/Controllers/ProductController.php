@@ -14,7 +14,7 @@ use App\Models\Translator;
 use App\Models\Years;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
+use Intervention\Image\Image;
 
 
 class ProductController extends Controller
@@ -38,7 +38,6 @@ class ProductController extends Controller
         return view('backend.product.create',
             compact('Kategori', 'Years', 'Author',  'Publisher', 'Language', 'Translator'));
     }
-
 
     public function store(ProductRequest $request)
     {
@@ -186,6 +185,9 @@ class ProductController extends Controller
             $Update->seo_desc = $request->seo_desc;
             $Update->seo_key = $request->seo_key;
             $Update->seo_title = $request->seo_title;
+
+
+
 
             if ($request->removeImage == "1") {
                 $Update->media()->where('collection_name', 'page')->delete();

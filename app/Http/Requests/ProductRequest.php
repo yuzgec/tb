@@ -19,8 +19,8 @@ class ProductRequest extends FormRequest
             'category.*'            => 'required',
             'sku'                   => 'required',
             'price'                 => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'image'                 => 'image|max:2048|mimes:jpg,jpeg,png,gif',
-            'gallery.*'             => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image'                 => 'image|max:5120|mimes:jpg,jpeg,png,gif',
+            'gallery.*'             => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ];
     }
 
@@ -35,11 +35,11 @@ class ProductRequest extends FormRequest
             'price.reqex'               => 'Fiyat Alanı Ugun Değil Örn:1.90',
             'sku.required'              => 'Stok Kodu Zorunludur',
             'category.required'         => 'Ürün Kategori seçimi zorunludur.',
-            'image.max'                 => 'Resim boyutu en yüksek 2048kb(2mb) olmalıdır',
+            'image.max'                 => 'Resim boyutu en yüksek 5120kb(5mb) olmalıdır',
             'image.mimes'               => 'Resim formatı jpg,jpeg,png,gif olmalıdır',
             'image.image'               => 'Resim formatı uygun değildir.',
 
-            'gallery.*.max'             => 'Resim boyutu en yüksek 2048kb(2mb) olmalıdır',
+            'gallery.*.max'             => 'Resim boyutu en yüksek 5120kb(5mb) olmalıdır',
             'gallery.*.mimes'           => 'Resim formatı jpg,jpeg,png,gif olmalıdır',
             'gallery.*.image'           => 'Resim formatı uygun değildir.',
 

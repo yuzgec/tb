@@ -184,11 +184,11 @@ return [
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-        Cviebrock\EloquentSluggable\ServiceProvider::class,
 
         /*
          * Package Service Providers...
          */
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -215,6 +215,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ])->toArray(),
 
 ];

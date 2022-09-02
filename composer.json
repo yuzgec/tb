@@ -10,6 +10,7 @@
         "bumbummen99/shoppingcart": "^4.2",
         "cyrildewit/eloquent-viewable": "^6.1",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^2.7",
         "iyzico/iyzipay-php": "^2.0",
         "izniburak/laravel-auto-routes": "^1.6",
         "kalnoy/nestedset": "^6.0",

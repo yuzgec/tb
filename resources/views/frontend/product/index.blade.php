@@ -59,9 +59,11 @@
                                     <div class="product-price">
                                         <span class="new-price">{{ money($Detay->price) }}₺</span>
                                         <span class="old-price">{{ money($Detay->old_price) }}₺</span>
+                                        @if($Detay->old_price)
                                         <p class="badge badge-warning ml-3" style="font-size:12px">
                                             %{{ abs(round( $Detay->price * 100 /$Detay->old_price - 100)) }} indirim
                                         </p>
+                                        @endif
 
                                     </div>
 
