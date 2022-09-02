@@ -82,9 +82,7 @@ class ProductController extends Controller
             //dd($request->input('category'));
 
             if ($request->hasfile('image')) {
-                $New->addMedia($request->image)->toMediaCollection('page')->optimize([Jpegoptim::class => [
-                    '--all-progressive',
-                ]]);
+                $New->addMedia($request->image)->toMediaCollection('page');
             }
 
             if ($request->hasfile('gallery')) {

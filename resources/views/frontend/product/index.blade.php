@@ -70,7 +70,7 @@
                                 <div class="product-content" >
                                     <div>Yazar Adı :
                                         @foreach($Author as $item)
-                                          <a href="{{ route('yazar', $item->slug) }}">{{ $item->title }}</a>,
+                                          <a href="{{ route('yazar', $item->slug) }}" title="{{ $item->title }}">{{ $item->title }}</a>,
                                         @endforeach
                                     </div>
                                     @if($Detay->getTranslator)
@@ -87,8 +87,12 @@
                                         <div>Kondisyon : </div>
                                           <div class="ratings-container align-items-center justify-content-center"
                                                style="margin-top:5px">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: {{ condition($Detay->condition) }}%" title="{{ conditionText($Detay->condition) }}"></div>
+                                            <div class="ratings d-flex">
+                                                <div class="ratings-val"
+                                                     style="width: {{ condition($Detay->condition) }}%"
+                                                     title="{{ conditionText($Detay->condition) }}">
+                                                </div>
+                                                <h6 class="kondisyon">{{ conditionText($Detay->condition) }}</h6>
                                             </div>
                                         </div>
                                     </div>
