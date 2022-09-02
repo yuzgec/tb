@@ -126,18 +126,11 @@ class ProductController extends Controller
         $Language = Language::all();
         $Translator = Translator::all();
 
-
         $a= [];
         foreach ($Edit->getAuthor as $item){
             $a[] = $item->author_id;
         }
-
         $Authors = AuthorPivot::select('author_id')->whereIn('author_id',$a)->get();
-
-
-        //dd($Edit->getAuthor);
-
-
 
         return view('backend.product.edit', compact('Edit','Pivot', 'Years', 'Author', 'Authors','Publisher', 'Language', 'Translator'));
     }
@@ -183,8 +176,6 @@ class ProductController extends Controller
             $Update->seo_desc = $request->seo_desc;
             $Update->seo_key = $request->seo_key;
             $Update->seo_title = $request->seo_title;
-
-
 
 
             if ($request->removeImage == "1") {
