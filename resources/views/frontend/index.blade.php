@@ -771,133 +771,133 @@
         <hr class="mt-1 mb-6">
     </div>
 
-    <div class="blog-posts">
-        <div class="container">
-            <h2 class="title text-center">Blog</h2>
+    {{--  <div class="blog-posts">
+          <div class="container">
+              <h2 class="title text-center">Blog</h2>
 
-            <div class="owl-carousel owl-simple carousel-with-shadow" data-toggle="owl"
-                 data-owl-options='{
-                            "nav": false,
-                            "dots": true,
-                            "items": 3,
-                            "margin": 20,
-                            "loop": false,
-                            "responsive": {
-                                "0": {
-                                    "items":1
-                                },
-                                "600": {
-                                    "items":2
-                                },
-                                "992": {
-                                    "items":3
-                                }
-                            }
-                        }'>
-                <article class="entry entry-display">
-                    <figure class="entry-media">
-                        <a href="single.html">
-                            <img src="/frontend/assets/images/demos/demo-2/blog/post-1.jpg" alt="image desc">
-                        </a>
-                    </figure>
+              <div class="owl-carousel owl-simple carousel-with-shadow" data-toggle="owl"
+                   data-owl-options='{
+                              "nav": false,
+                              "dots": true,
+                              "items": 3,
+                              "margin": 20,
+                              "loop": false,
+                              "responsive": {
+                                  "0": {
+                                      "items":1
+                                  },
+                                  "600": {
+                                      "items":2
+                                  },
+                                  "992": {
+                                      "items":3
+                                  }
+                              }
+                          }'>
+                  <article class="entry entry-display">
+                      <figure class="entry-media">
+                          <a href="single.html">
+                              <img src="/frontend/assets/images/demos/demo-2/blog/post-1.jpg" alt="image desc">
+                          </a>
+                      </figure>
 
-                    <div class="entry-body text-center">
-                        <div class="entry-meta">
-                            <a href="#">1 Eylül 2022</a>
-                        </div>
+                      <div class="entry-body text-center">
+                          <div class="entry-meta">
+                              <a href="#">1 Eylül 2022</a>
+                          </div>
 
-                        <h3 class="entry-title">
-                            <a href="#">Blog Haber Başlığı 1</a>
-                        </h3>
+                          <h3 class="entry-title">
+                              <a href="#">Blog Haber Başlığı 1</a>
+                          </h3>
 
-                        <div class="entry-content">
-                            <a href="single.html" class="read-more">Devamını Oku</a>
-                        </div>
-                    </div>
-                </article>
+                          <div class="entry-content">
+                              <a href="single.html" class="read-more">Devamını Oku</a>
+                          </div>
+                      </div>
+                  </article>
 
-                <article class="entry entry-display">
-                    <figure class="entry-media">
-                        <a href="single.html">
-                            <img src="/frontend/assets/images/demos/demo-2/blog/post-2.jpg" alt="image desc">
-                        </a>
-                    </figure>
+                  <article class="entry entry-display">
+                      <figure class="entry-media">
+                          <a href="single.html">
+                              <img src="/frontend/assets/images/demos/demo-2/blog/post-2.jpg" alt="image desc">
+                          </a>
+                      </figure>
 
-                    <div class="entry-body text-center">
-                        <div class="entry-meta">
-                            <a href="#">1 Eylül 2022</a>
-                        </div>
+                      <div class="entry-body text-center">
+                          <div class="entry-meta">
+                              <a href="#">1 Eylül 2022</a>
+                          </div>
 
-                        <h3 class="entry-title">
-                            <a href="#">Blog Haber Başlığı 1</a>
-                        </h3>
+                          <h3 class="entry-title">
+                              <a href="#">Blog Haber Başlığı 1</a>
+                          </h3>
 
-                        <div class="entry-content">
-                            <a href="single.html" class="read-more">Devamını Oku</a>
-                        </div>
-                    </div>
-                </article>
+                          <div class="entry-content">
+                              <a href="single.html" class="read-more">Devamını Oku</a>
+                          </div>
+                      </div>
+                  </article>
 
-                <article class="entry entry-display">
-                    <figure class="entry-media">
-                        <a href="single.html">
-                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
-                        </a>
-                    </figure>
+                  <article class="entry entry-display">
+                      <figure class="entry-media">
+                          <a href="single.html">
+                              <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                          </a>
+                      </figure>
 
-                    <div class="entry-body text-center">
-                        <div class="entry-meta">
-                            <a href="#">1 Eylül 2022</a>
-                        </div>
+                      <div class="entry-body text-center">
+                          <div class="entry-meta">
+                              <a href="#">1 Eylül 2022</a>
+                          </div>
 
-                        <h3 class="entry-title">
-                            <a href="#">Blog Haber Başlığı 1</a>
-                        </h3>
+                          <h3 class="entry-title">
+                              <a href="#">Blog Haber Başlığı 1</a>
+                          </h3>
 
-                        <div class="entry-content">
-                            <a href="single.html" class="read-more">Devamını Oku</a>
-                        </div>
-                    </div>
-                </article>
-            </div>
+                          <div class="entry-content">
+                              <a href="single.html" class="read-more">Devamını Oku</a>
+                          </div>
+                      </div>
+                  </article>
+              </div>
 
-            <div class="more-container text-center mt-2">
-                <a href="#" class="btn btn-outline-darker btn-more"><span>Bütün Yazıları İncele</span>
-                    <i class="icon-long-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-   {{-- <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
-        <div class="row justify-content-center">
-            <div class="col-10">
-                <div class="row no-gutters bg-white newsletter-popup-content">
-                    <div class="col-xl-3-5col col-lg-7 banner-content-wrap">
-                        <div class="banner-content text-center">
-                            <img src="/frontend/assets/images/tblogo.jpg" class="logo" alt="logo" width="60" height="15">
-                            <h2 class="banner-title">get <span>25<light>%</light></span> off</h2>
-                            <p>Kısa Açıklama Yazısı Gelecek</p>
-                            <form action="#">
-                                <div class="input-group input-group-round">
-                                    <input type="email" class="form-control form-control-white" placeholder="Email Adresinizi Yazınız" aria-label="Email Adress" required>
-                                    <div class="input-group-append">
-                                        <button class="btn" type="submit"><span>gönder</span></button>
-                                    </div><!-- .End .input-group-append -->
-                                </div><!-- .End .input-group -->
-                            </form>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="register-policy-2" required>
-                                <label class="custom-control-label" for="register-policy-2">Bir daha gösterme</label>
-                            </div><!-- End .custom-checkbox -->
-                        </div>
-                    </div>
-                    <div class="col-xl-2-5col col-lg-5 ">
-                        <img src="/frontend/assets/images/popup/newsletter/img-1.jpg" class="newsletter-img" alt="newsletter">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>--}}
+              <div class="more-container text-center mt-2">
+                  <a href="#" class="btn btn-outliarker btn-more"><span>Bütün Yazıları İncele</span>
+                      <i class="icon-long-arrow-right"></i>
+                  </a>
+              </div>
+          </div>
+      </div>
+     {{-- <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
+          <div class="row justify-content-center">
+              <div class="col-10">
+                  <div class="row no-gutters bg-white newsletter-popup-content">
+                      <div class="col-xl-3-5col col-lg-7 banner-content-wrap">
+                          <div class="banner-content text-center">
+                              <img src="/frontend/assets/images/tblogo.jpg" class="logo" alt="logo" width="60" height="15">
+                              <h2 class="banner-title">get <span>25<light>%</light></span> off</h2>
+                              <p>Kısa Açıklama Yazısı Gelecek</p>
+                              <form action="#">
+                                  <div class="input-group input-group-round">
+                                      <input type="email" class="form-control form-control-white" placeholder="Email Adresinizi Yazınız" aria-label="Email Adress" required>
+                                      <div class="input-group-append">
+                                          <button class="btn" type="submit"><span>gönder</span></button>
+                                      </div><!-- .End .input-group-append -->
+                                  </div><!-- .End .input-group -->
+                              </form>
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" id="register-policy-2" required>
+                                  <label class="custom-control-label" for="register-policy-2">Bir daha gösterme</label>
+                              </div><!-- End .custom-checkbox -->
+                          </div>
+                      </div>
+                      <div class="col-xl-2-5col col-lg-5 ">
+                          <img src="/frontend/assets/images/popup/newsletter/img-1.jpg" class="newsletter-img" alt="newsletter">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>--}}
 
 @endsection
 
