@@ -1,5 +1,5 @@
 @extends('frontend.layout.app')
-@section('title', $Detay->title.' | Yazarlar | '.config('app.name'))
+@section('title', $Detay->title.' Yayın Evi | '.config('app.name'))
 @section('content')
 
 

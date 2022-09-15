@@ -2,6 +2,7 @@
 
 use App\Models\Product;
 use App\Models\ProductCategoryPivot;
+use App\Models\Publisher;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -12,9 +13,22 @@ use Illuminate\Support\Facades\Route;
         $p = Product::all();
 
         foreach ($p as $item){
+
             ProductCategoryPivot::updateOrCreate(['category_id' => 9, 'product_id' => $item->id]);
         }
     });
+
+
+   Route::get('pub',  function (){
+       $p = Publisher::all();
+       foreach ($p as $item){
+           $u = Publisher::find($item->id);
+           $u->slug = seo($item->title);
+           $u->save();
+       }
+
+   });
+
 
     Route::get('years', function (){
 
@@ -36,7 +50,6 @@ Route::get('/urunsayfasi', function(){
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/kategori/{url}/{sub?}', 'HomeController@kategori')->name('kategori');
     Route::get('/kargosorgulama', 'HomeController@kargosorgulama')->name('kargosorgulama');
-    Route::get('/kargosorgulamaGet', 'HomeController@kargosorgulamaget')->name('kargosorgulamaget');
     Route::get('/sepet', 'HomeController@sepet')->name('sepet');
     Route::get('/siparis', 'HomeController@siparis')->name('siparis');
     Route::get('/kitap/{url}', 'HomeController@urun')->name('urun');
@@ -50,6 +63,7 @@ Route::get('/urunsayfasi', function(){
     Route::post('/sepet-bosalt}', 'HomeController@cartdestroy')->name('sepetbosalt');
     Route::get('/kurumsal/{url}', 'HomeController@kurumsal')->name('kurumsal');
     Route::get('/yazar/{url}', 'HomeController@yazar')->name('yazar');
+    Route::get('/yayinevi/{url}', 'HomeController@yayinevi')->name('yayinevi');
 
     Route::post('/siparis/kaydet', 'HomeController@kaydet')->name('kaydet');
     Route::get('/siparis/sonuc', 'HomeController@sonuc')->name('sonuc');

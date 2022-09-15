@@ -46,7 +46,7 @@ class PublisherController extends Controller
 
     public function update(Request $request, $id)
     {
-        $Update = new Publisher;
+        $Update = Publisher::find($id);
         $Update->title = $request->title;
         $Update->save();
 
