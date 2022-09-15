@@ -19,16 +19,16 @@
 
     <div class="bg-light-2 pt-6 pb-7 mb-6">
         <div class="container">
-            <h2 class="title text-center mb-4">Yazarlar</h2>
-
             <div class="row">
                 @foreach($All as $item)
                 <div class="col-6 col-md-2">
                     <div class="member member-2 text-center">
                         <figure class="member-media">
+                            <a href="{{ route('yazar', $item->slug) }}" title="{{ $item->title }}">
                             <img
                                 src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb')}}"
                                 alt="{{ $item->title }}">
+                            </a>
                         </figure>
                         <div class="member-content">
                             <div><a href="{{ route('yazar', $item->slug) }}" title="{{ $item->title }}">{{ $item->title }}</a><div>

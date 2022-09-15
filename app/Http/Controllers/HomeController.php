@@ -395,7 +395,11 @@ class HomeController extends Controller
 
     public function yazarlar(){
         $All = Author::withCount('getBookCount')->get();
-        //dd($All);
+        SEOTools::setTitle("Yazarlar Listesi |  TB Kitap | Online İkinci El Kitap Satışı" );
+        SEOTools::setDescription('Tb Kitap online kitap satış sitesinde kitapları bulunan yazarların listesi');
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::setCanonical(route('yazarlar'));
+        SEOTools::opengraph()->addProperty('type', 'page');
         return view('frontend.author.all', compact('All'));
     }
 
