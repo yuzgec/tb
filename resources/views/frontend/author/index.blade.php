@@ -19,16 +19,12 @@
     <div class="bg-light-2 pt-6 pb-5 mb-6 mb-lg-8">
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 mb-3 mb-lg-0">
+                <div class="col-lg-8">
                     <h2 class="title">{{ $Detay->title }}</h2>
                     {!!  $Detay->desc !!}
-                    <a href="blog.html" class="btn btn-sm btn-minwidth btn-outline-primary-2">
-                        <span>YAZARA AİT KİTAPLAR</span>
-                        <i class="icon-long-arrow-right"></i>
-                    </a>
                 </div>
 
-                <div class="col-lg-6 offset-lg-1">
+                <div class="col-lg-4">
                     <div class="about-images">
                         <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}"
                     </div>
