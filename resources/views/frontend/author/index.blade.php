@@ -2,7 +2,6 @@
 @section('title', $Detay->title.' | Yazarlar | '.config('app.name'))
 @section('content')
 
-
     <div class="bg-gray-13 bg-md-transparent">
         <div class="container">
             <div class="my-md-3">

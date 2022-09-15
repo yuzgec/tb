@@ -100,7 +100,7 @@ class HomeController extends Controller
             $author[] = $item->author_id;
         }
 
-        $Author = Author::select('title', 'slug', 'id')->whereIn('id',$author)->get();
+        $Author = Author::select('title', 'slug', 'id','desc')->whereIn('id',$author)->get();
 
         SEOTools::setTitle($Detay->title);
         SEOTools::setDescription($Detay->seo_desc);
