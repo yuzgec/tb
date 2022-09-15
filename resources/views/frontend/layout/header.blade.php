@@ -113,20 +113,17 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
-
                         @foreach($Product_Categories->where('parent_id' , 0) as $item)
                         <li><a href="{{ route('kategori', $item->slug) }}" class="">{{ $item->title }}</a>
-                            @if($Product_Categories->where('parent_id' , 0)->count() > 0)
+                            @if($Product_Categories->where('parent_id' , $item->id)->count() > 0)
                             <ul style="display: none;">
                                 @foreach($Product_Categories->where('parent_id' , $item->id) as $itemm)
                                     <li><a href="{{ route('kategori', [$item->slug, $itemm->slug]) }}">{{ $itemm->title }}</a></li>
                                 @endforeach
                             </ul>
                             @endif
-
                         </li>
                         @endforeach
-
                     </ul>
                 </nav>
 
