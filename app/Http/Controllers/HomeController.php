@@ -7,11 +7,13 @@ use App\Http\Requests\OrderRequest;
 use App\Http\Requests\SearchRequest;
 use App\Models\Author;
 use App\Models\Basket;
+use App\Models\Language;
 use App\Models\MailSubcribes;
 use App\Models\Order;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\Publisher;
 use App\Models\Search;
 use App\Models\ShopCart;
 use App\Models\Slider;
@@ -117,7 +119,7 @@ class HomeController extends Controller
         return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author'));
     }
     public function kargosorgulama(){
-        return view('frontend.kargo.index');
+        return view('frontend.page.cargo');
     }
     public function kaydet(OrderRequest $request){
 
@@ -319,13 +321,18 @@ class HomeController extends Controller
     public function search(SearchRequest $request){
         $search = $request->q;
         $Result = Product::where('title','like','%'.$search.'%')
-                    ->orWhere('slug','like','%'.$search.'%')
-                    ->where('status', 1)
-                    ->paginate(12);
+            ->orWhere('slug','like','%'.$search.'%')
+            ->where('status', 1)
+            ->paginate(12);
 
         Search::create(['key' => $search]);
 
         return view('frontend.shop.search', compact('Result'));
+    }
+    public function detayliarama(){
+        $Language = Language::all();
+        $Publisher = Publisher::all();
+        return view('frontend.shop.detailsearch', compact('Language', 'Publisher'));
     }
     public function hizlisatinal(Request $request){
 

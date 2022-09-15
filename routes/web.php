@@ -42,6 +42,7 @@ Route::get('/urunsayfasi', function(){
     Route::get('/kitap/{url}', 'HomeController@urun')->name('urun');
     Route::get('/iletisim', 'HomeController@iletisim')->name('iletisim');
     Route::get('/arama', 'HomeController@search')->name('search');
+    Route::get('/detayli-arama', 'HomeController@detayliarama')->name('detayliarama');
     Route::post('/bulten', 'HomeController@mailsubcribes')->name('mailsubcribes');
     Route::post('/sepete-ekle', 'HomeController@addtocart')->name('sepeteekle');
     Route::post('/hizli-satin-al', 'HomeController@hizlisatinal')->name('hizlisatinal');

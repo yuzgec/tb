@@ -101,9 +101,16 @@
                         <p>Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır </p>
                         <div class="widget-about-info">
                             <div class="row">
-                                <div class="col-sm-12 col-12">
-                                    <span class="widget-about-title">Müşteri Hizmetleri</span>
-                                    <a href="tel:123456789">0 212 222 22 22</a>
+                                <div class="col-sm-12 col-12 d-flex">
+                                    <div>
+                                        <span class="widget-about-title">Müşteri Hizmetleri</span>
+                                        <a href="tel:123456789">0 212 222 22 22</a>
+                                    </div>
+                                    <div>
+                                        <a href="{{ route('kargosorgulama') }}" title="Kargo Sorgulama">
+                                            <img src="https://www.sendeo.com.tr/Assets/image/header/sendeo_logo_full.svg" alt="sendeo_logo_full"  width="200px">
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="col-sm-12 col-12 mt-3">
                                     <figure class="footer-payments">
@@ -144,9 +151,9 @@
                         <h4 class="widget-title">Hesabım</h4>
                         <ul class="widget-list">
                             <li><a href="#">Giriş Yap</a></li>
-                            <li><a href="cart.html">Sepetim</a></li>
+                            <li><a href="{{ route('sepet') }}">Sepetim</a></li>
                             <li><a href="#">Favorilerim</a></li>
-                            <li><a href="#">Kargo Takip</a></li>
+                            <li><a href="{{ route('kargosorgulama') }}">Kargo Takip</a></li>
                             <li><a href="#">Yardım</a></li>
                         </ul>
                     </div>

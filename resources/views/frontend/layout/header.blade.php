@@ -22,11 +22,17 @@
                             <input type="search" class="form-control" name="q" id="q" placeholder="Ürün Ara ..." required>
                             <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
                         </div>
+
                     </form>
+
                 </div>
+
             </div>
 
             <div class="header-right">
+
+                <a href="{{ route('detayliarama') }}"><span class="ml-2">Detaylı&nbsp;Arama</span></a>
+
                 <div class="account">
                     <a href="{{ route('go') }}" title="Hesabım">
                         <div class="icon">
