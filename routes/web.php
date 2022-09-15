@@ -9,34 +9,31 @@ use Illuminate\Support\Facades\Route;
     Auth::routes();
 
 
-   Route::get('/kat', function() {
+/*   Route::get('/kat', function() {
         $p = Product::all();
 
         foreach ($p as $item){
 
             ProductCategoryPivot::updateOrCreate(['category_id' => 9, 'product_id' => $item->id]);
         }
-    });
+    });*/
+/*   Route::get('/kat', function() {
+        $p = Product::all();
 
+        foreach ($p as $item){
 
-   Route::get('pub',  function (){
-       $p = Publisher::all();
-       foreach ($p as $item){
-           $u = Publisher::find($item->id);
-           $u->title = substr($item->title, 0,-1);
-           $u->save();
-       }
+            ProductCategoryPivot::updateOrCreate(['category_id' => 9, 'product_id' => $item->id]);
+        }
+    });*/
 
-   });
-
-
+/*
     Route::get('years', function (){
 
         for ($i = 1800; $i <= 2022;  $i++){
             \App\Models\Years::updateOrCreate(['title' => $i]);
         }
 
-    });
+    });*/
 
 
 Route::get('/urunsayfasi', function(){
