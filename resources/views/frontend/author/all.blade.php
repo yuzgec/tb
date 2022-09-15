@@ -23,15 +23,15 @@
 
             <div class="row">
                 @foreach($All as $item)
-                <div class="col-sm-6 col-lg-3">
+                <div class="col-sm-6 col-lg-2">
                     <div class="member member-2 text-center">
                         <figure class="member-media">
-                            <img src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $item->title }}">
+                            <img src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'small')}}" alt="{{ $item->title }}">
                         </figure>
                         <div class="member-content">
-                            <h3 class="member-title">{{ $item->title }}<span>
-                                  ({{$item->get_book_count_count}}) Adet Kitap</span>
-                            </h3>
+                            <div><a href="{{ route('yazar', $item->slug) }}" title="{{ $item->title }}">{{ $item->title }}</a><div>
+                              ({{$item->get_book_count_count}}) Adet Kitap</div>
+                            </div>
                         </div>
                     </div>
                 </div>
