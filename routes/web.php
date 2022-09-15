@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
        $p = Publisher::all();
        foreach ($p as $item){
            $u = Publisher::find($item->id);
-           $u->title = $item->title.'3';
+           $u->title = substr($item->title, 0,-1);
            $u->save();
        }
 
