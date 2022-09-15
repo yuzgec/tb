@@ -394,13 +394,14 @@ class HomeController extends Controller
     }
 
     public function yazarlar(){
+        $Alfabe = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
         $All = Author::withCount('getBookCount')->get();
         SEOTools::setTitle("Yazarlar Listesi |  TB Kitap | Online İkinci El Kitap Satışı" );
         SEOTools::setDescription('Tb Kitap online kitap satış sitesinde kitapları bulunan yazarların listesi');
         SEOTools::opengraph()->setUrl(url()->current());
         SEOTools::setCanonical(route('yazarlar'));
         SEOTools::opengraph()->addProperty('type', 'page');
-        return view('frontend.author.all', compact('All'));
+        return view('frontend.author.all', compact('All', 'Alfabe'));
     }
 
 }
