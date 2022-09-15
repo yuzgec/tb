@@ -7,7 +7,6 @@ use App\Http\Requests\OrderRequest;
 use App\Http\Requests\SearchRequest;
 use App\Models\Author;
 use App\Models\Basket;
-use App\Models\Comment;
 use App\Models\MailSubcribes;
 use App\Models\Order;
 use App\Models\Page;
@@ -30,8 +29,9 @@ class HomeController extends Controller
     public function index()
     {
         $Product_Categories = ProductCategory::with('cat')->where('status', 1)->get()->toFlatTree();
-        $Products = Product::select('id', 'title', 'price', 'old_price', 'slug','bestselling')->orderBy('rank')->get();
+        $Products = Product::with('getCategory')->with('getAuthor')->select('id', 'title', 'price', 'old_price', 'slug','bestselling')->orderBy('rank')->get();
         $Slider = Slider::with('getProduct')->where('status', 1)->get();
+        //dd($Products);
         return view('frontend.index', compact('Products','Slider', 'Product_Categories'));
     }
     public function kategori($url){
@@ -363,7 +363,6 @@ class HomeController extends Controller
         return redirect()->route('siparis');
 
     }
-
     public function yazar($slug){
         $Detay = Author::where('slug', $slug)->first();
 

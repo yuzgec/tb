@@ -39,7 +39,7 @@ Route::get('/urunsayfasi', function(){
     Route::get('/kargosorgulamaGet', 'HomeController@kargosorgulamaget')->name('kargosorgulamaget');
     Route::get('/sepet', 'HomeController@sepet')->name('sepet');
     Route::get('/siparis', 'HomeController@siparis')->name('siparis');
-    Route::get('/urun/{url}', 'HomeController@urun')->name('urun');
+    Route::get('/kitap/{url}', 'HomeController@urun')->name('urun');
     Route::get('/iletisim', 'HomeController@iletisim')->name('iletisim');
     Route::get('/arama', 'HomeController@search')->name('search');
     Route::post('/bulten', 'HomeController@mailsubcribes')->name('mailsubcribes');

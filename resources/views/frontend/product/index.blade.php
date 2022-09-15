@@ -175,21 +175,21 @@
                                             <div class="product-price">
                                                 <span class="new-price">{{ money($Detay->price) }}₺</span>
                                                 <span class="old-price">{{ money($Detay->old_price) }}₺</span>
-                                            </div><!-- End .product-price -->
-                                        </div><!-- End .product-body -->
+                                            </div>
+                                        </div>
                                     </div>
                                     @endforeach
                                 </div>
 
                                 <a href="{{ route('home') }}" class="btn btn-outline-dark-3"><span>Diğer Ürünler</span><i class="icon-long-arrow-right"></i></a>
-                            </div><!-- End .widget widget-products -->
+                            </div>
 
                             <div class="widget widget-banner-sidebar">
-                                <div class="banner-sidebar-title">ad box 280 x 280</div><!-- End .ad-title -->
+                                <div class="banner-sidebar-title">ad box 280 x 280</div>
 
                                 <div class="banner-sidebar banner-overlay">
                                     <a href="#">
-                                        <img src="assets/images/blog/sidebar/banner.jpg" alt="banner">
+                                        <img src="/frontend/assets/images/blog/sidebar/banner.jpg" alt="banner">
                                     </a>
                                 </div><!-- End .banner-ad -->
                             </div><!-- End .widget -->
