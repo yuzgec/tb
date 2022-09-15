@@ -168,8 +168,10 @@
                                         <div class="product-body">
                                             <h5 class="product-title"><a href="{{ route('urun' , $item->slug)}}">{{ $item->title }}</a></h5><!-- End .product-title -->
                                             <div class="product-price">
-                                                <span class="new-price">{{ money($Detay->price) }}₺</span>
-                                                <span class="old-price">{{ money($Detay->old_price) }}₺</span>
+                                                <span class="new-price">{{ money($item->price) }}₺</span>
+                                                @if($item->old_price)
+                                                <span class="old-price">{{ money($item->old_price) }}₺</span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -180,7 +182,7 @@
                             </div>
 
                             <div class="widget widget-banner-sidebar">
-                                <div class="banner-sidebar-title">ad box 280 x 280</div>
+                                <div class="banner-sidebar-title">2. El Kitaplarımı Satmak İstiyorum</div>
 
                                 <div class="banner-sidebar banner-overlay">
                                     <a href="#">
