@@ -181,7 +181,7 @@
                                 <a href="{{ route('home') }}" class="btn btn-outline-dark-3"><span>Diğer Ürünler</span><i class="icon-long-arrow-right"></i></a>
                             </div>
 
-                            <div class="widget widget-banner-sidebar">
+                           {{-- <div class="widget widget-banner-sidebar">
                                 <div class="banner-sidebar-title">2. El Kitaplarımı Satmak İstiyorum</div>
 
                                 <div class="banner-sidebar banner-overlay">
@@ -189,9 +189,9 @@
                                         <img src="/frontend/assets/images/blog/sidebar/banner.jpg" alt="banner">
                                     </a>
                                 </div><!-- End .banner-ad -->
-                            </div><!-- End .widget -->
-                        </div><!-- End .sidebar sidebar-product -->
-                    </aside><!-- End .col-lg-3 -->
+                            </div><!-- End .widget -->--}}
+                        </div>
+                    </aside>
 
                 <div class="col-12">
                     <div class="accordion accordion-plus product-details-accordion" id="product-accordion">
