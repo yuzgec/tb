@@ -372,7 +372,6 @@ class HomeController extends Controller
     }
     public function yazar($slug){
         $Detay = Author::where('slug', $slug)->first();
-
         SEOTools::setTitle($Detay->title."'a ait kitaplar");
         SEOTools::setDescription($Detay->seo_desc);
         SEOTools::opengraph()->setUrl(url()->current());
@@ -383,16 +382,21 @@ class HomeController extends Controller
         return view('frontend.author.index', compact('Detay'));
     }
     public function yayinevi($slug){
-        $Detay = Publisher::where('title', $slug)->first();
+        $Detay = Publisher::where('slug', $slug)->first();
 
         SEOTools::setTitle($Detay->title." adlı yayınevine ait kitaplar");
         SEOTools::setDescription($Detay->seo_desc);
         SEOTools::opengraph()->setUrl(url()->current());
         SEOTools::setCanonical(route('urun', $Detay->slug));
         SEOTools::opengraph()->addProperty('type', 'product');
-        SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
 
         return view('frontend.publisher.index', compact('Detay'));
+    }
+
+    public function yazarlar(){
+        $All = Author::withCount('getBookCount')->get();
+        //dd($All);
+        return view('frontend.author.all', compact('All'));
     }
 
 }

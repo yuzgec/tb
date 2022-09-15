@@ -73,7 +73,7 @@
                                     @endif
                                     @if($Detay->getPublisher)
                                     <div>Yayınevi :
-                                        <a href="{{ route('yayinevi', $Detay->getPublisher->title) }}" title="{{ $Detay->getPublisher->title }}">
+                                        <a href="{{ route('yayinevi', $Detay->getPublisher->slug) }}" title="{{ $Detay->getPublisher->title }}">
                                             {{ $Detay->getPublisher->title }}</a>
                                     </div>
                                     @endif

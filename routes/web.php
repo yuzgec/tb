@@ -60,6 +60,7 @@ Route::get('/urunsayfasi', function(){
     Route::post('/sepet-bosalt}', 'HomeController@cartdestroy')->name('sepetbosalt');
     Route::get('/kurumsal/{url}', 'HomeController@kurumsal')->name('kurumsal');
     Route::get('/yazar/{url}', 'HomeController@yazar')->name('yazar');
+    Route::get('/yazarlar', 'HomeController@yazarlar')->name('yazarlar');
     Route::get('/yayinevi/{url}', 'HomeController@yayinevi')->name('yayinevi');
 
     Route::post('/siparis/kaydet', 'HomeController@kaydet')->name('kaydet');

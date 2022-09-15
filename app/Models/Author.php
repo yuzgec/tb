@@ -19,6 +19,11 @@ class Author extends Model implements HasMedia
     protected $guarded = [];
     protected $table = 'authors';
 
+
+    public function getBookCount(){
+        return $this->hasMany(AuthorPivot::class,'author_id', 'id');
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logOnly(['title', 'slug']);
