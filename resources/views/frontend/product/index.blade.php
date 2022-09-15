@@ -24,7 +24,7 @@
                                     <div class="product-gallery">
                                         <figure class="product-main-image">
                                             <span class="product-label label-sale">İndirim</span>
-                                            <img id="product-zoom" src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="assets/images/products/single/fullwidth/3-big.jpg" alt="product image">
+                                            <img id="product-zoom" src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="{{$Detay->getFirstMediaUrl('page', 'img')}}" alt="{{ $Detay->title }}">
 
                                             <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                                                 <i class="icon-arrows"></i>
@@ -32,21 +32,16 @@
                                         </figure>
 
                                         <div id="product-zoom-gallery" class="product-image-gallery max-col-6">
-                                            <a class="product-gallery-item" href="#" data-image="a{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="assets/images/products/single/fullwidth/1-big.jpg">
+                                            <a class="product-gallery-item active" href="#" data-image="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="{{$Detay->getFirstMediaUrl('page', 'img')}}">
                                                 <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="product side">
                                             </a>
 
-                                            <a class="product-gallery-item" href="#" data-image="a{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="assets/images/products/single/fullwidth/2-big.jpg">
-                                                <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="product cross">
-                                            </a>
+                                            @foreach($Detay->getMedia('gallery') as $item)
+                                                <a class="product-gallery-item" href="#" data-image="{{ $item->getUrl('thumb') }}" data-zoom-image="{{ $item->getUrl('img') }}">
+                                                    <img src="{{ $item->getUrl('small') }}" alt="{{ $Detay->title }}">
+                                                </a>
+                                            @endforeach
 
-                                            <a class="product-gallery-item active" href="#" data-image="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="assets/images/products/single/fullwidth/3-big.jpg">
-                                                <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="product with model">
-                                            </a>
-
-                                            <a class="product-gallery-item" href="#" data-image="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="assets/images/products/single/fullwidth/4-big.jpg">
-                                                <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="product back">
-                                            </a>
 
                                         </div>
                                     </div>
@@ -604,10 +599,9 @@
 
                 </div>
             </div>
-            </div><!-- End .container -->
-    </div><!-- End .page-content -->
-@endsection
-@section('custumJS')
-    <script src="/frontend/assets/js/jquery.sticky-kit.min.js"></script>
-
+            </div>
+    </div>
+    <a href="https://api.whatsapp.com/send?phone=905350141875&text={{ $Detay->title }} isimli kitabı satın almak istiyorum. {{ route('urun', $Detay->slug) }}" class="whatsapp" target="_blank">
+        <i class="icon-whatsapp my-float"></i>
+    </a>
 @endsection

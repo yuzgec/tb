@@ -42,9 +42,9 @@
             <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
             <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
             <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
-        </div><!-- End .social-icons -->
-    </div><!-- End .mobile-menu-wrapper -->
-</div><!-- End .mobile-menu-container -->
+        </div>
+    </div>
+</div>
 
 
 <script src="/frontend/assets/js/jquery.min.js"></script>
@@ -60,7 +60,5 @@
 <script src="/frontend/assets/js/jquery.countdown.min.js"></script>
 <script src="/frontend/assets/js/main.js"></script>
 <script src="/frontend/assets/js/demos/demo-2.js"></script>
-<script src="/frontend/assets/js/jquery.sticky-kit.min.js"></script>
-
 <livewire:scripts />
 

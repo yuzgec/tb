@@ -1,3 +1,4 @@
+
 <footer class="footer footer-2">
 
     <div class="icon-boxes-container">
