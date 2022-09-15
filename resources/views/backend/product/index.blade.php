@@ -7,7 +7,7 @@
                 <div>
                     <h4 class="card-title">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                        Ürün Listesi [{{ $All->total() }}]
+                        Kitap Listesi [{{ $All->total() }}]
                     </h4>
                 </div>
                 <div class="d-flex justify-content-between">
@@ -17,7 +17,7 @@
                     </a>
                     <a class="btn btn-primary btn-sm me-1" href="{{ route('product.create') }}" title="Ürün Ekle">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                        Ürün Ekle
+                        Kitap Ekle
                     </a>
                 </div>
             </div>
@@ -30,6 +30,8 @@
                         <th>Başlık</th>
                         <th>Durum</th>
                         <th class="d-none d-lg-table-cell">Fiyat</th>
+                        <th class="d-none d-lg-table-cell">Yıl</th>
+                        <th class="d-none d-lg-table-cell">Dil</th>
                         <th class="d-none d-lg-table-cell">Oluşturma Tarihi</th>
                         <th class="w-1"></th>
                     </tr>
@@ -49,7 +51,16 @@
                                 </label>
                             </td>
                             <td class="text-muted d-none d-lg-table-cell">
-                                <span class="badge bg-green">{{$item->price }}</span> <span class="badge bg-red">{{ $item->old_price }}</span>
+                                <span class="badge bg-green">{{$item->price }}</span>
+                                @if($item->old_price)
+                                <span class="badge bg-red">{{ $item->old_price }}</span>
+                                @endif
+                            </td>
+                            <td class="d-none d-lg-table-cell">
+                                {{ @$item->getYear->title }}
+                            </td>
+                            <td class="d-none d-lg-table-cell">
+                                {{ @$item->getLanguage->title }}
                             </td>
                             <td class="d-none d-lg-table-cell">
                                 {{ $item->created_at->diffForHumans() }}

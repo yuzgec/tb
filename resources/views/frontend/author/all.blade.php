@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-12 mb-3 text-center">
                     @foreach($Alfabe as  $abc)
-                        <button class="" style="width: 40px">{{ $abc }}</button>
+                        <button class="" style="width: 35px">{{ $abc }}</button>
                     @endforeach
                 </div>
                 @foreach($All as $item)

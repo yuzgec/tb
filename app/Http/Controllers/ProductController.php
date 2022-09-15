@@ -14,14 +14,14 @@ use App\Models\Translator;
 use App\Models\Years;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Intervention\Image\Image;
 
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $All = Product::with('getCategory')->orderBy('rank')->paginate(30);
+        $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])->orderBy('rank')->paginate(30);
+        //dd($All);
         return view('backend.product.index', compact('All'));
     }
 
