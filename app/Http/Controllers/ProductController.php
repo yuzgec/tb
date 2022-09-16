@@ -130,7 +130,7 @@ class ProductController extends Controller
 
 
             $Url = Product::find($New->id);
-            $Url->slug = $K.'/'.$Y.'/'.$Url->slug;
+            $Url->slug = $K.'/'.$Y.'/'.$Url->slug.'?urunno='.$Url->sku;
             $Url->save();
 
         });
@@ -265,7 +265,7 @@ class ProductController extends Controller
 
 
             $Url = Product::find($id);
-            $Url->slug = $K.'/'.$Y.'/'.$Url->slug;
+            $Url->slug = $K.'/'.$Y.'/'.$Url->slug.'?urunno='.$Url->sku;
             $Url->save();
         });
 

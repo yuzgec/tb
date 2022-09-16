@@ -88,10 +88,9 @@ class HomeController extends Controller
         }
         return view('frontend.shop.siparis');
     }
-    public function urun($slug){
-        //dd(last(request()->segments()));
+    public function urun($url){
         $Detay = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
-                ->where('slug', last(request()->segments()))
+                ->where('sku', \request('urunno'))
                 ->firstOrFail();
         //dd($Detay);
 

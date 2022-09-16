@@ -49,7 +49,7 @@ Route::get('/urunsayfasi', function(){
     Route::get('/kargosorgulama', 'HomeController@kargosorgulama')->name('kargosorgulama');
     Route::get('/sepet', 'HomeController@sepet')->name('sepet');
     Route::get('/siparis', 'HomeController@siparis')->name('siparis');
-    Route::get('/kitap/{url}', 'HomeController@urun')->name('urun');
+    Route::get('/kitap/{path}', 'HomeController@urun')->where('path', '.*')->name('urun');
     Route::get('/iletisim', 'HomeController@iletisim')->name('iletisim');
     Route::get('/arama', 'HomeController@search')->name('search');
     Route::get('/detayli-arama', 'HomeController@detayliarama')->name('detayliarama');
