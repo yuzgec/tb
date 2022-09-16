@@ -64,6 +64,6 @@ class Product extends Model implements HasMedia,Viewable
 
     public function getSlugOptions() : SlugOptions
     {
-        return SlugOptions::create()->generateSlugsFrom(['title', 'sku'] )->saveSlugsTo('slug');
+        return SlugOptions::create()->generateSlugsFrom('title')->saveSlugsTo('slug');
     }
 }

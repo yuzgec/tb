@@ -88,10 +88,10 @@ class HomeController extends Controller
         }
         return view('frontend.shop.siparis');
     }
-    public function urun($url){
-
+    public function urun($slug){
+        //dd(last(request()->segments()));
         $Detay = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
-                ->where('slug', $url)
+                ->where('slug', last(request()->segments()))
                 ->firstOrFail();
         //dd($Detay);
 
@@ -115,8 +115,9 @@ class HomeController extends Controller
         $Productssss = Product::with('getCategory')->where('status', 1)->whereHas('getCategory', function ($query) use ($Detay){
             $query->where('category_id','=',$Detay->getCategory->category_id);
         })->orderBy('rank','ASC')->get();
+        $Pivot = \App\Models\ProductCategoryPivot::with('productCategory')->get();
 
-        return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author'));
+        return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author', 'Pivot'));
     }
     public function kargosorgulama(){
         return view('frontend.page.cargo');

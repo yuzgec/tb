@@ -104,6 +104,35 @@ class ProductController extends Controller
                     ProductCategoryPivot::updateOrCreate(['category_id' => $pc, 'product_id' => $New->id]);
                 }
             }
+
+            $yazar = [];
+
+            if ($request->input('author')) {
+                $yazarlar = Author::whereIn('id', $request->input('author'))->get();
+                foreach ($yazarlar as $item) {
+                    $yazar[] = $item->slug;
+                }
+            }
+
+            $kategori = [];
+
+            if ($request->input('author')) {
+                $kategoriler = ProductCategory::whereIn('id', $request->input('category'))->get();
+                foreach ($kategoriler as $item) {
+                    $kategori[] = $item->slug;
+                }
+            }
+
+            //dd($yazar);
+
+            $K = implode(",", $kategori);
+            $Y = implode(",", $yazar);
+
+
+            $Url = Product::find($New->id);
+            $Url->slug = $K.'/'.$Y.'/'.$Url->slug;
+            $Url->save();
+
         });
         toast(SWEETALERT_MESSAGE_CREATE,'success');
         return redirect()->route('product.index');
@@ -212,6 +241,32 @@ class ProductController extends Controller
                     ProductCategoryPivot::updateOrCreate(['category_id' => $pc, 'product_id' => $Update->id]);
                 }
             }
+
+            if ($request->input('author')) {
+                $yazarlar = Author::whereIn('id', $request->input('author'))->get();
+                foreach ($yazarlar as $item) {
+                    $yazar[] = $item->slug;
+                }
+            }
+
+            $kategori = [];
+
+            if ($request->input('author')) {
+                $kategoriler = ProductCategory::whereIn('id', $request->input('category'))->get();
+                foreach ($kategoriler as $item) {
+                    $kategori[] = $item->slug;
+                }
+            }
+
+            //dd($yazar);
+
+            $K = implode("/", $kategori);
+            $Y = implode("/", $yazar);
+
+
+            $Url = Product::find($id);
+            $Url->slug = $K.'/'.$Y.'/'.$Url->slug;
+            $Url->save();
         });
 
         toast(SWEETALERT_MESSAGE_UPDATE,'success');
