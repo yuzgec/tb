@@ -26,15 +26,15 @@ use Illuminate\Support\Facades\Mail;
 use Artesaos\SEOTools\Facades\SEOTools;
 class HomeController extends Controller
 {
-
-
     public function index()
     {
         $Product_Categories = ProductCategory::with('cat')->where('status', 1)->get()->toFlatTree();
-        $Products = Product::with('getCategory')->with('getAuthor')->select('id', 'title', 'price', 'old_price', 'slug','bestselling')->orderBy('rank')->get();
+        $Products = Product::with('getCategory')->with([ 'getYear', 'getAuthor', 'getLanguage'])->select('id', 'title', 'price', 'old_price', 'slug','bestselling')->orderBy('rank')->get();
         $Slider = Slider::with('getProduct')->where('status', 1)->get();
+        $Pivot = \App\Models\ProductCategoryPivot::with('productCategory')->get();
+
         //dd($Products);
-        return view('frontend.index', compact('Products','Slider', 'Product_Categories'));
+        return view('frontend.index', compact('Products','Slider', 'Product_Categories', 'Pivot'));
     }
     public function kategori($url){
 

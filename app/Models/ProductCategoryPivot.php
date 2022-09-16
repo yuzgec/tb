@@ -19,4 +19,8 @@ class ProductCategoryPivot extends Model
         return $this->hasMany(ProductCategory::class, 'id')->count();
     }
 
+    public function productCategory(){
+        return $this->belongsTo(ProductCategory::class, 'category_id', 'id');
+    }
+
 }

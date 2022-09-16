@@ -69,11 +69,15 @@
                                 }
                             }'>
                         @foreach($Products->take(8) as $item)
+                        @php     $data = []; @endphp
+                        @foreach($Pivot->where('product_id', $item->id) as $p)
+                            @php $data[] = $p->productCategory->slug @endphp
+                        @endforeach
+
                         <div class="product product-2 text-center">
                             <span class="product-label label-circle label-new">Yeni</span>
-
                             <figure class="product-media">
-                                <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
+                                <a href="{{ route('urun' , array_merge($data,[$item->slug]))}}" title="{{ $item->title }}">
                                     <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $item->title }}">
                                 </a>
 
@@ -83,13 +87,13 @@
                             </figure>
 
                             <div class="product-body">
-                                <h3 class="product-title"><a href="{{ route('urun' , $item->slug)}}">{{ $item->title }}</a></h3>
+                                <h3 class="product-title"><a href="{{ route('urun' , array_merge($data,[$item->slug]))}}">{{ $item->title }}</a></h3>
                                 <div class="product-price">
                                     {{ $item->price }}₺
                                 </div>
                             </div>
                             <div class="product-action">
-                                <a href="{{ route('urun' , $item->slug)}}"
+                                <a href="{{ route('urun' , array_merge($data,[$item->slug]))}}"
                                    title="{{ $item->title }}"
                                    class="btn-product btn-cart">
                                     <span>Sepete Ekle</span>
@@ -719,7 +723,7 @@
                         <div class="banner-content banner-content-top banner-content-center">
                             <h4 class="banner-subtitle">The Best Choice</h4>
                             <h3 class="banner-title">AGEN</h3>
-                            <div class="banner-text text-primary">$49.99</div><!-- End .banner-text -->
+                            <div class="banner-text text-primary">$49.99</div>
                             <a href="#" class="btn btn-outline-gray banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>
                         </div>
                     </div>
@@ -729,7 +733,7 @@
     </div><!-- End .bg-light -->
 
     <div class="mb-6"></div>
-    <div class="container">
+ {{--   <div class="container">
         <div class="row">
 
             @foreach($Products as $item)
@@ -766,7 +770,7 @@
 
 
         </div>
-    </div>
+    </div>--}}
     <div class="container">
         <hr class="mt-1 mb-6">
     </div>
