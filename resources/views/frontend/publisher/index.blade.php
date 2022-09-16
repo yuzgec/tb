@@ -20,7 +20,8 @@
     <div class="container">
         <div class="row">
             @foreach($PublisherBook as $item)
-                <div class="product product-2 text-center">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                    <div class="product product-2 text-center">
                     <span class="product-label label-circle label-new">Yeni</span>
                     <figure class="product-media">
                         <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
@@ -47,6 +48,7 @@
                             <span>Sepete Ekle</span>
                         </a>
                     </div>
+                </div>
                 </div>
             @endforeach
         </div>
