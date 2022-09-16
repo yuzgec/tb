@@ -390,7 +390,10 @@ class HomeController extends Controller
         SEOTools::setCanonical(route('urun', $Detay->slug));
         SEOTools::opengraph()->addProperty('type', 'product');
 
-        return view('frontend.publisher.index', compact('Detay'));
+        $PublisherBook = Product::where('publisher', $Detay->id)->get();
+        return view('frontend.publisher.index', compact('Detay', 'PublisherBook'));
+
+
     }
 
     public function yazarlar(){

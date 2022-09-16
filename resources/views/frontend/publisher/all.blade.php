@@ -1,5 +1,5 @@
 @extends('frontend.layout.app')
-@section('title', 'Yazarlar Listesi | '.config('app.name'))
+@section('title', 'Yayınevi Listesi | '.config('app.name'))
 @section('content')
 
 
@@ -25,24 +25,23 @@
                         <button class="" style="width: 35px">{{ $abc }}</button>
                     @endforeach
                 </div>
-                <input class="form-control" name="arama" id="arama" placeholder="Yazar Adı Giriniz...">
                 @foreach($All as $item)
-                <div class="col-6 col-md-2">
-                    <div class="member member-2 text-center">
-                        <figure class="member-media">
-                            <a href="{{ route('yazar', $item->slug) }}" title="{{ $item->title }}">
-                            <img
-                                src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb')}}"
-                                alt="{{ $item->title }}">
-                            </a>
-                        </figure>
-                        <div class="member-content">
-                            <div><a href="{{ route('yazar', $item->slug) }}" title="{{ $item->title }}">{{ $item->title }}</a><div>
-                              ({{$item->get_book_count_count}}) Adet Kitap</div>
+                    <div class="col-6 col-md-2">
+                        <div class="member member-2 text-center">
+                            <figure class="member-media">
+                                <a href="{{ route('yazar', $item->slug) }}" title="{{ $item->title }}">
+                                    <img
+                                        src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb')}}"
+                                        alt="{{ $item->title }}">
+                                </a>
+                            </figure>
+                            <div class="member-content">
+                                <div><a href="{{ route('yazar', $item->slug) }}" title="{{ $item->title }}">{{ $item->title }}</a><div>
+                                        ({{$item->get_book_count_count}}) Adet Kitap</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
 
