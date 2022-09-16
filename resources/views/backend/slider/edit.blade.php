@@ -31,8 +31,6 @@
                 </div>
                 <div class="card-body">
                     <x-form-inputtext label="Slider Adı" name="title"/>
-                    <x-form-select label="Ürün" name="product_id" :list="$Pro"/>
-
                     <x-form-inputtext label="Yazı 1" name="text1"/>
                     <x-form-inputtext label="Yazı 2" name="text2"/>
                     <x-form-inputtext label="Yazı 3" name="text3"/>

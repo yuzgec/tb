@@ -105,8 +105,6 @@ class ProductController extends Controller
                 }
             }
 
-            $yazar = [];
-
             if ($request->input('author')) {
                 $yazarlar = Author::whereIn('id', $request->input('author'))->get();
                 foreach ($yazarlar as $item) {
@@ -114,9 +112,7 @@ class ProductController extends Controller
                 }
             }
 
-            $kategori = [];
-
-            if ($request->input('author')) {
+            if ($request->input('category')) {
                 $kategoriler = ProductCategory::whereIn('id', $request->input('category'))->get();
                 foreach ($kategoriler as $item) {
                     $kategori[] = $item->slug;
@@ -125,9 +121,8 @@ class ProductController extends Controller
 
             //dd($yazar);
 
-            $K = implode(",", $kategori);
-            $Y = implode(",", $yazar);
-
+            $K = implode("/", $kategori);
+            $Y = implode("/", $yazar);
 
             $Url = Product::find($New->id);
             $Url->slug = $K.'/'.$Y.'/'.$Url->slug.'?urunno='.$Url->sku;
@@ -242,14 +237,13 @@ class ProductController extends Controller
                 }
             }
 
+
             if ($request->input('author')) {
                 $yazarlar = Author::whereIn('id', $request->input('author'))->get();
                 foreach ($yazarlar as $item) {
                     $yazar[] = $item->slug;
                 }
             }
-
-            $kategori = [];
 
             if ($request->input('author')) {
                 $kategoriler = ProductCategory::whereIn('id', $request->input('category'))->get();
@@ -263,10 +257,10 @@ class ProductController extends Controller
             $K = implode("/", $kategori);
             $Y = implode("/", $yazar);
 
-
             $Url = Product::find($id);
             $Url->slug = $K.'/'.$Y.'/'.$Url->slug.'?urunno='.$Url->sku;
             $Url->save();
+
         });
 
         toast(SWEETALERT_MESSAGE_UPDATE,'success');

@@ -29,7 +29,7 @@ class HomeController extends Controller
     public function index()
     {
         $Product_Categories = ProductCategory::with('cat')->where('status', 1)->get()->toFlatTree();
-        $Products = Product::with('getCategory')->with([ 'getYear', 'getAuthor', 'getLanguage'])->select('id', 'title', 'price', 'old_price', 'slug','bestselling')->orderBy('rank')->get();
+        $Products = Product::with('getCategory')->with([ 'getYear', 'getAuthor', 'getLanguage'])->select('id', 'title', 'price', 'old_price', 'slug','bestselling','status')->where('status',1)->orderBy('rank')->get();
         $Slider = Slider::with('getProduct')->where('status', 1)->get();
         $Pivot = \App\Models\ProductCategoryPivot::with('productCategory')->get();
 
@@ -89,7 +89,7 @@ class HomeController extends Controller
         return view('frontend.shop.siparis');
     }
     public function urun($url){
-        $Detay = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
+        $Detay = Product::withCount('getPublisher')->with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
                 ->where('sku', \request('urunno'))
                 ->firstOrFail();
         //dd($Detay);
@@ -185,7 +185,7 @@ class HomeController extends Controller
 
             $Cart = Cart::content();
 
-            if($request->filled('email')){
+     /*       if($request->filled('email')){
                 Mail::send("frontend.mail.siparis",compact('Cart', 'ShopCart'),function ($message) use($ShopCart) {
                     $message->to($ShopCart->email)->subject('Syn. '.$ShopCart->name.' '. $ShopCart->surname.' siparişiniz başarıyla oluşturmuştur.');
                 });
@@ -193,54 +193,7 @@ class HomeController extends Controller
 
             Mail::send("frontend.mail.siparis",compact('Cart', 'ShopCart'),function ($message) use($ShopCart) {
                 $message->to(MAIL_SEND)->subject($ShopCart->name.' '. $ShopCart->surname.' siparişiniz başarıyla oluşturmuştur.');
-            });
-
-            $Sms = 'Siparişiniz başarıyla oluşturulmuştur. Sipariş onayı için '.config('settings.telefon2').' nolu telefondan aranacaksınız. Hayırlı günler dileriz.';
-
-            $curl = curl_init();
-                curl_setopt_array($curl, array(
-                CURLOPT_URL => 'http://panel.nac.com.tr/api/json/syncreply/SendInstantSms',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 5,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS =>'{
-				"Credential": {
-				"Username":'.env("SMS_USER_NAME").',
-				"Password":'.env("SMS_PASSWORD").',
-				"ResellerID":'.env("SMS_RESELLER_ID").'
-				},
-				"Sms": {
-				"ToMsisdns": [
-				{
-				"Msisdn": '.$ShopCart->phone.',
-				"Name": "",
-				"Surname": "",
-				"CustomField1": "[Mesaj1]:'.$Sms.'"
-				}
-				],
-				"ToGroups": [
-				0
-				],
-				"IsCreateFromTeplate": true,
-				"SmsTitle": '.env("SMS_SENDER_NO").',
-				"SmsContent": "[Mesaj1]",
-				"SmsSendingType": "ByNumber",
-				"SmsCoding": "SmsCoding",
-				"SenderName": '.env("SMS_SENDER_NO").',
-				"DataCoding": "Default"
-
-				}
-				}',
-                CURLOPT_HTTPHEADER => array(
-                    'Content-Type: application/json'
-                ),
-            ));
-            $response = curl_exec($curl);
-            curl_close($curl);
+            });*/
 
             $Stock = DB::table('campagin_stock')->decrement('stock');
             $StockUpdate = DB::table('campagin_stock')->where('stock', '<=', 30)->update(['stock' => 299]);
@@ -379,6 +332,8 @@ class HomeController extends Controller
         SEOTools::opengraph()->addProperty('type', 'product');
         SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
 
+
+
         return view('frontend.author.index', compact('Detay'));
     }
     public function yayinevi($slug){
@@ -390,7 +345,8 @@ class HomeController extends Controller
         SEOTools::setCanonical(route('urun', $Detay->slug));
         SEOTools::opengraph()->addProperty('type', 'product');
 
-        $PublisherBook = Product::where('publisher', $Detay->id)->get();
+        $PublisherBook = Product::withCount('getPublisher')->where('publisher', $Detay->id)->get();
+        //dd($PublisherBook);
         return view('frontend.publisher.index', compact('Detay', 'PublisherBook'));
 
 

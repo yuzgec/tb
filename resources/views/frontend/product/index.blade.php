@@ -73,8 +73,8 @@
                                     @endif
                                     @if($Detay->getPublisher)
                                     <div>Yayınevi :
-                                        <a href="{{ route('yayinevi', $Detay->getPublisher->slug) }}" title="{{ $Detay->getPublisher->title }}">
-                                            {{ $Detay->getPublisher->title }}</a>
+                                        <a href="{{ route('yayinevi', $Detay->getPublisher->slug) }}" title="({{$Detay->get_publisher_count}}) adet kitap bulunmaktadır.">
+                                            {{ $Detay->getPublisher->title }} ({{$Detay->get_publisher_count}})</a>
                                     </div>
                                     @endif
                                     @if($Detay->condition)
@@ -130,7 +130,7 @@
 
                                     <div class="social-icons social-icons-sm">
                                         <span class="social-label">Paylaş:</span>
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('urun', $Detay->slug) }}" class="social-icon" title="Facebook" target="_blank">
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('urun', $Detay->slug) }}&image={{$Detay->getFirstMediaUrl('page', 'thumb')}}" class="social-icon" title="Facebook" target="_blank">
                                             <i class="icon-facebook-f"></i>
                                         </a>
                                         <a href="https://twitter.com/share?url={{ route('urun', $Detay->slug) }}&text={{ $Detay->title }}" class="social-icon" title="Twitter" target="_blank">
