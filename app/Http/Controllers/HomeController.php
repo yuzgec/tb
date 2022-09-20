@@ -36,62 +36,10 @@ class HomeController extends Controller
         //dd($Products);
         return view('frontend.index', compact('Products','Slider', 'Product_Categories', 'Pivot'));
     }
-    public function kategori($url){
-
-        $Detay = ProductCategory::where('slug', $url)->select('id','title','slug')->first();
-        SEOTools::setTitle($Detay->title);
-        SEOTools::setDescription($Detay->seo_desc);
-        SEOTools::opengraph()->setUrl(url()->current());
-        SEOTools::setCanonical(route('urun', $Detay->slug));
-        SEOTools::opengraph()->addProperty('type', 'category');
-
-        SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
-
-        $ProductList = Product::join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
-            ->join('product_categories', 'product_categories.id', '=', 'product_category_pivots.category_id')
-            ->where('product_category_pivots.category_id', '=', $Detay->id)
-            ->where('products.status', '=', 1)
-            ->where(['category_id' => $Detay->id])
-            ->select('products.id','products.title','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
-            ->orderBy('products.rank','ASC')->paginate(9);
-        //dd($Pro);
-        return view('frontend.category.index', compact('Detay', 'ProductList'));
-    }
-    public function kurumsal($url){
-        $Detay = Page::where('slug', $url)->firstOrFail();
-
-        SEOTools::setTitle($Detay->title);
-        SEOTools::setDescription($Detay->seo_desc);
-        SEOTools::opengraph()->setUrl(url()->current());
-        SEOTools::setCanonical(route('urun', $Detay->slug));
-        SEOTools::opengraph()->addProperty('type', 'page');
-        SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
-
-        return view('frontend.page.index', compact('Detay'));
-    }
-    public function iletisim(){
-        return view('frontend.page.contactus');
-    }
-    public function sepet(){
-
-        if (Cart::content()->count() === 0){
-            return redirect()->route('home');
-        }
-        //dd(Cart::content());
-
-        $Products = Product::select('id', 'title', 'price', 'old_price', 'slug', 'campagin_price')->orderBy('rank')->get();
-        return view('frontend.shop.sepet',compact('Products'));
-    }
-    public function siparis(){
-        if (Cart::content()->count() === 0){
-            return redirect()->route('home');
-        }
-        return view('frontend.shop.siparis');
-    }
     public function urun($url){
         $Detay = Product::withCount('getPublisher')->with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
-                ->where('sku', \request('urunno'))
-                ->firstOrFail();
+            ->where('sku', \request('urunno'))
+            ->firstOrFail();
         //dd($Detay);
 
         $author = [];
@@ -118,8 +66,70 @@ class HomeController extends Controller
 
         return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author', 'Pivot'));
     }
-    public function kargosorgulama(){
-        return view('frontend.page.cargo');
+    public function kategori($url){
+
+        $Detay = ProductCategory::where('slug', $url)->select('id','title','slug')->first();
+        SEOTools::setTitle($Detay->title);
+        SEOTools::setDescription($Detay->seo_desc);
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::setCanonical(route('urun', $Detay->slug));
+        SEOTools::opengraph()->addProperty('type', 'category');
+
+        SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
+
+        $ProductList = Product::join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
+            ->join('product_categories', 'product_categories.id', '=', 'product_category_pivots.category_id')
+            ->where('product_category_pivots.category_id', '=', $Detay->id)
+            ->where('products.status', '=', 1)
+            ->where(['category_id' => $Detay->id])
+            ->select('products.id','products.title','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
+            ->orderBy('products.rank','ASC')->paginate(9);
+        //dd($Pro);
+        return view('frontend.category.index', compact('Detay', 'ProductList'));
+    }
+    public function yazar($slug){
+        $Detay = Author::where('slug', $slug)->first();
+        SEOTools::setTitle($Detay->title."'a ait kitaplar");
+        SEOTools::setDescription($Detay->seo_desc);
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::setCanonical(route('urun', $Detay->slug));
+        SEOTools::opengraph()->addProperty('type', 'product');
+        SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
+
+
+
+        return view('frontend.author.index', compact('Detay'));
+    }
+    public function yayinevi($slug){
+        $Detay = Publisher::where('slug', $slug)->first();
+
+        SEOTools::setTitle($Detay->title." adlı yayınevine ait kitaplar");
+        SEOTools::setDescription($Detay->seo_desc);
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::setCanonical(route('urun', $Detay->slug));
+        SEOTools::opengraph()->addProperty('type', 'product');
+
+        $PublisherBook = Product::withCount('getPublisher')->where('publisher', $Detay->id)->get();
+        //dd($PublisherBook);
+        return view('frontend.publisher.index', compact('Detay', 'PublisherBook'));
+
+
+    }
+    public function sepet(){
+
+        if (Cart::content()->count() === 0){
+            return redirect()->route('home');
+        }
+        //dd(Cart::content());
+
+        $Products = Product::select('id', 'title', 'price', 'old_price', 'slug', 'campagin_price')->orderBy('rank')->get();
+        return view('frontend.shop.sepet',compact('Products'));
+    }
+    public function siparis(){
+        if (Cart::content()->count() === 0){
+            return redirect()->route('home');
+        }
+        return view('frontend.shop.siparis');
     }
     public function kaydet(OrderRequest $request){
 
@@ -265,12 +275,6 @@ class HomeController extends Controller
         toast(SWEETALERT_MESSAGE_DELETE,'success');
         return redirect()->route('home');
     }
-    public function mailsubcribes(MailRequest $request){
-        //dd($request->all());
-        MailSubcribes::create(['email_address' => $request->email, 'ip_address' => $request->ip()]);
-        toast('Email Adresiz Bülten Listesine Eklendi','success');
-        return redirect()->route('home');
-    }
     public function search(SearchRequest $request){
         $search = $request->q;
         $Result = Product::where('title','like','%'.$search.'%')
@@ -323,35 +327,6 @@ class HomeController extends Controller
         return redirect()->route('siparis');
 
     }
-    public function yazar($slug){
-        $Detay = Author::where('slug', $slug)->first();
-        SEOTools::setTitle($Detay->title."'a ait kitaplar");
-        SEOTools::setDescription($Detay->seo_desc);
-        SEOTools::opengraph()->setUrl(url()->current());
-        SEOTools::setCanonical(route('urun', $Detay->slug));
-        SEOTools::opengraph()->addProperty('type', 'product');
-        SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
-
-
-
-        return view('frontend.author.index', compact('Detay'));
-    }
-    public function yayinevi($slug){
-        $Detay = Publisher::where('slug', $slug)->first();
-
-        SEOTools::setTitle($Detay->title." adlı yayınevine ait kitaplar");
-        SEOTools::setDescription($Detay->seo_desc);
-        SEOTools::opengraph()->setUrl(url()->current());
-        SEOTools::setCanonical(route('urun', $Detay->slug));
-        SEOTools::opengraph()->addProperty('type', 'product');
-
-        $PublisherBook = Product::withCount('getPublisher')->where('publisher', $Detay->id)->get();
-        //dd($PublisherBook);
-        return view('frontend.publisher.index', compact('Detay', 'PublisherBook'));
-
-
-    }
-
     public function yazarlar(){
         $Alfabe = ["A", "B", "C","Ç", "D", "E", "F", "G", "H", "I","İ", "J", "K", "L", "M", "N", "O","Ö", "P", "Q", "R", "S", "T", "U","Ü","V", "W", "X", "Y", "Z"];
         $All = Author::withCount('getBookCount')->get();
@@ -362,5 +337,28 @@ class HomeController extends Controller
         SEOTools::opengraph()->addProperty('type', 'page');
         return view('frontend.author.all', compact('All', 'Alfabe'));
     }
+    public function mailsubcribes(MailRequest $request){
+        //dd($request->all());
+        MailSubcribes::create(['email_address' => $request->email, 'ip_address' => $request->ip()]);
+        toast('Email Adresiz Bülten Listesine Eklendi','success');
+        return redirect()->route('home');
+    }
+    public function kurumsal($url){
+        $Detay = Page::where('slug', $url)->firstOrFail();
 
+        SEOTools::setTitle($Detay->title);
+        SEOTools::setDescription($Detay->seo_desc);
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::setCanonical(route('urun', $Detay->slug));
+        SEOTools::opengraph()->addProperty('type', 'page');
+        SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
+
+        return view('frontend.page.index', compact('Detay'));
+    }
+    public function iletisim(){
+        return view('frontend.page.contactus');
+    }
+    public function kargosorgulama(){
+        return view('frontend.page.cargo');
+    }
 }

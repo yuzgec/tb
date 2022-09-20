@@ -121,12 +121,13 @@ class ProductController extends Controller
 
             //dd($yazar);
 
-            $K = implode("/", $kategori);
-            $Y = implode("/", $yazar);
+                $Url = Product::find($New->id);
+                $K = implode("/", $kategori);
+                $Y = implode("/", $yazar);
+                $Url->slug = $K.'/'.$Y.'/'.$Url->slug.'?urunno='.$Url->sku;
+                $Url->save();
 
-            $Url = Product::find($New->id);
-            $Url->slug = $K.'/'.$Y.'/'.$Url->slug.'?urunno='.$Url->sku;
-            $Url->save();
+
 
         });
         toast(SWEETALERT_MESSAGE_CREATE,'success');
@@ -253,14 +254,13 @@ class ProductController extends Controller
             }
 
             //dd($yazar);
-
-            $K = implode("/", $kategori);
-            $Y = implode("/", $yazar);
-
-            $Url = Product::find($id);
-            $Url->slug = $K.'/'.$Y.'/'.$Url->slug.'?urunno='.$Url->sku;
-            $Url->save();
-
+            if($request->title){
+                $Url = Product::find($id);
+                $K = implode("/", $kategori);
+                $Y = implode("/", $yazar);
+                $Url->slug = $K.'/'.$Y.'/'.$Url->slug.'?urunno='.$Url->sku;
+                $Url->save();
+            }
         });
 
         toast(SWEETALERT_MESSAGE_UPDATE,'success');
