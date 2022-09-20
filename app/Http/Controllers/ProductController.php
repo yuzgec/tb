@@ -162,12 +162,11 @@ class ProductController extends Controller
 
     public function update(ProductRequest $request, $id)
     {
-       //dd($request->input('category'));
+        //dd($request->all());
         DB::transaction(function () use ($request, $id) {
+
             $Update = Product::findOrFail($id);
-
             $Update->title = $request->title;
-
             $Update->price = $request->price;
             $Update->old_price = $request->old_price;
             $Update->campagin_price = $request->campagin_price;
@@ -224,7 +223,7 @@ class ProductController extends Controller
                 foreach ($request->input('author') as $pc) {
                     AuthorPivot::where(['product_id' => $Update->id])->delete();
                 }
-                 foreach ($request->input('author') as $pc) {
+                foreach ($request->input('author') as $pc) {
                     AuthorPivot::updateOrCreate(['author_id' => $pc, 'product_id' => $Update->id]);
                 }
             }
@@ -254,13 +253,16 @@ class ProductController extends Controller
             }
 
             //dd($yazar);
-            if($request->title){
+
                 $Url = Product::find($id);
                 $K = implode("/", $kategori);
                 $Y = implode("/", $yazar);
-                $Url->slug = $K.'/'.$Y.'/'.$Url->slug.'?urunno='.$Url->sku;
+                $Url->slug = null;
                 $Url->save();
-            }
+
+                $Url->slug = $K . '/' . $Y . '/' . $Url->slug . '?urunno=' . $Url->sku;
+                $Url->save();
+
         });
 
         toast(SWEETALERT_MESSAGE_UPDATE,'success');
