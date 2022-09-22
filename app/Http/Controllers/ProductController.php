@@ -34,9 +34,13 @@ class ProductController extends Controller
         $Language = Language::all();
         $Translator = Translator::all();
 
+        $LastID = Product::orderBy('id', 'desc')->first();
+        $Last = str_replace('TB-', '',$LastID->sku);
+        $Last;
+
         //dd($Language);
         return view('backend.product.create',
-            compact('Kategori', 'Years', 'Author',  'Publisher', 'Language', 'Translator'));
+            compact('Kategori', 'Years', 'Author',  'Publisher', 'Language', 'Translator', 'Last'));
     }
 
     public function store(ProductRequest $request)

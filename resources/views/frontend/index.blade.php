@@ -85,6 +85,7 @@
                             <div class="product-body">
                                 <h3 class="product-title">
                                     <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
+                                    {{ $item->title }}
                                 </h3>
                                 <div class="product-price">
                                     {{ $item->price }}₺
@@ -566,7 +567,166 @@
     </div>
 
 
+{{--
+
+    <div class="block mt-5">
+        <div class="block-wrapper ">
+            <div class="container">
+                <div class="heading heading-flex">
+                    <div class="heading-left">
+                        <h2 class="title">Türk Edebiyatı</h2>
+                    </div>
+
+                    <div class="heading-right">
+                        <a href="category.html" class="title-link">Hepsini Görüntüle <i class="icon-long-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="owl-carousel carousel-equal-height owl-simple" data-toggle="owl"
+                     data-owl-options='{
+                                "nav": false,
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": {
+                                        "items":2
+                                    },
+                                    "480": {
+                                        "items":2
+                                    },
+                                    "768": {
+                                        "items":3
+                                    },
+                                    "992": {
+                                        "items":4
+                                    },
+                                    "1200": {
+                                        "items":5
+                                    },
+                                    "1440": {
+                                        "items":6
+                                    }
+                                }
+                            }'>
+                    @foreach($Products->take(8) as $item)
+                        <div class="product product-2 text-center">
+                            <span class="product-label label-circle label-new">Yeni</span>
+                            <figure class="product-media">
+                                <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
+                                    <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $item->title }}">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+                                </div>
+                            </figure>
+
+                            <div class="product-body">
+                                <h3 class="product-title">
+                                    <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
+                                    {{ $item->title }}
+                                </h3>
+                                <div class="product-price">
+                                    {{ $item->price }}₺
+                                </div>
+                            </div>
+                            <div class="product-action">
+                                <a href="{{ route('urun' , $item->slug)}}"
+                                   title="{{ $item->title }}"
+                                   class="btn-product btn-cart">
+                                    <span>Sepete Ekle</span>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="mb-5"></div>
+
+
+
+
+    <div class="bestseller-products bg-light pt-5 pb-5 mb-5">
+        <div class="block">
+            <div class="block-wrapper ">
+                <div class="container">
+                    <div class="heading heading-flex">
+                        <div class="heading-left">
+                            <h2 class="title">Çok Bakılanlar</h2>
+                        </div>
+
+                        <div class="heading-right">
+                            <a href="category.html" class="title-link">Hepsini Görüntüle <i class="icon-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+
+                    <div class="owl-carousel carousel-equal-height owl-simple" data-toggle="owl"
+                         data-owl-options='{
+                                "nav": false,
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": {
+                                        "items":2
+                                    },
+                                    "480": {
+                                        "items":2
+                                    },
+                                    "768": {
+                                        "items":3
+                                    },
+                                    "992": {
+                                        "items":4
+                                    },
+                                    "1200": {
+                                        "items":5
+                                    },
+                                    "1440": {
+                                        "items":6
+                                    }
+                                }
+                            }'>
+                        @foreach($Products->take(8) as $item)
+
+                            <div class="product">
+                                <figure class="product-media">
+                                    <span class="product-label label-sale">Sale</span>
+                                    <a href="product.html">
+                                        <img src="/frontend/assets/images/demos/demo-19/products/product-1.jpg" alt="Product image" class="product-image">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist" title="Add to Wishlist"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action-vertical -->
+
+                                    <div class="product-action">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">Shooter</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="product.html">Call of Duty <br>WWII - Gold Edition</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        <span class="new-price">$24.00</span>
+                                        <span class="old-price">Was $59.99</span>
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                            </div>
+                        @endforeach
+                    </div>
+                </div><!-- End .container -->
+            </div><!-- End .block-wrapper -->
+        </div><!-- End .block -->
+    </div><!-- End .bg-light pt-4 pb-4 -->
 
 
     <div class="display-row bg-light">
@@ -681,6 +841,7 @@
             </div>
         </div>
     </div>
+--}}
 
     <div class="deal-container pt-5 pb-3 mb-5">
         <div class="container">

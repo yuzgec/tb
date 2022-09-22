@@ -121,6 +121,8 @@ class HomeController extends Controller
 
     }
     public function sepet(){
+        SEOTools::setTitle("Sepetim | Online 2. El Kitap". config('app.name'));
+        SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Sepetim Sayfası');
 
         if (Cart::content()->count() === 0){
             return redirect()->route('home');
@@ -140,6 +142,11 @@ class HomeController extends Controller
 
     public function odeme(Request $gelen)
     {
+
+
+        SEOTools::setTitle("Ödeme | Online 2. El Kitap". config('app.name'));
+        SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Ödeme Sayfası');
+
         if (request()->isMethod('get')) {
             return redirect()->route('home');
         }
@@ -336,6 +343,10 @@ class HomeController extends Controller
         return redirect()->route('home');
     }
     public function search(SearchRequest $request){
+
+        SEOTools::setTitle($request->q." ile ilgili arama sonuçları | Online 2. El Kitap". config('app.name'));
+        SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Arama Sayfası');
+
         $search = $request->q;
         $Result = Product::where('title','like','%'.$search.'%')
             ->orWhere('slug','like','%'.$search.'%')
@@ -347,6 +358,10 @@ class HomeController extends Controller
         return view('frontend.shop.search', compact('Result'));
     }
     public function detayliarama(){
+
+        SEOTools::setTitle("Detaylı Arama | Online 2. El Kitap". config('app.name'));
+        SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Arama Sayfası');
+
         $Language = Language::all();
         $Publisher = Publisher::all();
         return view('frontend.shop.detailsearch', compact('Language', 'Publisher'));
@@ -398,7 +413,6 @@ class HomeController extends Controller
         return view('frontend.author.all', compact('All', 'Alfabe'));
     }
     public function mailsubcribes(MailRequest $request){
-        //dd($request->all());
         MailSubcribes::create(['email_address' => $request->email, 'ip_address' => $request->ip()]);
         toast('Email Adresiz Bülten Listesine Eklendi','success');
         return redirect()->route('home');
@@ -416,6 +430,10 @@ class HomeController extends Controller
         return view('frontend.page.index', compact('Detay'));
     }
     public function iletisim(){
+
+        SEOTools::setTitle("İletişim | ". config('app.name'));
+        SEOTools::setDescription('Tb Kitap İletişim Sayfası');
+
         return view('frontend.page.contactus');
     }
     public function kargosorgulama(){
