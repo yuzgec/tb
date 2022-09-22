@@ -11,19 +11,20 @@
         <div class="checkout">
             <div class="container">
 
-                <form action="#">
+                <form action="{{ route('odeme') }}" method="POST">
+                    @csrf
                     <div class="row">
                         <div class="col-lg-9">
-                            <h2 class="checkout-title">İletişim Bilgileri</h2><!-- End .checkout-title -->
+                            <h2 class="checkout-title">İletişim Bilgileri</h2>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>Adınız Soyadınız *</label>
-                                    <input type="text" class="form-control" required>
+                                    <input type="text" class="form-control" name="name">
                                 </div>
 
                                 <div class="col-sm-6">
                                     <label>Telefon Numaranız *</label>
-                                    <input type="text" class="form-control" required>
+                                    <input type="text" class="form-control" name="surname">
                                 </div>
                             </div>
 
@@ -33,28 +34,28 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>Telefon Numaranız</label>
-                                    <input type="text" class="form-control" required>
+                                    <input type="text" class="form-control" name="phone">
                                 </div>
 
                                 <div class="col-sm-6">
                                     <label>E-Mail Adresiniz</label>
-                                    <input type="text" class="form-control" required>
+                                    <input type="text" class="form-control" name="email">
                                 </div>
                             </div>
 
                             <label>Açık Adres</label>
-                            <textarea class="form-control" cols="30" rows="4" placeholder="Açık Adresinizi Yazınız..."></textarea>
+                            <textarea class="form-control" cols="30" rows="4" name="address" placeholder="Açık Adresinizi Yazınız..."></textarea>
 
 
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>İl</label>
-                                    <input type="text" class="form-control" required>
+                                    <input type="text" class="form-control" >
                                 </div>
 
                                 <div class="col-sm-6">
                                     <label>İlçe</label>
-                                    <input type="text" class="form-control" required>
+                                    <input type="text" class="form-control" >
                                 </div>
                             </div>
 

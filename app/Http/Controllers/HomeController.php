@@ -24,6 +24,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Iyzipay\Model\BasketItem;
+use Iyzipay\Model\Buyer;
+use Iyzipay\Model\CheckoutFormInitialize;
+use Iyzipay\Options;
+
 class HomeController extends Controller
 {
     public function index()
@@ -131,88 +136,143 @@ class HomeController extends Controller
         }
         return view('frontend.shop.siparis');
     }
-    public function kaydet(OrderRequest $request){
 
-        $p = Product::find($request->id);
 
-        if ($request->kampanya == 1){
-            Cart::destroy();
-
-            Cart::add(
-            [
-                'id' => $p->id,
-                'name' => $p->title,
-                'price' => $p->price,
-                'weight' => 0,
-                'qty' => 1,
-                'options' => [
-                    'image' => (!$p->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg' : $p->getFirstMediaUrl('page', 'small'),
-                    'cargo' => 0,
-                    'campagin' => 0,
-                ]
-            ]);
+    public function odeme(Request $gelen)
+    {
+        if (request()->isMethod('get')) {
+            return redirect()->route('home');
         }
 
-        //Basket::create(['product_id' => $p->id, 'basket_name' => 'Sepet']);
-        $Cart_Id = time();
-        DB::transaction(function () use ($request, $Cart_Id) {
-            $ShopCart                   = new ShopCart;
-            $ShopCart->cart_id          = $Cart_Id ;
-            $ShopCart->user_id          = $Cart_Id ;
-            $ShopCart->basket_total     = cargoToplam(Cart::total());
+        session($gelen->all());
+        $sepetId    = time();
 
-            $ShopCart->name             = $request->name;
-            $ShopCart->surname          = $request->surname;
-            $ShopCart->email            = $request->email;
-            $ShopCart->phone            = $request->phone;
-            $ShopCart->address          = $request->address;
-            $ShopCart->city             = $request->province;
-            $ShopCart->province         = $request->city;
-            $ShopCart->note             = $request->note;
-            $ShopCart->order_medium     = 'takigetir.com';
-            $ShopCart->order_cargo      = (Cart::total() < CARGO_LIMIT) ? CARGO_PRICE : null;
+        $options = new Options;
+        $options->setApiKey(env('SET_API_KEY_IZYICO'));
+        $options->setSecretKey(env('SET_SECRET_KEY_IZYICO'));
+        $options->setBaseUrl(env('SET_IYZICO_URL'));
 
-            $details = [];
-            foreach (Cart::content() as $c) {
-                $details[] = 'Ürün : '.$c->name.' x '. $c->qty.' = '.$c->price;
-            }
+        $request = new \Iyzipay\Request\CreateCheckoutFormInitializeRequest();
+        $request->setLocale(\Iyzipay\Model\Locale::TR);
+        $request->setConversationId($sepetId);
+        $request->setPrice(Cart::total());
+        $request->setPaidPrice(1);
+        $request->setCurrency(\Iyzipay\Model\Currency::TL);
+        $request->setBasketId($sepetId);
+        $request->setPaymentGroup(\Iyzipay\Model\PaymentGroup::PRODUCT);
+        $request->setCallbackUrl(url('/siparis/sonuc?name='.$gelen->input('name').' '.$gelen->input('surname').'&sepetId='.$sepetId));
+        $request->setEnabledInstallments(array(2, 3, 6, 9));
 
-            //dd($details);
+        $buyer = new Buyer;
+        $buyer->setId(rand(1,9));
+        $buyer->setName($gelen->input('name'));
+        $buyer->setSurname($gelen->input('surname'));
+        $buyer->setGsmNumber($gelen->input('phone'));
+        $buyer->setEmail($gelen->input('email'));
+        $buyer->setIdentityNumber("74300864791");
+        $buyer->setLastLoginDate("2015-10-05 12:43:35");
+        $buyer->setRegistrationDate("2013-04-21 15:12:09");
+        $buyer->setRegistrationAddress($gelen->input('address'));
+        $buyer->setIp($_SERVER["REMOTE_ADDR"]);
+        $buyer->setCity('İstanbul');
+        $buyer->setCountry("Türkiye");
+        $buyer->setZipCode("34000");
 
-            $ShopCart->order_details    = implode(',', $details);
+        $request->setBuyer($buyer);
 
-            $ShopCart->save();
+        $shippingAddress = new \Iyzipay\Model\Address();
+        $shippingAddress->setContactName($gelen->input('name').' '.$gelen->input('surname'));
+        $shippingAddress->setCity('İstanbul');
+        $shippingAddress->setCountry("Türkiye");
+        $shippingAddress->setAddress($gelen->input('address'));
+        $shippingAddress->setZipCode("34000");
+        $request->setShippingAddress($shippingAddress);
 
-            foreach (Cart::content() as $c) {
-                $Order                  = new Order;
-                $Order->cart_id         = $Cart_Id;
-                $Order->product_id      = $c->id;
-                $Order->name            = $c->name;
-                $Order->qty             = $c->qty;
-                $Order->price           = $c->price;
-                $Order->save();
-            }
+        $billingAddress = new \Iyzipay\Model\Address();
+        $billingAddress->setContactName($gelen->input('name').' '.$gelen->input('name'));
+        $billingAddress->setCity('İstanbul');
+        $billingAddress->setCountry("Türkiye");
+        $billingAddress->setAddress($gelen->input('address'));
+        $billingAddress->setZipCode('34000');
+        $request->setBillingAddress($billingAddress);
 
-            $Cart = Cart::content();
+        $cartcount = 0;
+        $basketItems = [];
 
-     /*       if($request->filled('email')){
-                Mail::send("frontend.mail.siparis",compact('Cart', 'ShopCart'),function ($message) use($ShopCart) {
-                    $message->to($ShopCart->email)->subject('Syn. '.$ShopCart->name.' '. $ShopCart->surname.' siparişiniz başarıyla oluşturmuştur.');
-                });
-            }
+        foreach(Cart::content() as $cart){
+            $BasketItem = new BasketItem;
+            $BasketItem->setId($cart->id);
+            $BasketItem->setName($cart->name);
+            $BasketItem->setCategory1('Kategori');
+            $BasketItem->setCategory2("Kategori");
+            $BasketItem->setItemType(\Iyzipay\Model\BasketItemType::PHYSICAL);
+            $BasketItem->setPrice( money($cart->price * $cart->qty));
+            $basketItems[$cartcount] = $BasketItem;
+            $cartcount++;
+        }
+        //dd($basketItems);
+        $request->setBasketItems($basketItems);
 
-            Mail::send("frontend.mail.siparis",compact('Cart', 'ShopCart'),function ($message) use($ShopCart) {
-                $message->to(MAIL_SEND)->subject($ShopCart->name.' '. $ShopCart->surname.' siparişiniz başarıyla oluşturmuştur.');
-            });*/
-
-            $Stock = DB::table('campagin_stock')->decrement('stock');
-            $StockUpdate = DB::table('campagin_stock')->where('stock', '<=', 30)->update(['stock' => 299]);
-
-            Cart::destroy();
-        });
-
-        return redirect()->route('sonuc',['no'=>$Cart_Id]);
+        $form = CheckoutFormInitialize::create($request, $options);
+        return view('frontend.shop.odeme', compact('form', 'gelen'));
     }
+
+    public function odemesonuc(Request $gelen)
+    {
+
+        if (request()->isMethod('get')) {
+            return redirect()->to('/');
+        }
+
+        $token = $gelen->input('token');
+
+        $options = new Options;
+        $options->setApiKey(env('SET_API_KEY_IZYICO'));
+        $options->setSecretKey(env('SET_SECRET_KEY_IZYICO'));
+        $options->setBaseUrl(env('SET_IYZICO_URL'));
+
+        $request = new \Iyzipay\Request\RetrieveCheckoutFormRequest();
+        $request->setLocale(\Iyzipay\Model\Locale::TR);
+        $request->setConversationId(request('sepetId'));
+        $request->setToken($token);
+
+        $payment = \Iyzipay\Model\CheckoutForm::retrieve($request, $options);
+        if($payment->getPaymentStatus() == "SUCCESS"){
+            if (request()->isMethod('post')) {
+
+                $ShopCart = new Basket;
+
+                $ShopCart->cart_id          = $payment->getBasketId();
+                $ShopCart->user_id          = $payment->getBasketId();
+                $ShopCart->total            = Cart::total();
+                $ShopCart->name             = session()->get('name');
+                $ShopCart->surname          = session()->get('surname');
+                $ShopCart->email            = session()->get('email');
+                $ShopCart->phone            = session()->get('phone');
+                $ShopCart->address          = session()->get('address');
+
+                $ShopCart->save();
+
+                foreach (Cart::content() as $c) {
+                    $Order                  = new Order;
+                    $Order->cart_id         = $payment->getBasketId();
+                    $Order->product_id      = $c->id;
+                    $Order->name            = $c->name;
+                    $Order->qty             = $c->qty;
+                    $Order->price           = $c->price;
+                    $Order->save();
+                }
+
+                Cart::destroy();
+
+                session()->flush();
+            }
+            return redirect()->route('basarili',['no' => $payment->getBasketId()]);
+        }else{
+            return redirect()->route('basarisiz',['no' => $payment->getErrorCode()]);
+        }
+    }
+
     public function sonuc(){
         $Summary  = Order::where('cart_id',request('no') )->get();
         $Customer = ShopCart::where('cart_id',request('no'))->firstOrFail();

@@ -63,6 +63,7 @@ Route::get('/urunsayfasi', function(){
     Route::get('/yazarlar', 'HomeController@yazarlar')->name('yazarlar');
     Route::get('/yayinevi/{url}', 'HomeController@yayinevi')->name('yayinevi');
 
+    Route::post('/odeme', 'HomeController@odeme')->name('odeme');
     Route::post('/siparis/kaydet', 'HomeController@kaydet')->name('kaydet');
     Route::get('/siparis/sonuc', 'HomeController@sonuc')->name('sonuc');
 
