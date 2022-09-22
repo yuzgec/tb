@@ -15,7 +15,7 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'                 => 'required|min:6|max:99',
+            'title'                 => 'required|min:2|max:99',
             'category.*'            => 'required',
             'sku'                   => 'required',
             'price'                 => 'required|regex:/^\d+(\.\d{1,2})?$/',
@@ -29,7 +29,7 @@ class ProductRequest extends FormRequest
         return [
             'title.required'            => 'Ürün başlığını giriniz',
             'title.max'                 => 'Ürün başlığı en fazla 99 karakter olabilir',
-            'title.min'                 => 'Ürün başlığı en fazla 6 karakter olabilir',
+            'title.min'                 => 'Ürün başlığı en az 2 karakter olabilir',
             'title.unique'              => 'Ürün başlığı daha önce eklenmiş',
             'price.required'            => 'Fiyat Alanı Zorunludur',
             'price.reqex'               => 'Fiyat Alanı Ugun Değil Örn:1.90',
