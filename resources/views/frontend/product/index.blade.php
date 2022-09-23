@@ -60,9 +60,9 @@
                                     </div>
 
                                 <div class="product-content" >
-                                    <div>Yazar Adı :
+                                    <div>
                                         @foreach($Author as $item)
-                                          <a href="{{ route('yazar', $item->slug) }}" title="{{ $item->title }}">{{ $item->title }}</a>,
+                                            Yazar Adı :<a href="{{ route('yazar', $item->slug) }}" title="{{ $item->title }}"> {{ $item->title }}</a><br>
                                         @endforeach
                                     </div>
                                     @if($Detay->getTranslator)
@@ -93,6 +93,13 @@
                                     </div>
                                     @endif
                                 </div>
+
+
+                                <span>
+                                    <i class="icon-truck"></i> Bugün <b>({{$Count}})</b> kişi baktı<br>
+                                    <i class="icon-eye"></i> Aynı gün kargoda<br>
+                                    <i class="icon-info-circle"></i> Güvenli Ödeme
+                                </span>
 
                                 <div class="product-content">
                                     {!! $Detay->short  !!}

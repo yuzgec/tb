@@ -108,7 +108,7 @@
                                         <a href="tel:123456789">0 212 222 22 22</a>
                                     </div>
                                     <div>
-                                        <a href="{{ route('kargosorgulama') }}" title="Kargo Sorgulama">
+                                        <a href="https://kargotakip.sendeo.com.tr/kargo-takip-popup" target="_blank" title="Kargo Sorgulama">
                                             <img src="https://www.sendeo.com.tr/Assets/image/header/sendeo_logo_full.svg" alt="sendeo_logo_full"  width="200px">
                                         </a>
                                     </div>
@@ -154,7 +154,7 @@
                             <li><a href="#">Giriş Yap</a></li>
                             <li><a href="{{ route('sepet') }}">Sepetim</a></li>
                             <li><a href="#">Favorilerim</a></li>
-                            <li><a href="{{ route('kargosorgulama') }}">Kargo Takip</a></li>
+                            <li><a href="https://kargotakip.sendeo.com.tr/kargo-takip-popup" target="_blank">Kargo Takip</a></li>
                             <li><a href="#">Yardım</a></li>
                         </ul>
                     </div>

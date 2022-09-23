@@ -1,3 +1,11 @@
+<div class="notification" style="background-image: url(/frontend/assets/images/notification-back.jpg)">
+    <div class="notify-content">
+        <h3>TB KİTAP 2. EL ONLİNE KİTAP SATIŞ SİTESİ. 200₺ ÜZERİ ALIŞVERİŞLERİNİZDE ÜCRETSİZ KARGO</h3>
+    </div>
+    <div class="notify-action">
+        <a href="#"><i class="icon-close"></i></a>
+    </div>
+</div>
 <header class="header header-2 header-intro-clearance">
 
     <div class="header-middle">
@@ -34,12 +42,37 @@
                 <a href="{{ route('detayliarama') }}"><span class="ml-2">Detaylı&nbsp;Arama</span></a>
 
                 <div class="account">
+                    @if(@auth()->user()->is_admin == 0)
+                    <a href="{{ route('home') }}" title="Hesabım">
+                        <div class="icon">
+                            <i class="icon-user"></i>
+                        </div>
+                        <p>Hesabım </p>
+                    </a>
+                    @elseif(@auth()->user()->is_admin == 1)
+
                     <a href="{{ route('go') }}" title="Hesabım">
                         <div class="icon">
                             <i class="icon-user"></i>
                         </div>
-                        <p>Hesabım</p>
+                        <p>Yönetim</p>
                     </a>
+                    @else
+                        <a href="{{ route('login') }}" title="Hesabım">
+                            <div class="icon">
+                                <i class="icon-user"></i>
+                            </div>
+                            <p>Giriş&nbsp;Yap</p>
+                        </a>
+                        <div class="wishlist">
+                        <a href="{{ route('register') }}" title="Hesabım">
+                            <div class="icon">
+                                <i class="icon-user"></i>
+                            </div>
+                            <p>Üye&nbsp;Ol</p>
+                        </a>
+                        </div>
+                    @endif
                 </div>
 
                 <div class="wishlist">

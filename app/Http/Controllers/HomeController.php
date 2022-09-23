@@ -42,7 +42,7 @@ class HomeController extends Controller
         return view('frontend.index', compact('Products','Slider', 'Product_Categories', 'Pivot'));
     }
     public function urun($url){
-        $Detay = Product::withCount('getPublisher')->with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
+        $Detay = Product::withCount('getPublisher')->withCount('getAuthor')->with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
             ->where('sku', \request('urunno'))
             ->firstOrFail();
         //dd($Detay);
@@ -79,10 +79,9 @@ class HomeController extends Controller
         SEOTools::opengraph()->setUrl(url()->current());
         SEOTools::setCanonical(route('urun', $Detay->slug));
         SEOTools::opengraph()->addProperty('type', 'category');
-
         SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
-
-        $ProductList = Product::join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
+        $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
+             ->join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
             ->join('product_categories', 'product_categories.id', '=', 'product_category_pivots.category_id')
             ->where('product_category_pivots.category_id', '=', $Detay->id)
             ->where('products.status', '=', 1)
@@ -91,19 +90,6 @@ class HomeController extends Controller
             ->orderBy('products.rank','ASC')->paginate(9);
         //dd($Pro);
         return view('frontend.category.index', compact('Detay', 'ProductList'));
-    }
-    public function yazar($slug){
-        $Detay = Author::where('slug', $slug)->first();
-        SEOTools::setTitle($Detay->title."'a ait kitaplar");
-        SEOTools::setDescription($Detay->seo_desc);
-        SEOTools::opengraph()->setUrl(url()->current());
-        SEOTools::setCanonical(route('urun', $Detay->slug));
-        SEOTools::opengraph()->addProperty('type', 'product');
-        SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
-
-
-
-        return view('frontend.author.index', compact('Detay'));
     }
     public function yayinevi($slug){
         $Detay = Publisher::where('slug', $slug)->first();
@@ -138,8 +124,6 @@ class HomeController extends Controller
         }
         return view('frontend.shop.siparis');
     }
-
-
     public function odeme(Request $gelen)
     {
 
@@ -223,7 +207,6 @@ class HomeController extends Controller
         $form = CheckoutFormInitialize::create($request, $options);
         return view('frontend.shop.odeme', compact('form', 'gelen'));
     }
-
     public function odemesonuc(Request $gelen)
     {
 
@@ -279,7 +262,6 @@ class HomeController extends Controller
             return redirect()->route('basarisiz',['no' => $payment->getErrorCode()]);
         }
     }
-
     public function sonuc(){
         $Summary  = Order::where('cart_id',request('no') )->get();
         $Customer = ShopCart::where('cart_id',request('no'))->firstOrFail();
@@ -411,6 +393,24 @@ class HomeController extends Controller
         SEOTools::setCanonical(route('yazarlar'));
         SEOTools::opengraph()->addProperty('type', 'page');
         return view('frontend.author.all', compact('All', 'Alfabe'));
+    }
+    public function yazar($slug){
+
+        $Detay = Author::where('slug', $slug)->first();
+        SEOTools::setTitle($Detay->title."'a ait kitaplar");
+        SEOTools::setDescription($Detay->seo_desc);
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::setCanonical(route('urun', $Detay->slug));
+        SEOTools::opengraph()->addProperty('type', 'product');
+        SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
+
+        $Books = Product::with('getAuthor', function ($query) use ($Detay){
+            return $query->where('id', $Detay->id)->get();
+        });
+
+        dd($Books);
+
+        return view('frontend.author.index', compact('Detay'));
     }
     public function mailsubcribes(MailRequest $request){
         MailSubcribes::create(['email_address' => $request->email, 'ip_address' => $request->ip()]);
