@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
 
@@ -10,8 +11,12 @@ class PublisherController extends Controller
 
     public function index()
     {
-        $All = Publisher::orderBy('rank')->paginate(30);
-        //dd($All);
+        if (request()->filled('q')){
+            $All =  Publisher::where('title', 'like', '%'. request('q'). '%')
+                ->orWhere('slug', 'like', '%'. request('q'). '%')->paginate(30);
+        }else{
+            $All = Publisher::orderBy('rank')->paginate(30);
+        }
         return view('backend.publisher.index', compact('All'));
     }
 

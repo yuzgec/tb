@@ -13,7 +13,12 @@ class AuthorController extends Controller
 {
     public function index()
     {
-        $All = Author::orderBy('rank')->paginate(30);
+        if (request()->filled('q')){
+            $All =  Author::where('title', 'like', '%'. request('q'). '%')
+                ->orWhere('slug', 'like', '%'. request('q'). '%')->paginate(30);
+        }else{
+            $All = Author::orderBy('rank')->paginate(30);
+        }
         return view('backend.author.index', compact('All'));
     }
 

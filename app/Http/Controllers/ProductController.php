@@ -20,8 +20,15 @@ class ProductController extends Controller
 {
     public function index()
     {
+        if (request()->filled('q')){
+            $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])
+                ->where('title', 'like', '%'. request('q'). '%')
+                ->orWhere('slug', 'like', '%'. request('q'). '%')
+                ->orderBy('rank')
+                ->paginate(30);
+        }else{
         $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])->orderBy('rank')->paginate(30);
-        //dd($All);
+        }
         return view('backend.product.index', compact('All'));
     }
 
