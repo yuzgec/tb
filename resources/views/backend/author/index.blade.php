@@ -103,7 +103,7 @@
                         <div class="row">
                             <div class="d-flex justify-content-between">
 
-                                <div class="col-12 col-md-9">{{ $All->appends(['siralama' => 'author'])->links() }}</div>
+                                <div class="col-12 col-md-9">{{ $All->appends(['siralama' => 'author', 'q' => request('q')])->links() }}</div>
                                 <form method="get">
                                     <div class="input-icon mb-3">
                                         <input type="text" value="{{ request('q') }}" name="q" class="form-control" placeholder="Arama…">
