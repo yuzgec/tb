@@ -1,11 +1,6 @@
 @extends('frontend.layout.app')
 @section('title', 'Siparişi Tamamla | '.config('app.name'))
 @section('content')
-    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
-        <div class="container">
-            <h1 class="page-title">Ödeme<span>TB Kitap</span></h1>
-        </div>
-    </div>
 
     <div class="page-content">
         <div class="checkout">

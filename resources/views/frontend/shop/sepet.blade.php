@@ -1,11 +1,6 @@
 @extends('frontend.layout.app')
 @section('title', 'Sepetim  | '.config('app.name'))
 @section('content')
-    <div class="page-header text-center" style="background-image: url('/frontend/assets/images/page-header-bg.jpg')">
-        <div class="container">
-            <h1 class="page-title">Sepetim<span>TB Kitap</span></h1>
-        </div>
-    </div>
     <nav aria-label="breadcrumb" class="breadcrumb-nav">
         <div class="container">
             <ol class="breadcrumb">

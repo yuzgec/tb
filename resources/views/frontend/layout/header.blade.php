@@ -30,16 +30,13 @@
                             <input type="search" class="form-control" name="q" id="q" placeholder="Ürün Ara ..." required>
                             <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
                         </div>
-
                     </form>
-
                 </div>
-
             </div>
 
             <div class="header-right">
 
-                <a href="{{ route('detayliarama') }}"><span class="ml-2">Detaylı&nbsp;Arama</span></a>
+                <a href="{{ route('detayliarama') }}"><span class="ml-2  d-none d-lg-block">Detaylı&nbsp;Arama</span></a>
 
                 <div class="account">
                     @if(@auth()->user()->is_admin == 0)
@@ -75,7 +72,7 @@
                     @endif
                 </div>
 
-                <div class="wishlist">
+                <div class="wishlist d-none d-lg-block">
                     <a href="/" title="Wishlist">
                         <div class="icon">
                             <i class="icon-heart-o"></i>

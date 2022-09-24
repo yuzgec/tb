@@ -117,7 +117,7 @@
                                     </div>
                                     @endif--}}
                                     @if($Detay->condition)
-                                    <div class="d-flex">
+                                    <div class="d-flex" style="margin-top:-10px">
                                         <div>Kondisyon : </div>
                                           <div class="ratings-container align-items-center justify-content-center"
                                                style="margin-top:5px">
@@ -133,12 +133,11 @@
                                     @endif
                                 </div>
 
-
-                                <span>
+                                <div style="margin-top:-30px">
                                     <i class="icon-truck"></i> Bugün <b>({{$Count+1}})</b> kişi baktı<br>
                                     <i class="icon-eye"></i> Aynı gün kargoda<br>
                                     <i class="icon-info-circle"></i> Güvenli Ödeme
-                                </span>
+                                </div>
 
                                 <div class="product-content">
                                     {!! $Detay->short  !!}
@@ -150,13 +149,12 @@
                                     <input type="hidden" name="qty" value="1">
 
                                     <div class="product-details-action">
-                                        <button type="submit" class="btn btn-warning mr-2">
-                                            <span>Sepete Ekle</span>
+                                        <button type="submit" class="btn btn-primary btn-rounded btn-shadow btn-block">
+                                            <span><i class="icon-shopping-cart"></i> Sepete Ekle</span>
                                         </button>
-                                        <a href="#" class="btn btn-success">
-                                            <span>Şimdi Satın Al</span>
-                                        </a>
-
+                                            <a href="#" class="btn btn-outline-dark-1 btn-block">
+                                                <span> Şimdi Satın Al</span>
+                                            </a>
                                     </div>
 
                                     <div class="product-details-action">
