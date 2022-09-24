@@ -135,7 +135,7 @@
 
 
                                 <span>
-                                    <i class="icon-truck"></i> Bugün <b>({{$Count}})</b> kişi baktı<br>
+                                    <i class="icon-truck"></i> Bugün <b>({{$Count+1}})</b> kişi baktı<br>
                                     <i class="icon-eye"></i> Aynı gün kargoda<br>
                                     <i class="icon-info-circle"></i> Güvenli Ödeme
                                 </span>
