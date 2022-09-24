@@ -412,13 +412,11 @@ class HomeController extends Controller
         SEOTools::opengraph()->addProperty('type', 'product');
         SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
 
-        $Books = Product::with('getAuthor', function ($query) use ($Detay){
-            return $query->where('id', $Detay->id)->get();
-        });
+        $Books = Product::whereHas('getAuthor', function ($query) use ($Detay){
+            return $query->where('author_id', $Detay->id);
+        })->get();
 
-        dd($Books);
-
-        return view('frontend.author.index', compact('Detay'));
+        return view('frontend.author.index', compact('Detay', 'Books'));
     }
     public function mailsubcribes(MailRequest $request){
         MailSubcribes::create(['email_address' => $request->email, 'ip_address' => $request->ip()]);
