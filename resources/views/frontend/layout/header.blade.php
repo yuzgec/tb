@@ -1,9 +1,9 @@
-<div class="notification" style="background-image: url(/frontend/assets/images/notification-back.jpg)">
+<div class="notification text-center" style="background-image: url(/frontend/assets/images/notification-back.jpg)">
     <div class="notify-content">
         <h3>TB KİTAP 2. EL ONLİNE KİTAP SATIŞ SİTESİ. 200₺ ÜZERİ ALIŞVERİŞLERİNİZDE ÜCRETSİZ KARGO</h3>
     </div>
     <div class="notify-action">
-        <a href="#"><i class="icon-close"></i></a>
+        <a href="#"><i class="icon-close  d-none d-lg-block"></i></a>
     </div>
 </div>
 <header class="header header-2 header-intro-clearance">
@@ -36,7 +36,7 @@
 
             <div class="header-right">
 
-                <a href="{{ route('detayliarama') }}"><span class="ml-2  d-none d-lg-block">Detaylı&nbsp;Arama</span></a>
+                <a href="{{ route('detayliarama') }}"><span class="ml-2 d-none d-lg-block">Detaylı&nbsp;Arama</span></a>
 
                 <div class="account">
                     @if(@auth()->user()->is_admin == 0)
@@ -48,21 +48,21 @@
                     </a>
                     @elseif(@auth()->user()->is_admin == 1)
 
-                    <a href="{{ route('go') }}" title="Hesabım">
+                    <a href="{{ route('go') }}" title="Admin">
                         <div class="icon">
                             <i class="icon-user"></i>
                         </div>
                         <p>Yönetim</p>
                     </a>
                     @else
-                        <a href="{{ route('login') }}" title="Hesabım">
+                        <a href="{{ route('login') }}" title="Giriş Yap">
                             <div class="icon">
                                 <i class="icon-user"></i>
                             </div>
                             <p>Giriş&nbsp;Yap</p>
                         </a>
                         <div class="wishlist">
-                        <a href="{{ route('register') }}" title="Hesabım">
+                        <a href="{{ route('register') }}" title="Kayıt Ol">
                             <div class="icon">
                                 <i class="icon-user"></i>
                             </div>
@@ -72,9 +72,9 @@
                     @endif
                 </div>
 
-                <div class="wishlist d-none d-lg-block">
-                    <a href="/" title="Wishlist">
-                        <div class="icon">
+                <div class="wishlist">
+                    <a href="/" title="Wishlist" class="">
+                        <div class="icon ">
                             <i class="icon-heart-o"></i>
                             <span class="wishlist-count badge">3</span>
                         </div>
@@ -144,11 +144,11 @@
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
                         @foreach($Product_Categories->where('parent_id' , 0) as $item)
-                        <li><a href="{{ route('kategori', $item->slug) }}" class="">{{ $item->title }}</a>
+                        <li><a href="{{ route('kategori', [$item->slug, 'id' => $item->id]) }}" class="">{{ $item->title }}</a>
                             @if($Product_Categories->where('parent_id' , $item->id)->count() > 0)
                             <ul style="display: none;">
                                 @foreach($Product_Categories->where('parent_id' , $item->id) as $itemm)
-                                    <li><a href="{{ route('kategori', [$item->slug, $itemm->slug]) }}">{{ $itemm->title }}</a></li>
+                                    <li><a href="{{ route('kategori', [$item->slug, $itemm->slug,'id' => $item->id]) }}">{{ $itemm->title }}</a></li>
                                 @endforeach
                             </ul>
                             @endif
@@ -161,10 +161,7 @@
                     <span class="sr-only">Toggle mobile menu</span>
                     <i class="icon-bars"></i>
                 </button>
-            </div><!-- End .header-left -->
-
-
-        </div><!-- End .container -->
-    </div><!-- End .header-bottom -->
-
+            </div>
+        </div>
+    </div>
 </header>

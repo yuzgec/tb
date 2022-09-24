@@ -7,7 +7,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Anasayfa</a></li>
                 @foreach($Category as $item)
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ $item->title }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('kategori', $item->slug) }}">{{ $item->title }}</a></li>
                 @endforeach
                 <li class="breadcrumb-item active" aria-current="page">{{ $Detay->title }}</li>
             </ol>
@@ -19,11 +19,8 @@
             <div class="row">
                     <div class="col-lg-9">
                         <div class="product-details-top">
-
                             <div class="row">
-
                                 <div class="col-md-6">
-
                                     <div class="product-gallery">
                                         <figure class="product-main-image">
                                             <span class="product-label label-sale">İndirim</span>
@@ -32,12 +29,10 @@
                                                 <i class="icon-arrows"></i>
                                             </a>
                                         </figure>
-
                                         <div id="product-zoom-gallery" class="product-image-gallery max-col-6">
                                             <a class="product-gallery-item active" href="#" data-image="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="{{$Detay->getFirstMediaUrl('page', 'img')}}">
                                                 <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $Detay->title }} - TB Kitap">
                                             </a>
-
                                             @foreach($Detay->getMedia('gallery') as $item)
                                                 <a class="product-gallery-item" href="#" data-image="{{ $item->getUrl('thumb') }}" data-zoom-image="{{ $item->getUrl('img') }}">
                                                     <img src="{{ $item->getUrl('small') }}" alt="{{ $Detay->title }} - TB Kitap">
@@ -50,7 +45,6 @@
                                 <div class="col-md-6">
                                     <div class="product-details ">
                                     <h1 class="product-title">{{ $Detay->title }}</h1>
-
                                     <div class="product-price">
                                         <span class="new-price">{{ money($Detay->price) }}₺</span>
                                         @if($Detay->old_price)
@@ -59,13 +53,9 @@
                                             %{{ abs(round( $Detay->price * 100 /$Detay->old_price - 100)) }} indirim
                                         </p>
                                         @endif
-
                                     </div>
-
                                 <div class="product-content" >
-
                                     <table class="table table-striped table-hover table-sm table-bordered">
-
                                         <tbody>
                                             @foreach($Author as $item)
                                             <tr>
@@ -73,7 +63,6 @@
                                                 <td><a href="{{ route('yazar', $item->slug) }}" class="ml-3" title="{{ $item->title }}"> {{ $item->title }}</a></td>
                                             </tr>
                                             @endforeach
-
                                             @if($Detay->getTranslator)
                                             <tr>
                                                 <td><b>Çevirmen</b></td>

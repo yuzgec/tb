@@ -81,7 +81,7 @@ class HomeController extends Controller
     }
     public function kategori($url){
 
-        $Detay = ProductCategory::where('slug', $url)->select('id','title','slug')->first();
+        $Detay = ProductCategory::where('id', \request('id'))->select('id','title','slug')->first();
         SEOTools::setTitle($Detay->title);
         SEOTools::setDescription($Detay->seo_desc);
         SEOTools::opengraph()->setUrl(url()->current());
@@ -91,8 +91,8 @@ class HomeController extends Controller
         $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
              ->join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
             ->join('product_categories', 'product_categories.id', '=', 'product_category_pivots.category_id')
-            ->where('product_category_pivots.category_id', '=', $Detay->id)
-            ->where('products.status', '=', 1)
+            ->where('product_category_pivots.category_id',  $Detay->id)
+            ->where('products.status', 1)
             ->where(['category_id' => $Detay->id])
             ->select('products.id','products.title','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
             ->orderBy('products.rank','ASC')->paginate(9);
