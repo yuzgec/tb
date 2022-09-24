@@ -60,11 +60,11 @@
                             </div>
 
                             <label>Sipariş Notunuz</label>
-                            <textarea class="form-control" cols="30" rows="4" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+                            <textarea class="form-control" cols="30" rows="4" placeholder="Varsa sipariş ile ilgili notunuz"></textarea>
                         </div>
                         <aside class="col-lg-3 mt-3">
                             <div class="summary">
-                                <h3 class="summary-title">Sepetiniz</h3><!-- End .summary-title -->
+                                <h3 class="summary-title">Sepetiniz</h3>
 
                                 <table class="table table-summary">
                                     <thead>
@@ -85,7 +85,7 @@
                                     <tr class="summary-subtotal">
                                         <td>Ara Toplam:</td>
                                         <td>{{ money(Cart::subtotal()) }}₺</td>
-                                    </tr><!-- End .summary-subtotal -->
+                                    </tr>
                                     <tr>
                                         <td>Kargo Ücreti:</td>
                                         <td>{{ cargo(Cart::total()) }}</td>
@@ -105,21 +105,21 @@
                                                     Kredi Kartı İle Ödeme
                                                 </a>
                                             </h2>
-                                        </div><!-- End .card-header -->
+                                        </div>
                                         <div id="collapse-1" class="collapse show" aria-labelledby="heading-1" data-parent="#accordion-payment">
                                             <div class="card-body">
                                                 Ödemelerinizi IYZICO ödeme alt yapısı ile güvenli bir şekilde yapabilirsiniz.
-                                            </div><!-- End .card-body -->
-                                        </div><!-- End .collapse -->
-                                    </div><!-- End .card -->
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                </div><!-- End .accordion -->
+                                </div>
 
                                 <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
                                     <span class="btn-text">Ödeme Yap</span>
                                     <span class="btn-hover-text">Ödeme Yap</span>
                                 </button>
-                            </div><!-- End .summary -->
+                            </div>
                         </aside>
                     </div>
                 </form>

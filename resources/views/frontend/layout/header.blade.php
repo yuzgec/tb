@@ -39,20 +39,12 @@
                 <a href="{{ route('detayliarama') }}"><span class="ml-2 d-none d-lg-block">Detaylı&nbsp;Arama</span></a>
 
                 <div class="account">
-                    @if(@auth()->user()->is_admin == 0)
+                    @if(@auth()->user())
                     <a href="{{ route('home') }}" title="Hesabım">
                         <div class="icon">
                             <i class="icon-user"></i>
                         </div>
-                        <p>Hesabım </p>
-                    </a>
-                    @elseif(@auth()->user()->is_admin == 1)
-
-                    <a href="{{ route('go') }}" title="Admin">
-                        <div class="icon">
-                            <i class="icon-user"></i>
-                        </div>
-                        <p>Yönetim</p>
+                        <p>Hesabım</p>
                     </a>
                     @else
                         <a href="{{ route('login') }}" title="Giriş Yap">
@@ -64,7 +56,7 @@
                         <div class="wishlist">
                         <a href="{{ route('register') }}" title="Kayıt Ol">
                             <div class="icon">
-                                <i class="icon-user"></i>
+                                <i class="icon-user-plus"></i>
                             </div>
                             <p>Üye&nbsp;Ol</p>
                         </a>

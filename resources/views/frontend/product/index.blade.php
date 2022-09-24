@@ -141,7 +141,7 @@
                                         <button type="submit" class="btn btn-primary btn-rounded btn-shadow btn-block">
                                             <span><i class="icon-shopping-cart"></i> Sepete Ekle</span>
                                         </button>
-                                            <a href="#" class="btn btn-outline-dark-1 btn-block">
+                                            <a href="{{ route('siparis') }}" class="btn btn-outline-dark-1 btn-block">
                                                 <span> Şimdi Satın Al</span>
                                             </a>
                                     </div>
