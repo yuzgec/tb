@@ -96,7 +96,7 @@
                                                 <ul style="display: none;">
                                                     @foreach($Product_Categories->where('parent_id' , $item->id) as $itemm)
                                                         <li>
-                                                            <a href="{{ route('kategori',  [$item->slug, $itemm->slug,'id' => $item->id]) }}"
+                                                            <a href="{{ route('kategori',  [$item->slug, $itemm->slug,'id' => $itemm->id]) }}"
                                                                class="text-dark">{{ $itemm->title }}
                                                             </a>
                                                         </li>
