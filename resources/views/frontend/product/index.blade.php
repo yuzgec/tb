@@ -7,7 +7,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Anasayfa</a></li>
                 @foreach($Category as $item)
-                    <li class="breadcrumb-item"><a href="{{ route('kategori', $item->slug) }}">{{ $item->title }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('kategori', [$item->slug, 'id' => $item->id]) }}">{{ $item->title }}</a></li>
                 @endforeach
                 <li class="breadcrumb-item active" aria-current="page">{{ $Detay->title }}</li>
             </ol>
