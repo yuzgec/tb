@@ -45,15 +45,22 @@ class HomeController extends Controller
         $Detay = Product::withCount('getPublisher')->withCount('getAuthor')->with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
             ->where('sku', \request('urunno'))
             ->firstOrFail();
-        //dd($Detay);
 
-        $author = [];
+
+        //dd($Detay->getCategory);
+
         foreach ($Detay->getAuthor as $item){
             $author[] = $item->author_id;
         }
-
         $Author = Author::select('title', 'slug', 'id','desc')->whereIn('id',$author)->get();
 
+        $cat = [];
+        foreach ($Detay->getCategory as $item){
+            $cat[] = $item->category_id;
+        }
+
+        $Category = ProductCategory::select('title', 'slug', 'id','desc')->whereIn('id',$cat)->get();
+        //dd($Category);
         SEOTools::setTitle($Detay->title);
         SEOTools::setDescription($Detay->seo_desc);
         SEOTools::opengraph()->setUrl(url()->current());
@@ -64,12 +71,13 @@ class HomeController extends Controller
         views($Detay)->cooldown(60)->record();
         $Count = views($Detay)->unique()->period(Period::create(Carbon::today()))->count();
 
-        $Productssss = Product::with('getCategory')->where('status', 1)->whereHas('getCategory', function ($query) use ($Detay){
-            $query->where('category_id','=',$Detay->getCategory->category_id);
+        $Productssss = Product::with('getCategory')->where('status', 1)
+            ->whereHas('getCategory', function ($query) use ($Detay, $cat){
+            $query->whereIn('category_id',$cat)->whereNotIn('product_id',[$Detay->id]);
         })->orderBy('rank','ASC')->get();
         $Pivot = \App\Models\ProductCategoryPivot::with('productCategory')->get();
 
-        return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author', 'Pivot'));
+        return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author', 'Pivot', 'Category'));
     }
     public function kategori($url){
 

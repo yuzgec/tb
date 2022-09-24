@@ -5,7 +5,10 @@
     <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
         <div class="container d-flex align-items-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}l">Anasayfa</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Anasayfa</a></li>
+                @foreach($Category as $item)
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ $item->title }}</a></li>
+                @endforeach
                 <li class="breadcrumb-item active" aria-current="page">{{ $Detay->title }}</li>
             </ol>
         </div>
@@ -32,12 +35,12 @@
 
                                         <div id="product-zoom-gallery" class="product-image-gallery max-col-6">
                                             <a class="product-gallery-item active" href="#" data-image="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="{{$Detay->getFirstMediaUrl('page', 'img')}}">
-                                                <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="product side">
+                                                <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $Detay->title }} - TB Kitap">
                                             </a>
 
                                             @foreach($Detay->getMedia('gallery') as $item)
                                                 <a class="product-gallery-item" href="#" data-image="{{ $item->getUrl('thumb') }}" data-zoom-image="{{ $item->getUrl('img') }}">
-                                                    <img src="{{ $item->getUrl('small') }}" alt="{{ $Detay->title }}">
+                                                    <img src="{{ $item->getUrl('small') }}" alt="{{ $Detay->title }} - TB Kitap">
                                                 </a>
                                             @endforeach
                                         </div>
@@ -60,7 +63,43 @@
                                     </div>
 
                                 <div class="product-content" >
-                                    <div>
+
+                                    <table class="table table-striped table-hover table-sm table-bordered">
+
+                                        <tbody>
+                                            @foreach($Author as $item)
+                                            <tr>
+                                                <td style="width:25%"><b  class="ml-3">Yazar</b></td>
+                                                <td><a href="{{ route('yazar', $item->slug) }}" class="ml-3" title="{{ $item->title }}"> {{ $item->title }}</a></td>
+                                            </tr>
+                                            @endforeach
+
+                                            @if($Detay->getTranslator)
+                                            <tr>
+                                                <td><b>Çevirmen</b></td>
+                                                <td><span class="ml-3">{{ $Detay->getTranslator->title }}</span></td>
+                                            </tr>
+                                            @endif
+                                            @if($Detay->getLanguage)
+                                            <tr>
+                                                <td style="width:25%"><b  class="ml-3">Dili</b></td>
+                                                <td><span class="ml-3">{{ $Detay->getLanguage->title }}</span></td>
+                                            </tr>
+                                            @endif
+                                            @if($Detay->getPublisher)
+                                                <tr>
+                                                    <td style="width:25%"><b  class="ml-3">Yayınevi</b></td>
+                                                    <td><a href="{{ route('yayinevi', $Detay->getPublisher->slug) }}" class="ml-3"
+                                                           title="({{$Detay->get_publisher_count}}) adet kitap bulunmaktadır.">
+                                                            {{ $Detay->getPublisher->title }} ({{$Detay->get_publisher_count}})
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        </tbody>
+                                    </table>
+
+                                   {{-- <div>
                                         @foreach($Author as $item)
                                             Yazar Adı :<a href="{{ route('yazar', $item->slug) }}" title="{{ $item->title }}"> {{ $item->title }}</a><br>
                                         @endforeach
@@ -76,7 +115,7 @@
                                         <a href="{{ route('yayinevi', $Detay->getPublisher->slug) }}" title="({{$Detay->get_publisher_count}}) adet kitap bulunmaktadır.">
                                             {{ $Detay->getPublisher->title }} ({{$Detay->get_publisher_count}})</a>
                                     </div>
-                                    @endif
+                                    @endif--}}
                                     @if($Detay->condition)
                                     <div class="d-flex">
                                         <div>Kondisyon : </div>
@@ -168,12 +207,12 @@
                                     <div class="product product-sm">
                                         <figure class="product-media">
                                             <a href="{{ route('urun' , $item->slug)}}">
-                                                <img src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'small')}}" alt="Product image" class="product-image">
+                                                <img src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'small')}}" alt="{{ $item->title }} - TB Kitap" class="product-image">
                                             </a>
                                         </figure>
 
                                         <div class="product-body">
-                                            <h5 class="product-title"><a href="{{ route('urun' , $item->slug)}}">{{ $item->title }}</a></h5><!-- End .product-title -->
+                                            <h5 class="product-title"><a href="{{ route('urun' , $item->slug)}}">{{ $item->title }}</a></h5>
                                             <div class="product-price">
                                                 <span class="new-price">{{ money($item->price) }}₺</span>
                                                 @if($item->old_price)

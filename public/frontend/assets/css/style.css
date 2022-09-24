@@ -8007,8 +8007,8 @@ small.form-text {
   .table td {
     padding-left: 0;
     padding-right: 0;
-    padding-top: 1.4rem;
-    padding-bottom: 1.4rem; }
+    padding-top: .5rem;
+    padding-bottom: .5rem; }
   .table td {
     vertical-align: middle; }
 
@@ -11725,8 +11725,7 @@ button:focus {
 /*--------------------- 5.14.Wishlist -------------------- */
 /* Wishlist */
 .table td {
-  padding-top: 3rem;
-  padding-bottom: 3rem; }
+ }
 .table .price-col {
   width: 180px;
   color: #333333;
