@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="bg-light-2 pt-6 pb-5 mb-6 mb-lg-8">
+    <div class="bg-light-2 pt-6 pb-3 mb-3 mb-lg-2 ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
@@ -26,16 +26,17 @@
 
                 <div class="col-lg-4">
                     <div class="about-images">
-                        <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}"
+                        <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" class="img-fluid mb-5">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="bg-white">
 
-    <div class="container mt-15" >
-        <h6 class="">{{ $Detay->title }} ait kitaplar</h6>
+    <div class="container" >
+        <h6>{{ $Detay->title }} ait kitaplar</h6>
 
         <div class="row">
             @foreach($Books as $item)
@@ -72,6 +73,7 @@
 
 
         </div>
+    </div>
     </div>
 
 @endsection
