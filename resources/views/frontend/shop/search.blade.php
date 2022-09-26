@@ -71,44 +71,46 @@
                         </div>
                     </nav>
                 </div>
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade pt-2 show active" id="pills-one-example1" role="tabpanel" aria-labelledby="pills-one-example1-tab" data-target-group="groups">
-                        <ul class="row list-unstyled products-group no-gutters">
-                            @foreach($Result as $item)
-                                <li class="col-6 col-md-4 product-item">
-                                    <div class="product-item__outer h-100">
-                                        <div class="product-item__inner px-xl-4 p-3 border border-width-1 border-purple borders-radius-5">
-                                            <div class="product-item__body pb-xl-2">
-                                                <h5 class="mb-1 product-item__title">
-                                                    <a href="{{ route('urun', $item->slug) }}" class="text-gray-60 font-weight-bold" title="{{ $item->title }}"> {{ $item->title }}</a>
-                                                </h5>
-                                                <div class="mb-2">
-                                                    <a href="{{ route('urun', $item->slug) }}" class="d-block text-center" title="{{ $item->title }}">
-                                                        <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/frontend/resimyok.jpg': $item->getFirstMediaUrl('page','thumb')}}" alt="{{ $item->title }}">
-                                                    </a>
-                                                </div>
-                                                <div class="flex-center-between mb-1">
-                                                    <div class="prodcut-price d-flex align-items-center flex-wrap position-relative">
-                                                        <ins class="font-size-20 text-black text-decoration-none mr-2 font-weight-bold">{{ money($item->price) }}₺ - <del class="font-size-1">{{ money($item->old_price) }}</del></ins>
-                                                    </div>
-                                                    <div class="d-none d-xl-block prodcut-add-cart">
-                                                        <a href="{{ route('urun', $item->slug) }}" class="btn px-2 btn-sm transition-3d-hover">
-                                                            <i class="ec ec-add-to-cart mr-2 font-size-16"></i>İncele
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
 
+
+                    <div class="container">
+                        <div class="row">
+
+                            @foreach($Result as $item)
+                                <div class="col-6 col-md-3">
+                                    <div class="product product-2 text-center">
+                                        <span class="product-label label-circle label-new">Yeni</span>
+
+                                        <figure class="product-media">
+                                            <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
+                                                <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $item->title }}">
+                                            </a>
+
+                                            <div class="product-action-vertical">
+                                                <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+                                            </div>
+                                        </figure>
+
+                                        <div class="product-body">
+                                            <h3 class="product-title"><a href="{{ route('urun' , $item->slug)}}">{{ $item->title }}</a></h3>
+                                            <div class="product-price">
+                                                {{ $item->price }}₺
+                                            </div>
+                                        </div>
+                                        <div class="product-action">
+                                            <a href="{{ route('urun' , $item->slug)}}"
+                                               title="{{ $item->title }}"
+                                               class="btn-product btn-cart">
+                                                <span>Sepete Ekle</span>
+                                            </a>
                                         </div>
                                     </div>
-                                </li>
+                                </div>
                             @endforeach
-                        </ul>
-                    <div class="d-flex justify-content-center align-items-center text-center">
-                        {{ $Result->appends(['sirala' => 'arama'])->links() }}
+
+
+                        </div>
                     </div>
-                </div>
-            </div>
 
             </div>
         </div>

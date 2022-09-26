@@ -511,19 +511,21 @@
     <div class="deal-container pt-5 pb-3 mb-5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-9">
+                @foreach($Products->take(1) as $item)
+                <div class="col-lg-12">
                     <div class="deal">
                         <div class="deal-content">
                             <h4>Kampanyalı Kitap</h4>
                             <h2>Günün Fırsatı</h2>
 
-                            <h3 class="product-title"><a href="{{ route('urunler')}}">World Travel (Hardcover) by Anthony Bourdain</a></h3>
+                            <h3 class="product-title">
+                                <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
+                                {{ $item->title }}
+                            </h3>
 
                             <div class="product-price">
-                                <span class="new-price">149.00₺</span>
-                                <span class="old-price">240.00₺</span>
+                                {{ $item->price }}₺
                             </div>
-
                             <div class="deal-countdown" data-until="+10h"></div>
 
                             <a href="{{ route('urunler')}}" class="btn btn-primary">
@@ -531,27 +533,14 @@
                             </a>
                         </div>
                         <div class="deal-image">
-                            <a href="{{ route('urunler')}}">
-                                <img src="https://cdn.shopify.com/s/files/1/0406/2511/1196/products/ACtC-3cyvpQBvoTirf2vy5i2hc-xutdDlprRQpI0CK3Jh4gr819N9ZwrXCurr20AeTnjCo96cFI8AYfqlxEQ4hvIuxwqVQmKxC0Z7285B9koxs7SiiDG47547nBetr7dOsHvArzCSoMaIWJI4Y7XInfpy-SFpQ_s1024-no_900x.jpg?v=1619578820" alt="image">
+                            <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
+                                <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'img')}}" alt="{{ $item->title }}">
                             </a>
                         </div>
                     </div>
                 </div>
+                @endforeach
 
-                <div class="col-lg-3">
-                    <div class="banner banner-overlay banner-overlay-light text-center d-none d-lg-block">
-                        <a href="#">
-                            <img src="/frontend/assets/images/demos/demo-2/banners/banner-5.jpg" alt="Banner">
-                        </a>
-
-                        <div class="banner-content banner-content-top banner-content-center">
-                            <h4 class="banner-subtitle">The Best Choice</h4>
-                            <h3 class="banner-title">AGEN</h3>
-                            <div class="banner-text text-primary">$49.99</div>
-                            <a href="#" class="btn btn-outline-gray banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div><!-- End .bg-light -->

@@ -24,7 +24,7 @@
             <div class="header-center">
                 <div class="header-search header-search-extended header-search-visible header-search-no-radius d-none d-lg-block">
                     <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-                    <form action="#" method="get">
+                    <form action="{{ route('search') }}" method="get">
                         <div class="header-search-wrapper search-wrapper-wide">
                             <label for="q" class="sr-only">Arama</label>
                             <input type="search" class="form-control" name="q" id="q" placeholder="Ürün Ara ..." required>

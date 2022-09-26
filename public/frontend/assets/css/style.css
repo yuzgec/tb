@@ -2186,7 +2186,8 @@ blockquote {
 
 /* Header 2 */
 a {
-  font-family: 'Roboto Slab', serif; }
+  font-weight: bolder;
+}
 
 p {
   margin-bottom: 0;

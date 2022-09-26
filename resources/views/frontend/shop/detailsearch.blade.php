@@ -16,8 +16,6 @@
         </div>
     </div>
 
-
-
     <div class="page-content">
         <div class="container">
             <div class="row mt-3">
@@ -93,14 +91,14 @@
 
                                         @foreach($Product_Categories->where('parent_id' , 0) as $item)
                                             <li>
-                                                <a href="{{ route('kategori', $item->slug) }}" class="text-dark">
+                                                <a href="{{ route('kategori',[$item->slug, 'id' => $item->id]) }}" class="text-dark">
                                                     <i class="icon-angle-right"></i>{{ $item->title }}
                                                 </a>
                                                 @if($Product_Categories->where('parent_id' , 0)->count() > 0)
                                                     <ul style="display: none;">
                                                         @foreach($Product_Categories->where('parent_id' , $item->id) as $itemm)
                                                             <li>
-                                                                <a href="{{ route('kategori', [$item->slug, $itemm->slug]) }}"
+                                                                <a href="{{ route('kategori',  [$item->slug, $itemm->slug,'id' => $itemm->id]) }}"
                                                                    class="text-dark">{{ $itemm->title }}
                                                                 </a>
                                                             </li>

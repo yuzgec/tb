@@ -85,6 +85,10 @@
                                                     </td>
                                                 </tr>
                                             @endif
+                                            <tr>
+                                                <td style="width:25%"><b  class="ml-3">Kitap Kodu</b></td>
+                                                <td><span class="ml-3">{{ $Detay->sku }}</span></td>
+                                            </tr>
                                         </tbody>
                                     </table>
 
@@ -179,15 +183,12 @@
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
 
                     <aside class="col-lg-3">
                         <div class="sidebar sidebar-product">
                             <div class="widget widget-products">
-                                <h4 class="widget-title">Türk Edebiyatı</h4>
+                                <h4 class="widget-title">İlgili Kitaplar</h4>
 
                                 <div class="products">
                                     @foreach($Productssss->take(5) as $item)
