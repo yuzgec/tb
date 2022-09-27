@@ -22,6 +22,7 @@ use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Support\Period;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Artesaos\SEOTools\Facades\SEOTools;
@@ -38,8 +39,6 @@ class HomeController extends Controller
         $Products = Product::with('getCategory')->with([ 'getYear', 'getAuthor', 'getLanguage'])->select('id', 'title', 'price', 'old_price', 'slug','bestselling','status')->where('status',1)->orderBy('rank')->get();
         $Slider = Slider::with('getProduct')->where('status', 1)->get();
         $Pivot = \App\Models\ProductCategoryPivot::with('productCategory')->get();
-
-        //dd($Products);
         return view('frontend.index', compact('Products','Slider', 'Product_Categories', 'Pivot'));
     }
     public function urun($url){
@@ -47,8 +46,11 @@ class HomeController extends Controller
             ->where('sku', \request('urunno'))
             ->firstOrFail();
 
-
-        //dd($Detay->getCategory);
+//        if (!session()->has('lastSeen')) {
+//            session(['lastSeen' => $Detay->id]);
+//        }else{
+//            session()->put(['lastSeen' => $Detay->id]);
+//        }
 
         foreach ($Detay->getAuthor as $item){
             $author[] = $item->author_id;

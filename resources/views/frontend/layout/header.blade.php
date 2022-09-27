@@ -1,6 +1,6 @@
 <div class="notification text-center" style="background-image: url(/frontend/assets/images/notification-back.jpg)">
     <div class="notify-content">
-        <h3>TB KİTAP 2. EL ONLİNE KİTAP SATIŞ SİTESİ. 200₺ ÜZERİ ALIŞVERİŞLERİNİZDE ÜCRETSİZ KARGO</h3>
+        <h3>TB KİTAP İLK BASKI KİTAP KULÜBÜ 200₺ ÜZERİ ALIŞVERİŞLERİNİZDE ÜCRETSİZ KARGO</h3>
     </div>
     <div class="notify-action">
         <a href="#"><i class="icon-close  d-none d-lg-block"></i></a>
@@ -49,14 +49,14 @@
                     @else
                         <a href="{{ route('login') }}" title="Giriş Yap">
                             <div class="icon">
-                                <i class="icon-user"></i>
+                                <i class="icon-"></i>
                             </div>
                             <p>Giriş&nbsp;Yap</p>
                         </a>
                         <div class="wishlist">
                         <a href="{{ route('register') }}" title="Kayıt Ol">
                             <div class="icon">
-                                <i class="icon-user-plus"></i>
+                                <i class="icon-user"></i>
                             </div>
                             <p>Üye&nbsp;Ol</p>
                         </a>
