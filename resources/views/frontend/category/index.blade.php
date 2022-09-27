@@ -88,12 +88,12 @@
                                     @foreach($Product_Categories->where('parent_id' , 0) as $item)
                                     <div class="acc-item">
                                         <h5>
-                                            <a role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+                                            <a role="button" data-toggle="collapse" href="#{{$item->slug}}" aria-expanded="true" aria-controls="collapse-1">
                                                 {{ $item->title }}
                                             </a>
                                         </h5>
                                         @if($Product_Categories->where('parent_id' , 0)->count() > 0)
-                                        <div id="collapse-1" class="collapse {{ (request()->segment(2) == $item->slug) ? 'show' : null  }}" data-parent="#widget-cat-acc">
+                                        <div id="{{$item->slug}}" class="collapse {{ (request()->segment(2) == $item->slug) ? 'show' : null  }}" data-parent="#widget-cat-acc">
                                             <div class="collapse-wrap">
                                                 <ul>
                                                     @foreach($Product_Categories->where('parent_id' , $item->id) as $itemm)
@@ -110,139 +110,58 @@
                                         @endif
                                     </div>
                                     @endforeach
-                    {{--                <div class="acc-item">
-                                        <h5>
-                                            <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
-                                                TV & Video
-                                            </a>
-                                        </h5>
-                                        <div id="collapse-2" class="collapse" data-parent="#widget-cat-acc">
-                                            <div class="collapse-wrap">
-                                                <ul>
-                                                    <li><a href="#">AV Receivers & Amplifiers</a></li>
-                                                    <li><a href="#">Blu-ray Players & Recorders</a></li>
-                                                    <li><a href="#">DVD Players & Recorders</a></li>
-                                                    <li><a href="#">HD DVD Players</a></li>
-                                                    <li><a href="#">Home Theater Systems</a></li>
-                                                    <li><a href="#">Projection Screens</a></li>
-                                                    <li><a href="#">Projectors</a></li>
-                                                    <li><a href="#">Satellite Television</a></li>
-                                                    <li><a href="#">Televisions</a></li>
-                                                    <li><a href="#">TV-DVD Combos</a></li>
-                                                    <li><a href="#">Streaming Media Players</a></li>
-                                                </ul>
-                                            </div><!-- End .collapse-wrap -->
-                                        </div><!-- End .collapse -->
-                                    </div><!-- End .acc-item -->
---}}
-
-                                </div><!-- End .accordion -->
-                            </div><!-- End .widget-body -->
-                        </div><!-- End .widget -->
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="widget">
-                            <h3 class="widget-title">Brands</h3><!-- End .widget-title -->
+                            <h3 class="widget-title">Dİl</h3>
 
                             <div class="widget-body">
-                                <div class="filter-items">
-                                    <div class="filter-item">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="brand-1">
-                                            <label class="custom-control-label" for="brand-1">Next</label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
 
-                                    <div class="filter-item">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="brand-2">
-                                            <label class="custom-control-label" for="brand-2">River Island</label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
+                                <select class="form-control single" data-placeholder="Dİl Seçiniz" name="language">
+                                    <option value="">Dİl Seçiniz</option>
+                                    @foreach($Language as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{  $item->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
-                                    <div class="filter-item">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="brand-3">
-                                            <label class="custom-control-label" for="brand-3">Geox</label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
-
-                                    <div class="filter-item">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="brand-4">
-                                            <label class="custom-control-label" for="brand-4">New Balance</label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
-
-                                    <div class="filter-item">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="brand-5">
-                                            <label class="custom-control-label" for="brand-5">UGG</label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
-
-                                    <div class="filter-item">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="brand-6">
-                                            <label class="custom-control-label" for="brand-6">F&F</label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
-
-                                    <div class="filter-item">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="brand-7">
-                                            <label class="custom-control-label" for="brand-7">Nike</label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
-
-                                </div><!-- End .filter-items -->
-                            </div><!-- End .widget-body -->
-                        </div><!-- End .widget -->
 
                         <div class="widget">
-                            <h3 class="widget-title">Price</h3><!-- End .widget-title -->
-
+                            <h3 class="widget-title">Yayınevi</h3>
                             <div class="widget-body">
-                                <div class="filter-items">
-                                    <div class="filter-item">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="price-1" name="filter-price">
-                                            <label class="custom-control-label" for="price-1">Under $25</label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
-
-                                    <div class="filter-item">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="price-2" name="filter-price">
-                                            <label class="custom-control-label" for="price-2">$25 to $50</label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
-
-                                    <div class="filter-item">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="price-3" name="filter-price">
-                                            <label class="custom-control-label" for="price-3">$50 to $100</label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
-
-                                    <div class="filter-item">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="price-4" name="filter-price">
-                                            <label class="custom-control-label" for="price-4">$100 to $200</label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
-
-                                    <div class="filter-item">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="price-5" name="filter-price">
-                                            <label class="custom-control-label" for="price-5">$200 & Above</label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
-                                </div><!-- End .filter-items -->
-                            </div><!-- End .widget-body -->
-                        </div><!-- End .widget -->
+                                <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="publisher">
+                                    <option value="">Yayınevi Seçiniz</option>
+                                    @foreach($Publisher as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{  $item->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="widget">
-                            <h3 class="widget-title">Customer Rating</h3><!-- End .widget-title -->
+                            <h3 class="widget-title">Basım Yılı</h3>
+                            <div class="widget-body">
+                                <select class="form-control single" data-placeholder="Yıl Seçiniz" name="publisher">
+                                    <option value="">Yıl Seçiniz</option>
+                                    @foreach($Years as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{  $item->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="widget">
+                            <h3 class="widget-title">Kondisyon</h3>
 
                             <div class="widget-body">
                                 <div class="filter-items">
@@ -250,90 +169,99 @@
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="cus-rating-1">
                                             <label class="custom-control-label" for="cus-rating-1">
-                                                        <span class="ratings-container">
-                                                            <span class="ratings">
-                                                                <span class="ratings-val" style="width: 100%;"></span><!-- End .ratings-val -->
-                                                            </span><!-- End .ratings -->
-                                                            <span class="ratings-text">( 24 )</span>
-                                                        </span><!-- End .rating-container -->
+                                                <span class="ratings-container">
+                                                    <span class="ratings">
+                                                        <span class="ratings-val" style="width: 100%;"></span>
+                                                    </span>
+                                                </span>
                                             </label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
+                                        </div>
+                                    </div>
 
                                     <div class="filter-item">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="cus-rating-2">
                                             <label class="custom-control-label" for="cus-rating-2">
-                                                        <span class="ratings-container">
-                                                            <span class="ratings">
-                                                                <span class="ratings-val" style="width: 80%;"></span><!-- End .ratings-val -->
-                                                            </span><!-- End .ratings -->
-                                                            <span class="ratings-text">( 8 )</span>
-                                                        </span><!-- End .rating-container -->
+                                                <span class="ratings-container">
+                                                    <span class="ratings">
+                                                        <span class="ratings-val" style="width: 80%;"></span>
+                                                    </span>
+                                                </span>
                                             </label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
+                                        </div>
+                                    </div>
 
                                     <div class="filter-item">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="cus-rating-3">
                                             <label class="custom-control-label" for="cus-rating-3">
-                                                        <span class="ratings-container">
-                                                            <span class="ratings">
-                                                                <span class="ratings-val" style="width: 60%;"></span><!-- End .ratings-val -->
-                                                            </span><!-- End .ratings -->
-                                                            <span class="ratings-text">( 5 )</span>
-                                                        </span><!-- End .rating-container -->
+                                                <span class="ratings-container">
+                                                    <span class="ratings">
+                                                        <span class="ratings-val" style="width: 60%;"></span>
+                                                    </span>
+                                                </span>
                                             </label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
+                                        </div>
+                                    </div>
 
                                     <div class="filter-item">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="cus-rating-4">
                                             <label class="custom-control-label" for="cus-rating-4">
-                                                        <span class="ratings-container">
-                                                            <span class="ratings">
-                                                                <span class="ratings-val" style="width: 40%;"></span><!-- End .ratings-val -->
-                                                            </span><!-- End .ratings -->
-                                                            <span class="ratings-text">( 1 )</span>
-                                                        </span><!-- End .rating-container -->
+                                                <span class="ratings-container">
+                                                    <span class="ratings">
+                                                        <span class="ratings-val" style="width: 40%;"></span>
+                                                    </span>
+                                                </span>
                                             </label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
+                                        </div>
+                                    </div>
 
                                     <div class="filter-item">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="cus-rating-5">
                                             <label class="custom-control-label" for="cus-rating-5">
-                                                        <span class="ratings-container">
-                                                            <span class="ratings">
-                                                                <span class="ratings-val" style="width: 20%;"></span><!-- End .ratings-val -->
-                                                            </span><!-- End .ratings -->
-                                                            <span class="ratings-text">( 3 )</span>
-                                                        </span><!-- End .rating-container -->
+                                                <span class="ratings-container">
+                                                    <span class="ratings">
+                                                        <span class="ratings-val" style="width: 20%;"></span>
+                                                    </span>
+                                                </span>
                                             </label>
-                                        </div><!-- End .custom-checkbox -->
-                                    </div><!-- End .filter-item -->
+                                        </div>
+                                    </div>
 
-                                </div><!-- End .filter-items -->
-                            </div><!-- End .widget-body -->
-                        </div><!-- End .widget -->
+                                </div>
+                            </div>
+                        </div>
 
 
 
                         <div class="widget widget-banner-sidebar">
-                            <div class="banner-sidebar-title">ad banner 218 x 430px</div><!-- End .ad-title -->
+                            <div class="banner-sidebar-title">ad banner 218 x 430px</div>
 
                             <div class="banner-sidebar banner-overlay">
                                 <a href="#">
                                     <img src="assets/images/demos/demo-13/banners/banner-6.jpg" alt="banner">
                                 </a>
-                            </div><!-- End .banner-ad -->
-                        </div><!-- End .widget -->
-                    </div><!-- End .sidebar sidebar-shop -->
-                </aside><!-- End .col-lg-3 -->
+                            </div>
+                        </div>
+                    </div>
+                </aside>
             </div>
         </div>
     </div>
+@endsection
+@section('customCSS')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="/frontend/assets/css/select2.css" rel="stylesheet" />
+@endsection
+@section('customJS')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.single').select2({
+                theme: "bootstrap"
+            });
+        });
+    </script>
 @endsection

@@ -101,7 +101,13 @@ class HomeController extends Controller
             ->orderBy('products.rank','ASC')->paginate(9);
         //dd($Pro);
 
-        return view('frontend.category.index', compact('Detay', 'ProductList'));
+        $Language = Language::select('id', 'title')->get();
+        $Publisher = Publisher::select('id', 'title')->get();
+        $Translator = Translator::select('id', 'title')->get();
+        $Author = Author::select('id', 'title')->get();
+        $Years = Years::select('id', 'title')->get();
+
+        return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
     }
     public function yayinevi($slug){
         $Detay = Publisher::where('slug', $slug)->first();
@@ -355,7 +361,7 @@ class HomeController extends Controller
         SEOTools::setTitle("Detaylı Arama | Online 2. El Kitap". config('app.name'));
         SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Arama Sayfası');
 
-        $Language = Language::all();
+        $Language = Language::select('id', 'title')->get();
         $Publisher = Publisher::select('id', 'title')->get();
         $Translator = Translator::select('id', 'title')->get();
         $Author = Author::select('id', 'title')->get();
