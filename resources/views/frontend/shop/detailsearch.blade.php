@@ -30,45 +30,84 @@
 
                           <div class="col-md-6 col-12">
                               <label>Kitap Adı</label>
-                              <input class="form-control" name="" type="" placeholder="">
+                              <input class="form-control" name="" type="text" placeholder="">
 
                               <label>Yazar</label>
-                              <input class="form-control" name="" type="" placeholder="">
+                              <select class="form-control" data-placeholder="Çeviren Seçiniz" name="translator">
+                                  <option value="">Yazar Seçiniz</option>
+                                  @foreach($Author as $item)
+                                      <option value="{{ $item->id }}">
+                                          {{  $item->title }}
+                                      </option>
+                                  @endforeach
+                              </select>
 
                               <label>Çeviren</label>
-                              <input class="form-control" name="" type="" placeholder="">
+                              <select class="form-control" data-placeholder="Çeviren Seçiniz" name="translator">
+                                  <option value="">Çeviren Seçiniz</option>
+                                  @foreach($Translator as $item)
+                                      <option value="{{ $item->id }}">
+                                          {{  $item->title }}
+                                      </option>
+                                  @endforeach
+                              </select>
+                              <div class="row">
+
+                                  <div class="col-md-6 col-12">
+                                      <label>Basım Tarihi</label>
+                                      <input class="form-control" name="" type="date" placeholder="">
+                                  </div>
+                                  <div class="col-md-6 col-12">
+                                      <label>&nbsp;</label>
+                                      <input class="form-control" name="" type="date" placeholder="">
+                                  </div>
+                              </div>
+
+                              <div class="row">
+
+                                  <div class="col-md-6 col-12">
+                                      <label>Fiyat Aralığı</label>
+                                      <input class="form-control" name="" type="text" placeholder="">
+                                  </div>
+                                  <div class="col-md-6 col-12">
+                                      <label>&nbsp;</label>
+                                      <input class="form-control" name="" type="text" placeholder="">
+                                  </div>
+                              </div>
+
                           </div>
 
                           <div class="col-md-6 col-12">
                                   <label>Kategori</label>
-                                  <select class="form-control" data-placeholder="Kategori Seçiniz" name="category[]">
+                                  <select class="form-control" data-placeholder="Kategori Seçiniz" name="category">
+                                      <option value="">Kategori Seçiniz</option>
                                       @foreach($Product_Categories as $item)
                                           <option value="{{ $item->id }}">
-                                              {{ ($item->parent_id == 0 ) ? $item->title : '-- '.$item->title }}
+                                              {{ ($item->parent_id == 0 ) ? $item->title : ''.$item->title }}
                                           </option>
                                       @endforeach
                                   </select>
 
                                   <label>Yayınevi</label>
-                                  <select class="form-control" data-placeholder="Kategori Seçiniz" name="category[]">
+                                  <select class="form-control" data-placeholder="Kategori Seçiniz" name="publisher">
+                                  <option value="">Yayınevi Seçiniz</option>
                                       @foreach($Publisher as $item)
                                           <option value="{{ $item->id }}">
-                                              {{ ($item->parent_id == 0 ) ? $item->title : '-- '.$item->title }}
+                                              {{  $item->title }}
                                           </option>
                                       @endforeach
                                   </select>
 
                                   <label>Dil</label>
-                                  <select class="form-control" data-placeholder="Kategori Seçiniz" name="category[]">
-                                      @foreach($Language as $item)
+                                  <select class="form-control" data-placeholder="Kategori Seçiniz" name="language">
+                                  <option value="">Dİl Seçiniz</option>
+                                    @foreach($Language as $item)
                                           <option value="{{ $item->id }}">
-                                              {{ ($item->parent_id == 0 ) ? $item->title : '-- '.$item->title }}
+                                              {{  $item->title }}
                                           </option>
                                       @endforeach
                                   </select>
 
-                                  <label>Çeviren</label>
-                                  <input class="form-control" name="" type="" placeholder="">
                               </div>
                            <div class="col-12 text-center">
                                <button class="btn btn-primary mb-4">Ara</button>

@@ -18,6 +18,7 @@ use App\Models\Publisher;
 use App\Models\Search;
 use App\Models\ShopCart;
 use App\Models\Slider;
+use App\Models\Translator;
 use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Support\Period;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -353,8 +354,10 @@ class HomeController extends Controller
         SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Arama Sayfası');
 
         $Language = Language::all();
-        $Publisher = Publisher::all();
-        return view('frontend.shop.detailsearch', compact('Language', 'Publisher'));
+        $Publisher = Publisher::select('id', 'title')->get();
+        $Translator = Translator::select('id', 'title')->get();
+        $Author = Author::select('id', 'title')->get();
+        return view('frontend.shop.detailsearch', compact('Language', 'Publisher', 'Translator', 'Author'));
     }
     public function hizlisatinal(Request $request){
 
