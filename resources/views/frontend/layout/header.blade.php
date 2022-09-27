@@ -49,7 +49,7 @@
                     @else
                         <a href="{{ route('login') }}" title="Giriş Yap">
                             <div class="icon">
-                                <i class="icon-"></i>
+                                <i class="icon-user"></i>
                             </div>
                             <p>Giriş&nbsp;Yap</p>
                         </a>
@@ -65,10 +65,10 @@
                 </div>
 
                 <div class="wishlist">
-                    <a href="/" title="Wishlist" class="">
+                    <a href="/" title="Wishlist" >
                         <div class="icon ">
                             <i class="icon-heart-o"></i>
-                            <span class="wishlist-count badge">3</span>
+                            <span class="wishlist-count badge">0</span>
                         </div>
                         <p>Favori</p>
                     </a>
@@ -136,7 +136,7 @@
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
                         @foreach($Product_Categories->where('parent_id' , 0) as $item)
-                        <li><a href="{{ route('kategori', [$item->slug, 'id' => $item->id]) }}" class="">{{ $item->title }}</a>
+                        <li><a href="{{ route('kategori', [$item->slug, 'id' => $item->id]) }}" >{{ $item->title }}</a>
                             @if($Product_Categories->where('parent_id' , $item->id)->count() > 0)
                             <ul style="display: none;">
                                 @foreach($Product_Categories->where('parent_id' , $item->id) as $itemm)

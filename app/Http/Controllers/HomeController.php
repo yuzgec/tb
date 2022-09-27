@@ -19,6 +19,7 @@ use App\Models\Search;
 use App\Models\ShopCart;
 use App\Models\Slider;
 use App\Models\Translator;
+use App\Models\Years;
 use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Support\Period;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -357,7 +358,8 @@ class HomeController extends Controller
         $Publisher = Publisher::select('id', 'title')->get();
         $Translator = Translator::select('id', 'title')->get();
         $Author = Author::select('id', 'title')->get();
-        return view('frontend.shop.detailsearch', compact('Language', 'Publisher', 'Translator', 'Author'));
+        $Years = Years::select('id', 'title')->get();
+        return view('frontend.shop.detailsearch', compact('Language', 'Publisher', 'Translator', 'Author', 'Years'));
     }
     public function hizlisatinal(Request $request){
 

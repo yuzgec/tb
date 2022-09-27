@@ -42,9 +42,9 @@
                     </div>
 
                     <div class="products mb-3">
-                        <div class="row justify-content-center">
+                        <div class="row">
                             @foreach($ProductList as $item)
-                            <div class="col-6">
+                            <div class="col-6 col-md-4">
 
                                     <div class="product product-11 text-center">
                                         <span class="product-label label-circle label-new">Yeni</span>
