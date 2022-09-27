@@ -23,8 +23,8 @@
                                 </span>
 
                         <div class="icon-box-content">
-                            <h3 class="icon-box-title"> Ücretsiz Kargo</h3>
-                            <p>99₺ ve üzeri</p>
+                            <h3 class="icon-box-title"> İade Garantisi</h3>
+                            <p>15 gün içerisinde</p>
                         </div>
                     </div>
                 </div>
@@ -36,8 +36,8 @@
                                 </span>
 
                         <div class="icon-box-content">
-                            <h3 class="icon-box-title"> Ücretsiz Kargo</h3>
-                            <p>99₺ ve üzeri</p>
+                            <h3 class="icon-box-title"> Güvenli Ödeme</h3>
+                            <p>256 Bit SSL Sertifikası</p>
                         </div>
                     </div>
                 </div>
@@ -49,8 +49,8 @@
                                 </span>
 
                         <div class="icon-box-content">
-                            <h3 class="icon-box-title"> Ücretsiz Kargo</h3>
-                            <p>99₺ ve üzeri</p>
+                            <h3 class="icon-box-title"> Müşteri Hizmetleri</h3>
+                            <p>Online Destek Sistemi</p>
                         </div>
                     </div>
                 </div>
@@ -60,8 +60,8 @@
     <div class="footer-newsletter bg-image" style="background-image: url(/frontend/assets/images/backgrounds/bg-2.jpg)">
         <div class="container">
             <div class="heading text-center">
-                <h3 class="title">Haber Bülteminize Katılın</h3><!-- End .title -->
-                <p class="title-desc">Sitemize yüklenen kitap ve ürünlerden ilk siz haberdar olun</p><!-- End .title-desc -->
+                <h3 class="title">Haber Bülteminize Katılın</h3>
+                <p class="title-desc">Sitemize yüklenen kitap ve ürünlerden ilk siz haberdar olun</p>
             </div>
 
             <div class="row">
@@ -151,7 +151,7 @@
                     <div class="widget">
                         <h4 class="widget-title">Hesabım</h4>
                         <ul class="widget-list">
-                            <li><a href="#">Giriş Yap</a></li>
+                            <li><a href="{{ route('login') }}">Giriş Yap</a></li>
                             <li><a href="{{ route('sepet') }}">Sepetim</a></li>
                             <li><a href="#">Favorilerim</a></li>
                             <li><a href="https://kargotakip.sendeo.com.tr/kargo-takip-popup" target="_blank">Kargo Takip</a></li>
