@@ -234,17 +234,6 @@
                             </div>
                         </div>
 
-
-
-                        <div class="widget widget-banner-sidebar">
-                            <div class="banner-sidebar-title">ad banner 218 x 430px</div>
-
-                            <div class="banner-sidebar banner-overlay">
-                                <a href="#">
-                                    <img src="assets/images/demos/demo-13/banners/banner-6.jpg" alt="banner">
-                                </a>
-                            </div>
-                        </div>
                     </div>
                 </aside>
             </div>

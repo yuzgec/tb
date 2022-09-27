@@ -138,38 +138,37 @@
                 <aside class="col-lg-3 order-lg-first">
                     <div class="sidebar sidebar-shop">
 
-                        <div class="widget widget-collapsible">
-                            <h3 class="widget-title">
-                                Kategoriler
-                            </h3>
-                            <div class="mobile-menu-light">
+                        <div class="widget widget-categories">
 
-                                <nav class="mobile-nav">
-                                    <ul class="mobile-menu">
-
-                                        @foreach($Product_Categories->where('parent_id' , 0) as $item)
-                                            <li>
-                                                <a href="{{ route('kategori',[$item->slug, 'id' => $item->id]) }}" class="text-dark">
-                                                    <i class="icon-angle-right"></i>{{ $item->title }}
+                            <div class="widget-body">
+                                <div class="accordion" id="widget-cat-acc">
+                                    @foreach($Product_Categories->where('parent_id' , 0) as $item)
+                                        <div class="acc-item">
+                                            <h5>
+                                                <a role="button" data-toggle="collapse" href="#{{$item->slug}}" aria-expanded="true" aria-controls="collapse-1">
+                                                    {{ $item->title }}
                                                 </a>
-                                                @if($Product_Categories->where('parent_id' , 0)->count() > 0)
-                                                    <ul style="display: none;">
-                                                        @foreach($Product_Categories->where('parent_id' , $item->id) as $itemm)
-                                                            <li>
-                                                                <a href="{{ route('kategori',  [$item->slug, $itemm->slug,'id' => $itemm->id]) }}"
-                                                                   class="text-dark">{{ $itemm->title }}
-                                                                </a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                @endif
-                                            </li>
-                                        @endforeach
+                                            </h5>
+                                            @if($Product_Categories->where('parent_id' , 0)->count() > 0)
+                                                <div id="{{$item->slug}}" class="collapse show" data-parent="#widget-cat-acc">
+                                                    <div class="collapse-wrap">
+                                                        <ul>
+                                                            @foreach($Product_Categories->where('parent_id' , $item->id) as $itemm)
 
-                                    </ul>
-                                </nav>
+                                                                <li>
+                                                                    <a href="{{ route('kategori',  [$item->slug, $itemm->slug,'id' => $itemm->id]) }}">
+                                                                        {{ $itemm->title }}
+                                                                    </a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
-
                         </div>
 
                     </div>
