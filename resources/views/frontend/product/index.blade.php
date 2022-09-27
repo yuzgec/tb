@@ -6,10 +6,13 @@
         <div class="container d-flex align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Anasayfa</a></li>
-{{--                @foreach($Category as $item)
-
-                    <li class="breadcrumb-item"><a href="{{ route('kategori', [$item->slug, 'id' => $item->id]) }}">{{ $item->title }}</a></li>
-                @endforeach--}}
+                {{--
+                   @foreach($Category as $item)
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('kategori', [$item->slug, 'id' => $item->id]) }}">{{ $item->title }}</a>
+                        </li>
+                    @endforeach
+                --}}
                 <li class="breadcrumb-item active" aria-current="page">{{ $Detay->title }}</li>
             </ol>
         </div>
@@ -21,6 +24,7 @@
                     <div class="col-lg-9">
                         <div class="product-details-top">
                             <div class="row">
+
                                 <div class="col-md-6">
                                     <div class="product-gallery">
                                         <figure class="product-main-image">
@@ -300,91 +304,91 @@
         </div>
 
             </div>
-{{--            <div class="product-details-tab">
-                <ul class="nav nav-pills justify-content-center" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="product-desc-link" data-toggle="tab" href="#product-desc-tab" role="tab"
-                           aria-controls="product-desc-tab" aria-selected="true">Ürün Açıklaması</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="product-shipping-link" data-toggle="tab"
-                           href="#product-shipping-tab" role="tab" aria-controls="product-shipping-tab" aria-selected="false">Teslimat & İADE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="product-review-link" data-toggle="tab"
-                           href="#product-review-tab" role="tab" aria-controls="product-review-tab" aria-selected="false">Yorumlar (2)</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel" aria-labelledby="product-desc-link">
-                        <div class="product-desc-content">
-                            <h3>Ürün Açıklaması</h3>
-                            {!!  $Detay->desc !!}
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel" aria-labelledby="product-shipping-link">
-                        <div class="product-desc-content">
-                            <h3>Teslimat & İADE</h3>
-                          </div>
-                    </div>
-                    <div class="tab-pane fade" id="product-review-tab" role="tabpanel" aria-labelledby="product-review-link">
-                        <div class="reviews">
-                            <h3>Yorumlar (2)</h3>
-                            <div class="review">
-                                <div class="row no-gutters">
-                                    <div class="col-auto">
-                                        <h4><a href="#">Samanta J.</a></h4>
-                                        <div class="ratings-container">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
+                {{--            <div class="product-details-tab">
+                                <ul class="nav nav-pills justify-content-center" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="product-desc-link" data-toggle="tab" href="#product-desc-tab" role="tab"
+                                           aria-controls="product-desc-tab" aria-selected="true">Ürün Açıklaması</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="product-shipping-link" data-toggle="tab"
+                                           href="#product-shipping-tab" role="tab" aria-controls="product-shipping-tab" aria-selected="false">Teslimat & İADE</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="product-review-link" data-toggle="tab"
+                                           href="#product-review-tab" role="tab" aria-controls="product-review-tab" aria-selected="false">Yorumlar (2)</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel" aria-labelledby="product-desc-link">
+                                        <div class="product-desc-content">
+                                            <h3>Ürün Açıklaması</h3>
+                                            {!!  $Detay->desc !!}
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel" aria-labelledby="product-shipping-link">
+                                        <div class="product-desc-content">
+                                            <h3>Teslimat & İADE</h3>
+                                          </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="product-review-tab" role="tabpanel" aria-labelledby="product-review-link">
+                                        <div class="reviews">
+                                            <h3>Yorumlar (2)</h3>
+                                            <div class="review">
+                                                <div class="row no-gutters">
+                                                    <div class="col-auto">
+                                                        <h4><a href="#">Samanta J.</a></h4>
+                                                        <div class="ratings-container">
+                                                            <div class="ratings">
+                                                                <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
+                                                            </div>
+                                                        </div>
+                                                        <span class="review-date">6 days ago</span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <h4>Good, perfect size</h4>
+
+                                                        <div class="review-content">
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus cum dolores assumenda asperiores facilis porro reprehenderit animi culpa atque blanditiis commodi perspiciatis doloremque, possimus, explicabo, autem fugit beatae quae voluptas!</p>
+                                                        </div>
+
+                                                        <div class="review-action">
+                                                            <a href="#"><i class="icon-thumbs-up"></i>Helpful (2)</a>
+                                                            <a href="#"><i class="icon-thumbs-down"></i>Unhelpful (0)</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="review">
+                                                <div class="row no-gutters">
+                                                    <div class="col-auto">
+                                                        <h4><a href="#">John Doe</a></h4>
+                                                        <div class="ratings-container">
+                                                            <div class="ratings">
+                                                                <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
+                                                            </div><!-- End .ratings -->
+                                                        </div><!-- End .rating-container -->
+                                                        <span class="review-date">5 days ago</span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <h4>Very good</h4>
+
+                                                        <div class="review-content">
+                                                            <p>Sed, molestias, tempore? Ex dolor esse iure hic veniam laborum blanditiis laudantium iste amet. Cum non voluptate eos enim, ab cumque nam, modi, quas iure illum repellendus, blanditiis perspiciatis beatae!</p>
+                                                        </div>
+
+                                                        <div class="review-action">
+                                                            <a href="#"><i class="icon-thumbs-up"></i>Helpful (0)</a>
+                                                            <a href="#"><i class="icon-thumbs-down"></i>Unhelpful (0)</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <span class="review-date">6 days ago</span>
-                                    </div>
-                                    <div class="col">
-                                        <h4>Good, perfect size</h4>
-
-                                        <div class="review-content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus cum dolores assumenda asperiores facilis porro reprehenderit animi culpa atque blanditiis commodi perspiciatis doloremque, possimus, explicabo, autem fugit beatae quae voluptas!</p>
-                                        </div>
-
-                                        <div class="review-action">
-                                            <a href="#"><i class="icon-thumbs-up"></i>Helpful (2)</a>
-                                            <a href="#"><i class="icon-thumbs-down"></i>Unhelpful (0)</a>
-                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="review">
-                                <div class="row no-gutters">
-                                    <div class="col-auto">
-                                        <h4><a href="#">John Doe</a></h4>
-                                        <div class="ratings-container">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
-                                            </div><!-- End .ratings -->
-                                        </div><!-- End .rating-container -->
-                                        <span class="review-date">5 days ago</span>
-                                    </div>
-                                    <div class="col">
-                                        <h4>Very good</h4>
-
-                                        <div class="review-content">
-                                            <p>Sed, molestias, tempore? Ex dolor esse iure hic veniam laborum blanditiis laudantium iste amet. Cum non voluptate eos enim, ab cumque nam, modi, quas iure illum repellendus, blanditiis perspiciatis beatae!</p>
-                                        </div>
-
-                                        <div class="review-action">
-                                            <a href="#"><i class="icon-thumbs-up"></i>Helpful (0)</a>
-                                            <a href="#"><i class="icon-thumbs-down"></i>Unhelpful (0)</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>--}}
+                            </div>--}}
             <div class="container">
                 <div class="row">
                     <h2 class="title text-center mb-4">En Son Baktıklarınız</h2>
@@ -452,6 +456,31 @@
                 </div>
             </div>
             </div>
+    </div>
+
+    <div class="sticky-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <figure class="product-media">
+                        <a href="product.html">
+                            <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $Detay->title }}">
+                        </a>
+                    </figure>
+                    <h4 class="product-title"><a href="product.html">{{ $Detay->title }}</a></h4>
+                </div>
+
+                <div class="col-6 justify-content-end">
+                    <div class="product-price">
+                        {{ money($Detay->price)}}₺
+                    </div>
+
+                    <div class="product-details-action">
+                        <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <a href="https://api.whatsapp.com/send?phone=905350141875&text={{ $Detay->title }} isimli kitabı satın almak istiyorum. {{ route('urun', $Detay->slug) }}" class="whatsapp" target="_blank">
         <i class="icon-whatsapp my-float"></i>

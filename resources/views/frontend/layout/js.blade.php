@@ -21,11 +21,11 @@
                             <a href="{{ route('home') }}">Anasayfa</a>
                         </li>
                         @foreach($Product_Categories->where('parent_id' , 0) as $item)
-                            <li><a href="{{ route('kategori', $item->slug) }}" class="">{{ $item->title }}</a>
+                            <li><a href="{{ route('kategori', [$item->slug, 'id' => $item->id]) }}" class="">{{ $item->title }}</a>
                                 @if($Product_Categories->where('parent_id' , 0)->count() > 0)
                                     <ul style="display: none;">
                                         @foreach($Product_Categories->where('parent_id' , $item->id) as $itemm)
-                                            <li><a href="{{ route('kategori', [$item->slug, $itemm->slug]) }}">{{ $itemm->title }}</a></li>
+                                            <li><a href="{{ route('kategori', [$item->slug, $itemm->slug,'id' => $itemm->id]) }}">{{ $itemm->title }}</a></li>
                                         @endforeach
                                     </ul>
                                 @endif

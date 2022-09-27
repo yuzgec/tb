@@ -47,14 +47,8 @@
                         <p>Hesabım</p>
                     </a>
                     @else
-                        <a href="{{ route('login') }}" title="Giriş Yap">
-                            <div class="icon">
-                                <i class="icon-user"></i>
-                            </div>
-                            <p>Giriş&nbsp;Yap</p>
-                        </a>
                         <div class="wishlist">
-                        <a href="{{ route('register') }}" title="Kayıt Ol">
+                        <a href="{{ route('login') }}" title="Kayıt Ol">
                             <div class="icon">
                                 <i class="icon-user"></i>
                             </div>
@@ -64,7 +58,7 @@
                     @endif
                 </div>
 
-                <div class="wishlist">
+             {{--   <div class="wishlist">
                     <a href="/" title="Wishlist" >
                         <div class="icon ">
                             <i class="icon-heart-o"></i>
@@ -72,7 +66,7 @@
                         </div>
                         <p>Favori</p>
                     </a>
-                </div>
+                </div>--}}
 
                 <div class="dropdown cart-dropdown">
                     <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
