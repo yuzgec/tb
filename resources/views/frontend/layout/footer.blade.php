@@ -105,7 +105,7 @@
                                 <div class="col-sm-12 col-12 d-flex">
                                     <div>
                                         <span class="widget-about-title">Müşteri Hizmetleri</span>
-                                        <a href="tel:123456789">0 212 222 22 22</a>
+                                        <a href="tel:905350141875">0 535 014 18 75</a>
                                     </div>
                                     <div>
                                         <a href="https://kargotakip.sendeo.com.tr/kargo-takip-popup" target="_blank" title="Kargo Sorgulama">
@@ -127,7 +127,7 @@
                     <div class="widget">
                         <h4 class="widget-title">Bilgi Sayfaları</h4>
                         <ul class="widget-list">
-                            <li><a href="">Hakkımızda</a></li>
+                            <li><a href="#">Hakkımızda</a></li>
                             <li><a href="#">S.S.S</a></li>
                             <li><a href="{{ route('iletisim') }}">İletişim</a></li>
                             <li><a href="{{ route('login') }}">Giriş Yap</a></li>
