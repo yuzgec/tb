@@ -100,6 +100,7 @@ class HomeController extends Controller
             ->select('products.id','products.title','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
             ->orderBy('products.rank','ASC')->paginate(9);
         //dd($Pro);
+
         return view('frontend.category.index', compact('Detay', 'ProductList'));
     }
     public function yayinevi($slug){
