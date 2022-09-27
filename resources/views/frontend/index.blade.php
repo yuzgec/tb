@@ -528,7 +528,7 @@
                             </div>
                             <div class="deal-countdown" data-until="+10h"></div>
 
-                            <a href="{{ route('urunler')}}" class="btn btn-primary">
+                            <a href="{{ route('urun' , $item->slug)}}" class="btn btn-primary">
                                 <span>Ürünü İncele</span><i class="icon-long-arrow-right"></i>
                             </a>
                         </div>
@@ -543,7 +543,7 @@
 
             </div>
         </div>
-    </div><!-- End .bg-light -->
+    </div>
 
     <div class="mb-6"></div>
     <div class="container">

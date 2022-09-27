@@ -13,6 +13,7 @@ use App\Models\Order;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductCategoryPivot;
 use App\Models\Publisher;
 use App\Models\Search;
 use App\Models\ShopCart;
@@ -53,8 +54,6 @@ class HomeController extends Controller
             $author[] = $item->author_id;
         }
         $Author = Author::select('title', 'slug', 'id','desc')->whereIn('id',$author)->get();
-
-        $cat = [];
         foreach ($Detay->getCategory as $item){
             $cat[] = $item->category_id;
         }
@@ -75,7 +74,7 @@ class HomeController extends Controller
             ->whereHas('getCategory', function ($query) use ($Detay, $cat){
             $query->whereIn('category_id',$cat)->whereNotIn('product_id',[$Detay->id]);
         })->orderBy('rank','ASC')->get();
-        $Pivot = \App\Models\ProductCategoryPivot::with('productCategory')->get();
+        $Pivot = ProductCategoryPivot::with('productCategory')->get();
 
         return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author', 'Pivot', 'Category'));
     }
@@ -132,9 +131,8 @@ class HomeController extends Controller
         }
         return view('frontend.shop.siparis');
     }
-    public function odeme(Request $gelen)
+    public function odeme(OrderRequest $gelen)
     {
-
 
         SEOTools::setTitle("Ödeme | Online 2. El Kitap". config('app.name'));
         SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Ödeme Sayfası');

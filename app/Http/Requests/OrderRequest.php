@@ -14,7 +14,7 @@ class OrderRequest extends FormRequest
             'surname'              => 'required|min:2|max:30|regex:/^[a-zA-ZşŞıİçÇöÖüÜĞğ]+$/',
             'phone'                => 'required|numeric|digits_between:10,11',
             'address'              => 'required|min:25',
-            'email'                => 'nullable|email',
+            'email'                => 'required|email',
             'province'             => 'required',
             'city'                 => 'required|regex:/^[a-zA-ZşŞıİçÇöÖüÜĞğ]+$/',
         ];
@@ -26,7 +26,7 @@ class OrderRequest extends FormRequest
             'name.required'            => 'İsim alanı boş bırakılamaz',
             'name.max'                 => 'İsim en fazla 30 karakter olabilir',
             'name.min'                 => 'İsim en az 3 karakter olabilir',
-            'name.regex'               =>  'Geçerli bir isim giriniz',
+            'name.regex'               => 'Geçerli bir isim giriniz',
 
             'surname.required'         => 'Soyisim alanı boş bırakılamaz',
             'surname.max'              => 'Soyisim en fazla 30 karakter olabilir',
@@ -41,6 +41,7 @@ class OrderRequest extends FormRequest
             'address.min'              => 'Adres en az 25 karakterden oluşmalıdır',
 
             'email.email'              => 'Geçerli bir email giriniz',
+            'email.required'           => 'Email alanı boş bırakılamaz',
 
             'province.required'        => 'İl alanı boş bırakılamaz',
             'city.required'            => 'İlçe alanı boş bırakılamaz',

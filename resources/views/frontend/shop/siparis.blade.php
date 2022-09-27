@@ -14,44 +14,68 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>Adınız Soyadınız *</label>
-                                    <input type="text" class="form-control" name="name">
+                                    <input value="{{old('name')}}" type="text" class="form-control  @if($errors->has('name')) is-invalid @endif" name="name"  autocomplete="off">
+                                    @if($errors->has('name'))
+                                        <div class="invalid-feedback">{{$errors->first('name')}}</div>
+                                    @endif
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <label>Telefon Numaranız *</label>
-                                    <input type="text" class="form-control" name="surname">
+                                    <label>Adınız Soyadınız *</label>
+                                    <input value="{{old('surname')}}" type="text" class="form-control  @if($errors->has('surname')) is-invalid @endif" name="surname" autocomplete="off">
+                                    @if($errors->has('surname'))
+                                        <div class="invalid-feedback">{{$errors->first('surname')}}</div>
+                                    @endif
                                 </div>
+
                             </div>
 
                             <label>Firma Adı (Opsiyonel)</label>
                             <input type="text" class="form-control">
 
+
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label>Telefon Numaranız</label>
-                                    <input type="text" class="form-control" name="phone">
+                                    <label>Telefon Numaranız * </label>
+                                    <input value="{{old('phone')}}" type="text" class="form-control  @if($errors->has('phone')) is-invalid @endif" name="phone"  autocomplete="off">
+                                    @if($errors->has('phone'))
+                                        <div class="invalid-feedback">{{$errors->first('phone')}}</div>
+                                    @endif
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <label>E-Mail Adresiniz</label>
-                                    <input type="text" class="form-control" name="email">
+                                    <label>E-Mail Adresiniz * </label>
+                                    <input value="{{old('email')}}" type="text" class="form-control  @if($errors->has('email')) is-invalid @endif" name="email" autocomplete="off">
+                                    @if($errors->has('email'))
+                                        <div class="invalid-feedback">{{$errors->first('email')}}</div>
+                                    @endif
                                 </div>
+
                             </div>
 
                             <label>Açık Adres</label>
-                            <textarea class="form-control" cols="30" rows="4" name="address" placeholder="Açık Adresinizi Yazınız..."></textarea>
-
+                            <textarea class="form-control  @if($errors->has('province')) is-invalid @endif" cols="30" rows="4" name="address" placeholder="Açık Adresinizi Yazınız..."></textarea>
+                            @if($errors->has('address'))
+                                <div class="invalid-feedback">{{$errors->first('address')}}</div>
+                            @endif
 
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label>İl</label>
-                                    <input type="text" class="form-control" >
+                                    <label>İl * </label>
+                                    <input value="{{old('province')}}" type="text" class="form-control  @if($errors->has('province')) is-invalid @endif" name="province"  autocomplete="off">
+                                    @if($errors->has('province'))
+                                        <div class="invalid-feedback">{{$errors->first('province')}}</div>
+                                    @endif
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <label>İlçe</label>
-                                    <input type="text" class="form-control" >
+                                    <label>İlçe * </label>
+                                    <input value="{{old('city')}}" type="text" class="form-control  @if($errors->has('city')) is-invalid @endif" name="city" autocomplete="off">
+                                    @if($errors->has('city'))
+                                        <div class="invalid-feedback">{{$errors->first('city')}}</div>
+                                    @endif
                                 </div>
+
                             </div>
 
                             <div class="custom-control custom-checkbox">
@@ -60,7 +84,7 @@
                             </div>
 
                             <label>Sipariş Notunuz</label>
-                            <textarea class="form-control" cols="30" rows="4" placeholder="Varsa sipariş ile ilgili notunuz"></textarea>
+                            <textarea class="form-control" cols="30" name="note" rows="4" placeholder="Varsa sipariş ile ilgili notunuz"></textarea>
                         </div>
                         <aside class="col-lg-3 mt-3">
                             <div class="summary">
