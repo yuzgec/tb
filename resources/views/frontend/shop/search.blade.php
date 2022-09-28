@@ -46,7 +46,7 @@
                     <div class="px-3 d-none d-xl-block">
                         <p class="font-size-14 text-gray-90 mb-0"><b>{{$Result->count()}}</b> adet ürün listelendi</p>
                     </div>
-                    <div class="d-flex">
+                 {{--   <div class="d-flex">
                         <form method="get">
                             <select class="js-select selectpicker dropdown-select max-width-200 max-width-160-sm right-dropdown-0 px-2 px-xl-0"
                                     data-style="btn-sm bg-white font-weight-normal py-2 border text-gray-20 bg-lg-down-transparent border-lg-down-0">
@@ -64,7 +64,7 @@
                                 <option value="three">Hepsini Göster</option>
                             </select>
                         </form>
-                    </div>
+                    </div>--}}
                     <nav class="px-3 flex-horizontal-center text-gray-20 d-none d-xl-flex align-items-center align-items-center">
                         <div class="pt-3">
                             {{ $Result->appends(['sirala' => 'arama'])->links() }}

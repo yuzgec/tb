@@ -150,38 +150,24 @@
                                         <button type="submit" class="btn btn-primary btn-rounded btn-shadow btn-block">
                                             <span><i class="icon-shopping-cart"></i> Sepete Ekle</span>
                                         </button>
-                                            <a href="{{ route('siparis') }}" class="btn btn-outline-dark-1 btn-block">
-                                                <span> Şimdi Satın Al</span>
-                                            </a>
-                                    </div>
-
-                                    <div class="product-details-action">
-
-                                        <div class="details-action-wrapper">
-                                            <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Favorilere Ekle</span></a>
-                                            <a href="#" class="btn-product btn-compare" title="Compare"><span>Tavsiye Et</span></a>
+                                        <div class="row d-flex justify-content-between align-items-center">
+                                            <div class="">
+                                                <a href="{{ route('siparis') }}" class="btn btn-outline-dark-1">
+                                                    <span class="text-center"> Şimdi Satın Al</span>
+                                                </a>
+                                            </div>
+                                            <div class="">
+                                                <a href="#" class="btn-product btn-wishlist" title="Favori">
+                                                    <span>Favorilere Ekle</span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </form>
 
                                 <div class="product-details-footer">
-                                    <div class="product-cat">
-                                        <span>Kategori:</span>
-                                        <a href="#">Türk Edebiyatı</a>
-                                    </div>
-
-                                    <div class="social-icons social-icons-sm">
-                                        <span class="social-label">Paylaş:</span>
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('urun', $Detay->slug) }}&image={{$Detay->getFirstMediaUrl('page', 'thumb')}}" class="social-icon" title="Facebook" target="_blank">
-                                            <i class="icon-facebook-f"></i>
-                                        </a>
-                                        <a href="https://twitter.com/share?url={{ route('urun', $Detay->slug) }}&text={{ $Detay->title }}" class="social-icon" title="Twitter" target="_blank">
-                                            <i class="icon-twitter"></i>
-                                        </a>
-                                        <a href="http://pinterest.com/pin/create/button/?url={{ route('urun', $Detay->slug) }}&media={{$Detay->getFirstMediaUrl('page', 'thumb')}}&description={{ $Detay->title }}" class="social-icon" title="Pinterest" target="_blank">
-                                            <i class="icon-pinterest"></i>
-                                        </a>
-                                    </div>
+                                    <div class="addthis_inline_share_toolbox"></div>
                                 </div>
 
                             </div>
@@ -217,7 +203,7 @@
                                     @endforeach
                                 </div>
 
-                                <a href="{{ route('home') }}" class="btn btn-outline-dark-3"><span>Diğer Ürünler</span><i class="icon-long-arrow-right"></i></a>
+                                <a href="{{ route('kategori', [$OtherCategory->slug, 'id' => $OtherCategory->id]) }}" class="btn btn-outline-dark-3"><span>Diğer Ürünler</span><i class="icon-long-arrow-right"></i></a>
                             </div>
 
                            {{-- <div class="widget widget-banner-sidebar">
@@ -463,11 +449,9 @@
             <div class="row">
                 <div class="col-6">
                     <figure class="product-media">
-                        <a href="product.html">
-                            <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $Detay->title }}">
-                        </a>
+                        <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $Detay->title }}">
                     </figure>
-                    <h4 class="product-title"><a href="product.html">{{ $Detay->title }}</a></h4>
+                    <h4 class="product-title"><a href="">{{ $Detay->title }}</a></h4>
                 </div>
 
                 <div class="col-6 justify-content-end">
@@ -485,4 +469,7 @@
     <a href="https://api.whatsapp.com/send?phone=905350141875&text={{ $Detay->title }} isimli kitabı satın almak istiyorum. {{ route('urun', $Detay->slug) }}" class="whatsapp" target="_blank">
         <i class="icon-whatsapp my-float"></i>
     </a>
+@endsection
+@section('customCSS')
+ <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-633404bacda422b4"></script>
 @endsection

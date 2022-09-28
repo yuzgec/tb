@@ -44,7 +44,7 @@ class HomeController extends Controller
         return view('frontend.index', compact('Products','Slider', 'Product_Categories', 'Pivot'));
     }
     public function urun($url){
-        $Detay = Product::withCount('getPublisher')->withCount('getAuthor')->with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
+        $Detay = Product::withCount('getPublisher')->with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
             ->where('sku', \request('urunno'))
             ->firstOrFail();
 
@@ -63,6 +63,7 @@ class HomeController extends Controller
         }
 
         $Category = ProductCategory::select('title', 'slug', 'id','desc')->whereIn('id',$cat)->get();
+        $OtherCategory = ProductCategory::select('title', 'slug', 'id','desc')->where('slug',request()->segment(2))->first();
         //dd($Category);
         SEOTools::setTitle($Detay->title);
         SEOTools::setDescription($Detay->seo_desc);
@@ -80,7 +81,7 @@ class HomeController extends Controller
         })->orderBy('rank','ASC')->get();
         $Pivot = ProductCategoryPivot::with('productCategory')->get();
 
-        return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author', 'Pivot', 'Category'));
+        return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author', 'Pivot', 'Category', 'OtherCategory'));
     }
     public function kategori($url){
 
@@ -350,6 +351,7 @@ class HomeController extends Controller
         $Result = Product::where('title','like','%'.$search.'%')
             ->orWhere('slug','like','%'.$search.'%')
             ->where('status', 1)
+            ->select('title', 'slug', 'status', 'price', 'old_price', 'id', 'sku')
             ->paginate(12);
 
         Search::create(['key' => $search]);

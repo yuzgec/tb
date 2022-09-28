@@ -2,7 +2,7 @@
 @section('content')
     @include('backend.layout.alert')
 
-    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+    <div class="page-header text-center" style="background-image: url('/frontend/assets/images/page-header-bg.jpg')">
         <div class="container">
             <h1 class="page-title">{{ $Detay->title }}<span>TB Kitap</span></h1>
         </div>
@@ -37,7 +37,6 @@
                                     </select>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -45,7 +44,6 @@
                         <div class="row">
                             @foreach($ProductList as $item)
                             <div class="col-6 col-md-4">
-
                                     <div class="product product-11 text-center">
                                         <span class="product-label label-circle label-new">Yeni</span>
 
@@ -73,10 +71,7 @@
                             @endforeach
                         </div>
                     </div>
-
                 </div>
-
-
 
 
                 <aside class="col-lg-3 col-xl-5col order-lg-first">
