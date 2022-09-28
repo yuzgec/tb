@@ -344,8 +344,8 @@ class HomeController extends Controller
     }
     public function search(SearchRequest $request){
 
-        SEOTools::setTitle($request->q." ile ilgili arama sonuçları | Online 2. El Kitap". config('app.name'));
-        SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Arama Sayfası');
+        SEOTools::setTitle($request->q." ile ilgili arama sonuçları | Online 2. El Kitap | ". config('app.name'));
+        SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Klübü Arama Sayfası');
 
         $search = $request->q;
         $Result = Product::where('title','like','%'.$search.'%')
@@ -408,7 +408,11 @@ class HomeController extends Controller
     }
     public function yazarlar(){
         $Alfabe = ["A", "B", "C","Ç", "D", "E", "F", "G", "H", "I","İ", "J", "K", "L", "M", "N", "O","Ö", "P", "Q", "R", "S", "T", "U","Ü","V", "W", "X", "Y", "Z"];
-        $All = Author::withCount('getBookCount')->get();
+        $search = (request('q')) ? request('q') : null;
+        $All = Author::withCount('getBookCount')->where('title','like','%'.$search.'%')
+            ->orWhere('slug','like','%'.$search.'%')
+            ->where('status', 1)
+            ->get();
         SEOTools::setTitle("Yazarlar Listesi |  TB Kitap | Online İkinci El Kitap Satışı" );
         SEOTools::setDescription('Tb Kitap online kitap satış sitesinde kitapları bulunan yazarların listesi');
         SEOTools::opengraph()->setUrl(url()->current());

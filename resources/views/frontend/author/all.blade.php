@@ -25,7 +25,14 @@
                         <button class="" style="width: 35px">{{ $abc }}</button>
                     @endforeach
                 </div>
-                <input class="form-control" name="arama" id="arama" placeholder="Yazar Adı Giriniz...">
+                <div class="col-md-12 mb-3 text-center">
+                <form method="get">
+                    <div class="header-search-wrapper search-wrapper-wide d-flex ">
+                        <label for="q" class="sr-only">Arama</label>
+                        <input type="search" class="form-control" name="q" id="q" placeholder="Yazar Ara ..." required>
+                    </div>
+                </form>
+                </div>
                 @foreach($All as $item)
                 <div class="col-6 col-md-2">
                     <div class="member member-2 text-center">
