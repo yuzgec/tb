@@ -15,10 +15,10 @@ use App\View\Components\Index\CategoryDeleteModal;
 use App\View\Components\Index\DeleteModal;
 use App\View\Components\Index\Modal;
 use App\View\Components\Index\Save;
-use App\View\Components\Shop\Product;
+use App\View\Components\Product;
+use App\View\Components\Shop\ProductItem;
 use App\View\Components\Shop\ProductList;
 use Carbon\Carbon;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\URL;
@@ -52,6 +52,6 @@ class AppServiceProvider extends ServiceProvider
             Blade::component('back', Back::class);
             Blade::component('save', Save::class);
             Blade::component('add', Add::class);
-            Blade::component('product-list', ProductList::class);
+            Blade::component('product-item', ProductItem::class);
     }
 }

@@ -69,36 +69,9 @@
                                 }
                             }'>
                         @foreach($Products->take(8) as $item)
-                        <div class="product product-2 text-center">
-                            <span class="product-label label-circle label-new">Yeni</span>
-                            <figure class="product-media">
-                                <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
-                                    <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $item->title }}">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                                </div>
-                            </figure>
-
-                            <div class="product-body">
-                                <h3 class="product-title">
-                                    <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
-                                    {{ $item->title }}
-                                </h3>
-                                <div class="product-price">
-                                    {{ $item->price }}₺
-                                </div>
-                            </div>
-                            <div class="product-action">
-                                <a href="{{ route('urun' , $item->slug)}}"
-                                   title="{{ $item->title }}"
-                                   class="btn-product btn-cart">
-                                    <span>Sepete Ekle</span>
-                                </a>
-                            </div>
-                        </div>
+                            <x-shop.product-item :item="$item"/>
                         @endforeach
+
                     </div>
                 </div>
                 <div class="tab-pane p-0 fade" id="products-sale-tab" role="tabpanel" aria-labelledby="products-sale-link">
@@ -131,35 +104,7 @@
                                 }
                             }'>
                         @foreach($Products->take(8,16) as $item)
-                            <div class="product product-2 text-center">
-                                <span class="product-label label-circle label-new">Yeni</span>
-                                <figure class="product-media">
-                                    <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
-                                        <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $item->title }}">
-                                    </a>
-
-                                    <div class="product-action-vertical">
-                                        <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                                    </div>
-                                </figure>
-
-                                <div class="product-body">
-                                    <h3 class="product-title">
-                                        <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
-                                        {{ $item->title }}
-                                    </h3>
-                                    <div class="product-price">
-                                        {{ $item->price }}₺
-                                    </div>
-                                </div>
-                                <div class="product-action">
-                                    <a href="{{ route('urun' , $item->slug)}}"
-                                       title="{{ $item->title }}"
-                                       class="btn-product btn-cart">
-                                        <span>Sepete Ekle</span>
-                                    </a>
-                                </div>
-                            </div>
+                            <x-shop.product-item :item="$item"/>
                         @endforeach
 
                     </div>
@@ -194,35 +139,7 @@
                                 }
                             }'>
                         @foreach($Products->take(16,28) as $item)
-                            <div class="product product-2 text-center">
-                                <span class="product-label label-circle label-new">Yeni</span>
-                                <figure class="product-media">
-                                    <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
-                                        <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $item->title }}">
-                                    </a>
-
-                                    <div class="product-action-vertical">
-                                        <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                                    </div>
-                                </figure>
-
-                                <div class="product-body">
-                                    <h3 class="product-title">
-                                        <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
-                                        {{ $item->title }}
-                                    </h3>
-                                    <div class="product-price">
-                                        {{ $item->price }}₺
-                                    </div>
-                                </div>
-                                <div class="product-action">
-                                    <a href="{{ route('urun' , $item->slug)}}"
-                                       title="{{ $item->title }}"
-                                       class="btn-product btn-cart">
-                                        <span>Sepete Ekle</span>
-                                    </a>
-                                </div>
-                            </div>
+                            <x-shop.product-item :item="$item"/>
                         @endforeach
                     </div>
                 </div>
@@ -551,36 +468,9 @@
 
             @foreach($Products as $item)
                 <div class="col-6 col-md-3">
-                    <div class="product product-2 text-center">
-                        <span class="product-label label-circle label-new">Yeni</span>
-
-                        <figure class="product-media">
-                            <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
-                                <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $item->title }}">
-                            </a>
-
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
-                            </div>
-                        </figure>
-
-                        <div class="product-body">
-                            <h3 class="product-title"><a href="{{ route('urun' , $item->slug)}}">{{ $item->title }}</a></h3>
-                            <div class="product-price">
-                                {{ $item->price }}₺
-                            </div>
-                        </div>
-                        <div class="product-action">
-                            <a href="{{ route('urun' , $item->slug)}}"
-                               title="{{ $item->title }}"
-                               class="btn-product btn-cart">
-                                <span>Sepete Ekle</span>
-                            </a>
-                        </div>
-                    </div>
+                    <x-shop.product-item :item="$item"/>
                 </div>
             @endforeach
-
 
         </div>
     </div>
