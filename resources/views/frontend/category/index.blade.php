@@ -4,15 +4,18 @@
 
     <div class="page-header text-center" style="background-image: url('/frontend/assets/images/page-header-bg.jpg')">
         <div class="container">
-            <h1 class="page-title">{{ $Detay->title }}<span>TB Kitap</span></h1>
+            <h1 class="page-title">
+                {{ $Detay->title }}
+                <span>TB Kitap</span>
+            </h1>
         </div>
     </div>
 
     <div class="page-content">
         <div class="container">
             <div class="row mt-3">
-                <div class="col-lg-9">
-                    <div class="toolbox">
+                <div class="col-lg-9" >
+                    <div class="toolbox" >
                         <div class="toolbox-left">
                             <div class="toolbox-info">
                                 ({{$ProductList->count()}}) adet ürün listelenmiştir.
@@ -73,8 +76,8 @@
                     </div>
                 </div>
 
-
-                <aside class="col-lg-3 col-xl-5col order-lg-first">
+                <aside class="col-lg-3 col-xl-5col order-lg-first p-3"
+                       style="border:1px solid gainsboro;border-radius: 5px;box-shadow: 3px 3px 3px lightgray">
                     <div class="sidebar sidebar-shop">
                         <div class="widget widget-categories">
 

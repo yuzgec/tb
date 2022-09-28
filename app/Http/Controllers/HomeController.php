@@ -459,4 +459,8 @@ class HomeController extends Controller
     public function kargosorgulama(){
         return view('frontend.page.cargo');
     }
+
+    public function profilim(){
+        return view('frontend.page.profil');
+    }
 }

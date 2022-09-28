@@ -8,43 +8,10 @@ use Illuminate\Support\Facades\Route;
 
     Auth::routes();
 
-
-/*   Route::get('/kat', function() {
-        $p = Product::all();
-
-        foreach ($p as $item){
-
-            ProductCategoryPivot::updateOrCreate(['category_id' => 9, 'product_id' => $item->id]);
-        }
-    });*/
-/*   Route::get('/kat', function() {
-        $p = Product::all();
-
-        foreach ($p as $item){
-
-            ProductCategoryPivot::updateOrCreate(['category_id' => 9, 'product_id' => $item->id]);
-        }
-    });*/
-
-/*
-    Route::get('years', function (){
-
-        for ($i = 1800; $i <= 2022;  $i++){
-            \App\Models\Years::updateOrCreate(['title' => $i]);
-        }
-
-    });*/
-
-
-Route::get('/urunsayfasi', function(){
-       return view('frontend.product.index');
-    })->name('urunler');
-
-    Route::get('/kategorisayfasi', function(){
-        return view('frontend.category.index');
-    })->name('kategoriler');
-
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/profilim', 'HomeController@profilim')->name('home.account');
+
+
     Route::get('/kategori/{url}/{sub?}', 'HomeController@kategori')->name('kategori');
     Route::get('/kargosorgulama', 'HomeController@kargosorgulama')->name('kargosorgulama');
     Route::get('/sepet', 'HomeController@sepet')->name('sepet');

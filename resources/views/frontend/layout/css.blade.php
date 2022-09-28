@@ -4,6 +4,7 @@
 <meta name="application-name" content="TB Kitap">
 <meta name="msapplication-TileColor" content="#cc9966">
 <meta name="theme-color" content="#ffffff">
+<link rel="icon" type="image/x-icon" href="/frontend/assets/images/fav.png">
 <link rel="stylesheet" href="/frontend/assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css">
 <link rel="stylesheet" href="/frontend/assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="/frontend/assets/css/plugins/owl-carousel/owl.carousel.css">
