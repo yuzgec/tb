@@ -29,7 +29,7 @@
                 <form method="get">
                     <div class="header-search-wrapper search-wrapper-wide d-flex ">
                         <label for="q" class="sr-only">Arama</label>
-                        <input type="search" class="form-control" name="q" id="q" placeholder="Yazar Ara ..." required>
+                        <input type="search" class="form-control" name="q" id="q" placeholder="Yazar Ara ..." value="{{ request('q') }}" required>
                     </div>
                 </form>
                 </div>

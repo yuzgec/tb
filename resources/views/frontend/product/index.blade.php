@@ -458,10 +458,15 @@
                     <div class="product-price">
                         {{ money($Detay->price)}}₺
                     </div>
+                    <form action="{{ route('sepeteekle') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $Detay->id }}">
+                        <input type="hidden" name="qty" value="1">
 
-                    <div class="product-details-action">
-                        <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
-                    </div>
+                        <div class="product-details-action">
+                            <button type="submit" class="btn-product btn-cart"><span>Sepete Ekle</span></button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
