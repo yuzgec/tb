@@ -9,7 +9,7 @@
         </a>
 
         <div class="product-action-vertical">
-            <a href="#" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+            <a href="{{ route('favoriekle', ['id' => $item->id]) }}" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
         </div>
     </figure>
 

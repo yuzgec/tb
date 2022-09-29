@@ -7,6 +7,7 @@ use App\Http\Requests\OrderRequest;
 use App\Http\Requests\SearchRequest;
 use App\Models\Author;
 use App\Models\Basket;
+use App\Models\Favorite;
 use App\Models\Language;
 use App\Models\MailSubcribes;
 use App\Models\Order;
@@ -19,6 +20,7 @@ use App\Models\Search;
 use App\Models\ShopCart;
 use App\Models\Slider;
 use App\Models\Translator;
+use App\Models\User;
 use App\Models\Years;
 use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Support\Period;
@@ -391,29 +393,26 @@ class HomeController extends Controller
 
     public function favoriekle(Request $request){
         $p = Product::find($request->id);
-
-        Cart::instance('wishlist')->add(
-            [
-                'id' => $p->id,
-                'name' => $p->title,
-                'price' => $p->price,
-                'weight' => 0,
-                'qty' => 1,
-                'options' => [
-                    'image' => (!$p->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg' : $p->getFirstMediaUrl('page', 'small'),
-                    'cargo' => 0,
-                    'campagin' => null,
-                    'url' => $p->slug
-                ]
-            ]);
-
+        $New = Favorite::updateOrCreate(['user_id' => auth()->user()->id, 'product_id' => $p->id]);
         toast(SWEETALERT_MESSAGE_CREATE,'success');
         return redirect()->route('favori');
-
     }
 
     public function favori(){
-        return view('frontend.shop.favori');
+
+        SEOTools::setTitle('Favori Listem | Online 2. El Kitap | '. config('app.name'));
+        SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Klübü Arama Sayfası');
+
+        $Favorite = Favorite::select('product_id')->where('user_id', auth()->user()->id)->get()->toArray();
+        $FavoriteBooks = Product::select('id', 'title', 'price', 'old_price', 'slug','bestselling','status')->whereIn('id', $Favorite)->get();
+        return view('frontend.shop.favori', compact('Favorite', 'FavoriteBooks'));
+    }
+
+    public function favoricikar($id){
+        $Delete = Favorite::where('product_id',$id)->where('user_id', auth()->user()->id)->delete();
+        toast(SWEETALERT_MESSAGE_DELETE,'success');
+        return redirect()->route('favori');
+
     }
 
 

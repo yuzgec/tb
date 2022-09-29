@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Favorite;
 use App\Models\Page;
 use App\Models\PageCategory;
 use App\Models\Product;
@@ -31,6 +32,11 @@ class ViewShareProvider extends ServiceProvider
             $Product_Categories = Cache::remember('product_categories',now()->addHour(10), function () { return ProductCategory::with('cat')->where('status', 1)->get();});
             $Product = Cache::remember('product',now()->addHour(10), function () { return Product::with('getCategory')->where('status', 1)->orderBy('rank','ASC')->get();});*/
             //dd($Product->getCategory);
+/*
+            $Favorite = Favorite::select('product_id')->where('user_id', auth()->user()->id)->get()->toArray();
+            $FavoriteBooks = Product::select('id', 'title', 'price', 'old_price', 'slug','bestselling','status')->whereIn('id', $Favorite)->get();
+
+            dd($FavoriteBooks);*/
 
             $Pages =  Page::with('getCategory')->get();
             $Page_Categories = PageCategory::all();
