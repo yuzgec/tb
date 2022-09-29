@@ -40,7 +40,12 @@
                     @foreach($All as $item)
                         <tr id="page_{{$item->id}}">
                             <td>
-                                <span class="avatar me-2" style="background-image: url({{ (!$item->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg': $item->getFirstMediaUrl('page', 'small')}})"></span>
+                                <div class="avatar-list avatar-list-stacked">
+                                    <img class="avatar avatar-sm avatar-rounded" src="{{ (!$item->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg': $item->getFirstMediaUrl('page', 'small')}}">
+                                    @foreach($item->getMedia('gallery') as $img)
+                                        {{ $img->img()->attributes(['class' => 'avatar avatar-sm avatar-rounded']) }}
+                                    @endforeach
+                                </div>
                             </td>
                             <td>
                                 <div class="font-weight-medium"><a href="{{ route('product.edit', $item->id) }}" title="{{ $item->title }} -  Düzenle">{{ $item->title }}</a></div>

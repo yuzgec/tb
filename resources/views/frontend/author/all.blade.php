@@ -20,11 +20,11 @@
     <div class="bg-light-2 pt-2 pb-7 mb-6">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 mb-3 text-center">
+              {{--  <div class="col-md-12 mb-3 text-center">
                     @foreach($Alfabe as  $abc)
                         <button class="" style="width: 35px">{{ $abc }}</button>
                     @endforeach
-                </div>
+                </div>--}}
                 <div class="col-md-12 mb-3 text-center">
                 <form method="get">
                     <div class="header-search-wrapper search-wrapper-wide d-flex ">

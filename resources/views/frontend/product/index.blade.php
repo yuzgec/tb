@@ -145,17 +145,23 @@
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $Detay->id }}">
                                     <input type="hidden" name="qty" value="1">
-
+                                    <button type="submit" class="btn btn-primary btn-rounded btn-shadow btn-block">
+                                        <span><i class="icon-shopping-cart"></i> Sepete Ekle</span>
+                                    </button>
+                                </form>
                                     <div class="product-details-action">
-                                        <button type="submit" class="btn btn-primary btn-rounded btn-shadow btn-block">
-                                            <span><i class="icon-shopping-cart"></i> Sepete Ekle</span>
-                                        </button>
+
                                         <div class="row d-flex justify-content-between align-items-center">
-                                            <div class="">
-                                                <a href="{{ route('siparis') }}" class="btn btn-outline-dark-1">
-                                                    <span class="text-center"> Şimdi Satın Al</span>
-                                                </a>
-                                            </div>
+                                            <form action="{{ route('hizlisatinal') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $Detay->id }}">
+                                                <input type="hidden" name="qty" value="1">
+                                                <div class="">
+                                                    <button type="submit" class="btn btn-outline-dark-1">
+                                                        <span class="text-center"> Şimdi Satın Al</span>
+                                                    </button>
+                                                </div>
+                                            </form>
                                             <div class="">
                                                 <a href="#" class="btn-product btn-wishlist" title="Favori">
                                                     <span>Favorilere Ekle</span>
@@ -164,7 +170,7 @@
                                         </div>
                                     </div>
 
-                                </form>
+
 
                                 <div class="product-details-footer">
                                     <div class="addthis_inline_share_toolbox"></div>
@@ -206,15 +212,6 @@
                                 <a href="{{ route('kategori', [$OtherCategory->slug, 'id' => $OtherCategory->id]) }}" class="btn btn-outline-dark-3"><span>Diğer Ürünler</span><i class="icon-long-arrow-right"></i></a>
                             </div>
 
-                           {{-- <div class="widget widget-banner-sidebar">
-                                <div class="banner-sidebar-title">2. El Kitaplarımı Satmak İstiyorum</div>
-
-                                <div class="banner-sidebar banner-overlay">
-                                    <a href="#">
-                                        <img src="/frontend/assets/images/blog/sidebar/banner.jpg" alt="banner">
-                                    </a>
-                                </div><!-- End .banner-ad -->
-                            </div><!-- End .widget -->--}}
                         </div>
                     </aside>
 
@@ -290,91 +287,7 @@
         </div>
 
             </div>
-                {{--            <div class="product-details-tab">
-                                <ul class="nav nav-pills justify-content-center" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="product-desc-link" data-toggle="tab" href="#product-desc-tab" role="tab"
-                                           aria-controls="product-desc-tab" aria-selected="true">Ürün Açıklaması</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="product-shipping-link" data-toggle="tab"
-                                           href="#product-shipping-tab" role="tab" aria-controls="product-shipping-tab" aria-selected="false">Teslimat & İADE</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="product-review-link" data-toggle="tab"
-                                           href="#product-review-tab" role="tab" aria-controls="product-review-tab" aria-selected="false">Yorumlar (2)</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel" aria-labelledby="product-desc-link">
-                                        <div class="product-desc-content">
-                                            <h3>Ürün Açıklaması</h3>
-                                            {!!  $Detay->desc !!}
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel" aria-labelledby="product-shipping-link">
-                                        <div class="product-desc-content">
-                                            <h3>Teslimat & İADE</h3>
-                                          </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="product-review-tab" role="tabpanel" aria-labelledby="product-review-link">
-                                        <div class="reviews">
-                                            <h3>Yorumlar (2)</h3>
-                                            <div class="review">
-                                                <div class="row no-gutters">
-                                                    <div class="col-auto">
-                                                        <h4><a href="#">Samanta J.</a></h4>
-                                                        <div class="ratings-container">
-                                                            <div class="ratings">
-                                                                <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
-                                                            </div>
-                                                        </div>
-                                                        <span class="review-date">6 days ago</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <h4>Good, perfect size</h4>
 
-                                                        <div class="review-content">
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus cum dolores assumenda asperiores facilis porro reprehenderit animi culpa atque blanditiis commodi perspiciatis doloremque, possimus, explicabo, autem fugit beatae quae voluptas!</p>
-                                                        </div>
-
-                                                        <div class="review-action">
-                                                            <a href="#"><i class="icon-thumbs-up"></i>Helpful (2)</a>
-                                                            <a href="#"><i class="icon-thumbs-down"></i>Unhelpful (0)</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="review">
-                                                <div class="row no-gutters">
-                                                    <div class="col-auto">
-                                                        <h4><a href="#">John Doe</a></h4>
-                                                        <div class="ratings-container">
-                                                            <div class="ratings">
-                                                                <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
-                                                            </div><!-- End .ratings -->
-                                                        </div><!-- End .rating-container -->
-                                                        <span class="review-date">5 days ago</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <h4>Very good</h4>
-
-                                                        <div class="review-content">
-                                                            <p>Sed, molestias, tempore? Ex dolor esse iure hic veniam laborum blanditiis laudantium iste amet. Cum non voluptate eos enim, ab cumque nam, modi, quas iure illum repellendus, blanditiis perspiciatis beatae!</p>
-                                                        </div>
-
-                                                        <div class="review-action">
-                                                            <a href="#"><i class="icon-thumbs-up"></i>Helpful (0)</a>
-                                                            <a href="#"><i class="icon-thumbs-down"></i>Unhelpful (0)</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>--}}
             <div class="container">
                 <div class="row">
                     <h2 class="title text-center mb-4">En Son Baktıklarınız</h2>

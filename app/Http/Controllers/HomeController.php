@@ -37,10 +37,22 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $Product_Categories = ProductCategory::with('cat')->where('status', 1)->get()->toFlatTree();
-        $Products = Product::with('getCategory')->with([ 'getYear', 'getAuthor', 'getLanguage'])->select('id', 'title', 'price', 'old_price', 'slug','bestselling','status')->where('status',1)->orderBy('rank')->get();
+        $Product_Categories = ProductCategory::with('cat')
+                    ->where('status', 1)
+                    ->get()
+                    ->toFlatTree();
+
+        $Products = Product::with('getCategory')
+                    ->with([ 'getYear', 'getAuthor', 'getLanguage'])
+                    ->select('id', 'title', 'price', 'old_price', 'slug','bestselling','status')
+                    ->where('status',1)
+                    ->orderBy('rank')
+                    ->get();
+
         $Slider = Slider::with('getProduct')->where('status', 1)->get();
+
         $Pivot = \App\Models\ProductCategoryPivot::with('productCategory')->get();
+
         return view('frontend.index', compact('Products','Slider', 'Product_Categories', 'Pivot'));
     }
     public function urun($url){
@@ -287,52 +299,10 @@ class HomeController extends Controller
         return view('frontend.shop.sonuc', compact('Summary', 'Customer'));
 
     }
-    public function addtocart(Request $request){
 
-        $p = Product::find($request->id);
-        Basket::create(['product_id' => $p->id, 'basket_name' => 'Sepet']);
-
-        if (Cart::total() > CARGO_LIMIT ){
-            if ($p->campagin_price != null) {
-                $price = $p->campagin_price;
-                $campagin = true;
-            }else{
-                $price = $p->price;
-                $campagin = false;
-            }
-        }else{
-            $price = $p->price;
-            $campagin = false;
-        }
-        Cart::add(
-        [
-            'id' => $p->id,
-            'name' => $p->title,
-            'price' => $price,
-            'weight' => 0,
-            'qty' => $request->qty,
-            'options' => [
-                'image' => (!$p->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg' : $p->getFirstMediaUrl('page', 'small'),
-                'cargo' => 0,
-                'campagin' => $campagin,
-                'url' => $p->slug
-            ]
-        ]);
-
-        toast(SWEETALERT_MESSAGE_CREATE,'success');
-        return redirect()->route('sepet');
-    }
     public function cartdelete($rowId){
 
         Cart::remove($rowId);
-
-        if(kampanyatoplam(Cart::content()) < CARGO_LIMIT ) {
-            foreach (Cart::content() as $c) {
-                if ($c->options->campagin === true) {
-                    Cart::remove($c->rowId);
-                }
-            }
-        }
 
         toast(SWEETALERT_MESSAGE_DELETE,'success');
         return redirect()->route('sepet');
@@ -371,35 +341,46 @@ class HomeController extends Controller
         $Years = Years::select('id', 'title')->get();
         return view('frontend.shop.detailsearch', compact('Language', 'Publisher', 'Translator', 'Author', 'Years'));
     }
-    public function hizlisatinal(Request $request){
+    public function addtocart(Request $request){
 
         $p = Product::find($request->id);
-        Basket::create(['product_id' => $p->id, 'basket_name' => 'Hizli Satın Al']);
-
-        if (Cart::total() > CARGO_LIMIT ){
-            if ($p->campagin_price != null) {
-                $price = $p->campagin_price;
-                $campagin = true;
-            }else{
-                $price = $p->price;
-                $campagin = false;
-            }
-        }else{
-            $price = $p->price;
-            $campagin = false;
-        }
-
+        Basket::create(['product_id' => $p->id, 'basket_name' => 'Sepet']);
         Cart::add(
             [
                 'id' => $p->id,
                 'name' => $p->title,
-                'price' => $price,
+                'price' => $p->price,
                 'weight' => 0,
-                'qty' => $request->qty,
+                'qty' => 1,
                 'options' => [
                     'image' => (!$p->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg' : $p->getFirstMediaUrl('page', 'small'),
                     'cargo' => 0,
-                    'campagin' => $campagin,
+                    'campagin' => null,
+                    'url' => $p->slug
+                ]
+            ]);
+
+        toast(SWEETALERT_MESSAGE_CREATE,'success');
+        return redirect()->route('sepet');
+    }
+    public function hizlisatinal(Request $request){
+
+        Cart::destroy();
+
+        $p = Product::find($request->id);
+        Basket::create(['product_id' => $p->id, 'basket_name' => 'Hizli Satın Al']);
+        Cart::add(
+            [
+                'id' => $p->id,
+                'name' => $p->title,
+                'price' => $p->price,
+                'weight' => 0,
+                'qty' => 1,
+                'options' => [
+                    'image' => (!$p->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg' : $p->getFirstMediaUrl('page', 'small'),
+                    'cargo' => 0,
+                    'campagin' => null,
+                    'url' => $p->slug
                 ]
             ]);
 

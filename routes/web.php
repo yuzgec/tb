@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Route;
     Auth::routes();
 
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/profilim', 'HomeController@profilim')->name('home.account');
+    Route::get('/kitap/{path}', 'HomeController@urun')->where('path', '.*')->name('urun');
 
+    Route::get('/profilim', 'HomeController@profilim')->name('home.account');
 
     Route::get('/kategori/{url}/{sub?}', 'HomeController@kategori')->name('kategori');
     Route::get('/kargosorgulama', 'HomeController@kargosorgulama')->name('kargosorgulama');
     Route::get('/sepet', 'HomeController@sepet')->name('sepet');
     Route::get('/siparis', 'HomeController@siparis')->name('siparis');
-    Route::get('/kitap/{path}', 'HomeController@urun')->where('path', '.*')->name('urun');
     Route::get('/iletisim', 'HomeController@iletisim')->name('iletisim');
     Route::get('/arama', 'HomeController@search')->name('search');
     Route::get('/detayli-arama', 'HomeController@detayliarama')->name('detayliarama');
