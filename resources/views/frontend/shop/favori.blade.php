@@ -27,7 +27,7 @@
                             </thead>
 
                             <tbody>
-                            @foreach($Books as $item)
+                            @foreach($FavoriteBooks as $item)
                                 <tr>
                                     <td class="product-col">
                                         <div class="product">
