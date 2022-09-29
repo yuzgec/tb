@@ -41,9 +41,9 @@
                         <tr id="page_{{$item->id}}">
                             <td>
                                 <div class="avatar-list avatar-list-stacked">
-                                    <img class="avatar avatar-sm avatar-rounded" src="{{ (!$item->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg': $item->getFirstMediaUrl('page', 'small')}}">
+                                    <img class="avatar avatar-sm " src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg': $item->getFirstMediaUrl('page', 'small')}}">
                                     @foreach($item->getMedia('gallery') as $img)
-                                        {{ $img->img()->attributes(['class' => 'avatar avatar-sm avatar-rounded']) }}
+                                        {{ $img->img('small')->attributes(['class' => 'avatar avatar-sm']) }}
                                     @endforeach
                                 </div>
                             </td>

@@ -221,7 +221,7 @@ class HomeController extends Controller
         $cartcount = 0;
         $basketItems = [];
 
-        foreach(Cart::content() as $cart){
+        foreach(Cart::instance('shopping')->content() as $cart){
             $BasketItem = new BasketItem;
             $BasketItem->setId($cart->id);
             $BasketItem->setName($cart->name);
@@ -274,7 +274,7 @@ class HomeController extends Controller
 
                 $ShopCart->save();
 
-                foreach (Cart::content() as $c) {
+                foreach (Cart::instance('shopping')->content() as $c) {
                     $Order                  = new Order;
                     $Order->cart_id         = $payment->getBasketId();
                     $Order->product_id      = $c->id;
@@ -302,13 +302,13 @@ class HomeController extends Controller
 
     public function cartdelete($rowId){
 
-        Cart::remove($rowId);
+        Cart::instance('shopping')->remove($rowId);
 
         toast(SWEETALERT_MESSAGE_DELETE,'success');
         return redirect()->route('sepet');
     }
     public function cartdestroy(){
-        Cart::destroy();
+        Cart::instance('shopping')->destroy();
 
         toast(SWEETALERT_MESSAGE_DELETE,'success');
         return redirect()->route('home');
@@ -345,7 +345,7 @@ class HomeController extends Controller
 
         $p = Product::find($request->id);
         Basket::create(['product_id' => $p->id, 'basket_name' => 'Sepet']);
-        Cart::add(
+        Cart::instance('shopping')->add(
             [
                 'id' => $p->id,
                 'name' => $p->title,
@@ -365,11 +365,11 @@ class HomeController extends Controller
     }
     public function hizlisatinal(Request $request){
 
-        Cart::destroy();
+        Cart::instance('shopping')->destroy();
 
         $p = Product::find($request->id);
         Basket::create(['product_id' => $p->id, 'basket_name' => 'Hizli Satın Al']);
-        Cart::add(
+        Cart::instance('shopping')->add(
             [
                 'id' => $p->id,
                 'name' => $p->title,
@@ -388,6 +388,35 @@ class HomeController extends Controller
         return redirect()->route('siparis');
 
     }
+
+    public function favoriekle(Request $request){
+        $p = Product::find($request->id);
+
+        Cart::instance('wishlist')->add(
+            [
+                'id' => $p->id,
+                'name' => $p->title,
+                'price' => $p->price,
+                'weight' => 0,
+                'qty' => 1,
+                'options' => [
+                    'image' => (!$p->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg' : $p->getFirstMediaUrl('page', 'small'),
+                    'cargo' => 0,
+                    'campagin' => null,
+                    'url' => $p->slug
+                ]
+            ]);
+
+        toast(SWEETALERT_MESSAGE_CREATE,'success');
+        return redirect()->route('favori');
+
+    }
+
+    public function favori(){
+        return view('frontend.shop.favori');
+    }
+
+
     public function yazarlar(){
         $Alfabe = ["A", "B", "C","Ç", "D", "E", "F", "G", "H", "I","İ", "J", "K", "L", "M", "N", "O","Ö", "P", "Q", "R", "S", "T", "U","Ü","V", "W", "X", "Y", "Z"];
         $search = (request('q')) ? request('q') : null;

@@ -27,7 +27,7 @@
                             </thead>
 
                             <tbody>
-                            @foreach(Cart::content() as $cart)
+                            @foreach(Cart::instance('shopping')->content() as $cart)
                             <tr>
                                 <td class="product-col">
                                     <div class="product">
@@ -100,9 +100,10 @@
                         </div>
 
                         <a href="{{ route('home') }}" class="btn btn-outline-dark-2 btn-block mb-3"><span>ALIŞVERİŞE DEVAM ET</span><i class="icon-refresh"></i></a>
-                    </aside><!-- End .col-lg-3 -->
-                </div><!-- End .row -->
-            </div><!-- End .container -->
-        </div><!-- End .cart -->
-    </div><!-- End .page-content -->
+                    </aside>
+
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

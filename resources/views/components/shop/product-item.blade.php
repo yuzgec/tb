@@ -2,7 +2,7 @@
     <span class="product-label label-circle label-new">Yeni</span>
     <figure class="product-media">
         <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
-            <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $item->title }}">
+            <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb') }}" alt="{{ $item->title }}">
         </a>
 
         <div class="product-action-vertical">

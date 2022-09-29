@@ -17,7 +17,7 @@
                 </button>
 
                 <a href="/" class="logo">
-                    <img src="{{asset('/frontend/assets/images/tblogo.jpg')}}" width="150px">
+                    <img src="{{asset('/frontend/assets/images/tblogo.jpg')}}" width="130px">
                 </a>
             </div>
 
@@ -58,21 +58,21 @@
                     @endif
                 </div>
 
-             {{--   <div class="wishlist">
-                    <a href="/" title="Wishlist" >
+               <div class="wishlist">
+                    <a href="{{ route('favori') }}" title="Wishlist" >
                         <div class="icon ">
                             <i class="icon-heart-o"></i>
-                            <span class="wishlist-count badge">0</span>
+                            <span class="wishlist-count badge">{{ Cart::instance('wishlist')->count() }}</span>
                         </div>
                         <p>Favori</p>
                     </a>
-                </div>--}}
+                </div>
 
                 <div class="dropdown cart-dropdown">
                     <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                         <div class="icon">
                             <i class="icon-shopping-cart"></i>
-                            <span class="cart-count">{{ Cart::content()->count() }}</span>
+                            <span class="cart-count">{{ Cart::instance('shopping')->content()->count() }}</span>
                         </div>
                         <p>Sepetim</p>
                     </a>

@@ -163,9 +163,14 @@
                                                 </div>
                                             </form>
                                             <div class="">
-                                                <a href="#" class="btn-product btn-wishlist" title="Favori">
-                                                    <span>Favorilere Ekle</span>
-                                                </a>
+                                                <form action="{{ route('favoriekle') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $Detay->id }}">
+                                                    <input type="hidden" name="qty" value="1">
+                                                    <button type="submit" class="btn-product btn-wishlist" title="Favori">
+                                                        <span>Favorilere Ekle</span>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

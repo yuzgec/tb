@@ -36,7 +36,11 @@
                     @foreach($All as $item)
                     <tr id="page_{{$item->id}}">
                         <td>
-                            <div class="font-weight-medium">{{ $item->title }}</div>
+                            <div class="font-weight-medium">
+                                <a href="{{ route('publisher.edit', $item->id) }}" title=" {{ $item->title }} - Düzenle">
+                                    {{ $item->title }}
+                                </a>
+                            </div>
                         </td>
                         <td>
                             <label class="form-check form-check-single form-switch">

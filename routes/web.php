@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
     Route::get('/detayli-arama', 'HomeController@detayliarama')->name('detayliarama');
     Route::post('/bulten', 'HomeController@mailsubcribes')->name('mailsubcribes');
     Route::post('/sepete-ekle', 'HomeController@addtocart')->name('sepeteekle');
+    Route::post('/favori-ekle', 'HomeController@favoriekle')->name('favoriekle');
+    Route::get('/favori', 'HomeController@favori')->name('favori');
     Route::post('/hizli-satin-al', 'HomeController@hizlisatinal')->name('hizlisatinal');
     Route::post('/sepet-cikar/{rowId}', 'HomeController@cartdelete')->name('sepetcikar');
     Route::post('/sepet-bosalt}', 'HomeController@cartdestroy')->name('sepetbosalt');
