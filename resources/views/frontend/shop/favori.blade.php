@@ -14,7 +14,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        @if($Books->count() > 0)
+                        @if($FavoriteBooks->count() > 0)
                         <table class="table table-cart table-mobile">
                             <thead>
                             <tr>
