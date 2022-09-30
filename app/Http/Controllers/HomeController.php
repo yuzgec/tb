@@ -452,6 +452,7 @@ class HomeController extends Controller
         return redirect()->route('home');
     }
     public function kurumsal($url){
+
         $Detay = Page::where('slug', $url)->firstOrFail();
 
         SEOTools::setTitle($Detay->title);
