@@ -3,25 +3,27 @@
  * @see https://github.com/artesaos/seotools
  */
 
+
+
 return [
     'meta' => [
         /*
          * The default configurations to be used by the meta generator.
          */
         'defaults'       => [
-            'title'        => "TB Kitap", // set false to total remove
+            'title'        => "TB Kitap 2. El ve İlk Baskı Kitap Klübü", // set false to total remove
             'titleBefore'  => false, // Put defaults.title before page title, like 'TB Kitap - Dashboard'
-            'description'  => 'TB Kitap', // set false to total remove
+            'description'  => 'Binlerce 2. El kitap, İlk Baskı Kitaplar ', // set false to total remove
             'separator'    => ' - ',
-            'keywords'     => [],
-            'canonical'    => false, // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
-            'robots'       => false, // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
+            'keywords'     => ['ikinci el kitap','ilk baskı kitaplar', 'plaklar', 'yabamcı dil kitaplar', 'online sahaf'],
+            'canonical'    => url()->current(), // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
+            'robots'       => 'index/follow', // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
         ],
         /*
          * Webmaster tags are always added.
          */
         'webmaster_tags' => [
-            'google'    => null,
+            'google'    => '3KZHEA4_c6m',
             'bing'      => null,
             'alexa'     => null,
             'pinterest' => null,
@@ -36,7 +38,7 @@ return [
          * The default configurations to be used by the opengraph generator.
          */
         'defaults' => [
-            'title'       => 'TB Kitap', // set false to total remove
+            'title'        => "TB Kitap 2. El ve İlk Baskı Kitap Klübü", // set false to total remove
             'description' => 'TB Kitap', // set false to total remove
             'url'         => false, // Set null for using Url::current(), set false to total remove
             'type'        => false,
@@ -58,7 +60,7 @@ return [
          * The default configurations to be used by the json-ld generator.
          */
         'defaults' => [
-            'title'       => 'TB Kitap', // set false to total remove
+            'title'        => "TB Kitap 2. El ve İlk Baskı Kitap Klübü", // set false to total remove
             'description' => 'TB Kitap', // set false to total remove
             'url'         => false, // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
             'type'        => 'WebPage',
