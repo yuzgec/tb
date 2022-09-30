@@ -1,10 +1,10 @@
-<div class="product product-2 text-center">
+<div class="product product-3 text-center">
     <span class="product-label label-circle label-new">Yeni</span>
     <figure class="product-media">
         <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
             <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb') }}" alt="{{ $item->title }}">
             @foreach($item->getMedia('gallery')->take(1) as $img)
-                {{ $img->img('thumb')->attributes(['class' => 'product-image-hover']) }}
+                {{ $img->img('thumb')->attributes(['class' => 'product-image-hover', 'alt' => $item->title]) }}
             @endforeach
         </a>
 
@@ -19,7 +19,7 @@
             {{ $item->title }}
         </h3>
         <div class="product-price">
-            {{ $item->price }}₺
+            {{ money($item->price) }}₺
         </div>
     </div>
     <div class="product-action">
