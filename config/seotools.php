@@ -23,7 +23,7 @@ return [
          * Webmaster tags are always added.
          */
         'webmaster_tags' => [
-            'google'    => '3KZHEA4_c6m',
+            'google'    => '3KZHEA4_c6mUCIgdaWei0xRfNHVCnSf9PADyEQm3Fk0',
             'bing'      => null,
             'alexa'     => null,
             'pinterest' => null,
