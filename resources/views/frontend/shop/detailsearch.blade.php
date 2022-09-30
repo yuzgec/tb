@@ -20,8 +20,8 @@
         <div class="container">
             <div class="row mt-3">
                 <div class="col-lg-9" style="border: #eeeeee 1px solid">
-                   <form>
-                       @csrf
+                   <form method="get">
+
                        <div class="row">
                            <div class="col-12">
                                 <h3 class="card-title text-center mt-2 mb-3">Detaylı Kitap Arama</h3>
@@ -30,10 +30,10 @@
 
                           <div class="col-md-6 col-12">
                               <label>Kitap Adı</label>
-                              <input class="form-control" name="" type="text" placeholder="">
+                              <input class="form-control" name="ad" type="text" placeholder="Kitap Adı">
 
                               <label>Yazar</label>
-                              <select class="form-control single" data-placeholder="Yazar Seçiniz" name="translator">
+                              <select class="form-control single" data-placeholder="Yazar Seçiniz" name="yazar">
                                   <option value="">Yazar Seçiniz</option>
                                   @foreach($Author as $item)
                                       <option value="{{ $item->id }}">
@@ -43,7 +43,7 @@
                               </select>
 
                               <label  class="mt-2">Çeviren</label>
-                              <select class="form-control single" data-placeholder="Çeviren Seçiniz" name="translator">
+                              <select class="form-control single" data-placeholder="Çeviren Seçiniz" name="ceviren">
                                   <option value="">Çeviren Seçiniz</option>
                                   @foreach($Translator as $item)
                                       <option value="{{ $item->id }}">
@@ -52,13 +52,12 @@
                                   @endforeach
                               </select>
                               <div class="row mt-2">
-
                                   <div class="col-md-6 col-12">
                                       <label>Basım Tarihi</label>
-                                      <select class="form-control single" data-placeholder="Yıl Seçiniz" name="years">
+                                      <select class="form-control single" data-placeholder="Yıl Seçiniz" name="basimtarihi1">
                                           <option value="">Yıl Seçiniz</option>
                                           @foreach($Years as $item)
-                                              <option value="{{ $item->id }}">
+                                              <option value="{{ $item->title }}">
                                                   {{  $item->title }}
                                               </option>
                                           @endforeach
@@ -66,8 +65,7 @@
                                   </div>
                                   <div class="col-md-6 col-12">
                                       <label>&nbsp;</label>
-
-                                      <select class="form-control single" data-placeholder="Yıl Seçiniz" name="years">
+                                      <select class="form-control single" data-placeholder="Yıl Seçiniz" name="basimtarihi2">
                                           <option value="">Yıl Seçiniz</option>
                                           @foreach($Years as $item)
                                               <option value="{{ $item->id }}">
@@ -75,16 +73,13 @@
                                               </option>
                                       @endforeach
                                       </select>
-
                                   </div>
                               </div>
-
-
                           </div>
 
                           <div class="col-md-6 col-12">
                                   <label>Kategori</label>
-                                  <select class="form-control single" data-placeholder="Kategori Seçiniz" name="category">
+                                  <select class="form-control single" data-placeholder="Kategori Seçiniz" name="kategori">
                                       <option value="">Kategori Seçiniz</option>
                                       @foreach($Product_Categories as $item)
                                           <option value="{{ $item->id }}">
@@ -94,7 +89,7 @@
                                   </select>
 
                                   <label class="mt-2">Yayınevi</label>
-                                  <select class="form-control single" data-placeholder="Kategori Seçiniz" name="publisher">
+                                  <select class="form-control single" data-placeholder="Kategori Seçiniz" name="yayinevi">
                                   <option value="">Yayınevi Seçiniz</option>
                                       @foreach($Publisher as $item)
                                           <option value="{{ $item->id }}">
@@ -104,7 +99,7 @@
                                   </select>
 
                                   <label  class="mt-2">Dil</label>
-                                  <select class="form-control single" data-placeholder="Dİl Seçiniz" name="language">
+                                  <select class="form-control single" data-placeholder="Dİl Seçiniz" name="dil">
                                   <option value="">Dİl Seçiniz</option>
                                     @foreach($Language as $item)
                                           <option value="{{ $item->id }}">
@@ -118,11 +113,11 @@
 
                                   <div class="col-md-6 col-12">
                                       <label>Fiyat Aralığı</label>
-                                      <input class="form-control" name="" type="text" placeholder="">
+                                      <input class="form-control" name="fiyat1" type="text" placeholder="">
                                   </div>
                                   <div class="col-md-6 col-12">
                                       <label>&nbsp;</label>
-                                      <input class="form-control" name="" type="text" placeholder="">
+                                      <input class="form-control" name="fiyat2" type="text" placeholder="">
                                   </div>
                               </div>
 
@@ -133,6 +128,15 @@
                            </div>
                        </div>
                    </form>
+
+
+                    <div class="row">
+                    @foreach($Products as $item)
+                        <div class="col-6 col-md-3">
+                            <x-shop.product-item :item="$item"/>
+                        </div>
+                    @endforeach
+                    </div>
 
                 </div>
                 <aside class="col-lg-3 order-lg-first">

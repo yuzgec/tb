@@ -256,7 +256,7 @@ class ProductController extends Controller
                 }
             }
 
-            if ($request->input('author')) {
+            if ($request->input('category')) {
                 $kategoriler = ProductCategory::whereIn('id', $request->input('category'))->get();
                 foreach ($kategoriler as $item) {
                     $kategori[] = $item->slug;
@@ -303,9 +303,9 @@ class ProductController extends Controller
     }
 
     public function getSwitch(Request $request){
-        $update=Product::findOrFail($request->id);
-        $update->status = $request->status == "true" ? 1 : 0 ;
-        $update->save();
+        //dd($request);
+        $status = ($request->status == "true") ? 1 : 0;
+        Product::where('id', $request->id)->update(['status' => $status]);
     }
 
     public function postUpload(Request $request)

@@ -140,7 +140,7 @@ class HomeController extends Controller
     }
     public function sepet(){
         SEOTools::setTitle("Sepetim | Online 2. El Kitap". config('app.name'));
-        SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Sepetim Sayfası');
+        SEOTools::setDescription('Tb Kitap 2. El Kitap Kulübü |  Sepetim Sayfası');
 
         if (Cart::instance('shopping')->content()->count() === 0){
             return redirect()->route('home');
@@ -160,7 +160,7 @@ class HomeController extends Controller
     {
 
         SEOTools::setTitle("Ödeme | Online 2. El Kitap". config('app.name'));
-        SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Ödeme Sayfası');
+        SEOTools::setDescription('Tb Kitap 2. El Kitap Ödeme Sayfası');
 
         if (request()->isMethod('get')) {
             return redirect()->route('home');
@@ -316,12 +316,11 @@ class HomeController extends Controller
     public function search(SearchRequest $request){
 
         SEOTools::setTitle($request->q." ile ilgili arama sonuçları | Online 2. El Kitap | ". config('app.name'));
-        SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Klübü Arama Sayfası');
+        SEOTools::setDescription('Tb Kitap 2. El Kitap Klübü Arama Sayfası');
 
         $search = $request->q;
         $Result = Product::where('title','like','%'.$search.'%')
             ->orWhere('slug','like','%'.$search.'%')
-            ->where('status', 1)
             ->select('title', 'slug', 'status', 'price', 'old_price', 'id', 'sku')
             ->paginate(12);
 
@@ -329,17 +328,49 @@ class HomeController extends Controller
 
         return view('frontend.shop.search', compact('Result'));
     }
-    public function detayliarama(){
+    public function detayliarama(Request $request){
+
 
         SEOTools::setTitle("Detaylı Arama | Online 2. El Kitap". config('app.name'));
-        SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Arama Sayfası');
+        SEOTools::setDescription('Tb Kitap 2. El Kitap Detaylı Arama Sayfası');
+
 
         $Language = Language::select('id', 'title')->get();
         $Publisher = Publisher::select('id', 'title')->get();
         $Translator = Translator::select('id', 'title')->get();
         $Author = Author::select('id', 'title')->get();
         $Years = Years::select('id', 'title')->get();
-        return view('frontend.shop.detailsearch', compact('Language', 'Publisher', 'Translator', 'Author', 'Years'));
+
+
+        $Ad = $request->query->get('ad');
+        $Kategori = $request->query->get('kategori');
+        $Yazar = $request->query->get('yazar');
+        $Yayinevi = $request->query->get('yayinevi');
+        $Ceviren = $request->query->get('ceviren');
+        $Dil = $request->query->get('dil');
+        $BasimTarihi1 = $request->query->get('basimtarihi1');
+        $BasimTarihi2 = $request->query->get('basimtarihi2');
+        $Fiyat1 = $request->query->get('fiyat1');
+        $Fiyat2 = $request->query->get('fiyat2');
+
+
+        $Products = Product::with('getCategory')
+            ->with('getYear', function($query) use ($BasimTarihi1, $BasimTarihi2){
+                return $query->whereBetween('title',[$BasimTarihi1, $BasimTarihi2]);
+            })
+            ->with('getAuthor')
+            ->with('getLanguage')
+            ->select('id', 'title', 'price', 'old_price', 'slug','bestselling','status','year')
+            ->where('status',1)
+            ->orderBy('rank')
+            ->paginate(30);
+
+
+        //dd($Products);
+
+
+
+        return view('frontend.shop.detailsearch', compact('Language', 'Publisher', 'Translator', 'Author', 'Years','Products'));
     }
     public function addtocart(Request $request){
 

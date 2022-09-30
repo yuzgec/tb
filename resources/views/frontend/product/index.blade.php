@@ -132,7 +132,7 @@
                                 </div>
 
                                 <div style="margin-top:-30px">
-                                    <i class="icon-truck"></i> Bugün <b>({{$Count+1}})</b> kişi baktı<br>
+                                    <i class="icon-truck"></i> Bugün <b>({{$Count}})</b> kişi baktı<br>
                                     <i class="icon-eye"></i> Aynı gün kargoda<br>
                                     <i class="icon-info-circle"></i> Güvenli Ödeme
                                 </div>
@@ -141,6 +141,8 @@
                                     {!! $Detay->short  !!}
                                 </div>
 
+
+                                @if($Detay->status != 0 )
                                 <form action="{{ route('sepeteekle') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $Detay->id }}">
@@ -148,7 +150,7 @@
                                         <span><i class="icon-shopping-cart"></i> Sepete Ekle</span>
                                     </button>
                                 </form>
-                                    <div class="product-details-action">
+                                <div class="product-details-action">
 
                                         <div class="row d-flex justify-content-between align-items-center">
                                             <form action="{{ route('hizlisatinal') }}" method="POST">
@@ -172,12 +174,10 @@
                                         </div>
                                     </div>
 
-
-
                                 <div class="product-details-footer">
                                     <div class="addthis_inline_share_toolbox"></div>
                                 </div>
-
+                                @endif
                             </div>
                                 </div>
                             </div>
