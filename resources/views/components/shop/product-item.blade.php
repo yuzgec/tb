@@ -1,4 +1,4 @@
-<div class="product product-3 text-center">
+<div class="product product-4 text-center">
     <span class="product-label label-circle label-new">Yeni</span>
     <figure class="product-media">
         <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
@@ -14,6 +14,12 @@
     </figure>
 
     <div class="product-body">
+
+        <div class="product-cat">
+            @foreach($item->getCategory() as $category)
+            <a href="#">{{ $category->category_id }}</a>
+            @endforeach
+        </div>
         <h3 class="product-title birsatir">
             <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
             {{ $item->title }}
@@ -22,11 +28,17 @@
             {{ money($item->price) }}₺
         </div>
     </div>
+
+    <div class="product-action">
+        <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
+    </div>
+
     <div class="product-action">
         <a href="{{ route('urun' , $item->slug)}}"
            title="{{ $item->title }}"
            class="btn-product btn-cart">
-            <span>Sepete Ekle</span>
+            <span>İncele</span>
         </a>
+
     </div>
 </div>

@@ -144,7 +144,6 @@
                                 <form action="{{ route('sepeteekle') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $Detay->id }}">
-                                    <input type="hidden" name="qty" value="1">
                                     <button type="submit" class="btn btn-primary btn-rounded btn-shadow btn-block">
                                         <span><i class="icon-shopping-cart"></i> Sepete Ekle</span>
                                     </button>
@@ -155,7 +154,6 @@
                                             <form action="{{ route('hizlisatinal') }}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $Detay->id }}">
-                                                <input type="hidden" name="qty" value="1">
                                                 <div class="">
                                                     <button type="submit" class="btn btn-outline-dark-1">
                                                         <span class="text-center"><i class="icon-shopping-cart"></i> Şimdi Satın Al</span>
@@ -166,7 +164,6 @@
                                                 <form action="{{ route('favoriekle') }}" method="get">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $Detay->id }}">
-                                                    <input type="hidden" name="qty" value="1">
                                                     <button type="submit" class="btn btn-outline-dark-1" title="Favori">
                                                         <span class="text-center"><i class="icon-heart-o"></i> Favorilere Ekle</span>
                                                     </button>

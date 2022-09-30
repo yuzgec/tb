@@ -45,34 +45,16 @@ class HomeController extends Controller
 
     public function index()
     {
-        $Product_Categories = ProductCategory::with('cat')
-                    ->where('status', 1)
-                    ->get()
-                    ->toFlatTree();
-
-        $Products = Product::with('getCategory')
-                    ->with([ 'getYear', 'getAuthor', 'getLanguage'])
-                    ->select('id', 'title', 'price', 'old_price', 'slug','bestselling','status')
-                    ->where('status',1)
-                    ->orderBy('rank')
-                    ->get();
-
         $Slider = Slider::with('getProduct')->where('status', 1)->get();
-
         $Pivot = \App\Models\ProductCategoryPivot::with('productCategory')->get();
 
-        return view('frontend.index', compact('Products','Slider', 'Product_Categories', 'Pivot'));
+        return view('frontend.index', compact('Slider',  'Pivot'));
     }
     public function urun($url){
-        $Detay = Product::withCount('getPublisher')->with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
+        $Detay = Product::withCount('getPublisher')
+            ->with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
             ->where('sku', \request('urunno'))
             ->firstOrFail();
-
-//        if (!session()->has('lastSeen')) {
-//            session(['lastSeen' => $Detay->id]);
-//        }else{
-//            session()->put(['lastSeen' => $Detay->id]);
-//        }
 
         foreach ($Detay->getAuthor as $item){
             $author[] = $item->author_id;
@@ -82,9 +64,14 @@ class HomeController extends Controller
             $cat[] = $item->category_id;
         }
 
-        $Category = ProductCategory::select('title', 'slug', 'id','desc')->whereIn('id',$cat)->get();
-        $OtherCategory = ProductCategory::select('title', 'slug', 'id','desc')->where('slug',request()->segment(2))->first();
-        //dd($Category);
+        $Category = ProductCategory::select('title', 'slug', 'id','desc')
+            ->whereIn('id',$cat)
+            ->get();
+
+        $OtherCategory = ProductCategory::select('title', 'slug', 'id','desc')
+            ->where('slug',request()->segment(2))
+            ->first();
+
         SEOTools::setTitle($Detay->title);
         SEOTools::setDescription($Detay->seo_desc);
         SEOTools::opengraph()->setUrl(url()->current());
@@ -96,9 +83,14 @@ class HomeController extends Controller
         $Count = views($Detay)->unique()->period(Period::create(Carbon::today()))->count();
 
         $Productssss = Product::with('getCategory')->where('status', 1)
-            ->whereHas('getCategory', function ($query) use ($Detay, $cat){
-            $query->whereIn('category_id',$cat)->whereNotIn('product_id',[$Detay->id]);
-        })->orderBy('rank','ASC')->get();
+                ->whereHas('getCategory', function ($query) use ($Detay, $cat)
+                    {
+                    $query->whereIn('category_id',$cat)
+                        ->whereNotIn('product_id',[$Detay->id]);
+                    })
+                ->orderBy('rank','ASC')
+                ->get();
+
         $Pivot = ProductCategoryPivot::with('productCategory')->get();
 
         return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author', 'Pivot', 'Category', 'OtherCategory'));

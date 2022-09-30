@@ -68,7 +68,7 @@
                                     }
                                 }
                             }'>
-                        @foreach($Products->take(8) as $item)
+                        @foreach($Product->take(8) as $item)
                             <x-shop.product-item :item="$item"/>
                         @endforeach
 
@@ -103,7 +103,7 @@
                                     }
                                 }
                             }'>
-                        @foreach($Products->take(8,16) as $item)
+                        @foreach($Product->take(8,16) as $item)
                             <x-shop.product-item :item="$item"/>
                         @endforeach
 
@@ -138,7 +138,7 @@
                                     }
                                 }
                             }'>
-                        @foreach($Products->take(16,28) as $item)
+                        @foreach($Product as $item)
                             <x-shop.product-item :item="$item"/>
                         @endforeach
                     </div>
@@ -191,7 +191,7 @@
                                     }
                                 }
                             }'>
-                    @foreach($Products->take(8) as $item)
+                    @foreach($Product->take(8) as $item)
                         <div class="product product-2 text-center">
                             <span class="product-label label-circle label-new">Yeni</span>
                             <figure class="product-media">
@@ -274,7 +274,7 @@
                                     }
                                 }
                             }'>
-                        @foreach($Products->take(8) as $item)
+                        @foreach($Product->take(8) as $item)
 
                             <div class="product">
                                 <figure class="product-media">
@@ -428,7 +428,7 @@
     <div class="deal-container pt-5 pb-3 mb-5">
         <div class="container">
             <div class="row">
-                @foreach($Products->take(1) as $item)
+                @foreach($Product->take(1) as $item)
                 <div class="col-lg-12">
                     <div class="deal">
                         <div class="deal-content">
@@ -463,16 +463,22 @@
     </div>
 
     <div class="mb-6"></div>
-    <div class="container">
+    <div class="container" id="kitaplar">
         <div class="row">
 
-            @foreach($Products as $item)
+            @foreach($Product as $item)
                 <div class="col-6 col-md-3">
                     <x-shop.product-item :item="$item"/>
                 </div>
             @endforeach
 
         </div>
+        <div class="row ">
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                {{ $Product->appends(['siralama' => 'kitap' ]) }}
+            </div>
+        </div>
+
     </div>
     <div class="container">
         <hr class="mt-1 mb-6">
