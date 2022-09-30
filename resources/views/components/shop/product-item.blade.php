@@ -14,7 +14,7 @@
     </figure>
 
     <div class="product-body">
-        <h3 class="product-title">
+        <h3 class="product-title birsatir">
             <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
             {{ $item->title }}
         </h3>
