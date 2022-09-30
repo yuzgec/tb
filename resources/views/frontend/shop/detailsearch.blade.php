@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row mt-3">
                 <div class="col-lg-9" style="border: #eeeeee 1px solid">
-                   <form method="get">
+                   <form action="{{ route('detayliaramasonuc') }}" method="get">
 
                        <div class="row">
                            <div class="col-12">
@@ -68,7 +68,7 @@
                                       <select class="form-control single" data-placeholder="Yıl Seçiniz" name="basimtarihi2">
                                           <option value="">Yıl Seçiniz</option>
                                           @foreach($Years as $item)
-                                              <option value="{{ $item->id }}">
+                                              <option value="{{ $item->title }}">
                                                   {{  $item->title }}
                                               </option>
                                       @endforeach
@@ -128,15 +128,6 @@
                            </div>
                        </div>
                    </form>
-
-
-                    <div class="row">
-                    @foreach($Products as $item)
-                        <div class="col-6 col-md-3">
-                            <x-shop.product-item :item="$item"/>
-                        </div>
-                    @endforeach
-                    </div>
 
                 </div>
                 <aside class="col-lg-3 order-lg-first">

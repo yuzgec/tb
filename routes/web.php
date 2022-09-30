@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/iletisim', 'HomeController@iletisim')->name('iletisim');
     Route::get('/arama', 'HomeController@search')->name('search');
     Route::get('/detayli-arama', 'HomeController@detayliarama')->name('detayliarama');
+    Route::get('/detayli-arama-sonuc', 'HomeController@detayliaramasonuc')->name('detayliaramasonuc');
     Route::post('/bulten', 'HomeController@mailsubcribes')->name('mailsubcribes');
     Route::post('/sepete-ekle', 'HomeController@addtocart')->name('sepeteekle');
     Route::get('/favori-ekle', 'HomeController@favoriekle')->middleware('auth')->name('favoriekle');

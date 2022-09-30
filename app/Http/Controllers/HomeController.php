@@ -328,12 +328,41 @@ class HomeController extends Controller
 
         return view('frontend.shop.search', compact('Result'));
     }
-    public function detayliarama(Request $request){
 
+    public function detayliaramasonuc(Request $request){
 
         SEOTools::setTitle("Detaylı Arama | Online 2. El Kitap". config('app.name'));
         SEOTools::setDescription('Tb Kitap 2. El Kitap Detaylı Arama Sayfası');
 
+        $Ad = $request->input('ad') ? $request->input('ad') : '?' ;
+        $Kategori = $request->input('kategori') ? $request->input('kategori') : '?' ;
+        $Yazar = $request->input('yazar') ? $request->input('yazar') : '?' ;
+        $Yayinevi = $request->input('yayinevi') ? $request->input('yayinevi') : '?' ;
+        $Ceviren = $request->input('ceviren') ? $request->input('ceviren') : '?' ;
+        $Dil = $request->input('dil') ? $request->input('dil') : '?' ;
+        $BasimTarihi1 = $request->input('basimtarihi1') ? $request->input('basimtarihi1') : 1800 ;
+        $BasimTarihi2 = $request->input('basimtarihi2') ? $request->input('basimtarihi2') : date('Y') ;
+        $Fiyat1 = $request->input('fiyat1') ? $request->input('fiyat1') : 0 ;
+        $Fiyat2 = $request->input('fiyat2') ? $request->input('fiyat2') : 999 ;
+
+        //dd($Ceviren);
+
+        $Result = Product::orWhere('title', $Ad)
+            ->orWhere('translator', $Ceviren)
+            ->orWhere('language', $Dil)
+            ->orWhere('publisher', $Yayinevi)
+            ->whereBetween('year',[$BasimTarihi1,$BasimTarihi2])
+            ->whereBetween('price',[$Fiyat1,$Fiyat2])
+            ->get();
+
+        //dd($Result);
+        return view('frontend.shop.detailsearchresult', compact('Result'));
+    }
+
+    public function detayliarama(){
+
+        SEOTools::setTitle("Detaylı Arama | Online 2. El Kitap". config('app.name'));
+        SEOTools::setDescription('Tb Kitap 2. El Kitap Detaylı Arama Sayfası');
 
         $Language = Language::select('id', 'title')->get();
         $Publisher = Publisher::select('id', 'title')->get();
@@ -341,36 +370,7 @@ class HomeController extends Controller
         $Author = Author::select('id', 'title')->get();
         $Years = Years::select('id', 'title')->get();
 
-
-        $Ad = $request->query->get('ad');
-        $Kategori = $request->query->get('kategori');
-        $Yazar = $request->query->get('yazar');
-        $Yayinevi = $request->query->get('yayinevi');
-        $Ceviren = $request->query->get('ceviren');
-        $Dil = $request->query->get('dil');
-        $BasimTarihi1 = $request->query->get('basimtarihi1');
-        $BasimTarihi2 = $request->query->get('basimtarihi2');
-        $Fiyat1 = $request->query->get('fiyat1');
-        $Fiyat2 = $request->query->get('fiyat2');
-
-
-        $Products = Product::with('getCategory')
-            ->with('getYear', function($query) use ($BasimTarihi1, $BasimTarihi2){
-                return $query->whereBetween('title',[$BasimTarihi1, $BasimTarihi2]);
-            })
-            ->with('getAuthor')
-            ->with('getLanguage')
-            ->select('id', 'title', 'price', 'old_price', 'slug','bestselling','status','year')
-            ->where('status',1)
-            ->orderBy('rank')
-            ->paginate(30);
-
-
-        //dd($Products);
-
-
-
-        return view('frontend.shop.detailsearch', compact('Language', 'Publisher', 'Translator', 'Author', 'Years','Products'));
+        return view('frontend.shop.detailsearch', compact('Language', 'Publisher', 'Translator', 'Author', 'Years'));
     }
     public function addtocart(Request $request){
 

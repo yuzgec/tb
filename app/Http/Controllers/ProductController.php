@@ -27,7 +27,7 @@ class ProductController extends Controller
                 ->orderBy('rank')
                 ->paginate(30);
         }else{
-        $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])->orderBy('rank')->paginate(100);
+        $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])->orderBy('rank')->paginate(0);
         }
         return view('backend.product.index', compact('All'));
     }
