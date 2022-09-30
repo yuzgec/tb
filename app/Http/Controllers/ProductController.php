@@ -25,9 +25,9 @@ class ProductController extends Controller
                 ->where('title', 'like', '%'. request('q'). '%')
                 ->orWhere('slug', 'like', '%'. request('q'). '%')
                 ->orderBy('rank')
-                ->paginate(1);
+                ->paginate(30);
         }else{
-        $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])->orderBy('rank')->paginate(30);
+        $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])->orderBy('rank')->paginate(1);
         }
         return view('backend.product.index', compact('All'));
     }

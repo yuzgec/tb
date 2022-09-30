@@ -23,7 +23,7 @@
             </div>
 
             <div class="table-responsive p-2">
-                <table class="table table-hover table-striped table-bordered">
+                <table class="table table-hover table-striped table-bordered ">
                     <thead>
                     <tr>
                         <th>Resim</th>
@@ -36,7 +36,7 @@
                         <th class="w-1"></th>
                     </tr>
                     </thead>
-                    <tbody id="orders" class="scrolling-pagination">
+                    <tbody id="orders">
                     @foreach($All as $item)
                         <tr id="page_{{$item->id}}">
                             <td>
@@ -171,4 +171,5 @@
             })
         })
     </script>
+
 @endsection
