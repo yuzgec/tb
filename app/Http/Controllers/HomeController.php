@@ -356,6 +356,8 @@ class HomeController extends Controller
             Favorite::where('user_id', auth()->user()->id)->where('product_id',$request->id)->delete();
         }
 
+
+
         $p = Product::find($request->id);
         Basket::create(['product_id' => $p->id, 'basket_name' => 'Sepet']);
         Cart::instance('shopping')->add(
