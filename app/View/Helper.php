@@ -10,7 +10,7 @@
     define('MAIL_SEND', 'siparis@kiblegahaileoyunlari.com.tr');
 
     function cartControl($id, $text = null){
-        foreach (Cart::content() as $c){
+        foreach (Cart::instance('shopping')->content() as $c){
             if($c->id == $id){
                 echo $text;
             }

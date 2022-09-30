@@ -22,10 +22,12 @@ use App\Models\Slider;
 use App\Models\Translator;
 use App\Models\User;
 use App\Models\Years;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Support\Period;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -37,6 +39,10 @@ use Iyzipay\Options;
 
 class HomeController extends Controller
 {
+
+    public function __construct(){
+    }
+
     public function index()
     {
         $Product_Categories = ProductCategory::with('cat')
@@ -144,7 +150,7 @@ class HomeController extends Controller
         SEOTools::setTitle("Sepetim | Online 2. El Kitap". config('app.name'));
         SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Sepetim Sayfası');
 
-        if (Cart::content()->count() === 0){
+        if (Cart::instance('shopping')->content()->count() === 0){
             return redirect()->route('home');
         }
         //dd(Cart::content());
@@ -153,7 +159,7 @@ class HomeController extends Controller
         return view('frontend.shop.sepet',compact('Products'));
     }
     public function siparis(){
-        if (Cart::content()->count() === 0){
+        if (Cart::instance('shopping')->content()->count() === 0){
             return redirect()->route('home');
         }
         return view('frontend.shop.siparis');
@@ -179,7 +185,7 @@ class HomeController extends Controller
         $request = new \Iyzipay\Request\CreateCheckoutFormInitializeRequest();
         $request->setLocale(\Iyzipay\Model\Locale::TR);
         $request->setConversationId($sepetId);
-        $request->setPrice(Cart::total());
+        $request->setPrice(Cart::instance('shopping')->total());
         $request->setPaidPrice(1);
         $request->setCurrency(\Iyzipay\Model\Currency::TL);
         $request->setBasketId($sepetId);
@@ -267,7 +273,7 @@ class HomeController extends Controller
 
                 $ShopCart->cart_id          = $payment->getBasketId();
                 $ShopCart->user_id          = $payment->getBasketId();
-                $ShopCart->total            = Cart::total();
+                $ShopCart->total            = Cart::instance('shopping')->total();
                 $ShopCart->name             = session()->get('name');
                 $ShopCart->surname          = session()->get('surname');
                 $ShopCart->email            = session()->get('email');
@@ -286,7 +292,7 @@ class HomeController extends Controller
                     $Order->save();
                 }
 
-                Cart::destroy();
+                Cart::instance('shopping')->destroy();
 
                 session()->flush();
             }
@@ -345,6 +351,11 @@ class HomeController extends Controller
     }
     public function addtocart(Request $request){
 
+        //dd(auth()->user()->check);
+        if(auth()->check()){
+            Favorite::where('user_id', auth()->user()->id)->where('product_id',$request->id)->delete();
+        }
+
         $p = Product::find($request->id);
         Basket::create(['product_id' => $p->id, 'basket_name' => 'Sepet']);
         Cart::instance('shopping')->add(
@@ -399,7 +410,6 @@ class HomeController extends Controller
     }
 
     public function favori(){
-
         SEOTools::setTitle('Favori Listem | Online 2. El Kitap | '. config('app.name'));
         SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Klübü Arama Sayfası');
 

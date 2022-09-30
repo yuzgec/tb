@@ -6,7 +6,7 @@ use App\Models\Publisher;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-    Auth::routes();
+
 
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/kitap/{path}', 'HomeController@urun')->where('path', '.*')->name('urun');
@@ -23,8 +23,8 @@ use Illuminate\Support\Facades\Route;
     Route::post('/bulten', 'HomeController@mailsubcribes')->name('mailsubcribes');
     Route::post('/sepete-ekle', 'HomeController@addtocart')->name('sepeteekle');
     Route::get('/favori-ekle', 'HomeController@favoriekle')->middleware('auth')->name('favoriekle');
-    Route::get('/favori', 'HomeController@favori')->middleware('auth')->name('favori');
-    Route::post('/favori-cikar/{id}', 'HomeController@favoricikar')->middleware('auth')->name('favoricikar');
+    Route::get('/favori', 'HomeController@favori')->name('favori');
+    Route::post('/favori-cikar/{id}', 'HomeController@favoricikar')->name('favoricikar');
     Route::post('/hizli-satin-al', 'HomeController@hizlisatinal')->name('hizlisatinal');
     Route::post('/sepet-cikar/{rowId}', 'HomeController@cartdelete')->name('sepetcikar');
     Route::post('/sepet-bosalt}', 'HomeController@cartdestroy')->name('sepetbosalt');
@@ -40,8 +40,8 @@ use Illuminate\Support\Facades\Route;
     Route::get('/mail', function (){
        return view('frontend.mail.siparis');
     });
-
-    Route::group(["prefix"=>"go", 'middleware' => ['auth', 'admin']],function() {
+Auth::routes();
+    Route::group(["prefix"=>"go", 'middleware' => ['auth','web', 'admin']],function() {
         Route::get('/', 'DashboardController@index')->name('go');
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
         Route::auto('/page', PageController::class);

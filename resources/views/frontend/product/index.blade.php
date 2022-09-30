@@ -158,17 +158,17 @@
                                                 <input type="hidden" name="qty" value="1">
                                                 <div class="">
                                                     <button type="submit" class="btn btn-outline-dark-1">
-                                                        <span class="text-center"> Şimdi Satın Al</span>
+                                                        <span class="text-center"><i class="icon-shopping-cart"></i> Şimdi Satın Al</span>
                                                     </button>
                                                 </div>
                                             </form>
                                             <div class="">
-                                                <form action="{{ route('favoriekle') }}" method="POST">
+                                                <form action="{{ route('favoriekle') }}" method="get">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $Detay->id }}">
                                                     <input type="hidden" name="qty" value="1">
-                                                    <button type="submit" class="btn-product btn-wishlist" title="Favori">
-                                                        <span>Favorilere Ekle</span>
+                                                    <button type="submit" class="btn btn-outline-dark-1" title="Favori">
+                                                        <span class="text-center"><i class="icon-heart-o"></i> Favorilere Ekle</span>
                                                     </button>
                                                 </form>
                                             </div>

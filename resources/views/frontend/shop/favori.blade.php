@@ -42,9 +42,13 @@
                                             </h3>
                                         </div>
                                     </td>
-                                    <td class="price-col">{{ money($item->price)}}</td>
+                                    <td class="price-col">{{ money($item->price)}}₺</td>
 
-                                    <td class="price-col">{{ ($item->status == 1 ) ? 'Stokta Var' :  'Stokta Yok'}}</td>
+                                    <td class="price-col">
+                                        <span class="badge {{ ($item->status == 1 ) ? 'badge-success' :  'badge-danger'}}">
+                                            {{ ($item->status == 1 ) ? 'Stokta Var' :  'Stokta Yok'}}
+                                        </span>
+                                    </td>
 
                                     <td class="total-col">
                                         <form action="{{ route('sepeteekle') }}" method="POST">

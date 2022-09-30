@@ -1,5 +1,4 @@
 @extends('frontend.layout.app')
-@section('title', 'Sepetim  | '.config('app.name'))
 @section('content')
     <nav aria-label="breadcrumb" class="breadcrumb-nav">
         <div class="container">
@@ -82,16 +81,16 @@
                                 <tbody>
                                 <tr class="summary-subtotal">
                                     <td>Ara Toplam:</td>
-                                    <td>{{ money(Cart::subtotal()) }}₺</td>
+                                    <td>{{ money(Cart::instance('shopping')->subtotal()) }}₺</td>
                                 </tr>
                                 <tr class="summary-shipping">
                                     <td>Kargo Ücreti:</td>
-                                    <td>{{ cargo(Cart::total()) }}</td>
+                                    <td>{{ cargo(Cart::instance('shopping')->total()) }}</td>
                                 </tr>
 
                                 <tr class="summary-total">
                                     <td>Toplam:</td>
-                                    <td>{{cargoToplam(Cart::total())}}₺</td>
+                                    <td>{{cargoToplam(Cart::instance('shopping')->total())}}₺</td>
                                 </tr>
                                 </tbody>
                             </table>

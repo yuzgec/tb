@@ -99,7 +99,7 @@
                                     </thead>
 
                                     <tbody>
-                                    @foreach(Cart::content() as $cart)
+                                    @foreach(Cart::instance('shopping')->content() as $cart)
                                     <tr>
                                         <td>   <a href="{{ route('urun', $cart->options->url) }}">{{ $cart->name }} X {{ $cart->qty }}</a></td>
                                         <td>{{ money($cart->qty * $cart->price)}}₺</td>
@@ -108,15 +108,15 @@
 
                                     <tr class="summary-subtotal">
                                         <td>Ara Toplam:</td>
-                                        <td>{{ money(Cart::subtotal()) }}₺</td>
+                                        <td>{{ money(Cart::instance('shopping')->subtotal()) }}₺</td>
                                     </tr>
                                     <tr>
                                         <td>Kargo Ücreti:</td>
-                                        <td>{{ cargo(Cart::total()) }}</td>
+                                        <td>{{ cargo(Cart::instance('shopping')->total()) }}</td>
                                     </tr>
                                     <tr class="summary-total">
                                         <td>Total:</td>
-                                        <td>{{cargoToplam(Cart::total())}}</td>
+                                        <td>{{cargoToplam(Cart::instance('shopping')->total())}}</td>
                                     </tr>
                                     </tbody>
                                 </table>

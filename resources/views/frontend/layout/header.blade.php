@@ -62,7 +62,12 @@
                     <a href="{{ route('favori') }}" title="Wishlist" >
                         <div class="icon ">
                             <i class="icon-heart-o"></i>
-                            <span class="wishlist-count badge">{{ Cart::instance('wishlist')->count() }}</span>
+                            @guest
+                                <span class="wishlist-count badge">0</span>
+                            @endguest
+                            @auth
+                                <span class="wishlist-count badge">{{ \App\Models\Favorite::where('user_id', auth()->user()->id)->count()  }}</span>
+                            @endauth
                         </div>
                         <p>Favori</p>
                     </a>
