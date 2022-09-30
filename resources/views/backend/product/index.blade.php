@@ -36,7 +36,7 @@
                         <th class="w-1"></th>
                     </tr>
                     </thead>
-                    <tbody id="orders">
+                    <tbody id="orders" class="scrolling-pagination">
                     @foreach($All as $item)
                         <tr id="page_{{$item->id}}">
                             <td>
