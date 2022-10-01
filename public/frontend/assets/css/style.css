@@ -1127,7 +1127,7 @@ blockquote {
 .header-intro-clearance .compare-dropdown,
 .header-intro-clearance .cart-dropdown {
   display: flex;
-  align-self: stretch;
+
   align-items: initial; }
   .header-intro-clearance .account > a,
   .header-intro-clearance .wishlist > a,

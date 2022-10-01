@@ -37,28 +37,25 @@
             <div class="header-right">
 
                 <a href="{{ route('detayliarama') }}"><span class="ml-2 d-none d-lg-block">Detaylı&nbsp;Arama</span></a>
-
+                @guest
                 <div class="account">
-                    @if(@auth()->user())
-                    <a href="{{ route('home') }}" title="Hesabım">
+                    <a href="{{ route('register') }}" title="Hesabım">
                         <div class="icon">
                             <i class="icon-user"></i>
                         </div>
-                        <p>Hesabım</p>
+                        <p>Üye&nbsp;Ol</p>
                     </a>
-                    @else
-                        <div class="wishlist">
+                    <div class="wishlist">
                         <a href="{{ route('login') }}" title="Kayıt Ol">
                             <div class="icon">
                                 <i class="icon-user"></i>
                             </div>
-                            <p>Üye&nbsp;Ol</p>
+                            <p>Giriş&nbsp;Yap</p>
                         </a>
-                        </div>
-                    @endif
+                    </div>
                 </div>
-
-               <div class="wishlist">
+                @endguest
+               <div class="wishlist d-none d-sm-block">
                     <a href="{{ route('favori') }}" title="Wishlist" >
                         <div class="icon ">
                             <i class="icon-heart-o"></i>
