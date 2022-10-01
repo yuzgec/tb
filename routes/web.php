@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/kitap/{path}', 'HomeController@urun')->where('path', '.*')->name('urun');
 
-    Route::get('/profilim', 'HomeController@profilim')->name('home.account');
+    Route::get('/profilim', 'HomeController@profilim')->middleware('auth')->name('profilim');
 
     Route::get('/kategori/{url}/{sub?}', 'HomeController@kategori')->name('kategori');
     Route::get('/kargosorgulama', 'HomeController@kargosorgulama')->name('kargosorgulama');

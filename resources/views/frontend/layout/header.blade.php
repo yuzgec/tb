@@ -55,6 +55,16 @@
                     </div>
                 </div>
                 @endguest
+                @auth
+                    <div class="account">
+                        <a href="{{ route('profilim') }}" title="Hesabım">
+                            <div class="icon">
+                                <i class="icon-user"></i>
+                            </div>
+                            <p>{{ auth()->user()->name }}</p>
+                        </a>
+                    </div>
+                @endauth
                <div class="wishlist d-none d-sm-block">
                     <a href="{{ route('favori') }}" title="Wishlist" >
                         <div class="icon ">

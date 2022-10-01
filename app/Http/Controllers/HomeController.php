@@ -511,6 +511,9 @@ class HomeController extends Controller
     }
 
     public function profilim(){
-        return view('frontend.page.profil');
+        $Favorite = Favorite::select('product_id')->where('user_id', auth()->user()->id)->get()->toArray();
+        $FavoriteBooks = Product::select('id', 'title', 'price', 'old_price', 'slug','bestselling','status')->whereIn('id', $Favorite)->get();
+
+        return view('frontend.dashboard.index', compact('FavoriteBooks'));
     }
 }

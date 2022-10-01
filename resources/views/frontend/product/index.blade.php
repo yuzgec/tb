@@ -64,25 +64,25 @@
                                         <tbody>
                                             @foreach($Author as $item)
                                             <tr>
-                                                <td style="width:25%"><b  class="ml-3">Yazar</b></td>
+                                                <td style="width:30%"><b  class="ml-3">Yazar</b></td>
                                                 <td><a href="{{ route('yazar', $item->slug) }}" class="ml-3" title="{{ $item->title }}"> {{ $item->title }}</a></td>
                                             </tr>
                                             @endforeach
                                             @if($Detay->getTranslator)
                                             <tr>
-                                                <td><b>Çevirmen</b></td>
+                                                <td style="width:30%"><b  class="ml-3">Çevirmen</b></td>
                                                 <td><span class="ml-3">{{ $Detay->getTranslator->title }}</span></td>
                                             </tr>
                                             @endif
                                             @if($Detay->getLanguage)
                                             <tr>
-                                                <td style="width:25%"><b  class="ml-3">Dili</b></td>
+                                                <td style="width:30%"><b  class="ml-3">Dili</b></td>
                                                 <td><span class="ml-3">{{ $Detay->getLanguage->title }}</span></td>
                                             </tr>
                                             @endif
                                             @if($Detay->getPublisher)
                                                 <tr>
-                                                    <td style="width:25%"><b  class="ml-3">Yayınevi</b></td>
+                                                    <td style="width:30%"><b  class="ml-3">Yayınevi</b></td>
                                                     <td><a href="{{ route('yayinevi', $Detay->getPublisher->slug) }}" class="ml-3"
                                                            title="({{$Detay->get_publisher_count}}) adet kitap bulunmaktadır.">
                                                             {{ $Detay->getPublisher->title }} ({{$Detay->get_publisher_count}})
@@ -91,29 +91,12 @@
                                                 </tr>
                                             @endif
                                             <tr>
-                                                <td style="width:25%"><b  class="ml-3">Kitap Kodu</b></td>
+                                                <td style="width:30%"><b  class="ml-3">Kitap Kodu</b></td>
                                                 <td><span class="ml-3">{{ $Detay->sku }}</span></td>
                                             </tr>
                                         </tbody>
                                     </table>
 
-                                   {{-- <div>
-                                        @foreach($Author as $item)
-                                            Yazar Adı :<a href="{{ route('yazar', $item->slug) }}" title="{{ $item->title }}"> {{ $item->title }}</a><br>
-                                        @endforeach
-                                    </div>
-                                    @if($Detay->getTranslator)
-                                    <div>Çevirmen : {{ $Detay->getTranslator->title }} </div>
-                                    @endif
-                                    @if($Detay->getLanguage)
-                                    <div>Dili :  {{ $Detay->getLanguage->title }}</div>
-                                    @endif
-                                    @if($Detay->getPublisher)
-                                    <div>Yayınevi :
-                                        <a href="{{ route('yayinevi', $Detay->getPublisher->slug) }}" title="({{$Detay->get_publisher_count}}) adet kitap bulunmaktadır.">
-                                            {{ $Detay->getPublisher->title }} ({{$Detay->get_publisher_count}})</a>
-                                    </div>
-                                    @endif--}}
                                     @if($Detay->condition)
                                     <div class="d-flex" style="margin-top:-10px">
                                         <div>Kondisyon : </div>
@@ -279,10 +262,7 @@
                             </div>
                         </div>
                         @endforeach
-
                     </div>
-
-
                 </div>
                 </div>
 
