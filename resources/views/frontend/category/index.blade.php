@@ -64,7 +64,7 @@
                                     @foreach($Product_Categories->where('parent_id' , 0) as $item)
                                     <div class="acc-item">
                                         <h5>
-                                            <a role="button" data-toggle="collapse" href="#{{$item->slug}}" aria-expanded="true" aria-controls="collapse-1">
+                                            <a role="button"  href="{{route('kategori', [$item->slug,  'id' => $item->id])}}" >
                                                 {{ $item->title }}
                                             </a>
                                         </h5>
