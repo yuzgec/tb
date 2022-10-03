@@ -347,8 +347,8 @@ class HomeController extends Controller
 
         //dd($Ceviren);
 
-        $Result = Product::orWhere('title', 'like', '%'. request('q'). '%')
-            ->orWhere('slug', 'like', '%'. request('q'). '%')
+        $Result = Product::orWhere('title', 'like', '%'. $Ad. '%')
+            ->orWhere('slug', 'like', '%'. $Ad. '%')
             ->orWhere('translator', $Ceviren)
             ->orWhere('language', $Dil)
             ->orWhere('publisher', $Yayinevi)
