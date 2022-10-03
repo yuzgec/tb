@@ -334,12 +334,12 @@ class HomeController extends Controller
         SEOTools::setTitle("Detaylı Arama | Online 2. El Kitap". config('app.name'));
         SEOTools::setDescription('Tb Kitap 2. El Kitap Detaylı Arama Sayfası');
 
-        $Ad = $request->input('ad') ? $request->input('ad') : '?' ;
-        $Kategori = $request->input('kategori') ? $request->input('kategori') : '?' ;
-        $Yazar = $request->input('yazar') ? $request->input('yazar') : '?' ;
-        $Yayinevi = $request->input('yayinevi') ? $request->input('yayinevi') : '?' ;
-        $Ceviren = $request->input('ceviren') ? $request->input('ceviren') : '?' ;
-        $Dil = $request->input('dil') ? $request->input('dil') : '?' ;
+        $Ad = $request->input('ad') ? $request->input('ad') : null ;
+        $Kategori = $request->input('kategori') ? $request->input('kategori') : null ;
+        $Yazar = $request->input('yazar') ? $request->input('yazar') : null ;
+        $Yayinevi = $request->input('yayinevi') ? $request->input('yayinevi') : null ;
+        $Ceviren = $request->input('ceviren') ? $request->input('ceviren') : null ;
+        $Dil = $request->input('dil') ? $request->input('dil') : null ;
         $BasimTarihi1 = $request->input('basimtarihi1') ? $request->input('basimtarihi1') : 1800 ;
         $BasimTarihi2 = $request->input('basimtarihi2') ? $request->input('basimtarihi2') : date('Y') ;
         $Fiyat1 = $request->input('fiyat1') ? $request->input('fiyat1') : 0 ;
