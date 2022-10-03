@@ -11,7 +11,7 @@
                         <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="tab-dashboard-link"
-                                   data-toggle="tab" href="#tab-dashboard" role="tab"
+                                   data-toggle="tab" href="#profilim" role="tab"
                                    aria-controls="tab-dashboard" aria-selected="true">Profilim</a>
                             </li>
                             <li class="nav-item">
@@ -36,47 +36,106 @@
 
                     <div class="col-md-8 col-lg-9">
                         <div class="tab-content">
-                            <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel" aria-labelledby="tab-dashboard-link">
+                            <div class="tab-pane fade show active" id="profilim" role="tabpanel" aria-labelledby="tab-dashboard-link">
                                 <form action="#">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <label>First Name *</label>
+                                            <label>Adınız </label>
                                             <input type="text" class="form-control" required="">
-                                        </div><!-- End .col-sm-6 -->
+                                        </div>
 
                                         <div class="col-sm-6">
-                                            <label>Last Name *</label>
+                                            <label>Soyadınız *</label>
                                             <input type="text" class="form-control" required="">
-                                        </div><!-- End .col-sm-6 -->
-                                    </div><!-- End .row -->
+                                        </div>
+                                    </div>
 
-                                    <label>Display Name *</label>
-                                    <input type="text" class="form-control" required="">
-                                    <small class="form-text">This will be how your name will be displayed in the account section and in reviews</small>
-
-                                    <label>Email address *</label>
+                                    <label>Telefon Numarası</label>
                                     <input type="email" class="form-control" required="">
 
-                                    <label>Current password (leave blank to leave unchanged)</label>
+                                    <label>Email Adresi</label>
+                                    <input type="email" class="form-control" required="">
+
+                                    <label>Parolanız</label>
                                     <input type="password" class="form-control">
 
-                                    <label>New password (leave blank to leave unchanged)</label>
-                                    <input type="password" class="form-control">
 
-                                    <label>Confirm new password</label>
+                                    <label>Yeni Parolanız</label>
                                     <input type="password" class="form-control mb-2">
 
                                     <button type="submit" class="btn btn-outline-primary-2">
-                                        <span>SAVE CHANGES</span>
+                                        <span>Profilimi Güncelle</span>
                                         <i class="icon-long-arrow-right"></i>
                                     </button>
                                 </form>
-                            </div><!-- .End .tab-pane -->
+                            </div>
 
                             <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
-                                <p>No order has been made yet.</p>
-                                <a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
-                            </div><!-- .End .tab-pane -->
+                                @if($FavoriteBooks->count() > 0)
+                                    <table class="table table-cart table-mobile">
+                                        <thead>
+                                        <tr>
+                                            <th>Kitap</th>
+                                            <th>Fiyat</th>
+                                            <th>Stok</th>
+                                            <th>Sepete Ekle</th>
+                                            <th class="float-right">Sİl</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        @foreach($FavoriteBooks as $item)
+                                            <tr>
+                                                <td class="product-col">
+                                                    <div class="product">
+                                                        <figure class="product-media">
+                                                            <a href="{{ route('urun', $item->slug) }}">
+                                                                <img src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb') }}" alt="{{ $item->title }}">
+                                                            </a>
+                                                        </figure>
+
+                                                        <h3 class="product-title">
+                                                            <a href="{{ route('urun', $item->slug) }}">{{ $item->title }}</a>
+                                                        </h3>
+                                                    </div>
+                                                </td>
+                                                <td class="price-col">{{ money($item->price)}}₺</td>
+
+                                                <td class="price-col">
+                                        <span class="badge {{ ($item->status == 1 ) ? 'badge-success' :  'badge-danger'}}">
+                                            {{ ($item->status == 1 ) ? 'Stokta Var' :  'Stokta Yok'}}
+                                        </span>
+                                                </td>
+
+                                                <td class="total-col">
+                                                    <form action="{{ route('sepeteekle') }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{ $item->id }}">
+                                                        <input type="hidden" name="qty" value="1">
+                                                        <button type="submit" class="btn btn-primary btn-rounded btn-shadow ">
+                                                            <span><i class="icon-shopping-cart"></i> Ekle</span>
+                                                        </button>
+                                                    </form>
+                                                </td>
+
+                                                <td class="remove-col">
+                                                    <form action="{{ route('favoricikar', $item->id) }}" method="POST">
+                                                        @csrf
+                                                        <button class="btn-remove" type="submit"><i class="icon-close"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                @else
+                                    <div class="alert alert-warning">Siparişiniz bulunmuyor</div>
+                                    <a href="{{ route('home') }}" class="btn btn-outline-primary-2 mt-3">
+                                        <span>ALIŞVERİŞE BAŞLA</span><i class="icon-long-arrow-right"></i>
+                                    </a>
+
+                                @endif
+                            </div>
 
                             <div class="tab-pane fade" id="tab-downloads" role="tabpanel" aria-labelledby="tab-downloads-link">
                                 @if($FavoriteBooks->count() > 0)
@@ -140,11 +199,11 @@
                                     <div class="alert alert-warning">Henüz Kitap eklenmemiş</div>
                                 @endif
 
-                            </div><!-- .End .tab-pane -->
+                            </div>
 
                            </div>
                     </div><!-- End .col-lg-9 -->
-                </div><!-- End .row -->
+                </div>
             </div><!-- End .container -->
         </div><!-- End .dashboard -->
     </div><!-- End .page-content -->

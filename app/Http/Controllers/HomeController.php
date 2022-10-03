@@ -36,6 +36,7 @@ use Iyzipay\Model\BasketItem;
 use Iyzipay\Model\Buyer;
 use Iyzipay\Model\CheckoutFormInitialize;
 use Iyzipay\Options;
+use Illuminate\Database\Eloquent\Builder;
 
 class HomeController extends Controller
 {
@@ -64,7 +65,7 @@ class HomeController extends Controller
             $cat[] = $item->category_id;
         }
 
-        $Category = ProductCategory::select('title', 'slug', 'id','desc')
+        $Category = ProductCategory::select('title', 'slug', 'id','desc', 'parent_id')
             ->whereIn('id',$cat)
             ->get();
 
@@ -334,12 +335,12 @@ class HomeController extends Controller
         SEOTools::setTitle("Detaylı Arama | Online 2. El Kitap". config('app.name'));
         SEOTools::setDescription('Tb Kitap 2. El Kitap Detaylı Arama Sayfası');
 
-        $Ad = $request->input('ad') ? $request->input('ad') : null ;
-        $Kategori = $request->input('kategori') ? $request->input('kategori') : null ;
-        $Yazar = $request->input('yazar') ? $request->input('yazar') : null ;
-        $Yayinevi = $request->input('yayinevi') ? $request->input('yayinevi') : null ;
-        $Ceviren = $request->input('ceviren') ? $request->input('ceviren') : null ;
-        $Dil = $request->input('dil') ? $request->input('dil') : null ;
+        $Ad = $request->input('ad') ? $request->input('ad') : '?' ;
+        $Kategori = $request->input('kategori') ? $request->input('kategori') : '?' ;
+        $Yazar = $request->input('yazar') ? $request->input('yazar') : '?' ;
+        $Yayinevi = $request->input('yayinevi') ? $request->input('yayinevi') : '?' ;
+        $Ceviren = $request->input('ceviren') ? $request->input('ceviren') : '?' ;
+        $Dil = $request->input('dil') ? $request->input('dil') : '?' ;
         $BasimTarihi1 = $request->input('basimtarihi1') ? $request->input('basimtarihi1') : 1800 ;
         $BasimTarihi2 = $request->input('basimtarihi2') ? $request->input('basimtarihi2') : date('Y') ;
         $Fiyat1 = $request->input('fiyat1') ? $request->input('fiyat1') : 0 ;
@@ -352,9 +353,14 @@ class HomeController extends Controller
             ->orWhere('translator', $Ceviren)
             ->orWhere('language', $Dil)
             ->orWhere('publisher', $Yayinevi)
-            ->whereBetween('year',[$BasimTarihi1,$BasimTarihi2])
+            ->whereHas('getAuthor', function (Builder $query) use ($Yazar){
+                return $query->where('author_id',  $Yazar);
+            })
+            ->whenHas('getYear',function (Builder $query) use ($BasimTarihi1,$BasimTarihi2){
+                return $query->whereBetween('title',[$BasimTarihi1,$BasimTarihi2])->get();
+            })
             ->whereBetween('price',[$Fiyat1,$Fiyat2])
-            ->get();
+            ->get()->dd();
 
         //dd($Result);
         return view('frontend.shop.detailsearchresult', compact('Result'));

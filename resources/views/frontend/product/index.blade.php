@@ -6,13 +6,16 @@
         <div class="container d-flex align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Anasayfa</a></li>
-                {{--
-                   @foreach($Category as $item)
+                   @foreach($Category->where('parent_id', 0) as $item)
                         <li class="breadcrumb-item">
                             <a href="{{ route('kategori', [$item->slug, 'id' => $item->id]) }}">{{ $item->title }}</a>
                         </li>
+                        @foreach($Category->where('parent_id', $item->id) as $itemm)
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('kategori', [$item->slug, $itemm->slug,'id' => $item->id]) }}">{{ $itemm->title }}</a>
+                        </li>
+                        @endforeach
                     @endforeach
-                --}}
                 <li class="breadcrumb-item active" aria-current="page">{{ $Detay->title }}</li>
             </ol>
         </div>
