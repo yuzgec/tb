@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Faq;
+use App\Models\Product;
+use App\Models\ProductCategory;
+use App\Models\Publisher;
 use App\Models\Search;
 use App\Models\Service;
 use App\Models\ShopCart;
@@ -17,6 +21,10 @@ class DashboardController extends Controller
     public function index(){
 
         $Search = Search::select('key')->whereBetween('created_at', [Carbon::yesterday(),Carbon::today()])->paginate(10);
-        return view('backend.index', compact('Search'));
+        $Product = Product::count();
+        $Product_Categories = ProductCategory::count();
+        $Author = Author::count();
+        $Publisher = Publisher::count();
+        return view('backend.index', compact('Search', 'Product', 'Product_Categories', 'Author','Publisher'));
     }
 }

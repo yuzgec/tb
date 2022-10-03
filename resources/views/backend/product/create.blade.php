@@ -17,8 +17,6 @@
 
                 <x-form-inputtext label="Adı Giriniz" name="title"/>
 
-
-
                 <div class="form-group mb-3 row">
                     <label class="form-label col-3 col-form-label">Ürün Kodu</label>
                     <div class="col-9">

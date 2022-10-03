@@ -123,8 +123,22 @@
                     <div class="row">
                         <div class="d-flex justify-content-between">
 
-                            <div class="col-12 col-md-9">{{ $All->appends(['siralama' => 'product', 'q' => request('q')])->links() }}</div>
-                            <div class="col-12 col-md-3">
+                            <div class="col-12 col-md-8">{{ $All->appends(['siralama' => 'product', 'q' => request('q')])->links() }}</div>
+                            <div class="col-12 col-md-4 d-flex">
+
+
+                                <div class="form-group mb-3 row" style="margin-right: 5px">
+                                    <div class="col">
+                                        <select type="text" class="form-select form-control">
+                                            <option value="">Sıralama</option>
+                                            <option value="">Tarihe Göre Yeni</option>
+                                            <option value="">Tarihe Göre Eski</option>
+                                            <option value="">İsme Göre A-Z</option>
+                                            <option value="">İsme Göre Z-A</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <form method="get">
                                     <div class="input-icon mb-3">
                                         <input type="text" value="{{ request('q') }}" name="q" class="form-control" placeholder="Arama…">
