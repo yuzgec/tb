@@ -38,27 +38,17 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="profilim" role="tabpanel" aria-labelledby="tab-dashboard-link">
                                 <form action="#">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <label>Adınız </label>
-                                            <input type="text" class="form-control" required="">
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <label>Soyadınız *</label>
-                                            <input type="text" class="form-control" required="">
-                                        </div>
-                                    </div>
+                                    <label>Adınız Soyadınız *</label>
+                                    <input type="text" class="form-control" value="{{ auth()->user()->name }}">
 
                                     <label>Telefon Numarası</label>
-                                    <input type="email" class="form-control" required="">
+                                    <input type="text" class="form-control" value="{{ auth()->user()->phone }}">
 
                                     <label>Email Adresi</label>
-                                    <input type="email" class="form-control" required="">
+                                    <input type="email" class="form-control"  value="{{ auth()->user()->email }}">
 
                                     <label>Parolanız</label>
                                     <input type="password" class="form-control">
-
 
                                     <label>Yeni Parolanız</label>
                                     <input type="password" class="form-control mb-2">
