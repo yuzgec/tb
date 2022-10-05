@@ -20,7 +20,7 @@ class ProductRequest extends FormRequest
             'sku'                   => 'required|unique:products,sku,'.$this->id,
             'price'                 => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'image'                 => 'image|max:5120|mimes:jpg,jpeg,png,gif',
-            'gallery.*'             => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'gallery.*'             => 'image|max:5120|mimes:jpg,jpeg,png,gif',
         ];
     }
 
@@ -35,6 +35,7 @@ class ProductRequest extends FormRequest
             'price.reqex'               => 'Fiyat Alanı Ugun Değil Örn:1.90',
             'sku.required'              => 'Stok Kodu Zorunludur',
             'category.required'         => 'Ürün Kategori seçimi zorunludur.',
+
             'image.max'                 => 'Resim boyutu en yüksek 5120kb(5mb) olmalıdır',
             'image.mimes'               => 'Resim formatı jpg,jpeg,png,gif olmalıdır',
             'image.image'               => 'Resim formatı uygun değildir.',

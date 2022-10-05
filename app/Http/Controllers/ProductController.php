@@ -44,9 +44,7 @@ class ProductController extends Controller
 
         $LastID = Product::orderBy('id', 'desc')->first();
         $Last = str_replace('TB-', '',$LastID->sku);
-        $Last;
 
-        //dd($Language);
         return view('backend.product.create',
             compact('Kategori', 'Years', 'Author',  'Publisher', 'Language', 'Translator', 'Last'));
     }

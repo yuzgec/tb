@@ -334,26 +334,28 @@ class HomeController extends Controller
         SEOTools::setTitle("Detaylı Arama | Online 2. El Kitap". config('app.name'));
         SEOTools::setDescription('Tb Kitap 2. El Kitap Detaylı Arama Sayfası');
 
-        $Ad = $request->filled('ad') ? $request->input('ad') : '?' ;
+        $Ad = $request->filled('ad') ? $request->input('ad') : null ;
         $Kategori = $request->filled('kategori') ? intval(request('kategori')) : null;
         $Yazar = $request->filled('yazar') ? intval(request('yazar')) : null;
         $Yayinevi = $request->filled('yayinevi') ? intval(request('yayinevi')) : null;
-        $Ceviren = $request->filled('ceviren') ? intval(request('ceviren')) : '?' ;
-        $Dil = $request->filled('dil') ?  intval(request('dil')) : null;
-        $BasimTarihi1 = $request->filled('basimtarihi1') ? intval(request('basimtarihi1')) :  null;
-        $BasimTarihi2 = $request->filled('basimtarihi2') ? intval(request('basimtarihi2')) : null;
-        $Fiyat1 = $request->filled('fiyat1') ? intval(request('fiyat1')) : null;
-        $Fiyat2 = $request->filled('fiyat2') ? intval(request('fiyat2')) : null;
+        $Ceviren = $request->filled('ceviren') ? intval(request('ceviren')) : null ;
+        $Dil = $request->filled('dil') ?  intval(request('dil')) : 1;
+        $BasimTarihi1 = intval(request('basimtarihi1'));
+        $BasimTarihi2 = intval(request('basimtarihi2'));
+        $Fiyat1 = intval(request('fiyat1'));
+        $Fiyat2 = intval(request('fiyat2'));
 
         //dd($Ceviren);
 
         $Result = Product::orWhere('translator', $Ceviren)
+            ->orWhere('title','like','%'.$Ad.'%')
+            ->orWhere('slug','like','%'.$Ad.'%')
             ->orWhere('language', $Dil)
             ->orWhere('publisher', $Yayinevi)
-            /*->whenHas('getAuthor', function ($query) use ($Yazar){
+       /*     ->whereHas('getAuthor', function ($query) use ($Yazar){
                   return $query->where('author_id',  $Yazar);
-             })/*
-             ->with('getYear',function ($query) use ($BasimTarihi1,$BasimTarihi2){
+             })
+            ->whereHas('getYear',function ($query) use ($BasimTarihi1,$BasimTarihi2){
                  return $query->whereBetween('title',[$BasimTarihi1,$BasimTarihi2]);
              })*/
             ->whereBetween('price',[$Fiyat1,$Fiyat2])

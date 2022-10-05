@@ -16,7 +16,7 @@
                     <i class="icon-bars"></i>
                 </button>
 
-                <a href="/" class="logo">
+                <a href="{{ route('home') }}" class="logo">
                     <img src="{{asset('/frontend/assets/images/tblogo.jpg')}}" width="130px">
                 </a>
             </div>

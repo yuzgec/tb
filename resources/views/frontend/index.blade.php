@@ -425,16 +425,14 @@
     </div>
 --}}
 
-    <div class="deal-container pt-5 pb-3 mb-5">
+    <div class="deal-container pt-5">
         <div class="container">
             <div class="row">
-                @foreach($Product->take(1) as $item)
+                @foreach($Product->take(2) as $item)
                 <div class="col-lg-6">
                     <div class="deal">
                         <div class="deal-content">
                             <h4>Kampanyalı Kitap</h4>
-                            <h2>Günün Fırsatı</h2>
-
                             <h3 class="product-title">
                                 <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
                                 {{ $item->title }}
@@ -443,7 +441,6 @@
                             <div class="product-price">
                                 {{ $item->price }}₺
                             </div>
-                            <div class="deal-countdown" data-until="+10h"></div>
 
                             <a href="{{ route('urun' , $item->slug)}}" class="btn btn-primary">
                                 <span>Ürünü İncele</span><i class="icon-long-arrow-right"></i>
@@ -456,33 +453,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                        <div class="deal">
-                            <div class="deal-content">
-                                <h4>Kampanyalı Kitap</h4>
-                                <h2>Günün Fırsatı</h2>
-
-                                <h3 class="product-title">
-                                    <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
-                                    {{ $item->title }}
-                                </h3>
-
-                                <div class="product-price">
-                                    {{ $item->price }}₺
-                                </div>
-                                <div class="deal-countdown" data-until="+10h"></div>
-
-                                <a href="{{ route('urun' , $item->slug)}}" class="btn btn-primary">
-                                    <span>Ürünü İncele</span><i class="icon-long-arrow-right"></i>
-                                </a>
-                            </div>
-                            <div class="deal-image">
-                                <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
-                                    <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'img')}}" alt="{{ $item->title }}">
-                                </a>
-                            </div>
-                        </div>
-            </div>
                 @endforeach
 
             </div>
@@ -492,13 +462,11 @@
     <div class="mb-6"></div>
     <div class="container" id="kitaplar">
         <div class="row">
-
             @foreach($Product as $item)
                 <div class="col-6 col-md-3">
                     <x-shop.product-item :item="$item"/>
                 </div>
             @endforeach
-
         </div>
         <div class="row ">
             <div class="col-12 d-flex align-items-center justify-content-center">
@@ -511,107 +479,117 @@
         <hr class="mt-1 mb-6">
     </div>
 
-    {{--    <div class="blog-posts">
-          <div class="container">
-              <h2 class="title text-center">Blog</h2>
-
-              <div class="owl-carousel owl-simple carousel-with-shadow" data-toggle="owl"
-                   data-owl-options='{
-                              "nav": false,
-                              "dots": true,
-                              "items": 3,
-                              "margin": 20,
-                              "loop": false,
-                              "mouseDrag": false,
-                              "slideBy": page,
-                              "responsive": {
-                                  "0": {
-                                      "items":2,
-                                      "rows": 2
-                                  },
-                                  "600": {
-                                      "items":2
-                                  },
-                                  "992": {
-                                      "items":3
-                                  }
+    <div class="blog-posts">
+        <div class="container">
+            <div class="owl-carousel owl-simple carousel-with-shadow" data-toggle="owl"
+               data-owl-options='{
+                          "nav": false,
+                          "dots": true,
+                          "margin": 20,
+                          "loop": false,
+                          "responsive": {
+                              "0": {
+                                 "items":1
+                              },
+                              "600": {
+                                 "items":2
+                              },
+                              "992": {
+                                 "items":3
                               }
-                          }'>
-                  <article class="entry entry-display">
-                      <figure class="entry-media">
-                          <a href="single.html">
-                              <img src="/frontend/assets/images/demos/demo-2/blog/post-1.jpg" alt="image desc">
-                          </a>
-                      </figure>
+                          }
+                      }'>
 
-                      <div class="entry-body text-center">
-                          <div class="entry-meta">
-                              <a href="#">1 Eylül 2022</a>
-                          </div>
 
-                          <h3 class="entry-title">
-                              <a href="#">Blog Haber Başlığı 1</a>
-                          </h3>
-
-                          <div class="entry-content">
-                              <a href="single.html" class="read-more">Devamını Oku</a>
-                          </div>
-                      </div>
-                  </article>
-
-                  <article class="entry entry-display">
-                      <figure class="entry-media">
-                          <a href="single.html">
-                              <img src="/frontend/assets/images/demos/demo-2/blog/post-2.jpg" alt="image desc">
-                          </a>
-                      </figure>
-
-                      <div class="entry-body text-center">
-                          <div class="entry-meta">
-                              <a href="#">1 Eylül 2022</a>
-                          </div>
-
-                          <h3 class="entry-title">
-                              <a href="#">Blog Haber Başlığı 1</a>
-                          </h3>
-
-                          <div class="entry-content">
-                              <a href="single.html" class="read-more">Devamını Oku</a>
-                          </div>
-                      </div>
-                  </article>
-
-                  <article class="entry entry-display">
-                      <figure class="entry-media">
-                          <a href="single.html">
-                              <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
-                          </a>
-                      </figure>
-
-                      <div class="entry-body text-center">
-                          <div class="entry-meta">
-                              <a href="#">1 Eylül 2022</a>
-                          </div>
-
-                          <h3 class="entry-title">
-                              <a href="#">Blog Haber Başlığı 1</a>
-                          </h3>
-
-                          <div class="entry-content">
-                              <a href="single.html" class="read-more">Devamını Oku</a>
-                          </div>
-                      </div>
-                  </article>
-              </div>
-
-              <div class="more-container text-center mt-2">
-                  <a href="#" class="btn btn-outliarker btn-more"><span>Bütün Yazıları İncele</span>
-                      <i class="icon-long-arrow-right"></i>
-                  </a>
-              </div>
+               <article class="entry entry-display">
+                    <figure class="entry-media">
+                        <a href="{{ route('home') }}">
+                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                        </a>
+                    </figure>
+                </article>
+               <article class="entry entry-display">
+                    <figure class="entry-media">
+                        <a href="{{ route('home') }}">
+                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                        </a>
+                    </figure>
+                </article>
+               <article class="entry entry-display">
+                    <figure class="entry-media">
+                        <a href="{{ route('home') }}">
+                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                        </a>
+                    </figure>
+               </article>
           </div>
-      </div>
 
+      </div>
+   </div>
+
+    <div class="blog-posts">
+        <div class="container">
+            <div class="owl-carousel owl-simple carousel-with-shadow" data-toggle="owl"
+                 data-owl-options='{
+                          "nav": false,
+                          "dots": true,
+                          "margin": 20,
+                          "loop": false,
+                          "responsive": {
+                              "0": {
+                                 "items":1
+                              },
+                              "600": {
+                                 "items":2
+                              },
+                              "992": {
+                                 "items":5
+                              }
+                          }
+                      }'>
+
+
+                <article class="entry entry-display">
+                    <figure class="entry-media">
+                        <a href="{{ route('home') }}">
+                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                        </a>
+                    </figure>
+                </article>
+                <article class="entry entry-display">
+                    <figure class="entry-media">
+                        <a href="{{ route('home') }}">
+                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                        </a>
+                    </figure>
+                </article>
+                <article class="entry entry-display">
+                    <figure class="entry-media">
+                        <a href="{{ route('home') }}">
+                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                        </a>
+                    </figure>
+                </article>
+                <article class="entry entry-display">
+                    <figure class="entry-media">
+                        <a href="{{ route('home') }}">
+                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                        </a>
+                    </figure>
+                </article>
+                <article class="entry entry-display">
+                    <figure class="entry-media">
+                        <a href="{{ route('home') }}">
+                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                        </a>
+                    </figure>
+                </article>
+
+            </div>
+
+        </div>
+    </div>
+    {{--
     <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
           <div class="row justify-content-center">
               <div class="col-10">
