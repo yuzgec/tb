@@ -324,9 +324,7 @@ class HomeController extends Controller
 
         Search::create(['key' => $search]);
 
-
-
-        return redirect()->route('search', compact('Result'));
+        return view('search', compact('Result'));
 
 
     }
