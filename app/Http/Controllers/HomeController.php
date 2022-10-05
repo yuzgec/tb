@@ -334,31 +334,30 @@ class HomeController extends Controller
         SEOTools::setTitle("Detaylı Arama | Online 2. El Kitap". config('app.name'));
         SEOTools::setDescription('Tb Kitap 2. El Kitap Detaylı Arama Sayfası');
 
-        $Ad = $request->input('ad') ? $request->input('ad') : '?' ;
-        $Kategori = $request->input('kategori') ? $request->input('kategori') : '?' ;
-        $Yazar = $request->input('yazar') ? $request->input('yazar') : '?' ;
-        $Yayinevi = $request->input('yayinevi') ? $request->input('yayinevi') : '?' ;
-        $Ceviren = $request->input('ceviren') ? $request->input('ceviren') : '?' ;
-        $Dil = $request->input('dil') ? $request->input('dil') : '?' ;
-        $BasimTarihi1 = $request->input('basimtarihi1') ? $request->input('basimtarihi1') : 1800 ;
-        $BasimTarihi2 = $request->input('basimtarihi2') ? $request->input('basimtarihi2') : date('Y') ;
-        $Fiyat1 = $request->input('fiyat1') ? $request->input('fiyat1') : 0 ;
-        $Fiyat2 = $request->input('fiyat2') ? $request->input('fiyat2') : 999 ;
+        $Ad = $request->filled('ad') ? $request->input('ad') : '?' ;
+        $Kategori = $request->filled('kategori') ? intval(request('kategori')) : null;
+        $Yazar = $request->filled('yazar') ? intval(request('yazar')) : null;
+        $Yayinevi = $request->filled('yayinevi') ? intval(request('yayinevi')) : null;
+        $Ceviren = $request->filled('ceviren') ? intval(request('ceviren')) : '?' ;
+        $Dil = $request->filled('dil') ?  intval(request('dil')) : null;
+        $BasimTarihi1 = $request->filled('basimtarihi1') ? intval(request('basimtarihi1')) :  null;
+        $BasimTarihi2 = $request->filled('basimtarihi2') ? intval(request('basimtarihi2')) : null;
+        $Fiyat1 = $request->filled('fiyat1') ? intval(request('fiyat1')) : null;
+        $Fiyat2 = $request->filled('fiyat2') ? intval(request('fiyat2')) : null;
 
         //dd($Ceviren);
 
-        $Result = Product::orWhere('title', 'like', '%'. $Ad. '%')
-            ->orWhere('slug', 'like', '%'. $Ad. '%')
-            ->orWhere('translator', $Ceviren)
+        $Result = Product::orWhere('translator', $Ceviren)
             ->orWhere('language', $Dil)
             ->orWhere('publisher', $Yayinevi)
-            ->with('getAuthor', function ($query) use ($Yazar){
-                return $query->where('author_id',  $Yazar);
-            })
-            ->with('getYear',function ($query) use ($BasimTarihi1,$BasimTarihi2){
-                return $query->whereBetween('title',[$BasimTarihi1,$BasimTarihi2])->get();
-            })
+            /*->whenHas('getAuthor', function ($query) use ($Yazar){
+                  return $query->where('author_id',  $Yazar);
+             })/*
+             ->with('getYear',function ($query) use ($BasimTarihi1,$BasimTarihi2){
+                 return $query->whereBetween('title',[$BasimTarihi1,$BasimTarihi2]);
+             })*/
             ->whereBetween('price',[$Fiyat1,$Fiyat2])
+            ->whereBetween('year',[$BasimTarihi1,$BasimTarihi2])
             ->get();
 
         //dd($Result);

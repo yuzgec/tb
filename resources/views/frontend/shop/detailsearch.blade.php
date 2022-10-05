@@ -57,7 +57,8 @@
                                       <select class="form-control single" data-placeholder="Yıl Seçiniz" name="basimtarihi1">
                                           <option value="">Yıl Seçiniz</option>
                                           @foreach($Years as $item)
-                                              <option value="{{ $item->title }}">
+
+                                              <option  @if($loop->first) {{ 'selected' }}  @endif value="{{ $item->title }}">
                                                   {{  $item->title }}
                                               </option>
                                           @endforeach
@@ -68,7 +69,7 @@
                                       <select class="form-control single" data-placeholder="Yıl Seçiniz" name="basimtarihi2">
                                           <option value="">Yıl Seçiniz</option>
                                           @foreach($Years as $item)
-                                              <option value="{{ $item->title }}">
+                                              <option @if($loop->last) {{ 'selected' }}  @endif value="{{ $item->title }}">
                                                   {{  $item->title }}
                                               </option>
                                       @endforeach
@@ -112,11 +113,11 @@
 
                                   <div class="col-md-6 col-12">
                                       <label>Fiyat Aralığı</label>
-                                      <input class="form-control" name="fiyat1" type="text" placeholder="">
+                                      <input class="form-control" name="fiyat1" type="text" value="19">
                                   </div>
                                   <div class="col-md-6 col-12">
                                       <label>&nbsp;</label>
-                                      <input class="form-control" name="fiyat2" type="text" placeholder="">
+                                      <input class="form-control" name="fiyat2" type="text" value="999">
                                   </div>
                               </div>
 
