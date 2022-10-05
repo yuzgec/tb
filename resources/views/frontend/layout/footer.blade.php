@@ -4,7 +4,7 @@
     <div class="icon-boxes-container">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-lg-3">
+                <div class="col-sm-6 col-md-4">
                     <div class="icon-box icon-box-side">
                                 <span class="icon-box-icon text-dark">
                                     <i class="icon-rocket"></i>
@@ -16,7 +16,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6 col-lg-3">
+              {{--  <div class="col-sm-6 col-lg-3">
                     <div class="icon-box icon-box-side">
                                 <span class="icon-box-icon text-dark">
                                     <i class="icon-rotate-left"></i>
@@ -27,9 +27,9 @@
                             <p>15 gün içerisinde</p>
                         </div>
                     </div>
-                </div>
+                </div>--}}
 
-                <div class="col-sm-6 col-lg-3">
+                <div class="col-sm-6 col-md-4">
                     <div class="icon-box icon-box-side">
                                 <span class="icon-box-icon text-dark">
                                     <i class="icon-info-circle"></i>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6 col-lg-3">
+                <div class="col-sm-6 col-md-4">
                     <div class="icon-box icon-box-side">
                                 <span class="icon-box-icon text-dark">
                                     <i class="icon-life-ring"></i>
