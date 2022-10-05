@@ -61,7 +61,7 @@
 
                             <div class="widget-body">
                                 <div class="accordion" id="widget-cat-acc">
-                                    @foreach($Product_Categories->where('parent_id' , 0) as $item)
+                                    @foreach($Product_Categories->where('slug' , request()->segment(2)) as $item)
                                     <div class="acc-item">
                                         <h5>
                                             <a role="button"  href="{{route('kategori', [$item->slug,  'id' => $item->id])}}" >

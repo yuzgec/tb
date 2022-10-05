@@ -484,7 +484,7 @@
         <hr class="mt-1 mb-6">
     </div>
 
-    {{--  <div class="blog-posts">
+      <div class="blog-posts">
           <div class="container">
               <h2 class="title text-center">Blog</h2>
 
@@ -495,9 +495,12 @@
                               "items": 3,
                               "margin": 20,
                               "loop": false,
+                              "mouseDrag": false,
+                              "slideBy": page,
                               "responsive": {
                                   "0": {
-                                      "items":1
+                                      "items":2,
+                                      "rows": 2
                                   },
                                   "600": {
                                       "items":2
@@ -581,6 +584,7 @@
               </div>
           </div>
       </div>
+
      {{-- <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
           <div class="row justify-content-center">
               <div class="col-10">
