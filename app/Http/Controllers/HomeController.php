@@ -352,10 +352,10 @@ class HomeController extends Controller
             ->orWhere('translator', $Ceviren)
             ->orWhere('language', $Dil)
             ->orWhere('publisher', $Yayinevi)
-            ->with('getAuthor', function (Builder $query) use ($Yazar){
+            ->with('getAuthor', function ($query) use ($Yazar){
                 return $query->where('author_id',  $Yazar);
             })
-            ->with('getYear',function (Builder $query) use ($BasimTarihi1,$BasimTarihi2){
+            ->with('getYear',function ($query) use ($BasimTarihi1,$BasimTarihi2){
                 return $query->whereBetween('title',[$BasimTarihi1,$BasimTarihi2])->get();
             })
             ->whereBetween('price',[$Fiyat1,$Fiyat2])
