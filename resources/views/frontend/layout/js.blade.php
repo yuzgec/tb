@@ -47,6 +47,7 @@
 </div>
 
 
+
 <script src="/frontend/assets/js/jquery.min.js"></script>
 <script src="/frontend/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/frontend/assets/js/jquery.hoverIntent.min.js"></script>
@@ -60,5 +61,20 @@
 <script src="/frontend/assets/js/jquery.countdown.min.js"></script>
 <script src="/frontend/assets/js/main.js"></script>
 <script src="/frontend/assets/js/demos/demo-2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+<script type="text/javascript">
+    var path = "{{ route('search') }}";
+
+    $('#search').typeahead({
+        source: function (query, process) {
+            return $.get(path, {
+                query: query
+            }, function (data) {
+                return process(data);
+            });
+        }
+    });
+
+</script>
 <livewire:scripts />
 

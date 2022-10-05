@@ -97,7 +97,6 @@ class HomeController extends Controller
         return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author', 'Pivot', 'Category', 'OtherCategory'));
     }
     public function kategori($url){
-
         $Detay = ProductCategory::where('id', \request('id'))->select('id','title','slug')->first();
         SEOTools::setTitle($Detay->title);
         SEOTools::setDescription($Detay->seo_desc);
@@ -302,9 +301,7 @@ class HomeController extends Controller
     }
 
     public function cartdelete($rowId){
-
         Cart::instance('shopping')->remove($rowId);
-
         toast(SWEETALERT_MESSAGE_DELETE,'success');
         return redirect()->route('sepet');
     }
@@ -320,14 +317,18 @@ class HomeController extends Controller
         SEOTools::setDescription('Tb Kitap 2. El Kitap Klübü Arama Sayfası');
 
         $search = $request->q;
-        $Result = Product::where('title','like','%'.$search.'%')
+        $data  = Product::where('title','like','%'.$search.'%')
             ->orWhere('slug','like','%'.$search.'%')
             ->select('title', 'slug', 'status', 'price', 'old_price', 'id', 'sku')
             ->paginate(12);
 
         Search::create(['key' => $search]);
 
-        return view('frontend.shop.search', compact('Result'));
+        return response()->json($data);
+
+        //return redirect()->route('search', compact('data'));
+
+
     }
 
     public function detayliaramasonuc(Request $request){
