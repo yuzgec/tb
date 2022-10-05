@@ -317,16 +317,16 @@ class HomeController extends Controller
         SEOTools::setDescription('Tb Kitap 2. El Kitap Klübü Arama Sayfası');
 
         $search = $request->q;
-        $data  = Product::where('title','like','%'.$search.'%')
+        $Result  = Product::where('title','like','%'.$search.'%')
             ->orWhere('slug','like','%'.$search.'%')
             ->select('title', 'slug', 'status', 'price', 'old_price', 'id', 'sku')
             ->paginate(12);
 
         Search::create(['key' => $search]);
 
-        return response()->json($data);
 
-        //return redirect()->route('search', compact('data'));
+
+        return redirect()->route('search', compact('Result'));
 
 
     }

@@ -429,7 +429,7 @@
         <div class="container">
             <div class="row">
                 @foreach($Product->take(1) as $item)
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <div class="deal">
                         <div class="deal-content">
                             <h4>Kampanyalı Kitap</h4>
@@ -456,6 +456,33 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-6">
+                        <div class="deal">
+                            <div class="deal-content">
+                                <h4>Kampanyalı Kitap</h4>
+                                <h2>Günün Fırsatı</h2>
+
+                                <h3 class="product-title">
+                                    <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
+                                    {{ $item->title }}
+                                </h3>
+
+                                <div class="product-price">
+                                    {{ $item->price }}₺
+                                </div>
+                                <div class="deal-countdown" data-until="+10h"></div>
+
+                                <a href="{{ route('urun' , $item->slug)}}" class="btn btn-primary">
+                                    <span>Ürünü İncele</span><i class="icon-long-arrow-right"></i>
+                                </a>
+                            </div>
+                            <div class="deal-image">
+                                <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
+                                    <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'img')}}" alt="{{ $item->title }}">
+                                </a>
+                            </div>
+                        </div>
+            </div>
                 @endforeach
 
             </div>
@@ -484,7 +511,7 @@
         <hr class="mt-1 mb-6">
     </div>
 
-      <div class="blog-posts">
+    {{--    <div class="blog-posts">
           <div class="container">
               <h2 class="title text-center">Blog</h2>
 
@@ -585,7 +612,7 @@
           </div>
       </div>
 
-     {{-- <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
+    <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
           <div class="row justify-content-center">
               <div class="col-10">
                   <div class="row no-gutters bg-white newsletter-popup-content">

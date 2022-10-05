@@ -20,7 +20,7 @@ class ProductRequest extends FormRequest
             'sku'                   => 'required|unique:products,sku,'.$this->id,
             'price'                 => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'image'                 => 'image|max:5120|mimes:jpg,jpeg,png,gif',
-            'gallery.*'             => 'image|mimes:jpeg,png,jpg,gif,svg,mp4,mov,ogg',
+            'gallery.*'             => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ];
     }
 
