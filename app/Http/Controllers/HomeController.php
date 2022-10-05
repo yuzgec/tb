@@ -324,7 +324,7 @@ class HomeController extends Controller
 
         Search::create(['key' => $search]);
 
-        return view('search', compact('Result'));
+        return view('frontend.shop.search', compact('Result'));
 
 
     }
