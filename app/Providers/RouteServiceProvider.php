@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
+
     public const HOME = '/profilim';
     protected $namespace = 'App\\Http\\Controllers';
 

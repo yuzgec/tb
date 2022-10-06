@@ -552,35 +552,36 @@
                 <article class="entry entry-display">
                     <figure class="entry-media">
                         <a href="{{ route('home') }}">
-                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                            <img src="/1.jpg" alt="Yayınevi">
+                        </a>
+                    </figure>
+                </article>
+
+                <article class="entry entry-display">
+                    <figure class="entry-media">
+                        <a href="{{ route('home') }}">
+                            <img src="/2.jpg" alt="Yayınevi">
                         </a>
                     </figure>
                 </article>
                 <article class="entry entry-display">
                     <figure class="entry-media">
                         <a href="{{ route('home') }}">
-                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                            <img src="/5.jpg" alt="Yayınevi">
                         </a>
                     </figure>
                 </article>
                 <article class="entry entry-display">
                     <figure class="entry-media">
                         <a href="{{ route('home') }}">
-                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                            <img src="/4.jpg" alt="Yayınevi">
                         </a>
                     </figure>
                 </article>
                 <article class="entry entry-display">
                     <figure class="entry-media">
                         <a href="{{ route('home') }}">
-                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
-                        </a>
-                    </figure>
-                </article>
-                <article class="entry entry-display">
-                    <figure class="entry-media">
-                        <a href="{{ route('home') }}">
-                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                            <img src="/3.jpg" alt="Yayınevi">
                         </a>
                     </figure>
                 </article>

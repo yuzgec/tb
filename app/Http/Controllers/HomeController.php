@@ -518,6 +518,11 @@ class HomeController extends Controller
     }
 
     public function profilim(){
+
+
+        if (auth()->user()->is_admin == 1){
+            return redirect()->route('go');
+        }
         $Favorite = Favorite::select('product_id')->where('user_id', auth()->user()->id)->get()->toArray();
         $FavoriteBooks = Product::select('id', 'title', 'price', 'old_price', 'slug','bestselling','status')->whereIn('id', $Favorite)->get();
 

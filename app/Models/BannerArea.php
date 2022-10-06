@@ -14,4 +14,6 @@ class BannerArea extends Model implements HasMedia
 
     protected $guarded = [];
     protected $table = 'banner_area';
+
+
 }
