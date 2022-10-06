@@ -303,7 +303,7 @@
                                 }
                             }
                         }'>
-                        @foreach($Productssss as $item)
+                        @foreach($Productssss->take(6) as $item)
                             <x-shop.product-item :item="$item"/>
                         @endforeach
                     </div>
