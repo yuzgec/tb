@@ -25,10 +25,10 @@ class ProductController extends Controller
                 ->where('title', 'like', '%'. request('q'). '%')
                 ->orWhere('slug', 'like', '%'. request('q'). '%')
                 ->orderBy('rank')
-                ->paginate(30);
+                ->paginate(75);
         }else{
 
-        $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])->orderBy('rank','asc')->paginate(0);
+        $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])->orderBy('rank','asc')->paginate(100);
         }
         return view('backend.product.index', compact('All'));
     }

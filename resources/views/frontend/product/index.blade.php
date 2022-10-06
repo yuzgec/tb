@@ -233,7 +233,7 @@
                             <div id="teslimat-iade" class="collapse show" aria-labelledby="product-shipping-heading" data-parent="#product-accordion">
                                 <div class="card-body">
                                     <div class="product-desc-content">
-                                        <div class="p-5">
+                                        <div class="p-1">
                                             <p>İade süresi teslimat tarihinden itibaren 15 gündür.</p>
                                             <br><h5><b>Sipariş İade Süreci</b></h5>
                                             <p>Siparişinizdeki ürün veya ürünler elinize ulaştıktan sonra sebep veya mazeret belirterek iade talep oluşturabilirsiniz. İade talep edilebilmesi için ürün özelliklerinin Sitede belirtilen özelliklerden farklı olması veya hasarlı olduğunun kargo tutanağı ile kayıt altına alınmış olması şartı aranır.</p>

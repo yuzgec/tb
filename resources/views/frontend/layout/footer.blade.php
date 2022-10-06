@@ -99,7 +99,11 @@
             <div class="row">
                 <div class="col-sm-12 col-lg-6">
                     <div class="widget widget-about">
-                        <p>Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır </p>
+                        <h5>TB Kitap Misyonu</h5>
+                        <p>Koleksiyoner veya okur kitapsever her bireyin nadir kitaplara kolayca ulaşmasını sağlamak.</p>
+                        <h5 class="mt-3">TB Kitap Vizyonu</h5>
+                        <p>Nadir kitapları satmaya başlayarak çıktığımız bu yolda misyonumuzu bir adım öteye taşıyarak
+                            sadece Türkiye’de değil tüm dünyada öncü bir ilk baskı kitap kulübü olmak.</p>
                         <div class="widget-about-info">
                             <div class="row">
                                 <div class="col-sm-12 col-12 d-flex">
