@@ -232,14 +232,14 @@ class HomeController extends Controller
             $basketItems[$cartcount] = $BasketItem;
             $cartcount++;
         }
-        //dd($basketItems);
+
         $request->setBasketItems($basketItems);
 
         $form = CheckoutFormInitialize::create($request, $options);
         return view('frontend.shop.odeme', compact('form', 'gelen'));
     }
-    public function odemesonuc(Request $gelen)
-    {
+
+    public function odemesonuc(Request $gelen){
 
         if (request()->isMethod('get')) {
             return redirect()->to('/');
@@ -288,18 +288,19 @@ class HomeController extends Controller
 
                 session()->flush();
             }
-            return redirect()->route('basarili',['no' => $payment->getBasketId()]);
+            return redirect()->route('sonuc',['no' => $payment->getBasketId()]);
         }else{
-            return redirect()->route('basarisiz',['no' => $payment->getErrorCode()]);
+            return redirect()->route('sonuc',['no' => $payment->getErrorCode()]);
         }
     }
     public function sonuc(){
+
         $Summary  = Order::where('cart_id',request('no') )->get();
         $Customer = ShopCart::where('cart_id',request('no'))->firstOrFail();
+
         return view('frontend.shop.sonuc', compact('Summary', 'Customer'));
 
     }
-
     public function cartdelete($rowId){
         Cart::instance('shopping')->remove($rowId);
         toast(SWEETALERT_MESSAGE_DELETE,'success');
@@ -317,6 +318,12 @@ class HomeController extends Controller
         SEOTools::setDescription('Tb Kitap 2. El Kitap Klübü Arama Sayfası');
 
         $search = $request->q;
+
+        $Publisher = Publisher::where('title','like','%'.$search.'%')
+            ->orWhere('slug','like','%'.$search.'%')
+            ->select('title', 'slug', 'status')
+            ->paginate(12);
+
         $Result  = Product::where('title','like','%'.$search.'%')
             ->orWhere('slug','like','%'.$search.'%')
             ->select('title', 'slug', 'status', 'price', 'old_price', 'id', 'sku')
@@ -326,9 +333,7 @@ class HomeController extends Controller
 
         return view('frontend.shop.search', compact('Result'));
 
-
     }
-
     public function detayliaramasonuc(Request $request){
 
         SEOTools::setTitle("Detaylı Arama | Online 2. El Kitap". config('app.name'));
@@ -352,20 +357,12 @@ class HomeController extends Controller
             ->orWhere('slug','like','%'.$Ad.'%')
             ->orWhere('language', $Dil)
             ->orWhere('publisher', $Yayinevi)
-       /*     ->whereHas('getAuthor', function ($query) use ($Yazar){
-                  return $query->where('author_id',  $Yazar);
-             })
-            ->whereHas('getYear',function ($query) use ($BasimTarihi1,$BasimTarihi2){
-                 return $query->whereBetween('title',[$BasimTarihi1,$BasimTarihi2]);
-             })*/
             ->whereBetween('price',[$Fiyat1,$Fiyat2])
             ->whereBetween('year',[$BasimTarihi1,$BasimTarihi2])
             ->get();
 
-        //dd($Result);
         return view('frontend.shop.detailsearchresult', compact('Result'));
     }
-
     public function detayliarama(){
 
         SEOTools::setTitle("Detaylı Arama | Online 2. El Kitap". config('app.name'));
@@ -381,12 +378,9 @@ class HomeController extends Controller
     }
     public function addtocart(Request $request){
 
-        //dd(auth()->user()->check);
         if(auth()->check()){
             Favorite::where('user_id', auth()->user()->id)->where('product_id',$request->id)->delete();
         }
-
-
 
         $p = Product::find($request->id);
         Basket::create(['product_id' => $p->id, 'basket_name' => 'Sepet']);
@@ -433,14 +427,12 @@ class HomeController extends Controller
         return redirect()->route('siparis');
 
     }
-
     public function favoriekle(Request $request){
         $p = Product::find($request->id);
         $New = Favorite::updateOrCreate(['user_id' => auth()->user()->id, 'product_id' => $p->id]);
         toast(SWEETALERT_MESSAGE_CREATE,'success');
         return redirect()->route('favori');
     }
-
     public function favori(){
         SEOTools::setTitle('Favori Listem | Online 2. El Kitap | '. config('app.name'));
         SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Klübü Arama Sayfası');
@@ -449,15 +441,12 @@ class HomeController extends Controller
         $FavoriteBooks = Product::select('id', 'title', 'price', 'old_price', 'slug','bestselling','status')->whereIn('id', $Favorite)->get();
         return view('frontend.shop.favori', compact('Favorite', 'FavoriteBooks'));
     }
-
     public function favoricikar($id){
         $Delete = Favorite::where('product_id',$id)->where('user_id', auth()->user()->id)->delete();
         toast(SWEETALERT_MESSAGE_DELETE,'success');
         return redirect()->route('favori');
 
     }
-
-
     public function yazarlar(){
         $Alfabe = ["A", "B", "C","Ç", "D", "E", "F", "G", "H", "I","İ", "J", "K", "L", "M", "N", "O","Ö", "P", "Q", "R", "S", "T", "U","Ü","V", "W", "X", "Y", "Z"];
         $search = (request('q')) ? request('q') : null;
@@ -516,7 +505,6 @@ class HomeController extends Controller
     public function kargosorgulama(){
         return view('frontend.page.cargo');
     }
-
     public function profilim(){
 
 

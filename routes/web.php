@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 
     Route::post('/odeme', 'HomeController@odeme')->name('odeme');
     Route::post('/siparis/kaydet', 'HomeController@kaydet')->name('kaydet');
-    Route::get('/siparis/sonuc', 'HomeController@sonuc')->name('sonuc');
+    Route::match(['get', 'post'],'/siparis/sonuc', 'HomeController@sonuc')->name('sonuc');
 
     Route::get('/mail', function (){
        return view('frontend.mail.siparis');

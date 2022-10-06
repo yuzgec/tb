@@ -504,21 +504,21 @@
                <article class="entry entry-display">
                     <figure class="entry-media">
                         <a href="{{ route('home') }}">
-                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                            <img src="/banner1.jpg" alt="{{ config('app.name') }}">
                         </a>
                     </figure>
                 </article>
                <article class="entry entry-display">
                     <figure class="entry-media">
                         <a href="{{ route('home') }}">
-                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                            <img src="/banner3.gif" alt="image desc">
                         </a>
                     </figure>
                 </article>
                <article class="entry entry-display">
                     <figure class="entry-media">
                         <a href="{{ route('home') }}">
-                            <img src="/frontend/assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                            <img src="/banner2.jpg" alt="{{ config('app.name') }}">
                         </a>
                     </figure>
                </article>
@@ -529,6 +529,7 @@
 
     <div class="blog-posts">
         <div class="container">
+            <h2 class="title title-border ">Popüler Yayınevleri</h2>
             <div class="owl-carousel owl-simple carousel-with-shadow" data-toggle="owl"
                  data-owl-options='{
                           "nav": false,
