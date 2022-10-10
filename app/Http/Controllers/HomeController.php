@@ -94,6 +94,22 @@ class HomeController extends Controller
 
         $Pivot = ProductCategoryPivot::with('productCategory')->get();
 
+        //dd(Cart::instance('shopping')->content());
+        Cart::instance('lastLook')->add(
+            [
+                'id' => $Detay->id,
+                'name' => $Detay->title,
+                'price' => $Detay->price,
+                'weight' => 0,
+                'qty' => 1,
+                'options' => [
+                    'image' => (!$Detay->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'small'),
+                    'cargo' => 0,
+                    'campagin' => null,
+                    'url' => url()->full()
+                ]
+            ]);
+
         return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author', 'Pivot', 'Category', 'OtherCategory'));
     }
     public function kategori($url){
@@ -182,7 +198,7 @@ class HomeController extends Controller
         $request->setCurrency(\Iyzipay\Model\Currency::TL);
         $request->setBasketId($sepetId);
         $request->setPaymentGroup(\Iyzipay\Model\PaymentGroup::PRODUCT);
-        $request->setCallbackUrl(url('/siparis/sonuc?name='.$gelen->input('name').' '.$gelen->input('surname').'&sepetId='.$sepetId));
+        $request->setCallbackUrl(route('cekim',['sepetId'=> $sepetId]));
         $request->setEnabledInstallments(array(2, 3, 6, 9));
 
         $buyer = new Buyer;
@@ -236,10 +252,10 @@ class HomeController extends Controller
         $request->setBasketItems($basketItems);
 
         $form = CheckoutFormInitialize::create($request, $options);
+
         return view('frontend.shop.odeme', compact('form', 'gelen'));
     }
-
-    public function odemesonuc(Request $gelen){
+    public function cekim(Request $gelen){
 
         if (request()->isMethod('get')) {
             return redirect()->to('/');
@@ -258,49 +274,54 @@ class HomeController extends Controller
         $request->setToken($token);
 
         $payment = \Iyzipay\Model\CheckoutForm::retrieve($request, $options);
+
         if($payment->getPaymentStatus() == "SUCCESS"){
             if (request()->isMethod('post')) {
 
-                $ShopCart = new Basket;
+                DB::transaction(function () use($payment){
+                    $ShopCart = new ShopCart;
+                    $ShopCart->cart_id          = $payment->getBasketId();
+                    $ShopCart->user_id          = (auth::check()) ? auth()->user()->id : $payment->getBasketId();
+                    $ShopCart->basket_total	    = cargoToplam(Cart::instance('shopping')->total());
+                    $ShopCart->order_cargo	    = cargo(Cart::instance('shopping')->total());
+                    $ShopCart->name             = session()->get('name');
+                    $ShopCart->surname          = session()->get('surname');
+                    $ShopCart->email            = session()->get('email');
+                    $ShopCart->phone            = session()->get('phone');
+                    $ShopCart->address          = session()->get('address');
+                    $ShopCart->province         = session()->get('province');
+                    $ShopCart->city             = session()->get('city');
+                    $ShopCart->note             = session()->get('note');
+                    $ShopCart->save();
 
-                $ShopCart->cart_id          = $payment->getBasketId();
-                $ShopCart->user_id          = $payment->getBasketId();
-                $ShopCart->total            = Cart::instance('shopping')->total();
-                $ShopCart->name             = session()->get('name');
-                $ShopCart->surname          = session()->get('surname');
-                $ShopCart->email            = session()->get('email');
-                $ShopCart->phone            = session()->get('phone');
-                $ShopCart->address          = session()->get('address');
+                    foreach (Cart::instance('shopping')->content() as $c) {
+                        $Order                  = new Order;
+                        $Order->cart_id         = $payment->getBasketId();
+                        $Order->product_id      = $c->id;
+                        $Order->name            = $c->name;
+                        $Order->qty             = $c->qty;
+                        $Order->price           = $c->price;
+                        $Order->save();
+                    }
 
-                $ShopCart->save();
+                    Cart::instance('shopping')->destroy();
+                    session()->flush();
 
-                foreach (Cart::instance('shopping')->content() as $c) {
-                    $Order                  = new Order;
-                    $Order->cart_id         = $payment->getBasketId();
-                    $Order->product_id      = $c->id;
-                    $Order->name            = $c->name;
-                    $Order->qty             = $c->qty;
-                    $Order->price           = $c->price;
-                    $Order->save();
-                }
 
-                Cart::instance('shopping')->destroy();
+                    $Summary  = Order::where('cart_id',request('sepetId') )->get();
+                    $Customer = ShopCart::where('cart_id',request('sepetId'))->firstOrFail();
 
-                session()->flush();
+                    return view('frontend.shop.sonuc', compact('Summary', 'Customer'));
+
+                });
             }
-            return redirect()->route('sonuc',['no' => $payment->getBasketId()]);
-        }else{
-            return redirect()->route('sonuc',['no' => $payment->getErrorCode()]);
         }
     }
+
     public function sonuc(){
 
-        $Summary  = Order::where('cart_id',request('no') )->get();
-        $Customer = ShopCart::where('cart_id',request('no'))->firstOrFail();
-
-        return view('frontend.shop.sonuc', compact('Summary', 'Customer'));
-
     }
+
     public function cartdelete($rowId){
         Cart::instance('shopping')->remove($rowId);
         toast(SWEETALERT_MESSAGE_DELETE,'success');

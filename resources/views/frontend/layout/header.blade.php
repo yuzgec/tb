@@ -58,10 +58,7 @@
                 @auth
                     <div class="account">
                         <a href="{{ route('profilim') }}" title="Hesabım">
-                            <div class="icon">
-                                <i class="icon-user"></i>
-                            </div>
-                            <p>{{ auth()->user()->name }}</p>
+                            <img src="https://ui-avatars.com/api/?background=1a62b4&color=fff&size=48&rounded=true&name={{auth()->user()->name}}" class="rounded">
                         </a>
                     </div>
                 @endauth

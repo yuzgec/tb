@@ -503,7 +503,7 @@
 
                <article class="entry entry-display">
                     <figure class="entry-media">
-                        <a href="{{ route('home') }}">
+                        <a href="https://www.tbkitap.com/kategori/turk-edebiyati?id=1">
                             <img src="/banner1.jpg" alt="{{ config('app.name') }}">
                         </a>
                     </figure>
@@ -622,6 +622,74 @@
               </div>
           </div>
       </div>--}}
+    @if(Cart::instance('lastLook')->content()->count()) > 0)
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="title title-border">En Son Baktıklarınız</h2>
+            </div>
+            <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
+                 data-owl-options='{
+                        "nav": false,
+                        "dots": true,
+                        "margin": 20,
+                        "loop": false,
+                        "responsive": {
+                            "0": {
+                                "items":1
+                            },
+                            "480": {
+                                "items":2
+                            },
+                            "768": {
+                                "items":3
+                            },
+                            "992": {
+                                "items":4
+                            },
+                            "1200": {
+                                "items":4,
+                                "nav": true,
+                                "dots": false
+                            }
+                        }
+                    }'>
+                @foreach(Cart::instance('lastLook')->content() as $item)
+                    <div class="product product-4 text-center">
+                        <figure class="product-media">
+                            <a href="{{ $item->options->slug }}" title="{{ $item->name }}">
+                                <img class="img-fluid" src="{{ $item->options->image }}" alt="{{ $item->name }}">
+                            </a>
 
+                            <div class="product-action-vertical">
+                                <a href="{{ route('favoriekle', ['id' => $item->id]) }}" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+                            </div>
+                        </figure>
+
+                        <div class="product-body">
+
+                            <h3 class="product-title birsatir">
+                                <a href="{{ $item->options->slug }}" title="{{ $item->name }}">
+                                {{ $item->name }}
+                            </h3>
+                            <div class="product-price">
+                                {{ money($item->price) }}₺
+                            </div>
+                        </div>
+                        <div class="product-action">
+                            <a href="{{ $item->options->slug}}"
+                               title="{{ $item->name }}"
+                               class="btn-product btn-cart">
+                                <span>İncele</span>
+                            </a>
+
+                        </div>
+                    </div>
+
+                @endforeach
+            </div>
+        </div>
+    </div>
+    @endif
 @endsection
 

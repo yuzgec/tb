@@ -5,14 +5,9 @@ use App\Models\ProductCategoryPivot;
 use App\Models\Publisher;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-
-
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/kitap/{path}', 'HomeController@urun')->where('path', '.*')->name('urun');
-
     Route::get('/profilim', 'HomeController@profilim')->middleware('auth')->name('profilim');
-
     Route::get('/kategori/{url}/{sub?}', 'HomeController@kategori')->name('kategori');
     Route::get('/kargosorgulama', 'HomeController@kargosorgulama')->name('kargosorgulama');
     Route::get('/sepet', 'HomeController@sepet')->name('sepet');
@@ -36,7 +31,9 @@ use Illuminate\Support\Facades\Route;
 
     Route::post('/odeme', 'HomeController@odeme')->name('odeme');
     Route::post('/siparis/kaydet', 'HomeController@kaydet')->name('kaydet');
-    Route::match(['get', 'post'],'/siparis/sonuc', 'HomeController@sonuc')->name('sonuc');
+
+    Route::match(['post','get'], '/siparis/cekim','HomeController@cekim')->name('cekim');
+    Route::match(['post','get'],'/siparis/sonuc', 'HomeController@sonuc')->name('sonuc');
 
     Route::get('/mail', function (){
        return view('frontend.mail.siparis');

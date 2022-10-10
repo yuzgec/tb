@@ -1,5 +1,4 @@
 @extends('frontend.layout.app')
-@section('title', 'Siparişiniz Başarıyla Oluşturulmutur. | '.config('app.name'))
 @section('customCSS')
     <style>
         .animation-ctn{
@@ -91,4 +90,4 @@
     @endsection
 @section('content')
 
-    @endsection
+@endsection

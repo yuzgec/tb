@@ -24,184 +24,184 @@
     <div class="page-content">
         <div class="container">
             <div class="row">
-                    <div class="col-lg-9">
-                        <div class="product-details-top">
-                            <div class="row">
+                <div class="col-lg-9">
+                    <div class="product-details-top">
+                        <div class="row">
 
-                                <div class="col-md-6">
-                                    <div class="product-gallery">
-                                        <figure class="product-main-image">
-                                            <span class="product-label label-sale">İndirim</span>
-                                            <img id="product-zoom" src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="{{$Detay->getFirstMediaUrl('page', 'img')}}" alt="{{ $Detay->title }}">
-                                            <a href="#" id="btn-product-gallery" class="btn-product-gallery">
-                                                <i class="icon-arrows"></i>
+                            <div class="col-md-6">
+                                <div class="product-gallery">
+                                    <figure class="product-main-image">
+                                        <span class="product-label label-sale">İndirim</span>
+                                        <img id="product-zoom" src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="{{$Detay->getFirstMediaUrl('page', 'img')}}" alt="{{ $Detay->title }}">
+                                        <a href="#" id="btn-product-gallery" class="btn-product-gallery">
+                                            <i class="icon-arrows"></i>
+                                        </a>
+                                    </figure>
+                                    <div id="product-zoom-gallery" class="product-image-gallery max-col-6">
+                                        <a class="product-gallery-item active" href="#" data-image="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="{{$Detay->getFirstMediaUrl('page', 'img')}}">
+                                            <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $Detay->title }} - TB Kitap">
+                                        </a>
+                                        @foreach($Detay->getMedia('gallery') as $item)
+                                            <a class="product-gallery-item" href="#" data-image="{{ $item->getUrl('thumb') }}" data-zoom-image="{{ $item->getUrl('img') }}">
+                                                <img src="{{ $item->getUrl('small') }}" alt="{{ $Detay->title }} - TB Kitap">
                                             </a>
-                                        </figure>
-                                        <div id="product-zoom-gallery" class="product-image-gallery max-col-6">
-                                            <a class="product-gallery-item active" href="#" data-image="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="{{$Detay->getFirstMediaUrl('page', 'img')}}">
-                                                <img src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" alt="{{ $Detay->title }} - TB Kitap">
-                                            </a>
-                                            @foreach($Detay->getMedia('gallery') as $item)
-                                                <a class="product-gallery-item" href="#" data-image="{{ $item->getUrl('thumb') }}" data-zoom-image="{{ $item->getUrl('img') }}">
-                                                    <img src="{{ $item->getUrl('small') }}" alt="{{ $Detay->title }} - TB Kitap">
-                                                </a>
-                                            @endforeach
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="col-md-6">
-                                    <div class="product-details ">
-                                    <h1 class="product-title">{{ $Detay->title }}</h1>
-                                    <div class="product-price">
-                                        <span class="new-price">{{ money($Detay->price) }}₺</span>
-                                        @if($Detay->old_price)
-                                        <span class="old-price">{{ money($Detay->old_price) }}₺</span>
-                                        <p class="badge badge-warning ml-3" style="font-size:12px">
-                                            %{{ abs(round( $Detay->price * 100 /$Detay->old_price - 100)) }} indirim
-                                        </p>
-                                        @endif
-                                    </div>
-                                <div class="product-content" >
-                                    <table class="table table-striped table-hover table-sm table-bordered">
-                                        <tbody>
-                                            @foreach($Author as $item)
-                                            <tr>
-                                                <td style="width:30%"><b  class="ml-3">Yazar</b></td>
-                                                <td><a href="{{ route('yazar', $item->slug) }}" class="ml-3" title="{{ $item->title }}"> {{ $item->title }}</a></td>
-                                            </tr>
-                                            @endforeach
-                                            @if($Detay->getTranslator)
-                                            <tr>
-                                                <td style="width:30%"><b  class="ml-3">Çevirmen</b></td>
-                                                <td><span class="ml-3">{{ $Detay->getTranslator->title }}</span></td>
-                                            </tr>
-                                            @endif
-                                            @if($Detay->getLanguage)
-                                            <tr>
-                                                <td style="width:30%"><b  class="ml-3">Dili</b></td>
-                                                <td><span class="ml-3">{{ $Detay->getLanguage->title }}</span></td>
-                                            </tr>
-                                            @endif
-                                            @if($Detay->getPublisher)
-                                                <tr>
-                                                    <td style="width:30%"><b  class="ml-3">Yayınevi</b></td>
-                                                    <td><a href="{{ route('yayinevi', $Detay->getPublisher->slug) }}" class="ml-3"
-                                                           title="({{$Detay->get_publisher_count}}) adet kitap bulunmaktadır.">
-                                                            {{ $Detay->getPublisher->title }} ({{$Detay->get_publisher_count}})
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                            <tr>
-                                                <td style="width:30%"><b  class="ml-3">Kitap Kodu</b></td>
-                                                <td><span class="ml-3">{{ $Detay->sku }}</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                    @if($Detay->condition)
-                                    <div class="d-flex" style="margin-top:-10px">
-                                        <div>Kondisyon : </div>
-                                          <div class="ratings-container align-items-center justify-content-center"
-                                               style="margin-top:5px">
-                                            <div class="ratings d-flex">
-                                                <div class="ratings-val"
-                                                     style="width: {{ condition($Detay->condition) }}%"
-                                                     title="{{ conditionText($Detay->condition) }}">
-                                                </div>
-                                                <h6 class="kondisyon">{{ conditionText($Detay->condition) }}</h6>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="col-md-6">
+                                <div class="product-details ">
+                                <h1 class="product-title">{{ $Detay->title }}</h1>
+                                <div class="product-price">
+                                    <span class="new-price">{{ money($Detay->price) }}₺</span>
+                                    @if($Detay->old_price)
+                                    <span class="old-price">{{ money($Detay->old_price) }}₺</span>
+                                    <p class="badge badge-warning ml-3" style="font-size:12px">
+                                        %{{ abs(round( $Detay->price * 100 /$Detay->old_price - 100)) }} indirim
+                                    </p>
                                     @endif
                                 </div>
+                            <div class="product-content" >
+                                <table class="table table-striped table-hover table-sm table-bordered">
+                                    <tbody>
+                                        @foreach($Author as $item)
+                                        <tr>
+                                            <td style="width:30%"><b  class="ml-3">Yazar</b></td>
+                                            <td><a href="{{ route('yazar', $item->slug) }}" class="ml-3" title="{{ $item->title }}"> {{ $item->title }}</a></td>
+                                        </tr>
+                                        @endforeach
+                                        @if($Detay->getTranslator)
+                                        <tr>
+                                            <td style="width:30%"><b  class="ml-3">Çevirmen</b></td>
+                                            <td><span class="ml-3">{{ $Detay->getTranslator->title }}</span></td>
+                                        </tr>
+                                        @endif
+                                        @if($Detay->getLanguage)
+                                        <tr>
+                                            <td style="width:30%"><b  class="ml-3">Dili</b></td>
+                                            <td><span class="ml-3">{{ $Detay->getLanguage->title }}</span></td>
+                                        </tr>
+                                        @endif
+                                        @if($Detay->getPublisher)
+                                            <tr>
+                                                <td style="width:30%"><b  class="ml-3">Yayınevi</b></td>
+                                                <td><a href="{{ route('yayinevi', $Detay->getPublisher->slug) }}" class="ml-3"
+                                                       title="({{$Detay->get_publisher_count}}) adet kitap bulunmaktadır.">
+                                                        {{ $Detay->getPublisher->title }} ({{$Detay->get_publisher_count}})
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                        <tr>
+                                            <td style="width:30%"><b  class="ml-3">Kitap Kodu</b></td>
+                                            <td><span class="ml-3">{{ $Detay->sku }}</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-                                <div style="margin-top:-30px">
-                                    <i class="icon-truck"></i> Bugün <b>({{$Count}})</b> kişi baktı<br>
-                                    <i class="icon-eye"></i> Aynı gün kargoda<br>
-                                    <i class="icon-info-circle"></i> Güvenli Ödeme
-                                </div>
-
-                                <div class="product-content">
-                                    {!! $Detay->short  !!}
-                                </div>
-
-
-                                @if($Detay->status != 0 )
-                                <form action="{{ route('sepeteekle') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="id" value="{{ $Detay->id }}">
-                                    <button type="submit" class="btn btn-primary btn-rounded btn-shadow btn-block">
-                                        <span><i class="icon-shopping-cart"></i> Sepete Ekle</span>
-                                    </button>
-                                </form>
-                                <div class="product-details-action">
-
-                                        <div class="row d-flex justify-content-between align-items-center">
-                                            <form action="{{ route('hizlisatinal') }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="id" value="{{ $Detay->id }}">
-                                                <div class="">
-                                                    <button type="submit" class="btn btn-outline-dark-1">
-                                                        <span class="text-center"><i class="icon-shopping-cart"></i> Şimdi Satın Al</span>
-                                                    </button>
-                                                </div>
-                                            </form>
-                                            <div class="">
-                                                <form action="{{ route('favoriekle') }}" method="get">
-                                                    @csrf
-                                                    <input type="hidden" name="id" value="{{ $Detay->id }}">
-                                                    <button type="submit" class="btn btn-outline-dark-1" title="Favori">
-                                                        <span class="text-center"><i class="icon-heart-o"></i> Favorilere Ekle</span>
-                                                    </button>
-                                                </form>
+                                @if($Detay->condition)
+                                <div class="d-flex" style="margin-top:-10px">
+                                    <div>Kondisyon : </div>
+                                      <div class="ratings-container align-items-center justify-content-center"
+                                           style="margin-top:5px">
+                                        <div class="ratings d-flex">
+                                            <div class="ratings-val"
+                                                 style="width: {{ condition($Detay->condition) }}%"
+                                                 title="{{ conditionText($Detay->condition) }}">
                                             </div>
+                                            <h6 class="kondisyon">{{ conditionText($Detay->condition) }}</h6>
                                         </div>
                                     </div>
-
-                                <div class="product-details-footer">
-                                    <div class="addthis_inline_share_toolbox"></div>
                                 </div>
                                 @endif
                             </div>
+
+                            <div style="margin-top:-30px">
+                                <i class="icon-truck"></i> Bugün <b>({{$Count}})</b> kişi baktı<br>
+                                <i class="icon-eye"></i> Aynı gün kargoda<br>
+                                <i class="icon-info-circle"></i> Güvenli Ödeme
+                            </div>
+
+                            <div class="product-content">
+                                {!! $Detay->short  !!}
+                            </div>
+
+
+                            @if($Detay->status != 0 )
+                            <form action="{{ route('sepeteekle') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $Detay->id }}">
+                                <button type="submit" class="btn btn-primary btn-rounded btn-shadow btn-block">
+                                    <span><i class="icon-shopping-cart"></i> Sepete Ekle</span>
+                                </button>
+                            </form>
+                            <div class="product-details-action">
+
+                                    <div class="row d-flex justify-content-between align-items-center">
+                                        <form action="{{ route('hizlisatinal') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $Detay->id }}">
+                                            <div class="">
+                                                <button type="submit" class="btn btn-outline-dark-1">
+                                                    <span class="text-center"><i class="icon-shopping-cart"></i> Şimdi Satın Al</span>
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <div class="">
+                                            <form action="{{ route('favoriekle') }}" method="get">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $Detay->id }}">
+                                                <button type="submit" class="btn btn-outline-dark-1" title="Favori">
+                                                    <span class="text-center"><i class="icon-heart-o"></i> Favorilere Ekle</span>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
+
+                            <div class="product-details-footer">
+                                <div class="addthis_inline_share_toolbox"></div>
+                            </div>
+                            @endif
+                        </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <aside class="col-lg-3">
-                        <div class="sidebar sidebar-product">
-                            <div class="widget widget-products">
-                                <h4 class="widget-title">İlgili Kitaplar</h4>
+                <aside class="col-lg-3">
+                    <div class="sidebar sidebar-product">
+                        <div class="widget widget-products">
+                            <h4 class="widget-title">İlgili Kitaplar</h4>
 
-                                <div class="products">
-                                    @foreach($Productssss->take(5) as $item)
-                                    <div class="product product-sm">
-                                        <figure class="product-media">
-                                            <a href="{{ route('urun' , $item->slug)}}">
-                                                <img src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'small')}}" alt="{{ $item->title }} - TB Kitap" class="product-image">
-                                            </a>
-                                        </figure>
+                            <div class="products">
+                                @foreach($Productssss->take(5) as $item)
+                                <div class="product product-sm">
+                                    <figure class="product-media">
+                                        <a href="{{ route('urun' , $item->slug)}}">
+                                            <img src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'small')}}" alt="{{ $item->title }} - TB Kitap" class="product-image">
+                                        </a>
+                                    </figure>
 
-                                        <div class="product-body">
-                                            <h5 class="product-title"><a href="{{ route('urun' , $item->slug)}}">{{ $item->title }}</a></h5>
-                                            <div class="product-price">
-                                                <span class="new-price">{{ money($item->price) }}₺</span>
-                                                @if($item->old_price)
-                                                <span class="old-price">{{ money($item->old_price) }}₺</span>
-                                                @endif
-                                            </div>
+                                    <div class="product-body">
+                                        <h5 class="product-title"><a href="{{ route('urun' , $item->slug)}}">{{ $item->title }}</a></h5>
+                                        <div class="product-price">
+                                            <span class="new-price">{{ money($item->price) }}₺</span>
+                                            @if($item->old_price)
+                                            <span class="old-price">{{ money($item->old_price) }}₺</span>
+                                            @endif
                                         </div>
                                     </div>
-                                    @endforeach
                                 </div>
-
-                                <a href="{{ route('kategori', [$OtherCategory->slug, 'id' => $OtherCategory->id]) }}" class="btn btn-outline-dark-3"><span>Diğer Ürünler</span><i class="icon-long-arrow-right"></i></a>
+                                @endforeach
                             </div>
 
+                            <a href="{{ route('kategori', [$OtherCategory->slug, 'id' => $OtherCategory->id]) }}" class="btn btn-outline-dark-3"><span>Diğer Ürünler</span><i class="icon-long-arrow-right"></i></a>
                         </div>
-                    </aside>
+
+                    </div>
+                </aside>
 
                 <div class="col-12">
                     <div class="accordion accordion-plus product-details-accordion" id="product-accordion">
@@ -269,49 +269,77 @@
                 </div>
                 </div>
 
+            </div>
         </div>
 
-            </div>
-
-            <div class="container">
-                <div class="row">
-                    <h2 class="title text-center mb-4">En Son Baktıklarınız</h2>
-
-                    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
-                         data-owl-options='{
-                            "nav": false,
-                            "dots": true,
-                            "margin": 20,
-                            "loop": false,
-                            "responsive": {
-                                "0": {
-                                    "items":1
-                                },
-                                "480": {
-                                    "items":2
-                                },
-                                "768": {
-                                    "items":3
-                                },
-                                "992": {
-                                    "items":4
-                                },
-                                "1200": {
-                                    "items":4,
-                                    "nav": true,
-                                    "dots": false
-                                }
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="title title-border">En Son Baktıklarınız</h2>
+                </div>
+                <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
+                     data-owl-options='{
+                        "nav": false,
+                        "dots": true,
+                        "margin": 20,
+                        "loop": false,
+                        "responsive": {
+                            "0": {
+                                "items":1
+                            },
+                            "480": {
+                                "items":2
+                            },
+                            "768": {
+                                "items":3
+                            },
+                            "992": {
+                                "items":4
+                            },
+                            "1200": {
+                                "items":4,
+                                "nav": true,
+                                "dots": false
                             }
-                        }'>
-                        @foreach($Productssss->take(6) as $item)
-                            <x-shop.product-item :item="$item"/>
-                        @endforeach
-                    </div>
+                        }
+                    }'>
+                    @foreach(Cart::instance('lastLook')->content() as $item)
+                        <div class="product product-4 text-center">
+                            <span class="product-label label-circle label-new">Yeni</span>
+                            <figure class="product-media">
+                                <a href="{{ $item->options->slug }}" title="{{ $item->name }}">
+                                    <img class="img-fluid" src="{{ $item->options->image }}" alt="{{ $item->name }}">
+                                </a>
 
+                                <div class="product-action-vertical">
+                                    <a href="{{ route('favoriekle', ['id' => $item->id]) }}" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+                                </div>
+                            </figure>
 
+                            <div class="product-body">
+
+                                <h3 class="product-title birsatir">
+                                    <a href="{{ $item->options->slug }}" title="{{ $item->name }}">
+                                    {{ $item->name }}
+                                </h3>
+                                <div class="product-price">
+                                    {{ money($item->price) }}₺
+                                </div>
+                            </div>
+                            <div class="product-action">
+                                <a href="{{ $item->options->slug}}"
+                                   title="{{ $item->name }}"
+                                   class="btn-product btn-cart">
+                                    <span>İncele</span>
+                                </a>
+
+                            </div>
+                        </div>
+
+                    @endforeach
                 </div>
             </div>
-            </div>
+        </div>
     </div>
 
     <div class="sticky-bar">

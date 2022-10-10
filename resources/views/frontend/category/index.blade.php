@@ -55,12 +55,12 @@
                 </div>
 
                 <aside class="col-lg-3 col-xl-5col order-lg-first p-3"
-                       style="border:1px solid gainsboro;border-radius: 5px;box-shadow: 3px 3px 3px lightgray">
+                     >
                     <div class="sidebar sidebar-shop">
                         <div class="widget widget-categories">
 
                             <div class="widget-body">
-                                <div class="accordion" id="widget-cat-acc">
+                                <div class="accordion mt-2" id="widget-cat-acc">
                                     @foreach($Product_Categories->where('slug' , request()->segment(2)) as $item)
                                     <div class="acc-item">
                                         <h5>
@@ -95,7 +95,7 @@
 
                             <div class="widget-body">
 
-                                <select class="form-control single" data-placeholder="Dİl Seçiniz" name="language">
+                                <select class="form-control single" data-placeholder="Dİl Seçiniz" name="language" onchange="location = this.options[this.selectedIndex].value;">
                                     <option value="">Dİl Seçiniz</option>
                                     @foreach($Language as $item)
                                         <option value="{{ $item->id }}">
@@ -106,11 +106,10 @@
                             </div>
                         </div>
 
-
                         <div class="widget">
                             <h3 class="widget-title">Yayınevi</h3>
                             <div class="widget-body">
-                                <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="publisher">
+                                <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="yayinevi" onchange="location = this.options[this.selectedIndex].value;">
                                     <option value="">Yayınevi Seçiniz</option>
                                     @foreach($Publisher as $item)
                                         <option value="{{ $item->id }}">
@@ -124,17 +123,16 @@
                         <div class="widget">
                             <h3 class="widget-title">Basım Yılı</h3>
                             <div class="widget-body">
-                                <select class="form-control single" data-placeholder="Yıl Seçiniz" name="publisher">
+                                <select class="form-control single" data-placeholder="Yıl Seçiniz" name="yil" onchange="location = this.options[this.selectedIndex].value;">
                                     <option value="">Yıl Seçiniz</option>
                                     @foreach($Years as $item)
-                                        <option value="{{ $item->id }}">
+                                        <option value="{{ route('kategori',[$Detay->slug,'id'=> $Detay->id, 'yil' => request('marka'), 'yayinevi' => request('cinsiyet')])}}" value="{{ $item->id }}">
                                             {{  $item->title }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-
 
                         <div class="widget">
                             <h3 class="widget-title">Kondisyon</h3>
@@ -230,3 +228,5 @@
         });
     </script>
 @endsection
+
+
