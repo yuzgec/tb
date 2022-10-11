@@ -14,8 +14,8 @@
 
     <div class="product-body">
 
-        <div class="product-cat  text-center text-light mb-0">
-            @foreach($item->getCategory as $category)
+        <div class="product-cat text-center text-light mb-0 birsatir">
+            @foreach($item->getCategory->take(1) as $category)
                 @php $name = \App\Models\ProductCategory::select('id','title', 'slug')->find($category->category_id) @endphp
                 <a href="{{ route('kategori', [$name->slug, 'id' => $name->id]) }}">{{ $name->title }}</a>
             @endforeach
