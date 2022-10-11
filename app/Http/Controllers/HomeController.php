@@ -126,10 +126,10 @@ class HomeController extends Controller
             ->where('product_category_pivots.category_id',  $Detay->id)
             ->where('products.status', 1)
             ->where(['category_id' => $Detay->id])
-            ->select('products.id','products.title','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
+            ->select('products.id','products.title','products.condition','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
             ->orderBy('products.rank','ASC')
             ->paginate(9);
-        //dd($Pro);
+        //dd($ProductList);
 
         $Language = Language::select('id', 'title')->get();
         $Publisher = Publisher::select('id', 'title')->get();
@@ -347,7 +347,7 @@ class HomeController extends Controller
 
         $Result  = Product::where('title','like','%'.$search.'%')
             ->orWhere('slug','like','%'.$search.'%')
-            ->select('title', 'slug', 'status', 'price', 'old_price', 'id', 'sku')
+            ->select('id', 'title', 'price', 'old_price', 'slug','bestselling','status', 'condition')
             ->paginate(12);
 
         Search::create(['key' => $search]);
@@ -459,7 +459,8 @@ class HomeController extends Controller
         SEOTools::setDescription('Tb Kitap Detaylı 2. El Kitap Klübü Arama Sayfası');
 
         $Favorite = Favorite::select('product_id')->where('user_id', auth()->user()->id)->get()->toArray();
-        $FavoriteBooks = Product::select('id', 'title', 'price', 'old_price', 'slug','bestselling','status')->whereIn('id', $Favorite)->get();
+        $FavoriteBooks = Product::select('id', 'title', 'price', 'old_price', 'slug','bestselling','status', 'condition')
+        ->whereIn('id', $Favorite)->get();
         return view('frontend.shop.favori', compact('Favorite', 'FavoriteBooks'));
     }
     public function favoricikar($id){
@@ -492,7 +493,8 @@ class HomeController extends Controller
         SEOTools::opengraph()->addProperty('type', 'product');
         SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
 
-        $Books = Product::withCount('getAuthor')->whereHas('getAuthor', function ($query) use ($Detay){
+        $Books = Product::select('id', 'title', 'price', 'old_price', 'slug','bestselling','status', 'condition')
+->withCount('getAuthor')->whereHas('getAuthor', function ($query) use ($Detay){
             return $query->where('author_id', $Detay->id);
         })->get();
         //dd($Books);
@@ -528,12 +530,12 @@ class HomeController extends Controller
     }
     public function profilim(){
 
-
         if (auth()->user()->is_admin == 1){
             return redirect()->route('go');
         }
         $Favorite = Favorite::select('product_id')->where('user_id', auth()->user()->id)->get()->toArray();
-        $FavoriteBooks = Product::select('id', 'title', 'price', 'old_price', 'slug','bestselling','status')->whereIn('id', $Favorite)->get();
+        $FavoriteBooks = Product::select('id', 'title', 'price', 'old_price', 'slug','bestselling','status', 'condition')
+            ->whereIn('id', $Favorite)->get();
 
         return view('frontend.dashboard.index', compact('FavoriteBooks'));
     }

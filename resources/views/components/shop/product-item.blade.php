@@ -14,11 +14,13 @@
 
     <div class="product-body">
 
-        <div class="product-cat">
-            @foreach($item->getCategory() as $category)
-            <a href="#">{{ $category->category_id }}</a>
+        <div class="product-cat  text-center text-light mb-0">
+            @foreach($item->getCategory as $category)
+                @php $name = \App\Models\ProductCategory::select('id','title', 'slug')->find($category->category_id) @endphp
+                <a href="{{ route('kategori', [$name->slug, 'id' => $name->id]) }}">{{ $name->title }}</a>
             @endforeach
         </div>
+
         <h3 class="product-title birsatir">
             <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
             {{ $item->title }}
@@ -26,7 +28,18 @@
         <div class="product-price">
             {{ money($item->price) }}₺
         </div>
+
+
+        <div class="ratings-container">
+            <div class="ratings">
+                <div class="ratings-val" style="width: {{ condition($item->condition) }}%"
+                     title="{{ conditionText($item->condition) }}"></div>
+            </div>
+            <span class="ratings-text">( {{ conditionText($item->condition) }} )</span>
+        </div>
     </div>
+
+
 
     <div class="product-action">
         <a href="{{ route('urun' , $item->slug)}}"

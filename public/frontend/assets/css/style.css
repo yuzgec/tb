@@ -6168,7 +6168,7 @@ a:focus {
 
 /* Product 4 */
 .product.product-4 .product-body {
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   z-index: 2; }
   .product.product-4 .product-body div:last-child {
     margin-bottom: 0; }
@@ -6191,7 +6191,7 @@ a:focus {
     .product.product-4 .btn-product:hover span, .product.product-4 .btn-product:focus span {
       box-shadow: none; }
 .product.product-4 .product-title {
-  margin-bottom: 1rem; }
+  margin-bottom: .5rem; }
 .product.product-4 .product-nav {
   margin-bottom: 0; }
 .product.product-4 .product-footer {

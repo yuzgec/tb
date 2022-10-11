@@ -36,7 +36,7 @@ class ViewShareProvider extends ServiceProvider
             $Product_Categories = ProductCategory::with('cat')->where('status', 1)->get()->toFlatTree();
             $Product = Product::with('getCategory')
                 ->with([ 'getYear', 'getAuthor', 'getLanguage'])
-                ->select('id', 'title', 'price', 'old_price', 'slug','bestselling','status')
+                ->select('id', 'title', 'price', 'old_price', 'slug','bestselling','status', 'condition')
                 ->where('status',1)
                 ->orderBy('rank')
                 ->paginate(30)
