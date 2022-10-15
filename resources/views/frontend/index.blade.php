@@ -4,15 +4,10 @@
     <div class="intro-slider-container">
         <div class="owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": true}'>
             @foreach($Slider as $slider)
-
             <div class="intro-slide"
-                 style="background-image: url(https://cdn.shopify.com/s/files/1/0406/2511/1196/files/2_22WK27_AGUB_Report_Desktop_1800x.jpg?v=1656957213);">
+                 style="background-image: url({{ $slider->getFirstMediaUrl('web') }});">
             </div>
-
             @endforeach
-            <div class="intro-slide"
-                 style="background-image: url(https://cdn.shopify.com/s/files/1/0406/2511/1196/files/IMG_0248-EditB_19ef6f43-14ca-4719-9e6c-7a5707cb0b18_1800x.jpg?v=1631029184);">
-            </div>
         </div>
         <span class="slider-loader text-white"></span>
     </div>
