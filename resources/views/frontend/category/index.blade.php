@@ -51,6 +51,12 @@
                             </div>
                             @endforeach
                         </div>
+
+                        <div class="row ">
+                            <div class="col-12 d-flex align-items-center justify-content-center">
+                                {{ $ProductList->appends(['siralama' => 'urunler' ]) }}
+                            </div>
+                        </div>
                     </div>
                 </div>
 

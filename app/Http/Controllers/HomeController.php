@@ -20,23 +20,19 @@ use App\Models\Search;
 use App\Models\ShopCart;
 use App\Models\Slider;
 use App\Models\Translator;
-use App\Models\User;
 use App\Models\Years;
-use Barryvdh\Debugbar\Facades\Debugbar;
 use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Support\Period;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Iyzipay\Model\BasketItem;
 use Iyzipay\Model\Buyer;
 use Iyzipay\Model\CheckoutFormInitialize;
 use Iyzipay\Options;
-use Illuminate\Database\Eloquent\Builder;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -128,7 +124,7 @@ class HomeController extends Controller
             ->where(['category_id' => $Detay->id])
             ->select('products.id','products.title','products.condition','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
             ->orderBy('products.rank','ASC')
-            ->paginate(9);
+            ->paginate(21);
         //dd($ProductList);
 
         $Language = Language::select('id', 'title')->get();
@@ -167,11 +163,14 @@ class HomeController extends Controller
         return view('frontend.shop.sepet',compact('Products'));
     }
     public function siparis(){
+
         if (Cart::instance('shopping')->content()->count() === 0){
             return redirect()->route('home');
         }
+
         return view('frontend.shop.siparis');
     }
+
     public function odeme(OrderRequest $gelen)
     {
 
@@ -420,7 +419,9 @@ class HomeController extends Controller
                 ]
             ]);
 
-        toast(SWEETALERT_MESSAGE_CREATE,'success');
+        alert()->image('Sepete Eklendi!',$p->title,(!$p->getFirstMediaUrl('page')) ? '/backend/resimyok.jpg' : $p->getFirstMediaUrl('page', 'small'),'250','250', 'asd');
+
+        //alert(SWEETALERT_MESSAGE_CREATE,'success');
         return redirect()->route('sepet');
     }
     public function hizlisatinal(Request $request){

@@ -8,7 +8,11 @@
             @endforeach
         </a>
         <div class="product-action-vertical">
-            <a href="{{ route('favoriekle', ['id' => $item->id]) }}" class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></a>
+            <form method="post" action="{{ route('favoriekle')}}">
+                @csrf
+             <input type="hidden" name="id" value="{{ $item->id }}" />
+            <button type="submit"  class="btn-product-icon btn-wishlist"><span>Favorilere Ekle</span></button>
+            </form>
         </div>
     </figure>
 

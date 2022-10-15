@@ -1,5 +1,6 @@
 @extends('frontend.layout.app')
 @section('content')
+    @include('sweetalert::alert')
     <nav aria-label="breadcrumb" class="breadcrumb-nav">
         <div class="container">
             <ol class="breadcrumb">

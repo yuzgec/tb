@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/detayli-arama-sonuc', 'HomeController@detayliaramasonuc')->name('detayliaramasonuc');
     Route::post('/bulten', 'HomeController@mailsubcribes')->name('mailsubcribes');
     Route::post('/sepete-ekle', 'HomeController@addtocart')->name('sepeteekle');
-    Route::get('/favori-ekle', 'HomeController@favoriekle')->middleware('auth')->name('favoriekle');
+    Route::post('/favori-ekle', 'HomeController@favoriekle')->middleware('auth')->name('favoriekle');
     Route::get('/favori', 'HomeController@favori')->middleware('auth')->name('favori');
     Route::post('/favori-cikar/{id}', 'HomeController@favoricikar')->name('favoricikar');
     Route::post('/hizli-satin-al', 'HomeController@hizlisatinal')->name('hizlisatinal');

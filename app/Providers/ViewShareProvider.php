@@ -30,7 +30,6 @@ class ViewShareProvider extends ServiceProvider
         if (! app()->runningInConsole()) {
             Paginator::useBootstrap();
             config()->set('settings', Setting::pluck('value','item')->all());
-            Artisan::call('cache:clear');
             $Pages =  Page::with('getCategory')->get();
             $Page_Categories = PageCategory::all();
             $Product_Categories = ProductCategory::with('cat')->where('status', 1)->get()->toFlatTree();

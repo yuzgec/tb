@@ -16,7 +16,7 @@ return [
             'description'  => 'Binlerce 2. El kitap, İlk Baskı Kitaplar ', // set false to total remove
             'separator'    => ' - ',
             'keywords'     => ['ikinci el kitap','ilk baskı kitaplar', 'plaklar', 'yabamcı dil kitaplar', 'online sahaf'],
-            'canonical'    => url()->current(), // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
+            'canonical'    => false, // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
             'robots'       => 'index/follow', // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
         ],
         /*
