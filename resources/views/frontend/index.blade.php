@@ -174,14 +174,14 @@
                 </article>
                 <article class="entry entry-display">
                     <figure class="entry-media">
-                        <a href="{{ route('home') }}">
+                        <a href="https://www.tbkitap.com/kategori/sizin-icin?id=35">
                             <img src="/banner3.gif" alt="image desc">
                         </a>
                     </figure>
                 </article>
                 <article class="entry entry-display">
                     <figure class="entry-media">
-                        <a href="{{ route('home') }}">
+                        <a href="https://www.tbkitap.com/kategori/kitap-ile-kor-randevu?id=6">
                             <img src="/banner2.jpg" alt="{{ config('app.name') }}">
                         </a>
                     </figure>
