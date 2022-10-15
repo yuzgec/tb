@@ -137,7 +137,7 @@
                                         @endforeach
                                     </select>
                                     <select class="form-control single" data-placeholder="Yıl Seçiniz" name="yil2">
-                                        @foreach($Years->orderById('asc') as $item)
+                                        @foreach($Years->sortbyDesc('id') as $item)
                                             <option value="{{ $item->id }}">
                                                 {{  $item->title }}
                                             </option>
