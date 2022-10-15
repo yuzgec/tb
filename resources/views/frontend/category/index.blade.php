@@ -18,7 +18,7 @@
                     <div class="toolbox" >
                         <div class="toolbox-left">
                             <div class="toolbox-info">
-                                ({{$ProductList->count()}}) adet ürün listelenmiştir.
+                                ({{$ProductList->total()}}) adet ürün listelenmiştir.
                             </div>
                         </div>
 
