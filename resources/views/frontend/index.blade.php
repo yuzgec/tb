@@ -144,7 +144,53 @@
 
     </div>
 
+    <div class="blog-posts">
+        <div class="container">
+            <div class="owl-carousel owl-simple carousel-with-shadow" data-toggle="owl"
+                 data-owl-options='{
+                          "nav": false,
+                          "dots": true,
+                          "margin": 20,
+                          "loop": false,
+                          "responsive": {
+                              "0": {
+                                 "items":1
+                              },
+                              "600": {
+                                 "items":2
+                              },
+                              "992": {
+                                 "items":3
+                              }
+                          }
+                      }'>
 
+
+                <article class="entry entry-display">
+                    <figure class="entry-media">
+                        <a href="https://www.tbkitap.com/kategori/turk-edebiyati?id=1">
+                            <img src="/banner1.jpg" alt="{{ config('app.name') }}">
+                        </a>
+                    </figure>
+                </article>
+                <article class="entry entry-display">
+                    <figure class="entry-media">
+                        <a href="{{ route('home') }}">
+                            <img src="/banner3.gif" alt="image desc">
+                        </a>
+                    </figure>
+                </article>
+                <article class="entry entry-display">
+                    <figure class="entry-media">
+                        <a href="{{ route('home') }}">
+                            <img src="/banner2.jpg" alt="{{ config('app.name') }}">
+                        </a>
+                    </figure>
+                </article>
+            </div>
+
+        </div>
+    </div>
 {{--
 
     <div class="block mt-5">
@@ -421,22 +467,31 @@
     </div>
 --}}
 
-    <div class="deal-container pt-5">
+    <div class="deal-container pt-5" style="background: orange">
         <div class="container">
             <div class="row">
-                @foreach($Product->take(2) as $item)
-                <div class="col-lg-6">
+                @foreach($Product->take(1) as $item)
+                <div class="col-lg-9">
                     <div class="deal">
                         <div class="deal-content">
-                            <h4>Kampanyalı Kitap</h4>
+                            <h4>Günün Fırsatı</h4>
                             <h3 class="product-title">
                                 <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
                                 {{ $item->title }}
                             </h3>
 
                             <div class="product-price">
-                                {{ $item->price }}₺
+                                <span class="new-price">{{ money($item->price) }}₺</span>
+                                @if($item->old_price)
+                                    <span class="old-price">{{ money($item->old_price) }}₺</span>
+                                    <p class="badge badge-warning ml-3" style="font-size:12px">
+                                        %{{ abs(round( $item->price * 100 /$item->old_price - 100)) }} indirim
+                                    </p>
+                                @endif
                             </div>
+
+                            <div class="deal-countdown" data-until="+10h"></div><!-- End .deal-countdown -->
+
 
                             <a href="{{ route('urun' , $item->slug)}}" class="btn btn-primary">
                                 <span>Ürünü İncele</span><i class="icon-long-arrow-right"></i>
@@ -450,6 +505,9 @@
                     </div>
                 </div>
                 @endforeach
+                <div class="col-md-3" style="background: #FAFAFA">
+                    <p>Resim Alanı</p>
+                </div>
 
             </div>
         </div>
@@ -475,53 +533,7 @@
         <hr class="mt-1 mb-6">
     </div>
 
-    <div class="blog-posts">
-        <div class="container">
-            <div class="owl-carousel owl-simple carousel-with-shadow" data-toggle="owl"
-               data-owl-options='{
-                          "nav": false,
-                          "dots": true,
-                          "margin": 20,
-                          "loop": false,
-                          "responsive": {
-                              "0": {
-                                 "items":1
-                              },
-                              "600": {
-                                 "items":2
-                              },
-                              "992": {
-                                 "items":3
-                              }
-                          }
-                      }'>
 
-
-               <article class="entry entry-display">
-                    <figure class="entry-media">
-                        <a href="https://www.tbkitap.com/kategori/turk-edebiyati?id=1">
-                            <img src="/banner1.jpg" alt="{{ config('app.name') }}">
-                        </a>
-                    </figure>
-                </article>
-               <article class="entry entry-display">
-                    <figure class="entry-media">
-                        <a href="{{ route('home') }}">
-                            <img src="/banner3.gif" alt="image desc">
-                        </a>
-                    </figure>
-                </article>
-               <article class="entry entry-display">
-                    <figure class="entry-media">
-                        <a href="{{ route('home') }}">
-                            <img src="/banner2.jpg" alt="{{ config('app.name') }}">
-                        </a>
-                    </figure>
-               </article>
-          </div>
-
-      </div>
-   </div>
 
     <div class="blog-posts">
         <div class="container">

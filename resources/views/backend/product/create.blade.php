@@ -115,7 +115,7 @@
                         </label>
                     </div>
                     <div class="col-6 col-md-2">
-                        <label class="form-check form-check-single form-switch mt-2">&nbsp; Sadece TBKitap'ta
+                        <label class="form-check form-check-single form-switch mt-2">&nbsp; TBKitap'ta
                             <input class="form-check-input switch" name="option3" type="checkbox" value="0">
                         </label>
                     </div>
