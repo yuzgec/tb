@@ -59,7 +59,7 @@
                                     }
                                 }
                             }'>
-                        @foreach($Product->orderBy('id', 'asc')->take(8) as $item)
+                        @foreach($Product->sortByDesc('id')->take(8) as $item)
                             <x-shop.product-item :item="$item"/>
                         @endforeach
 
