@@ -64,7 +64,7 @@
                                     }
                                 }
                             }'>
-                        @foreach($Product->shortByDesc('id')->take(16) as $item)
+                        @foreach($Product->sortByDesc('id')->take(16) as $item)
                             <x-shop.product-item :item="$item"/>
                         @endforeach
 
