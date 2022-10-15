@@ -77,7 +77,7 @@ class HomeController extends Controller
         SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
 
         views($Detay)->cooldown(60)->record();
-        $Count = views($Detay)->unique()->period(Period::create(Carbon::today()))->count();
+        $Count = views($Detay)->unique()->period(Period::create(Carbon::now()->subYear()))->count();
 
         $Productssss = Product::with('getCategory')->where('status', 1)
                 ->whereHas('getCategory', function ($query) use ($Detay, $cat)

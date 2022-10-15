@@ -467,8 +467,8 @@
     </div>
 --}}
 
-    <div class="deal-container pt-5" style="background: orange">
-        <div class="container">
+    <div class="deal-container" >
+        <div class="container" style="background: orange">
             <div class="row">
                 @foreach($Product->take(1) as $item)
                 <div class="col-lg-9">
