@@ -1,5 +1,8 @@
 <div class="product product-4 text-center">
-    <span class="product-label label-circle label-new">Yeni</span>
+
+    <span class="product-label label-new">Sadece TBKitap'ta</span>
+    <span class="product-label label-top">Çok Nadir</span>
+
     <figure class="product-media">
         <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
             <img class="img-fluid" src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb') }}" alt="{{ $item->title }}">

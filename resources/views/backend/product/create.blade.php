@@ -20,14 +20,14 @@
                 <div class="form-group mb-3 row">
                     <label class="form-label col-3 col-form-label">Ürün Kodu</label>
                     <div class="col-9">
-                        <input type="text" class="col-9 form-control" name="sku" value="{{'TB-000'.$Last+1}}">
+                        <input type="text" class="col-9 form-control" name="sku" value="{{'TB-000'.$Last+1}}" >
                     </div>
                 </div>
 
                 <div class="form-group mb-3 row mt">
                     <label class="form-label col-3 col-form-label">Yazar / Tarih </label>
                     <div class="col-5">
-                        <select class="form-control multi" data-placeholder="Yazar Seçiniz" multiple name="author[]">
+                        <select class="form-control multi" data-placeholder="Yazar Seçiniz" multiple name="author[]" required>
                             @foreach($Author as $item)
                                 <option value="{{ $item->id }}">
                                     {{ $item->title }}
@@ -60,7 +60,7 @@
                         </select>
                     </div>
                     <div class="col-4">
-                        <select class="form-control single" data-placeholder="Dil Seçiniz"  name="language">
+                        <select class="form-control single" data-placeholder="Dil Seçiniz"  name="language" required>
                         <option value="">Dil Seçiniz</option>
                         @foreach($Language as $item)
                                 <option value="{{ $item->id }}">
@@ -85,14 +85,14 @@
                     </div>
 
                     <div class="col-4">
-                        <input type="text" class="form-control" name="condition" value="{{old('condition')}}" placeholder="1 ile 5 arasında bir sayı giriniz">
+                        <input type="text" class="form-control" name="condition" value="{{old('condition')}}" placeholder="1 ile 5 arasında bir sayı giriniz" required>
                     </div>
                 </div>
 
                 <div class="form-group mb-3 row">
                     <label class="form-label col-3 col-form-label">Kategori </label>
                     <div class="col">
-                        <select class="form-control multi" data-placeholder="Kategori Seçiniz" multiple name="category[]">
+                        <select class="form-control multi" data-placeholder="Kategori Seçiniz" multiple name="category[]" required>
                             @foreach($Product_Categories as $item)
                                 <option value="{{ $item->id }}">
                                     {{ ($item->parent_id == 0 ) ? $item->title : '-- '.$item->title }}
@@ -105,22 +105,22 @@
                 <div class="form-group mb-3 row">
                     <label class="form-label col-3 col-form-label">Seçenek </label>
                     <div class="col-6 col-md-2">
-                        <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek1
+                        <label class="form-check form-check-single form-switch mt-2"> İlk Baskı
                             <input class="form-check-input switch" name="option1" type="checkbox" value="0">
                         </label>
                     </div>
                     <div class="col-6 col-md-2">
-                        <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek2
+                        <label class="form-check form-check-single form-switch mt-2">&nbsp; İmzalı
                             <input class="form-check-input switch" name="option2" type="checkbox" value="0">
                         </label>
                     </div>
                     <div class="col-6 col-md-2">
-                        <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek3
+                        <label class="form-check form-check-single form-switch mt-2">&nbsp; Sadece TBKitap'ta
                             <input class="form-check-input switch" name="option3" type="checkbox" value="0">
                         </label>
                     </div>
                     <div class="col-6 col-md-2">
-                        <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek4
+                        <label class="form-check form-check-single form-switch mt-2">&nbsp; Çok Nadir
                             <input class="form-check-input switch" name="option4" type="checkbox" value="0">
                         </label>
                     </div>
@@ -170,7 +170,7 @@
                     <div class="col-3">
                         <div class="input-group mb-2">
                             <span class="input-group-text">₺</span>
-                            <input type="text" class="form-control" name="price" placeholder="Fiyat Giriniz" autocomplete="off" value="{{ old('price') }}" required>
+                            <input type="text" class="form-control" name="price" placeholder="Fiyat Giriniz" autocomplete="off" value="{{ old('price') }}" >
                         </div>
                     </div>
                     <div class="col-3">

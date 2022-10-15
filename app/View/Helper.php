@@ -32,6 +32,8 @@
         }
     }
 
+
+
 function conditionText($value){
 
     if($value === 5 ){

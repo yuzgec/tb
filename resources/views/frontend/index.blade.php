@@ -21,7 +21,7 @@
             <li class="nav-item">
                 <a class="nav-link active" id="products-featured-link" data-toggle="tab"
                    href="#products-featured-tab" role="tab"
-                   aria-controls="products-featured-tab" aria-selected="true">Yeni Eklenen</a>
+                   aria-controls="products-featured-tab" aria-selected="true">Yeni Eklenenler</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="products-sale-link" data-toggle="tab"

@@ -123,7 +123,7 @@
                     <div class="form-group mb-3 row">
                         <label class="form-label col-3 col-form-label">Seçenek </label>
                         <div class="col-6 col-md-2">
-                            <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek1
+                            <label class="form-check form-check-single form-switch mt-2">&nbsp; İlk Baskı
                                 <input class="form-check-input switch"
                                        name="option1"
                                        type="checkbox"
@@ -133,7 +133,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-2">
-                            <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek2
+                            <label class="form-check form-check-single form-switch mt-2">&nbsp; İmzalı
                                 <input class="form-check-input switch"
                                        name="option2"
                                        type="checkbox"
@@ -143,7 +143,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-2">
-                            <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek3
+                            <label class="form-check form-check-single form-switch mt-2">&nbsp; Sadece TBKitap'ta
                                 <input class="form-check-input switch"
                                        name="option3"
                                        type="checkbox"
@@ -153,7 +153,7 @@
                             </label>
                         </div>
                         <div class="col-6 col-md-2">
-                            <label class="form-check form-check-single form-switch mt-2">&nbsp; Secenek4
+                            <label class="form-check form-check-single form-switch mt-2">&nbsp; Çok Nadir
                                 <input class="form-check-input switch"
                                        name="option4"
                                        type="checkbox"
