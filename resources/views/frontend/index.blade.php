@@ -467,10 +467,10 @@
 --}}
 
     <div class="deal-container" >
-        <div class="container" style="background: orange">
+        <div class="container" >
             <div class="row">
                 @foreach($Product->take(1) as $item)
-                <div class="col-lg-9">
+                <div class="col-lg-9" style="background: orange">
                     <div class="deal">
                         <div class="deal-content">
                             <h4>Günün Fırsatı</h4>
@@ -504,8 +504,8 @@
                     </div>
                 </div>
                 @endforeach
-                <div class="col-md-3" style="background: #FAFAFA">
-                    <p>Resim Alanı</p>
+                <div class="col-md-3">
+                    <img src="/ilan.gif" class="img-fluid" alt="İkinci El Kitaplarınız Alınır">
                 </div>
 
             </div>
