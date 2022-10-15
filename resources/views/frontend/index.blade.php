@@ -23,16 +23,7 @@
                    href="#products-featured-tab" role="tab"
                    aria-controls="products-featured-tab" aria-selected="true">Yeni Eklenen</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id="products-sale-link" data-toggle="tab"
-                   href="#products-sale-tab" role="tab"
-                   aria-controls="products-sale-tab" aria-selected="false">Çok Satanlar</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="products-top-link" data-toggle="tab"
-                   href="#products-top-tab" role="tab"
-                   aria-controls="products-top-tab" aria-selected="false">Favori Ürünler </a>
-            </li>
+
         </ul>
     </div>
     <div class="display-row bg-light">
@@ -68,82 +59,13 @@
                                     }
                                 }
                             }'>
-                        @foreach($Product->take(8) as $item)
+                        @foreach($Product->orderBy('id', 'asc')->take(8) as $item)
                             <x-shop.product-item :item="$item"/>
                         @endforeach
 
                     </div>
                 </div>
-                <div class="tab-pane p-0 fade" id="products-sale-tab" role="tabpanel" aria-labelledby="products-sale-link">
-                    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
-                         data-owl-options='{
-                                "nav": false,
-                                "dots": true,
-                                "margin": 20,
-                                "loop": false,
-                                "responsive": {
-                                    "0": {
-                                        "items":2
-                                    },
-                                    "480": {
-                                        "items":2
-                                    },
-                                    "768": {
-                                        "items":3
-                                    },
-                                    "992": {
-                                        "items":4
-                                    },
-                                    "1200": {
-                                        "items":5
-                                    },
-                                    "1600": {
-                                        "items":6,
-                                        "nav": true
-                                    }
-                                }
-                            }'>
-                        @foreach($Product->take(8,16) as $item)
-                            <x-shop.product-item :item="$item"/>
-                        @endforeach
-
-                    </div>
-                </div>
-                <div class="tab-pane p-0 fade" id="products-top-tab" role="tabpanel" aria-labelledby="products-top-link">
-                    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
-                         data-owl-options='{
-                                "nav": false,
-                                "dots": true,
-                                "margin": 20,
-                                "loop": false,
-                                "responsive": {
-                                    "0": {
-                                        "items":2
-                                    },
-                                    "480": {
-                                        "items":2
-                                    },
-                                    "768": {
-                                        "items":3
-                                    },
-                                    "992": {
-                                        "items":4
-                                    },
-                                    "1200": {
-                                        "items":5
-                                    },
-                                    "1600": {
-                                        "items":6,
-                                        "nav": true
-                                    }
-                                }
-                            }'>
-                        @foreach($Product as $item)
-                            <x-shop.product-item :item="$item"/>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
 
     </div>

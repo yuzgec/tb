@@ -129,9 +129,15 @@
                             <div class="widget">
                                 <h3 class="widget-title">Basım Yılı</h3>
                                 <div class="widget-body">
-                                    <select class="form-control single" data-placeholder="Yıl Seçiniz" name="yil">
-                                        <option value="">Yıl Seçiniz</option>
+                                    <select class="form-control single" data-placeholder="Yıl Seçiniz" name="yil1">
                                         @foreach($Years as $item)
+                                            <option value="{{ $item->id }}">
+                                                {{  $item->title }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <select class="form-control single" data-placeholder="Yıl Seçiniz" name="yil2">
+                                        @foreach($Years->orderById('asc') as $item)
                                             <option value="{{ $item->id }}">
                                                 {{  $item->title }}
                                             </option>
