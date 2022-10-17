@@ -38,10 +38,13 @@
         </div>
 
         <div class="social-icons">
-            <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
-            <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
-            <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-            <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+            <a href="https://www.facebook.com/tbkitap" class="social-icon social-facebook" title="Facebook" target="_blank">
+                <i class="icon-facebook-f"></i></a>
+
+            <a href="https://www.instagram.com/tbkitap" class="social-icon social-instagram" title="Instagram" target="_blank">
+                <i class="icon-instagram"></i></a>
+            <a href="https://www.youtube.com/channel/UCsvtSoF21lPAQE5utwabGtw" class="social-icon social-youtube" title="youtube" target="_blank">
+                <i class="icon-youtube"></i></a>
         </div>
     </div>
 </div>
@@ -57,7 +60,7 @@
 <script src="/frontend/assets/js/bootstrap-input-spinner.js"></script>
 <script src="/frontend/assets/js/jquery.magnific-popup.min.js"></script>
 <script src="/frontend/assets/js/jquery.countdown.min.js"></script>
-<script src="/frontend/assets/js/main.js"></script>
-<script src="/frontend/assets/js/demos/demo-2.js"></script>
+<script src="/frontend/assets/js/main.js?ver=6"></script>
+<script src="/frontend/assets/js/demos/demo-2.js?ver=6"></script>
 <livewire:scripts />
 

@@ -5,7 +5,7 @@ $(document).ready(function () {
     // Deal of the day countdown
 	if ( $.fn.countdown ) {
 		$('.deal-countdown').each(function () {
-			var $this = $(this), 
+			var $this = $(this),
 				untilDate = $this.data('until'),
 				compact = $this.data('compact');
 
@@ -13,8 +13,8 @@ $(document).ready(function () {
 			    until: untilDate, // this is relative date +10h +5m vs..
 			    format: 'HMS',
 			    padZeroes: true,
-			    labels: ['years', 'months', 'weeks', 'days', 'hrs', 'mins', 'secs'],
-			    labels1: ['year', 'month', 'week', 'day', 'hr', 'min', 'sec']
+			    labels: ['years', 'ay', 'hafta', 'gün', 'saat', 'dakika', 'saniye'],
+			    labels1: ['year', 'ay', 'hafta', 'gün', 'saat', 'dakika', 'saniye']
 			});
 		});
 

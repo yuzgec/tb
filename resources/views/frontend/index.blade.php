@@ -470,7 +470,7 @@
         <div class="container" >
             <div class="row">
                 @foreach($Product->take(1) as $item)
-                <div class="col-lg-9" style="background: orange">
+                <div class="col-lg-9">
                     <div class="deal">
                         <div class="deal-content">
                             <h4>Günün Fırsatı</h4>
