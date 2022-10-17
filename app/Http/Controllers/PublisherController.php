@@ -14,9 +14,9 @@ class PublisherController extends Controller
     {
         if (request()->filled('q')){
             $All =  Publisher::where('title', 'like', '%'. request('q'). '%')
-                ->orWhere('slug', 'like', '%'. request('q'). '%')->paginate(30);
+                ->orWhere('slug', 'like', '%'. request('q'). '%')->paginate(50);
         }else{
-            $All = Publisher::orderBy('rank')->paginate(30);
+            $All = Publisher::orderBy('title')->paginate(50);
         }
         return view('backend.publisher.index', compact('All'));
     }
