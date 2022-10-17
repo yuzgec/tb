@@ -149,6 +149,7 @@
                             @endif
                         </li>
                         @endforeach
+                        <li><a href="{{ route('iletisim') }}">İletişim</a> </li>
                     </ul>
                 </nav>
 
