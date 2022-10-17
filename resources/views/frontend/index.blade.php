@@ -175,14 +175,14 @@
                 <article class="entry entry-display">
                     <figure class="entry-media">
                         <a href="https://www.tbkitap.com/kategori/sizin-icin?id=35">
-                            <img src="/banner3.gif" alt="image desc">
+                            <img src="/banner3.gif" alt="{{ config('app.name') }}">
                         </a>
                     </figure>
                 </article>
                 <article class="entry entry-display">
                     <figure class="entry-media">
                         <a href="https://www.tbkitap.com/kategori/kitap-ile-kor-randevu?id=6">
-                            <img src="/banner2.jpg" alt="{{ config('app.name') }}">
+                            <img src="/banner2.jpg"  alt="{{ config('app.name') }}">
                         </a>
                     </figure>
                 </article>
@@ -505,7 +505,9 @@
                 </div>
                 @endforeach
                 <div class="col-md-3">
-                    <img src="/ilan.gif" class="img-fluid" alt="İkinci El Kitaplarınız Alınır">
+                    <a href="{{ route('kurumsal', 'kitap-sat') }}">
+                        <img src="/ilan.gif" class="img-fluid" alt="İkinci El Kitaplarınız Alınır">
+                    </a>
                 </div>
 
             </div>

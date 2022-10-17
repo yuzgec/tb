@@ -11,7 +11,7 @@
                                 </span>
                         <div class="icon-box-content">
                             <h3 class="icon-box-title"> Ücretsiz Kargo</h3>
-                            <p>99₺ ve üzeri</p>
+                            <p>200₺ ve üzeri</p>
                         </div>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
                     <div class="widget">
                         <h4 class="widget-title">Bilgi Sayfaları</h4>
                         <ul class="widget-list">
-                            <li><a href="#">Hakkımızda</a></li>
+                            <li><a href="{{ route('kurumsal', 'hakkimizda') }}">Hakkımızda</a></li>
                             <li><a href="#">S.S.S</a></li>
                             <li><a href="{{ route('iletisim') }}">İletişim</a></li>
                             <li><a href="{{ route('login') }}">Giriş Yap</a></li>
@@ -179,10 +179,11 @@
                 <span class="social-label">Sosyal Medya</span>
                 <a href="https://www.facebook.com/tbkitap" class="social-icon social-facebook" title="Facebook" target="_blank">
                     <i class="icon-facebook-f"></i></a>
-                <a href="https://www.twitter.com/tbkitap" class="social-icon social-twitter" title="Twitter" target="_blank">
-                    <i class="icon-twitter"></i></a>
+
                 <a href="https://www.instagram.com/tbkitap" class="social-icon social-instagram" title="Instagram" target="_blank">
                     <i class="icon-instagram"></i></a>
+                <a href="https://www.youtube.com/channel/UCsvtSoF21lPAQE5utwabGtw" class="social-icon social-youtube" title="youtube" target="_blank">
+                    <i class="icon-youtube"></i></a>
             </div>
         </div>
     </div>
