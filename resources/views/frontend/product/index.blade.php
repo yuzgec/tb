@@ -31,7 +31,9 @@
                             <div class="col-md-6">
                                 <div class="product-gallery">
                                     <figure class="product-main-image">
+{{--
                                         <span class="product-label label-sale">İndirim</span>
+--}}
                                         <img id="product-zoom" src="{{ (!$Detay->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $Detay->getFirstMediaUrl('page', 'thumb')}}" data-zoom-image="{{$Detay->getFirstMediaUrl('page', 'img')}}" alt="{{ $Detay->title }}">
                                         <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                                             <i class="icon-arrows"></i>

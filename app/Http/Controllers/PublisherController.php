@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PublisherRequest;
 use App\Models\Author;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class PublisherController extends Controller
         return view('backend.publisher.create');
     }
 
-    public function store(Request $request)
+    public function store(PublisherRequest $request)
     {
         $New = new Publisher;
         $New->title = $request->title;
@@ -49,7 +50,7 @@ class PublisherController extends Controller
         return view('backend.publisher.edit', compact('Edit'));
     }
 
-    public function update(Request $request, $id)
+    public function update(PublisherRequest $request, $id)
     {
         $Update = Publisher::find($id);
         $Update->title = $request->title;
