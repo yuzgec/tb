@@ -6,7 +6,7 @@
     <figure class="product-media">
         <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
             <img class="img-fluid"
-                 src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'small') }}"
+                 src="{{ (!$item->getFirstMediaUrl('page')) ? '/resimyok.jpg' : $item->getFirstMediaUrl('page', 'thumb') }}"
                  alt="{{ $item->title }}"
             width="400px" height="400px">
             @foreach($item->getMedia('gallery')->take(1) as $img)
