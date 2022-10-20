@@ -39,7 +39,7 @@ class SliderController extends Controller
         }
 
         if($request->hasfile('imagemobil')){
-            $New->addMedia($request->image)->toMediaCollection('mobil');
+            $New->addMedia($request->imagemobil)->toMediaCollection('mobil');
         }
 
         $New->save();
@@ -80,7 +80,7 @@ class SliderController extends Controller
 
         if ($request->hasFile('imagemobil')) {
             $Update->media()->where('collection_name', 'mobil')->delete();
-            $Update->addMedia($request->image)->toMediaCollection('mobil');
+            $Update->addMedia($request->imagemobil)->toMediaCollection('mobil');
         }
 
         $Update->save();

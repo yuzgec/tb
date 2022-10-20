@@ -4,9 +4,14 @@
     <div class="intro-slider-container">
         <div class="owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": true}'>
             @foreach($Slider as $slider)
-            <div class="intro-slide"
-                 style="background-image: url({{ $slider->getFirstMediaUrl('web') }});">
-            </div>
+                @if($slider->getFirstMediaUrl('web'))
+                <div class="intro-slide d-none d-sm-block">
+                    <a href="{{ ($slider->button_link)  ?  $slider->button_link :  'javascrip:void()'}}" title="TB Kitap">
+                        <img src="{{ $slider->getFirstMediaUrl('web') }}" alt="'2 el Kitap" class="img-fluid">
+                    </a>
+                </div>
+                @endif
+
             @endforeach
         </div>
         <span class="slider-loader text-white"></span>
