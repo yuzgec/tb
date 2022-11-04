@@ -231,6 +231,7 @@
                         <th>Durumu</th>
                         <th>Fiyat</th>
                         <th>Kargo</th>
+                        <th>Ürün Sayısı</th>
                         <th>Tarih</th>
                         <th>Eylemler</th>
                     </tr>
@@ -240,7 +241,7 @@
                     <tr>
                         <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
                         <td><span class="text-muted">{{ $item->cart_id }}</span></td>
-                        <td><a href="invoice.html" class="text-reset" tabindex="-1">{{ $item->name }}</a></td>
+                        <td>{{ $item->name }}</td>
                         <td>
                             {{ $item->phone }}
                         </td>
@@ -255,20 +256,10 @@
                         </td>
 
                         <td>{{ $item->order_cargo }}</td>
-                        <td>{{ $item->created_at }}</td>
-                        <td class="text-end">
-                            <span class="dropdown">
-                              <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Eylemler</button>
-                              <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="#">
-                                  Eylemler
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                  Düzenle
-                                </a>
-                              </div>
-                            </span>
-                        </td>
+                        <td>{{ $item->get_order_count }}</td>
+                        <td> {{ $item->created_at->diffForHumans() }}</td>
+                        <td>Düzenle</td>
+
                     </tr>
                     @endforeach
                     </tbody>
