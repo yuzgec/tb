@@ -28,7 +28,7 @@ class DashboardController extends Controller
         $Publisher = Publisher::count();
 
         $Order = ShopCart::with('getOrder')->withCount('getOrder')->get();
-        dd($Order);
+        //dd($Order);
 
         return view('backend.index', compact('Search', 'Product', 'Product_Categories', 'Author','Publisher', 'Order'));
     }
