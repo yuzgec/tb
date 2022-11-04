@@ -256,7 +256,7 @@
                         </td>
 
                         <td>{{ $item->order_cargo }}</td>
-                        <td><span class="badge badge-success">{{ $item->get_order_count }}</span></td>
+                        <td><span class="badge bg-success">{{ $item->get_order_count }} Ürün</span></td>
                         <td> {{ $item->created_at->diffForHumans() }}</td>
                         <td>Düzenle</td>
 
