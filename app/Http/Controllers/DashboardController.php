@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Faq;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Publisher;
@@ -25,6 +26,9 @@ class DashboardController extends Controller
         $Product_Categories = ProductCategory::count();
         $Author = Author::count();
         $Publisher = Publisher::count();
-        return view('backend.index', compact('Search', 'Product', 'Product_Categories', 'Author','Publisher'));
+
+        $Order = ShopCart::all();
+
+        return view('backend.index', compact('Search', 'Product', 'Product_Categories', 'Author','Publisher', 'Order'));
     }
 }
