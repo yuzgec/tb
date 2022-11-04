@@ -252,10 +252,10 @@
                             <span class="badge bg-success me-1"></span> Sipariş Hazırlanıyor
                         </td>
                         <td>
-                            {{ money($item->basket_total) }}
+                            {{ money($item->basket_total) }}₺
                         </td>
 
-                        <td>{{ $item->order_cargo }}</td>
+                        <td>{{ money($item->order_cargo) }}₺</td>
                         <td><span class="badge bg-success">{{ $item->get_order_count }} Ürün</span></td>
                         <td> {{ $item->created_at->diffForHumans() }}</td>
                         <td>Düzenle</td>
