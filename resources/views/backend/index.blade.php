@@ -225,13 +225,14 @@
                         <th class="w-1">No. <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-sm text-dark icon-thick" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><polyline points="6 15 12 9 18 15"></polyline></svg>
                         </th>
-                        <th>Invoice Subject</th>
-                        <th>Client</th>
-                        <th>VAT No.</th>
-                        <th>Created</th>
-                        <th>Status</th>
-                        <th>Price</th>
-                        <th></th>
+                        <th>İsim </th>
+                        <th>Telefon</th>
+                        <th>İl-İlçe</th>
+                        <th>Durumu</th>
+                        <th>Fiyat</th>
+                        <th>Kargo</th>
+                        <th>Tarih</th>
+                        <th>Eylemler</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -244,18 +245,20 @@
                             {{ $item->phone }}
                         </td>
                         <td>
-                            {{ $item->province.' '.$item->city }}
-                        </td>
-                        <td>
-                            {{ $item->basket_total }}
+                            {{ $item->province.' - '.$item->city }}
                         </td>
                         <td>
                             <span class="badge bg-success me-1"></span> Sipariş Hazırlanıyor
                         </td>
-                        <td>$887</td>
+                        <td>
+                            {{ money($item->basket_total) }}
+                        </td>
+
+                        <td>{{ $item->order_cargo }}</td>
+                        <td>{{ $item->created_at }}</td>
                         <td class="text-end">
                             <span class="dropdown">
-                              <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
+                              <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Eylemler</button>
                               <div class="dropdown-menu dropdown-menu-end">
                                 <a class="dropdown-item" href="#">
                                   Eylemler
