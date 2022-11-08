@@ -332,7 +332,7 @@ class HomeController extends Controller
         SEOTools::setTitle($request->q." ile ilgili arama sonuçları | Online 2. El Kitap | ". config('app.name'));
         SEOTools::setDescription('Tb Kitap 2. El Kitap Klübü Arama Sayfası');
 
-        $search = $request->q;
+        $search = str_replace($request->q, '+', '_');
 
         $Publisher = Publisher::where('title','like','%'.$search.'%')
             ->orWhere('slug','like','%'.$search.'%')
