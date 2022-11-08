@@ -1,7 +1,7 @@
 <div class="product product-4 text-center">
 
     <span class="product-label label-new"><i class="icon-calendar"></i> {{ $item->year }}</span>
-    <span class="product-label label-top">{{ $item->getLanguage->title }}</span>
+    <span class="product-label label-top"><i class="icon-wordpress"></i> {{ $item->getLanguage->title }}</span>
 
 
     <figure class="product-media">

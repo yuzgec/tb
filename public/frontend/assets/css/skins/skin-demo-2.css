@@ -940,5 +940,13 @@ a:focus {
 
 .newsletter-popup-container .banner-title span {
   color: #000; }
+.product-label.label-top {
+    color: #fff;
+    background-color: #f29200;
+}
 
+.product-label.label-new {
+    color: #fff;
+    background-color: #1A62B4;
+}
 /*# sourceMappingURL=skin-demo-2.css.map */
