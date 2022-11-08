@@ -134,7 +134,7 @@ class HomeController extends Controller
         $Language = Language::select('id', 'title')->get();
         $Publisher = Publisher::select('id', 'title')->get();
         $Translator = Translator::select('id', 'title')->get();
-        $Author = Author::select('id', 'title')->get();
+        $Author = Author::select('id', 'title')->orderBy('title', 'asc')->get();
         $Years = Years::select('id', 'title')->get();
 
         return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
