@@ -339,7 +339,7 @@ class HomeController extends Controller
             ->select('title', 'slug', 'status')
             ->paginate(12);
 
-        $Result  = Product::where('title','like','%'.$search.'%')
+        $Result  = Product::where('title','like','%'.$search)
             ->orWhere('slug','like','%'.$search.'%')
             ->select('id', 'title', 'price', 'old_price', 'slug','bestselling','status', 'condition')
             ->paginate(12);
