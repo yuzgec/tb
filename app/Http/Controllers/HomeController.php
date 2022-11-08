@@ -36,10 +36,6 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
-
-    public function __construct(){
-    }
-
     public function index()
     {
         $Slider = Slider::with('getProduct')->where('status', 1)->get();
@@ -109,6 +105,7 @@ class HomeController extends Controller
         return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author', 'Pivot', 'Category', 'OtherCategory'));
     }
     public function kategori($url){
+
         $Detay = ProductCategory::where('id', \request('id'))->select('id','title','slug')->first();
         SEOTools::setTitle($Detay->title);
         SEOTools::setDescription($Detay->seo_desc);
@@ -116,16 +113,23 @@ class HomeController extends Controller
         SEOTools::setCanonical(route('urun', $Detay->slug));
         SEOTools::opengraph()->addProperty('type', 'category');
         SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
+
+
+
+        //$Dil = $request->filled('dil') ?  intval(request('dil')) : 1;
+
+        $select_fiyat = \request('fiyat' == 1)  ?? 'desc';
+
         $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
-             ->join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
+            ->join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
             ->join('product_categories', 'product_categories.id', '=', 'product_category_pivots.category_id')
             ->where('product_category_pivots.category_id',  $Detay->id)
             ->where('products.status', 1)
             ->where(['category_id' => $Detay->id])
             ->select('products.id','products.title','products.condition','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
-            ->orderBy('products.rank','ASC')
+            //->orderByRaw("products.price $select_fiyatdusuk, products.price $select_fiyatyuksek")
+            ->orderBy("products.price",$select_fiyat)
             ->paginate(21);
-        //dd($ProductList);
 
         $Language = Language::select('id', 'title')->get();
         $Publisher = Publisher::select('id', 'title')->get();
@@ -170,7 +174,6 @@ class HomeController extends Controller
 
         return view('frontend.shop.siparis');
     }
-
     public function odeme(OrderRequest $gelen)
     {
 
@@ -247,11 +250,8 @@ class HomeController extends Controller
             $basketItems[$cartcount] = $BasketItem;
             $cartcount++;
         }
-
         $request->setBasketItems($basketItems);
-
         $form = CheckoutFormInitialize::create($request, $options);
-
         return view('frontend.shop.odeme', compact('form', 'gelen'));
     }
     public function cekim(Request $gelen){
@@ -305,22 +305,17 @@ class HomeController extends Controller
 
                     Cart::instance('shopping')->destroy();
                     session()->flush();
-
-
-                    $Summary  = Order::where('cart_id',request('sepetId') )->get();
-                    $Customer = ShopCart::where('cart_id',request('sepetId'))->firstOrFail();
-
-                    return view('frontend.shop.sonuc', compact('Summary', 'Customer'));
-
                 });
             }
         }
+
+        $Summary  = Order::where('cart_id',request('no') )->get();
+        $Customer = ShopCart::where('cart_id',request('no'))->firstOrFail();
+
+        return view('frontend.shop.sonuc', compact('Summary', 'Customer'));
+
+
     }
-
-    public function sonuc(){
-
-    }
-
     public function cartdelete($rowId){
         Cart::instance('shopping')->remove($rowId);
         toast(SWEETALERT_MESSAGE_DELETE,'success');

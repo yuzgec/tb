@@ -6,7 +6,7 @@
         <div class="container">
             <h1 class="page-title">
                 {{ $Detay->title }}
-                <span>TB Kitap</span>
+                <span>TB Kitap - 2.El Kitap Klübü</span>
             </h1>
         </div>
     </div>
@@ -26,17 +26,15 @@
                             <div class="toolbox-sort">
                                 <label for="sortby">Sıralama:</label>
                                 <div class="select-custom">
-                                    <select name="sortby" id="sortby" class="form-control">
-                                        <option value="popularity" selected="selected">Yeni Eklenenler</option>
-                                        <option value="rating">Düşük Fiyat</option>
-                                        <option value="date">Yüksek Fiyat</option>
-                                        <option value="date">Eser Adı A-Z</option>
-                                        <option value="date">Eser Adı Z-A</option>
-                                        <option value="date">Yazar Adı A-Z</option>
-                                        <option value="date">Yazar Adı Z-A</option>
-                                        <option value="date">Basım Tarihi Eski</option>
-                                        <option value="date">Basım Tarihi Yeni</option>
-                                        <option value="date">Yeni Gelenler</option>
+                                    <select name="sortby" id="sortby" class="form-control" onchange="location = this.options[this.selectedIndex].value">
+                                        <option value="yenieklenen">Yeni Eklenenler</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&fiyat=1">Düşük Fiyat</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&fiyat=0">Yüksek Fiyat</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&eseradi=1">Eser Adı A-Z</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&eseradi=0">Eser Adı Z-A</option>
+
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&basimtarihi=1">Basım Tarihi Eski</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&basimtarihi=0">Basım Tarihi Yeni</option>
                                     </select>
                                 </div>
                             </div>
@@ -104,6 +102,36 @@
                                     <select class="form-control single" data-placeholder="Dİl Seçiniz" name="dil">
                                         <option value="">Dİl Seçiniz</option>
                                         @foreach($Language as $item)
+                                            <option value="{{ $item->id }}">
+                                                {{  $item->title }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="widget">
+                                <h3 class="widget-title">Yazar</h3>
+                                <div class="widget-body">
+
+                                    <select class="form-control single" data-placeholder="Yazar Seçiniz" name="yazar">
+                                        <option value="">Yazar Seçiniz</option>
+                                        @foreach($Author as $item)
+                                            <option value="{{ $item->id }}">
+                                                {{  $item->title }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="widget">
+                                <h3 class="widget-title">Çevirmen</h3>
+                                <div class="widget-body">
+
+                                    <select class="form-control single" data-placeholder="Çevirmen Seçiniz" name="cevirmen">
+                                        <option value="">Çevirmen Seçiniz</option>
+                                        @foreach($Translator as $item)
                                             <option value="{{ $item->id }}">
                                                 {{  $item->title }}
                                             </option>

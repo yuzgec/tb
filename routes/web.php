@@ -1,8 +1,4 @@
 <?php
-
-use App\Models\Product;
-use App\Models\ProductCategoryPivot;
-use App\Models\Publisher;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
     Route::get('/', 'HomeController@index')->name('home');
@@ -33,11 +29,7 @@ use Illuminate\Support\Facades\Route;
     Route::post('/siparis/kaydet', 'HomeController@kaydet')->name('kaydet');
 
     Route::match(['post','get'], '/siparis/cekim','HomeController@cekim')->name('cekim');
-    Route::match(['post','get'],'/siparis/sonuc', 'HomeController@sonuc')->name('sonuc');
 
-    Route::get('/mail', function (){
-       return view('frontend.mail.siparis');
-    });
 Auth::routes();
     Route::group(["prefix"=>"go", 'middleware' => ['auth','web', 'admin']],function() {
         Route::get('/', 'DashboardController@index')->name('go');
