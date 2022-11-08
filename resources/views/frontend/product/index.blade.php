@@ -85,6 +85,12 @@
                                             <td><span class="ml-3">{{ $Detay->getLanguage->title }}</span></td>
                                         </tr>
                                         @endif
+                                        @if($Detay->year)
+                                            <tr>
+                                                <td style="width:30%"><b  class="ml-3">Yılı</b></td>
+                                                <td><span class="ml-3">{{ $Detay->year }}</span></td>
+                                            </tr>
+                                        @endif
                                         @if($Detay->getPublisher)
                                             <tr>
                                                 <td style="width:30%"><b  class="ml-3">Yayınevi</b></td>
