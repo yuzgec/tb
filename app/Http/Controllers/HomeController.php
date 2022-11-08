@@ -127,7 +127,7 @@ class HomeController extends Controller
             ->where('product_category_pivots.category_id',  $Detay->id)
             ->where('products.status', 1)
             ->where(['category_id' => $Detay->id])
-            ->select('products.id','products.title','products.condition','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
+            ->select('products.language','products.year','products.id','products.title','products.condition','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
             ->orderBy("products.title", $ad )
             ->whereBetween("products.price", [$fiyat1, $fiyat2])
             ->orderBy("products.year", $basimtarihi )
