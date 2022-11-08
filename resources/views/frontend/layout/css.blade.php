@@ -14,5 +14,4 @@
 <link rel="stylesheet" href="/frontend/assets/css/skins/skin-demo-2.css?ver=3">
 <link rel="stylesheet" href="/frontend/assets/css/demos/demo-2.css?ver=3">
 <link rel="stylesheet" href="/frontend/assets/css/plugins/nouislider/nouislider.css">
-
 <livewire:styles />
