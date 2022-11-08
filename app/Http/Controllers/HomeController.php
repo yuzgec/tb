@@ -118,7 +118,7 @@ class HomeController extends Controller
 
         //$Dil = $request->filled('dil') ?  intval(request('dil')) : 1;
 
-        $select_fiyat = \request('fiyat' == 1)  ?? 'desc';
+        $select_fiyat = \request('fiyat' == 1)  ? 'desc' : 'asc';
 
         $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
             ->join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
