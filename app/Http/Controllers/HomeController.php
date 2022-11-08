@@ -132,8 +132,8 @@ class HomeController extends Controller
             ->paginate(21);
 
         $Language = Language::select('id', 'title')->get();
-        $Publisher = Publisher::select('id', 'title')->get();
-        $Translator = Translator::select('id', 'title')->get();
+        $Publisher = Publisher::select('id', 'title')->orderBy('title', 'asc')->get();
+        $Translator = Translator::select('id', 'title')->orderBy('title', 'asc')->get();
         $Author = Author::select('id', 'title')->orderBy('title', 'asc')->get();
         $Years = Years::select('id', 'title')->get();
 
