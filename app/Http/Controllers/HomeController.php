@@ -131,7 +131,8 @@ class HomeController extends Controller
             ->orderBy("products.title", $ad )
             ->whereBetween("products.price", [$fiyat1, $fiyat2])
             ->orderBy("products.year", $basimtarihi )
-            ->paginate(21);
+            ->paginate(21)
+            ->withQueryString();
 
         $Language = Language::select('id', 'title')->get();
         $Publisher = Publisher::select('id', 'title')->orderBy('title', 'asc')->get();
