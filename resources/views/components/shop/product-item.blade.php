@@ -1,7 +1,8 @@
 <div class="product product-4 text-center">
 
-{{--    <span class="product-label label-new">Sadece TBKitap'ta</span>
-    <span class="product-label label-top">Çok Nadir</span>--}}
+    <span class="product-label label-new"><i class="icon-calendar"></i> {{ $item->year }}</span>
+    <span class="product-label label-top">{{ $item->getLanguage->title }}</span>
+
 
     <figure class="product-media">
         <a href="{{ route('urun' , $item->slug)}}" title="{{ $item->title }}">
