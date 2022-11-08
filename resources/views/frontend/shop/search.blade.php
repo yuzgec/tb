@@ -19,6 +19,7 @@
     <div class="container">
         <div class="row mb-8">
             <div class="col-md-12 col-wd-12gdot5">
+
                 @if($Result->total() ==  0 )
                     <div class="alert alert-danger">
                         <h4 class="alert-heading">Üzgünüz!</h4>

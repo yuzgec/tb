@@ -28,13 +28,12 @@
                                 <div class="select-custom">
                                     <select name="sortby" id="sortby" class="form-control" onchange="location = this.options[this.selectedIndex].value">
                                         <option value="yenieklenen">Yeni Eklenenler</option>
-                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&fiyat=1">Düşük Fiyat</option>
-                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&fiyat=0">Yüksek Fiyat</option>
-                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&eseradi=1">Eser Adı A-Z</option>
-                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&eseradi=0">Eser Adı Z-A</option>
-
-                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&basimtarihi=1">Basım Tarihi Eski</option>
-                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&basimtarihi=0">Basım Tarihi Yeni</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&fiyat1=1&fiyat2=3000">Düşük Fiyat</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&fiyat1=3000&fiyat2=1">Yüksek Fiyat</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&ad=asc">Eser Adı A-Z</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&ad=desc">Eser Adı Z-A</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&basimtarihi=asc">Basım Tarihi Eski</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&basimtarihi=desc">Basım Tarihi Yeni</option>
                                     </select>
                                 </div>
                             </div>

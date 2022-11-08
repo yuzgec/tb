@@ -115,10 +115,11 @@ class HomeController extends Controller
         SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
 
 
-
-        //$Dil = $request->filled('dil') ?  intval(request('dil')) : 1;
-
-        $select_fiyat = \request('fiyat' == 1)  ? 'desc' : 'asc';
+        $ad = request('ad')  ? request('ad') : 'asc';
+        $fiyat1 = request('fiyat1')  ? request('fiyat1') : null;
+        $fiyat2 = request('fiyat2')  ? request('fiyat2') : null;
+        $basimtarihi = request('basimtarihi')  ? request('basimtarihi') : 'asc';
+        //dd($select_ad);
 
         $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
             ->join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
@@ -127,8 +128,9 @@ class HomeController extends Controller
             ->where('products.status', 1)
             ->where(['category_id' => $Detay->id])
             ->select('products.id','products.title','products.condition','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
-            //->orderByRaw("products.price $select_fiyatdusuk, products.price $select_fiyatyuksek")
-            ->orderBy("products.price",$select_fiyat)
+            ->orderBy("products.title", $ad )
+            ->whereBetween("products.price", [$fiyat1, $fiyat2])
+            ->orderBy("products.year", $basimtarihi )
             ->paginate(21);
 
         $Language = Language::select('id', 'title')->get();
@@ -332,21 +334,21 @@ class HomeController extends Controller
         SEOTools::setTitle($request->q." ile ilgili arama sonuçları | Online 2. El Kitap | ". config('app.name'));
         SEOTools::setDescription('Tb Kitap 2. El Kitap Klübü Arama Sayfası');
 
-        $search = str_replace($request->q, '+', '_');
+        $search = htmlentities(trim($request->q));
 
         $Publisher = Publisher::where('title','like','%'.$search.'%')
             ->orWhere('slug','like','%'.$search.'%')
             ->select('title', 'slug', 'status')
             ->paginate(12);
 
-        $Result  = Product::where('title','like','%'.$search)
+        $Result  = Product::where('title','like','%'.$search.'%')
             ->orWhere('slug','like','%'.$search.'%')
             ->select('id', 'title', 'price', 'old_price', 'slug','bestselling','status', 'condition')
             ->paginate(12);
 
         Search::create(['key' => $search]);
 
-        return view('frontend.shop.search', compact('Result'));
+        return view('frontend.shop.search', compact('Result', 'search'));
 
     }
     public function detayliaramasonuc(Request $request){
