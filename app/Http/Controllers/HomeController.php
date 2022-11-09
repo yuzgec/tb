@@ -104,7 +104,8 @@ class HomeController extends Controller
 
         return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author', 'Pivot', 'Category', 'OtherCategory'));
     }
-    public function kategori($url){
+    public function kategori($url, Request $request){
+
 
         $Detay = ProductCategory::where('id', \request('id'))->select('id','title','slug')->first();
         SEOTools::setTitle($Detay->title);
@@ -114,12 +115,57 @@ class HomeController extends Controller
         SEOTools::opengraph()->addProperty('type', 'category');
         SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
 
+        $Language = Language::select('id', 'title')->get();
+        $Publisher = Publisher::select('id', 'title')->orderBy('title', 'asc')->get();
+        $Translator = Translator::select('id', 'title')->orderBy('title', 'asc')->get();
+        $Author = Author::select('id', 'title')->orderBy('title', 'asc')->get();
+        $Years = Years::select('id', 'title')->get();
 
-        $ad = request('ad')  ? request('ad') : 'asc';
-        $fiyat1 = request('fiyat1')  ? request('fiyat1') : null;
-        $fiyat2 = request('fiyat2')  ? request('fiyat2') : null;
-        $basimtarihi = request('basimtarihi')  ? request('basimtarihi') : 'asc';
+        $ad = request('ad')  ? request('ad') : 'desc';
+        $fiyat = request('fiyat')  ? request('fiyat') : 'desc';
+        $basimtarihi = request('basimtarihi')  ? request('basimtarihi') : 'desc';
         //dd($select_ad);
+
+        if(request()->filled('basimtarihi')){
+            $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
+                ->join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
+                ->join('product_categories', 'product_categories.id', '=', 'product_category_pivots.category_id')
+                ->where('product_category_pivots.category_id',  $Detay->id)
+                ->where('products.status', 1)
+                ->where(['category_id' => $Detay->id])
+                ->select('products.language','products.year','products.id','products.title','products.condition','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
+                ->orderBy("products.year", $basimtarihi )
+                ->paginate(21);
+            return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
+        }
+
+        if(request()->filled('ad')){
+            $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
+                ->join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
+                ->join('product_categories', 'product_categories.id', '=', 'product_category_pivots.category_id')
+                ->where('product_category_pivots.category_id',  $Detay->id)
+                ->where('products.status', 1)
+                ->where(['category_id' => $Detay->id])
+                ->select('products.language','products.year','products.id','products.title','products.condition','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
+                ->orderBy("products.title", $ad )
+                ->paginate(21);
+            return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
+
+        }
+
+        if(request()->filled('fiyat')){
+            $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
+                ->join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
+                ->join('product_categories', 'product_categories.id', '=', 'product_category_pivots.category_id')
+                ->where('product_category_pivots.category_id',  $Detay->id)
+                ->where('products.status', 1)
+                ->where(['category_id' => $Detay->id])
+                ->select('products.language','products.year','products.id','products.title','products.condition','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
+                ->orderBy("products.price", $fiyat )
+                ->paginate(21);
+            return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
+
+        }
 
         $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
             ->join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
@@ -128,17 +174,8 @@ class HomeController extends Controller
             ->where('products.status', 1)
             ->where(['category_id' => $Detay->id])
             ->select('products.language','products.year','products.id','products.title','products.condition','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
-            ->orderBy("products.title", $ad )
-            ->whereBetween("products.price", [$fiyat1, $fiyat2])
-            ->orderBy("products.year", $basimtarihi )
-            ->paginate(21)
-            ->withQueryString();
+            ->paginate(21);
 
-        $Language = Language::select('id', 'title')->get();
-        $Publisher = Publisher::select('id', 'title')->orderBy('title', 'asc')->get();
-        $Translator = Translator::select('id', 'title')->orderBy('title', 'asc')->get();
-        $Author = Author::select('id', 'title')->orderBy('title', 'asc')->get();
-        $Years = Years::select('id', 'title')->get();
 
         return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
     }

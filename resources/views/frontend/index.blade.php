@@ -219,7 +219,7 @@
                                 @endif
                             </div>
 
-                            <div class="deal-countdown" data-until="+10h"></div><!-- End .deal-countdown -->
+                            <div class="deal-countdown" data-until="+1h"></div>
 
 
                             <a href="{{ route('urun' , $item->slug)}}" class="btn btn-primary">
@@ -239,7 +239,6 @@
                         <img src="/ilan.gif" class="img-fluid" alt="İkinci El Kitaplarınız Alınır">
                     </a>
                 </div>
-
             </div>
         </div>
     </div>

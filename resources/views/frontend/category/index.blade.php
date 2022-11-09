@@ -28,12 +28,12 @@
                                 <div class="select-custom">
                                     <select name="sortby" id="sortby" class="form-control" onchange="location = this.options[this.selectedIndex].value">
                                         <option value="yenieklenen">Yeni Eklenenler</option>
-                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&fiyat1=1&fiyat2=3000">Düşük Fiyat</option>
-                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&fiyat1=3000&fiyat2=1">Yüksek Fiyat</option>
-                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&ad=asc">Eser Adı A-Z</option>
-                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&ad=desc">Eser Adı Z-A</option>
-                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&basimtarihi=asc">Basım Tarihi Eski</option>
-                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&basimtarihi=desc">Basım Tarihi Yeni</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&fiyat=asc" {{ (request('fiyat') == 'asc') ? 'selected' : null }}>Düşük Fiyat</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&fiyat=desc" {{ (request('fiyat') == 'asc') ? 'selected' : null }}>Yüksek Fiyat</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&ad=asc" {{ (request('ad') == 'asc') ? 'selected' : null }}>Eser Adı A-Z</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&ad=desc" {{ (request('ad') == 'desc') ? 'selected' : null }}>Eser Adı Z-A</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&basimtarihi=asc" {{ (request('basimtarihi') == 'asc') ? 'selected' : null }}>Basım Tarihi Eski</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&basimtarihi=desc" {{ (request('basimtarihi') == 'desc') ? 'selected' : null }}>Basım Tarihi Yeni</option>
                                     </select>
                                 </div>
                             </div>
@@ -58,9 +58,9 @@
                 </div>
 
                 <aside class="col-lg-3 col-xl-5col order-lg-first p-3"
-                     >
-                    <div class="sidebar sidebar-shop">
-                        <div class="widget widget-categories">
+                       style="border:1px solid #f4f4f4;border-radius: 5px">
+                    <div class="sidebar sidebar-shop" >
+                        <div class="widget widget-categories" >
 
                             <div class="widget-body">
                                 <div class="accordion mt-2" id="widget-cat-acc">
@@ -92,7 +92,8 @@
                                 </div>
                             </div>
                         </div>
-                        <form method="get">
+                        <form method="get" >
+                            @csrf
                             <div class="widget">
                                 <h3 class="widget-title">Dİl</h3>
 
@@ -242,6 +243,8 @@
                                                 </label>
                                             </div>
                                         </div>
+
+                                        <button type="submit" class="btn btn-primary">Filtrele</button>
 
                                     </div>
                                 </div>
