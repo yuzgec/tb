@@ -107,6 +107,9 @@
                                         <option value="">Dİl Seçiniz</option>
                                         @foreach($Language as $item)
                                             <option value="{{ $item->id }}">
+{{--
+                                            <option value="{{ $item->id }}" {{ (request('dil') == $item->id) ? 'selected' : null }}>
+--}}
                                                 {{  $item->title }}
                                             </option>
                                         @endforeach
@@ -184,7 +187,7 @@
                                     <div class="filter-items">
                                         <div class="filter-item">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="radio" class="custom-control-input" id="cus-rating-1" name="kondisyon" value="5">
+                                                <input type="radio" class="custom-control-input" id="cus-rating-1" name="kondisyon" value="5" @if (request('kondisyon') === 5) ? checked : null @endif">
                                                 <label class="custom-control-label" for="cus-rating-1">
                                                     <span class="ratings-container">
                                                         <span class="ratings">
@@ -197,7 +200,7 @@
 
                                         <div class="filter-item">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="radio" class="custom-control-input" id="cus-rating-2" name="kondisyon" value="4">
+                                                <input type="radio" class="custom-control-input" id="cus-rating-2" name="kondisyon" value="4" {{ (request('kondisyon') === 4) ? checked : null }}">
                                                 <label class="custom-control-label" for="cus-rating-2">
                                                     <span class="ratings-container">
                                                         <span class="ratings">
@@ -247,7 +250,8 @@
                                             </div>
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary">Filtrele</button>
+                                        <button type="submit" class="btn btn-primary mb-1 btn-block">Filtrele</button>
+                                        <a href="{{ url()->current() }}?id={{$Detay->id}}" class="btn btn-primary btn-block" id="reset">Reset</a>
 
                                     </div>
                                 </div>
@@ -271,6 +275,9 @@
                 theme: "bootstrap"
             });
         });
+
+        document.getElementById('reset').reset();
+
     </script>
 @endsection
 

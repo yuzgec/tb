@@ -168,17 +168,17 @@ class HomeController extends Controller
             $dil= (request()->get('dil')) ? request()->get('dil') : null;
             $condition= (request()->get('kondisyon')) ? request()->get('kondisyon') : 0;
 
-            $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
+            $ProductList = Product::with(['getCategory', 'getLanguage', 'getYear'])
                 ->orderBy('price','asc')
-                ->where('language', $dil)
-                ->where('publisher', $publisher)
-                ->where('translator', $translator)
-                ->orWhere('condition', $condition)
+                ->where(function ($query) use ($condition,$dil,$translator,$publisher){
+                    return $query->orWhere('language','=',$dil)->orWhere('condition','=',$condition)->orWhere('translator','=',$translator)->orWhere('publisher','=',$publisher);
+                })
                 ->whereBetween('year', [request()->get('yil1'),request()->get('yil2')])
                 ->paginate(9);
 
             return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
         }
+
         $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
             ->join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
             ->join('product_categories', 'product_categories.id', '=', 'product_category_pivots.category_id')
