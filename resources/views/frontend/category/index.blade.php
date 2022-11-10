@@ -1,7 +1,7 @@
 @extends('frontend.layout.app')
 @section('content')
     @include('backend.layout.alert')
-
+    @if(request('filtre') != 1)
     <div class="page-header text-center" style="background-image: url('/frontend/assets/images/page-header-bg.jpg')">
         <div class="container">
             <h1 class="page-title">
@@ -10,15 +10,17 @@
             </h1>
         </div>
     </div>
+    @endif
 
     <div class="page-content">
         <div class="container">
             <div class="row mt-3">
                 <div class="col-lg-9" >
                     <div class="toolbox" >
+                        @if(request('filtre') != 1)
                         <div class="toolbox-left">
                             <div class="toolbox-info">
-                                ({{$ProductList->total()}}) adet ürün listelenmiştir.
+                                ({{$ProductList->count()}}) adet ürün listelenmiştir.
                             </div>
                         </div>
 
@@ -38,6 +40,53 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
+                            @if(request('filtre') == 1)
+                                <div class="d-flex">
+                                    @if($request->filled('dil'))
+                                        <a href="?id={{ $Detay->id }}&filtre=1&dil=&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ request('yil1') }}&yil2={{ request('yil2') }}"
+                                           class="btn btn-primary btn-block d-flex flex-column  justify-content-between m-1 rounded" style="font-size:13px"> <small>Dil</small>
+                                            <div> @foreach($Language->where('id', $request->dil) as $item) {{ $item->title }}  @endforeach</div>
+                                            <div> <i class="icon-close"></i> </div>
+                                        </a>
+                                    @endif
+                                    @if($request->filled('yazar'))
+                                        <a href="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar=&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ request('yil1') }}&yil2={{ request('yil2') }}"
+                                           class="btn btn-primary btn-block d-flex flex-column justify-content-between m-1 rounded" style="font-size:13px"> <small>Yazar</small>
+                                            <div> @foreach($Author->where('id', $request->yazar) as $item) {{ $item->title }}  @endforeach</div>
+                                            <div> <i class="icon-close"></i> </div>
+                                        </a>
+                                    @endif
+                                    @if($request->filled('cevirmen'))
+                                        <a href="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen=&yayinevi={{ request('yayinevi') }}&yil1={{ request('yil1') }}&yil2={{ request('yil2') }}"
+                                           class="btn btn-primary btn-block d-flex flex-column justify-content-between m-1 rounded" style="font-size:13px"><small>Çevirmen</small>
+                                            <div> @foreach($Translator->where('id', $request->cevirmen) as $item) {{ $item->title }}  @endforeach</div>
+                                            <div> <i class="icon-close"></i> </div>
+                                        </a>
+                                    @endif
+                                    @if($request->filled('yayinevi'))
+                                        <a href="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi=&yil1={{ request('yil1') }}&yil2={{ request('yil2') }}"
+                                           class="btn btn-primary btn-block d-flex flex-column justify-content-between m-1 rounded" style="font-size:13px"><small>Yayınevi</small>
+                                            <div> @foreach($Publisher->where('id', $request->yayinevi) as $item) {{ $item->title }}  @endforeach</div>
+                                            <div> <i class="icon-close"></i> </div>
+                                        </a>
+                                    @endif
+                                    @if($request->filled('yil1'))
+                                        <a href="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1=&yil2={{ request('yil2') }}"
+                                           class="btn btn-primary  d-flex justify-content-between flex-column m-1 rounded"  style="font-size:13px"> <small>Basim Tarihi</small>
+                                            <div> {{ request('yil1') }}</div>
+                                            <div> <i class="icon-close"></i> </div>
+                                        </a>
+                                    @endif
+                                    @if($request->filled('yil2'))
+                                        <a href="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ request('yil1') }}&yil2="
+                                           class="btn btn-primary  d-flex justify-content-between flex-column m-1 rounded"  style="font-size:13px"> <small>Basim Tarihi</small>
+                                            <div> {{ request('yil2') }}</div>
+                                            <div> <i class="icon-close"></i> </div>
+                                        </a>
+                                    @endif
+                                </div>
+                            @endif
                     </div>
 
                     <div class="products mb-3">
@@ -92,24 +141,22 @@
                                 </div>
                             </div>
                         </div>
-                        <form method="get" >
+
+               {{--         <form method="get" >
                             <input type="hidden" name="id"  value="{{ $Detay->id }}">
-                            <input type="hidden" name="filtre"  value="1">
+                            <input type="hidden" name="filtre"  value="1">--}}
+
+
                             <div class="widget">
-{{--
-                                <input class="form-control" name="kitapadi" type="text" placeholder="Kitap Adı">
---}}
+
                                 <h3 class="widget-title">Dİl</h3>
 
                                 <div class="widget-body">
 
-                                    <select class="form-control single" data-placeholder="Dİl Seçiniz" name="dil">
+                                    <select class="form-control single" data-placeholder="Dİl Seçiniz" name="dil" onchange="location = this.options[this.selectedIndex].value;">
                                         <option value="">Dİl Seçiniz</option>
                                         @foreach($Language as $item)
-                                            <option value="{{ $item->id }}">
-{{--
-                                            <option value="{{ $item->id }}" {{ (request('dil') == $item->id) ? 'selected' : null }}>
---}}
+                                            <option value="?id={{ $Detay->id }}&filtre=1&dil={{ $item->id }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1=1800&yil2=2022">
                                                 {{  $item->title }}
                                             </option>
                                         @endforeach
@@ -120,10 +167,10 @@
                             <div class="widget">
                                 <h3 class="widget-title">Yazar</h3>
                                 <div class="widget-body">
-                                    <select class="form-control single" data-placeholder="Yazar Seçiniz" name="yazar">
+                                    <select class="form-control single" data-placeholder="Yazar Seçiniz" name="yazar" onchange="location = this.options[this.selectedIndex].value;">
                                         <option value="">Yazar Seçiniz</option>
                                         @foreach($Author as $item)
-                                            <option value="{{ $item->id }}">
+                                            <option value="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ $item->id }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1=1800&yil2=2022">
                                                 {{  $item->title }}
                                             </option>
                                         @endforeach
@@ -135,10 +182,10 @@
                                 <h3 class="widget-title">Çevirmen</h3>
                                 <div class="widget-body">
 
-                                    <select class="form-control single" data-placeholder="Çevirmen Seçiniz" name="cevirmen">
+                                    <select class="form-control single" data-placeholder="Çevirmen Seçiniz" name="cevirmen" onchange="location = this.options[this.selectedIndex].value;">
                                         <option value="">Çevirmen Seçiniz</option>
                                         @foreach($Translator as $item)
-                                            <option value="{{ $item->id }}">
+                                            <option value="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ $item->id }}&yayinevi={{ request('yayinevi') }}&yil1=1800&yil2=2022">
                                                 {{  $item->title }}
                                             </option>
                                         @endforeach
@@ -149,10 +196,10 @@
                             <div class="widget">
                                 <h3 class="widget-title">Yayınevi</h3>
                                 <div class="widget-body">
-                                    <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="yayinevi">
+                                    <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="yayinevi" onchange="location = this.options[this.selectedIndex].value;">
                                         <option value="">Yayınevi Seçiniz</option>
                                         @foreach($Publisher as $item)
-                                            <option value="{{ $item->id }}">
+                                            <option value="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ $item->id }}&yil1=1800&yil2=2022">
                                                 {{  $item->title }}
                                             </option>
                                         @endforeach
@@ -163,16 +210,16 @@
                             <div class="widget">
                                 <h3 class="widget-title">Basım Yılı</h3>
                                 <div class="widget-body">
-                                    <select class="form-control single" data-placeholder="Yıl Seçiniz" name="yil1">
+                                    <select class="form-control single" data-placeholder="Yıl Seçiniz" name="yil1" onchange="location = this.options[this.selectedIndex].value;">
                                         @foreach($Years as $item)
-                                            <option value="{{ $item->title }}">
+                                            <option value="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ $item->title }}&yil2=2022">
                                                 {{  $item->title }}
                                             </option>
                                         @endforeach
                                     </select>
-                                    <select class="form-control single" data-placeholder="Yıl Seçiniz" name="yil2">
+                                    <select class="form-control single" data-placeholder="Yıl Seçiniz" name="yil2" onchange="location = this.options[this.selectedIndex].value;">
                                         @foreach($Years->sortbyDesc('id') as $item)
-                                            <option value="{{ $item->title }}">
+                                            <option value="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ (request('yil1')) ?  request('yil1') : 1800 }}&yil2={{ $item->title }}">
                                                 {{  $item->title }}
                                             </option>
                                         @endforeach
@@ -256,7 +303,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                    {{--    </form>--}}
                     </div>
                 </aside>
             </div>

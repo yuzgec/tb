@@ -14,6 +14,7 @@ use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Sluggable\HasSlug;
+use Illuminate\Http\Request;
 
 class Product extends Model implements HasMedia,Viewable
 {
