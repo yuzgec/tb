@@ -29,7 +29,7 @@
                                     <select name="sortby" id="sortby" class="form-control" onchange="location = this.options[this.selectedIndex].value">
                                         <option value="yenieklenen">Yeni Eklenenler</option>
                                         <option value="{{ url()->current() }}?id={{ $Detay->id }}&fiyat=asc" {{ (request('fiyat') == 'asc') ? 'selected' : null }}>Düşük Fiyat</option>
-                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&fiyat=desc" {{ (request('fiyat') == 'asc') ? 'selected' : null }}>Yüksek Fiyat</option>
+                                        <option value="{{ url()->current() }}?id={{ $Detay->id }}&fiyat=desc" {{ (request('fiyat') == 'desc') ? 'selected' : null }}>Yüksek Fiyat</option>
                                         <option value="{{ url()->current() }}?id={{ $Detay->id }}&ad=asc" {{ (request('ad') == 'asc') ? 'selected' : null }}>Eser Adı A-Z</option>
                                         <option value="{{ url()->current() }}?id={{ $Detay->id }}&ad=desc" {{ (request('ad') == 'desc') ? 'selected' : null }}>Eser Adı Z-A</option>
                                         <option value="{{ url()->current() }}?id={{ $Detay->id }}&basimtarihi=asc" {{ (request('basimtarihi') == 'asc') ? 'selected' : null }}>Basım Tarihi Eski</option>
@@ -58,7 +58,7 @@
                 </div>
 
                 <aside class="col-lg-3 col-xl-5col order-lg-first p-3"
-                       style="border:1px solid #f4f4f4;border-radius: 5px">
+                       style="border:2px solid #f4f4f4;border-radius: 5px">
                     <div class="sidebar sidebar-shop" >
                         <div class="widget widget-categories" >
 
@@ -93,8 +93,12 @@
                             </div>
                         </div>
                         <form method="get" >
-                            @csrf
+                            <input type="hidden" name="id"  value="{{ $Detay->id }}">
+                            <input type="hidden" name="filtre"  value="1">
                             <div class="widget">
+{{--
+                                <input class="form-control" name="kitapadi" type="text" placeholder="Kitap Adı">
+--}}
                                 <h3 class="widget-title">Dİl</h3>
 
                                 <div class="widget-body">
@@ -113,7 +117,6 @@
                             <div class="widget">
                                 <h3 class="widget-title">Yazar</h3>
                                 <div class="widget-body">
-
                                     <select class="form-control single" data-placeholder="Yazar Seçiniz" name="yazar">
                                         <option value="">Yazar Seçiniz</option>
                                         @foreach($Author as $item)
@@ -159,14 +162,14 @@
                                 <div class="widget-body">
                                     <select class="form-control single" data-placeholder="Yıl Seçiniz" name="yil1">
                                         @foreach($Years as $item)
-                                            <option value="{{ $item->id }}">
+                                            <option value="{{ $item->title }}">
                                                 {{  $item->title }}
                                             </option>
                                         @endforeach
                                     </select>
                                     <select class="form-control single" data-placeholder="Yıl Seçiniz" name="yil2">
                                         @foreach($Years->sortbyDesc('id') as $item)
-                                            <option value="{{ $item->id }}">
+                                            <option value="{{ $item->title }}">
                                                 {{  $item->title }}
                                             </option>
                                         @endforeach
@@ -181,7 +184,7 @@
                                     <div class="filter-items">
                                         <div class="filter-item">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="cus-rating-1" name="kondisyon">
+                                                <input type="radio" class="custom-control-input" id="cus-rating-1" name="kondisyon" value="5">
                                                 <label class="custom-control-label" for="cus-rating-1">
                                                     <span class="ratings-container">
                                                         <span class="ratings">
@@ -194,7 +197,7 @@
 
                                         <div class="filter-item">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="cus-rating-2" name="kondisyon">
+                                                <input type="radio" class="custom-control-input" id="cus-rating-2" name="kondisyon" value="4">
                                                 <label class="custom-control-label" for="cus-rating-2">
                                                     <span class="ratings-container">
                                                         <span class="ratings">
@@ -207,7 +210,7 @@
 
                                         <div class="filter-item">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="cus-rating-3" name="kondisyon">
+                                                <input type="radio" class="custom-control-input" id="cus-rating-3" name="kondisyon" value="3">
                                                 <label class="custom-control-label" for="cus-rating-3">
                                                     <span class="ratings-container">
                                                         <span class="ratings">
@@ -220,7 +223,7 @@
 
                                         <div class="filter-item">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="cus-rating-4" name="kondisyon">
+                                                <input type="radio" class="custom-control-input" id="cus-rating-4" name="kondisyon" value="2">
                                                 <label class="custom-control-label" for="cus-rating-4">
                                                     <span class="ratings-container">
                                                         <span class="ratings">
@@ -233,7 +236,7 @@
 
                                         <div class="filter-item">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="cus-rating-5" name="kondisyon">
+                                                <input type="radio" class="custom-control-input" id="cus-rating-5" name="kondisyon" value="1">
                                                 <label class="custom-control-label" for="cus-rating-5">
                                                     <span class="ratings-container">
                                                         <span class="ratings">

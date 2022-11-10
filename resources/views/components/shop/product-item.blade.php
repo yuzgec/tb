@@ -42,7 +42,7 @@
             {{ money($item->price) }}₺
         </div>
 
-
+        @if($item->condition)
         <div class="ratings-container">
             <div class="ratings">
                 <div class="ratings-val" style="width: {{ condition($item->condition) }}%"
@@ -50,6 +50,7 @@
             </div>
             <span class="ratings-text">( {{ conditionText($item->condition) }} )</span>
         </div>
+        @endif
     </div>
 
 

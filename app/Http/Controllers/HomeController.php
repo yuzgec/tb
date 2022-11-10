@@ -67,7 +67,7 @@ class HomeController extends Controller
 
         SEOTools::setTitle($Detay->title);
         SEOTools::setDescription($Detay->seo_desc);
-        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::opengraph()->setUrl(route('urun', $Detay->slug));
         SEOTools::setCanonical(route('urun', $Detay->slug));
         SEOTools::opengraph()->addProperty('type', 'product');
         SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
@@ -104,14 +104,13 @@ class HomeController extends Controller
 
         return view('frontend.product.index', compact('Detay','Count', 'Productssss','Author', 'Pivot', 'Category', 'OtherCategory'));
     }
-    public function kategori($url, Request $request){
-
-
+    public function kategori($url, Request $request)
+    {
         $Detay = ProductCategory::where('id', \request('id'))->select('id','title','slug')->first();
         SEOTools::setTitle($Detay->title);
         SEOTools::setDescription($Detay->seo_desc);
-        SEOTools::opengraph()->setUrl(url()->current());
-        SEOTools::setCanonical(route('urun', $Detay->slug));
+        SEOTools::opengraph()->setUrl(url()->full());
+        SEOTools::setCanonical(url()->full());
         SEOTools::opengraph()->addProperty('type', 'category');
         SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
 
@@ -124,7 +123,6 @@ class HomeController extends Controller
         $ad = request('ad')  ? request('ad') : 'desc';
         $fiyat = request('fiyat')  ? request('fiyat') : 'desc';
         $basimtarihi = request('basimtarihi')  ? request('basimtarihi') : 'desc';
-        //dd($select_ad);
 
         if(request()->filled('basimtarihi')){
             $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
@@ -138,7 +136,6 @@ class HomeController extends Controller
                 ->paginate(21);
             return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
         }
-
         if(request()->filled('ad')){
             $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
                 ->join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
@@ -150,9 +147,7 @@ class HomeController extends Controller
                 ->orderBy("products.title", $ad )
                 ->paginate(21);
             return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
-
         }
-
         if(request()->filled('fiyat')){
             $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
                 ->join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
@@ -164,9 +159,26 @@ class HomeController extends Controller
                 ->orderBy("products.price", $fiyat )
                 ->paginate(21);
             return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
-
         }
 
+        if ($request->filtre == 1){
+            $author = (request()->get('yazar')) ? request()->get('yazar') : null;
+            $publisher = (request()->get('yayinevi')) ? request()->get('yayinevi') : null;
+            $translator= (request()->get('cevirmen')) ? request()->get('cevirmen') : null;
+            $dil= (request()->get('dil')) ? request()->get('dil') : null;
+            $condition= (request()->get('kondisyon')) ? request()->get('kondisyon') : 0;
+
+            $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
+                ->orderBy('price','asc')
+                ->where('language', $dil)
+                ->where('publisher', $publisher)
+                ->where('translator', $translator)
+                ->orWhere('condition', $condition)
+                ->whereBetween('year', [request()->get('yil1'),request()->get('yil2')])
+                ->paginate(9);
+
+            return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
+        }
         $ProductList = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])
             ->join('product_category_pivots', 'product_category_pivots.product_id', '=', 'products.id' )
             ->join('product_categories', 'product_categories.id', '=', 'product_category_pivots.category_id')
@@ -174,11 +186,12 @@ class HomeController extends Controller
             ->where('products.status', 1)
             ->where(['category_id' => $Detay->id])
             ->select('products.language','products.year','products.id','products.title','products.condition','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
+            ->orderBy('products.price','asc')
             ->paginate(21);
-
 
         return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
     }
+
     public function yayinevi($slug){
         $Detay = Publisher::where('slug', $slug)->first();
 
