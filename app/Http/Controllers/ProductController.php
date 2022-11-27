@@ -28,14 +28,12 @@ class ProductController extends Controller
             $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])
                 ->orderBy('created_at', request('basimtarihi') )
                 ->paginate(75);
-
         }
 
         if(request()->filled('ad')) {
             $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])
                 ->orderBy('title', request('ad') )
                 ->paginate(75);
-
         }
 
         if(request()->filled('basimtarihi')) {
