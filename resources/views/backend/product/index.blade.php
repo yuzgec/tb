@@ -68,7 +68,7 @@
                                 {{ @$item->getLanguage->title }}
                             </td>
                             <td class="d-none d-lg-table-cell">
-                                {{ $item->created_at->diffForHumans() }}
+                                {{ $item->created_at }}
                             </td>
                             <td>
                                 <div class="btn-list flex-nowrap">
