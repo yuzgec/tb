@@ -1,10 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Order;
 use App\Models\ShopCart;
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -12,7 +10,6 @@ class OrderController extends Controller
         $Order = ShopCart::with('getOrder')->withCount('getOrder')->get();
         return view('backend.order.index',compact('Order'));
     }
-
 
     public function orderDetails($id){
         $ShopCart = ShopCart::where('cart_id', $id)->with('getOrder')->withCount('getOrder')->first();

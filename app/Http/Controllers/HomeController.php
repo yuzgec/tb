@@ -49,9 +49,6 @@ class HomeController extends Controller
             ->where('sku', \request('urunno'))
             ->firstOrFail();
 
-
-        //dd($Detay);
-
         foreach ($Detay->getAuthor as $item){
             $author[] = $item->author_id;
         }
@@ -235,8 +232,6 @@ class HomeController extends Controller
         if (Cart::instance('shopping')->content()->count() === 0){
             return redirect()->route('home');
         }
-        //dd(Cart::content());
-
         $Products = Product::select('id', 'title', 'price', 'old_price', 'slug', 'campagin_price')->orderBy('rank')->get();
         return view('frontend.shop.sepet',compact('Products'));
     }
@@ -433,27 +428,54 @@ class HomeController extends Controller
         SEOTools::setTitle("Detaylı Arama | Online 2. El Kitap". config('app.name'));
         SEOTools::setDescription('Tb Kitap 2. El Kitap Detaylı Arama Sayfası');
 
-        $Ad = $request->filled('ad') ? $request->input('ad') : null ;
-        $Kategori = $request->filled('kategori') ? intval(request('kategori')) : null;
-        $Yazar = $request->filled('yazar') ? intval(request('yazar')) : null;
-        $Yayinevi = $request->filled('yayinevi') ? intval(request('yayinevi')) : null;
-        $Ceviren = $request->filled('ceviren') ? intval(request('ceviren')) : null ;
-        $Dil = $request->filled('dil') ?  intval(request('dil')) : 1;
-        $BasimTarihi1 = intval(request('basimtarihi1'));
-        $BasimTarihi2 = intval(request('basimtarihi2'));
-        $Fiyat1 = intval(request('fiyat1'));
-        $Fiyat2 = intval(request('fiyat2'));
+        $Ad = $request->ad;
+        $Ceviren = $request->ceviren;
+        $Yayinevi = $request->yayinevi;
+        $Dil = $request->dil;
+        $BasimTarihi1 = $request->basimtarihi1;
+        $BasimTarihi2 = $request->basimtarihi2;
+        $Fiyat1 = $request->fiyat1;
+        $Fiyat2 = $request->fiyat2;
 
-        //dd($Ceviren);
+        $Kategori = $request->kategori;
+        $Yazar = $request->yazar;
 
-        $Result = Product::orWhere('translator', $Ceviren)
-            ->orWhere('title','like','%'.$Ad.'%')
-            ->orWhere('slug','like','%'.$Ad.'%')
-            ->orWhere('language', $Dil)
-            ->orWhere('publisher', $Yayinevi)
-            ->whereBetween('price',[$Fiyat1,$Fiyat2])
-            ->whereBetween('year',[$BasimTarihi1,$BasimTarihi2])
-            ->get();
+        $Result = Product::query()->with(['getCategory', 'getAuthor']);
+
+        if (!empty($Ad)) {
+            $Result = $Result->where('title', 'like', '%'.$Ad.'%');
+            $Result = $Result->where('slug', 'like', '%'.$Ad.'%');
+        }
+
+/*        if (!empty($Yazar)) {
+            $Result = $Result->whereRelation('getAuthor', 'product_id', '=', $Yazar);
+        }
+
+        if (!empty($Kategori)) {
+            $Result = $Result->whereRelation('getCategory', 'product_id', '=', $Kategori);
+        }*/
+
+        if (!empty($Ceviren)) {
+            $Result = $Result->where('translator', 'like', $Ceviren.'%');
+        }
+
+        if (!empty($Yayinevi)) {
+            $Result = $Result->where('publisher', 'like', $Yayinevi.'%');
+        }
+
+        if (!empty($Dil)) {
+            $Result = $Result->where('language', $Dil);
+        }
+
+        if (!empty($BasimTarihi1 || $BasimTarihi2)) {
+            $Result = $Result->whereBetween('year', [$BasimTarihi1,$BasimTarihi2]);
+        }
+
+        if (!empty($Fiyat1 || $Fiyat2)) {
+            $Result = $Result->whereBetween('price', [$Fiyat1,$Fiyat2]);
+        }
+
+        $Result = $Result->get();
 
         return view('frontend.shop.detailsearchresult', compact('Result'));
     }

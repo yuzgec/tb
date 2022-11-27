@@ -90,7 +90,7 @@
                                   </select>
 
                                   <label class="mt-2">Yayınevi</label>
-                                  <select class="form-control single" data-placeholder="Kategori Seçiniz" name="yayinevi">
+                                  <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="yayinevi">
                                   <option value="">Yayınevi Seçiniz</option>
                                       @foreach($Publisher as $item)
                                           <option value="{{ $item->id }}">
