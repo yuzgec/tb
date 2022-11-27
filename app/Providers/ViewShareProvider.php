@@ -30,6 +30,7 @@ class ViewShareProvider extends ServiceProvider
                 return Product::with('getCategory')
                     ->select('id', 'title', 'price', 'old_price', 'slug','bestselling','status', 'condition','year', 'language')
                     ->where('status',1)
+                    ->orderBy('created_at','desc')
                     ->paginate(30)
                     ->fragment('kitaplar');
             });

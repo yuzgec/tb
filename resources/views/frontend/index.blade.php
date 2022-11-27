@@ -68,7 +68,7 @@
                                     }
                                 }
                             }'>
-                        @foreach($Product->sortByDesc('created_at')->take(16) as $item)
+                        @foreach($Product->take(16) as $item)
                             <x-shop.product-item :item="$item"/>
                         @endforeach
 
