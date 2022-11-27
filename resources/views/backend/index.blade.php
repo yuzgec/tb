@@ -258,7 +258,7 @@
                         <td>{{ money($item->order_cargo) }}₺</td>
                         <td><span class="badge bg-success">{{ $item->get_order_count }} Ürün</span></td>
                         <td> {{ $item->created_at->diffForHumans() }}</td>
-                        <td>Düzenle</td>
+                        <td><a href="{{ route('order.orderDetails', $item->cart_id) }}"> İncele</a></td>
 
                     </tr>
                     @endforeach
