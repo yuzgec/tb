@@ -96,7 +96,7 @@
                                                 <td style="width:30%"><b  class="ml-3">Yayınevi</b></td>
                                                 <td><a href="{{ route('yayinevi', $Detay->getPublisher->slug) }}" class="ml-3"
                                                        title="({{$Detay->get_publisher_count}}) adet kitap bulunmaktadır.">
-                                                        {{ $Detay->getPublisher->title }} ({{$Detay->get_publisher_count}})
+                                                        {{ $Detay->getPublisher->title }}{{-- ({{$Detay->get_publisher_count}})--}}
                                                     </a>
                                                 </td>
                                             </tr>
@@ -379,7 +379,7 @@
             </div>
         </div>
     </div>
-    <a href="https://api.whatsapp.com/send?phone=905350141875&text={{ $Detay->title }} isimli kitabı satın almak istiyorum. {{ route('urun', $Detay->slug) }}" class="whatsapp" target="_blank">
+    <a href="https://api.whatsapp.com/send?phone={{ config('settings.whatspp') }}&text={{ $Detay->title }} isimli kitabı satın almak istiyorum. {{ route('urun', $Detay->slug) }}" class="whatsapp" target="_blank">
         <i class="icon-whatsapp my-float"></i>
     </a>
 @endsection

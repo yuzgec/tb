@@ -49,6 +49,9 @@ class HomeController extends Controller
             ->where('sku', \request('urunno'))
             ->firstOrFail();
 
+
+        //dd($Detay);
+
         foreach ($Detay->getAuthor as $item){
             $author[] = $item->author_id;
         }
