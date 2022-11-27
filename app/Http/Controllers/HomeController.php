@@ -447,13 +447,13 @@ class HomeController extends Controller
             $Result = $Result->where('slug', 'like', '%'.$Ad.'%');
         }
 
-/*        if (!empty($Yazar)) {
-            $Result = $Result->whereRelation('getAuthor', 'product_id', '=', $Yazar);
+        if (!empty($Yazar)) {
+            $Result = $Result->whereRelation('getAuthor', 'author_id', '=', $Yazar);
         }
 
         if (!empty($Kategori)) {
-            $Result = $Result->whereRelation('getCategory', 'product_id', '=', $Kategori);
-        }*/
+            $Result = $Result->whereRelation('getCategory', 'category_id', '=', $Kategori);
+        }
 
         if (!empty($Ceviren)) {
             $Result = $Result->where('translator', 'like', $Ceviren.'%');
