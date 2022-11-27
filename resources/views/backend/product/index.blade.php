@@ -129,12 +129,12 @@
 
                                 <div class="form-group mb-3 row" style="margin-right: 5px">
                                     <div class="col">
-                                        <select type="text" class="form-select form-control">
-                                            <option value="">Sıralama</option>
-                                            <option value="">Tarihe Göre Yeni</option>
-                                            <option value="">Tarihe Göre Eski</option>
-                                            <option value="">İsme Göre A-Z</option>
-                                            <option value="">İsme Göre Z-A</option>
+                                        <select name="sortby" id="sortby" class="form-control" onchange="location = this.options[this.selectedIndex].value">
+                                            <option value="yenieklenen">Yeni Eklenenler</option>
+                                            <option value="{{ url()->current() }}?ad=asc" {{ (request('ad') == 'asc') ? 'selected' : null }}>Eser Adı A-Z</option>
+                                            <option value="{{ url()->current() }}?ad=desc" {{ (request('ad') == 'desc') ? 'selected' : null }}>Eser Adı Z-A</option>
+                                            <option value="{{ url()->current() }}?basimtarihi=asc" {{ (request('basimtarihi') == 'asc') ? 'selected' : null }}>Basım Tarihi Eski</option>
+                                            <option value="{{ url()->current() }}?basimtarihi=desc" {{ (request('basimtarihi') == 'desc') ? 'selected' : null }}>Basım Tarihi Yeni</option>
                                         </select>
                                     </div>
                                 </div>

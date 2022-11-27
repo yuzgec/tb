@@ -21,16 +21,40 @@ class ProductController extends Controller
 {
     public function index()
     {
+        $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])->orderBy('rank','asc')->paginate(100);
+
+
+        if(request()->filled('basimtarihi')) {
+            $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])
+                ->orderBy('created_at', request('basimtarihi') )
+                ->paginate(75);
+
+        }
+
+        if(request()->filled('ad')) {
+            $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])
+                ->orderBy('title', request('ad') )
+                ->paginate(75);
+
+        }
+
+        if(request()->filled('basimtarihi')) {
+            $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])
+                ->orderBy('created_at', request('basimtarihi') )
+                ->paginate(75);
+
+        }
+
         if (request()->filled('q')){
             $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])
                 ->where('title', 'like', '%'. request('q'). '%')
                 ->orWhere('slug', 'like', '%'. request('q'). '%')
                 ->orderBy('rank')
                 ->paginate(75);
-        }else{
 
-        $All = Product::with(['getCategory', 'getYear', 'getAuthor', 'getLanguage'])->orderBy('rank','asc')->paginate(100);
         }
+
+
         return view('backend.product.index', compact('All'));
     }
 
