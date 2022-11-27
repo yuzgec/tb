@@ -41,52 +41,52 @@
                             </div>
                         </div>
                         @endif
-                            @if(request('filtre') == 1)
-                                <div class="d-flex">
-                                    @if($request->filled('dil'))
-                                        <a href="?id={{ $Detay->id }}&filtre=1&dil=&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ request('yil1') }}&yil2={{ request('yil2') }}"
-                                           class="btn btn-primary btn-block d-flex flex-column  justify-content-between m-1 rounded" style="font-size:13px"> <small>Dil</small>
-                                            <div> @foreach($Language->where('id', $request->dil) as $item) {{ $item->title }}  @endforeach</div>
-                                            <div> <i class="icon-close"></i> </div>
-                                        </a>
-                                    @endif
-                                    @if($request->filled('yazar'))
-                                        <a href="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar=&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ request('yil1') }}&yil2={{ request('yil2') }}"
-                                           class="btn btn-primary btn-block d-flex flex-column justify-content-between m-1 rounded" style="font-size:13px"> <small>Yazar</small>
-                                            <div> @foreach($Author->where('id', $request->yazar) as $item) {{ $item->title }}  @endforeach</div>
-                                            <div> <i class="icon-close"></i> </div>
-                                        </a>
-                                    @endif
-                                    @if($request->filled('cevirmen'))
-                                        <a href="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen=&yayinevi={{ request('yayinevi') }}&yil1={{ request('yil1') }}&yil2={{ request('yil2') }}"
-                                           class="btn btn-primary btn-block d-flex flex-column justify-content-between m-1 rounded" style="font-size:13px"><small>Çevirmen</small>
-                                            <div> @foreach($Translator->where('id', $request->cevirmen) as $item) {{ $item->title }}  @endforeach</div>
-                                            <div> <i class="icon-close"></i> </div>
-                                        </a>
-                                    @endif
-                                    @if($request->filled('yayinevi'))
-                                        <a href="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi=&yil1={{ request('yil1') }}&yil2={{ request('yil2') }}"
-                                           class="btn btn-primary btn-block d-flex flex-column justify-content-between m-1 rounded" style="font-size:13px"><small>Yayınevi</small>
-                                            <div> @foreach($Publisher->where('id', $request->yayinevi) as $item) {{ $item->title }}  @endforeach</div>
-                                            <div> <i class="icon-close"></i> </div>
-                                        </a>
-                                    @endif
-                                    @if($request->filled('yil1'))
-                                        <a href="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1=&yil2={{ request('yil2') }}"
-                                           class="btn btn-primary  d-flex justify-content-between flex-column m-1 rounded"  style="font-size:13px"> <small>Basim Tarihi</small>
-                                            <div> {{ request('yil1') }}</div>
-                                            <div> <i class="icon-close"></i> </div>
-                                        </a>
-                                    @endif
-                                    @if($request->filled('yil2'))
-                                        <a href="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ request('yil1') }}&yil2="
-                                           class="btn btn-primary  d-flex justify-content-between flex-column m-1 rounded"  style="font-size:13px"> <small>Basim Tarihi</small>
-                                            <div> {{ request('yil2') }}</div>
-                                            <div> <i class="icon-close"></i> </div>
-                                        </a>
-                                    @endif
-                                </div>
-                            @endif
+                        @if(request('filtre') == 1)
+                            <div class="d-flex">
+                                        @if($request->filled('dil'))
+                                            <a href="?id={{ $Detay->id }}&filtre=1&dil=&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ request('yil1') }}&yil2={{ request('yil2') }}"
+                                               class="btn btn-primary d-flex  justify-content-between m-1 rounded" style="font-size:13px"> <small>Dil : </small>
+                                                <div> @foreach($Language->where('id', $request->dil) as $item) {{ $item->title }}  @endforeach</div>
+                                                <div> <i class="icon-close"></i> </div>
+                                            </a>
+                                        @endif
+                                        @if($request->filled('yazar'))
+                                            <a href="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar=&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ request('yil1') }}&yil2={{ request('yil2') }}"
+                                               class="btn btn-primary btn-block d-flex justify-content-between m-1 rounded" style="font-size:13px"> <small>Yazar : </small>
+                                                <div> @foreach($Author->where('id', $request->yazar) as $item) {{ $item->title }}  @endforeach</div>
+                                                <div> <i class="icon-close"></i> </div>
+                                            </a>
+                                        @endif
+                                        @if($request->filled('cevirmen'))
+                                            <a href="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen=&yayinevi={{ request('yayinevi') }}&yil1={{ request('yil1') }}&yil2={{ request('yil2') }}"
+                                               class="btn btn-primary btn-block d-flex justify-content-between m-1 rounded" style="font-size:13px"><small>Çeviri : </small>
+                                                <div> @foreach($Translator->where('id', $request->cevirmen) as $item) {{ $item->title }}  @endforeach</div>
+                                                <div> <i class="icon-close"></i> </div>
+                                            </a>
+                                        @endif
+                                        @if($request->filled('yayinevi'))
+                                            <a href="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi=&yil1={{ request('yil1') }}&yil2={{ request('yil2') }}"
+                                               class="btn btn-primary btn-block d-flex justify-content-between m-1 rounded" style="font-size:13px"><small>Yayınevi : </small>
+                                                <div> @foreach($Publisher->where('id', $request->yayinevi) as $item) {{ $item->title }}  @endforeach</div>
+                                                <div> <i class="icon-close"></i> </div>
+                                            </a>
+                                        @endif
+                                      {{--  @if($request->filled('yil1'))
+                                            <a href="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1=&yil2={{ request('yil2') }}"
+                                               class="btn btn-primary  d-flex justify-content-between flex-column m-1 rounded"  style="font-size:13px"> <small>Basim Tarihi</small>
+                                                <div> {{ request('yil1') }}</div>
+                                                <div> <i class="icon-close"></i> </div>
+                                            </a>
+                                        @endif
+                                        @if($request->filled('yil2'))
+                                            <a href="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ request('yil1') }}&yil2="
+                                               class="btn btn-primary  d-flex justify-content-between flex-column m-1 rounded"  style="font-size:13px"> <small>Basim Tarihi</small>
+                                                <div> {{ request('yil2') }}</div>
+                                                <div> <i class="icon-close"></i> </div>
+                                            </a>
+                                        @endif--}}
+                                    </div>
+                        @endif
                     </div>
 
                     <div class="products mb-3">
@@ -142,168 +142,164 @@
                             </div>
                         </div>
 
-               {{--         <form method="get" >
-                            <input type="hidden" name="id"  value="{{ $Detay->id }}">
-                            <input type="hidden" name="filtre"  value="1">--}}
+                        <div class="widget">
 
+                            <h3 class="widget-title">Dİl</h3>
 
-                            <div class="widget">
+                            <div class="widget-body">
 
-                                <h3 class="widget-title">Dİl</h3>
-
-                                <div class="widget-body">
-
-                                    <select class="form-control single" data-placeholder="Dİl Seçiniz" name="dil" onchange="location = this.options[this.selectedIndex].value;">
-                                        <option value="">Dİl Seçiniz</option>
-                                        @foreach($Language as $item)
-                                            <option value="?id={{ $Detay->id }}&filtre=1&dil={{ $item->id }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1=1800&yil2=2022">
-                                                {{  $item->title }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                <select class="form-control single" data-placeholder="Dİl Seçiniz" name="dil" onchange="location = this.options[this.selectedIndex].value;">
+                                    <option value="">Dİl Seçiniz</option>
+                                    @foreach($Language as $item)
+                                        <option value="?id={{ $Detay->id }}&filtre=1&dil={{ $item->id }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ (request('yil1')) ?  request('yil1') : 1800 }}&yil2={{ (request('yil2')) ?  request('yil2') : date('Y') }}"
+                                        {{ ($item->id == request('dil')) ? 'selected' : null }}>
+                                            {{  $item->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
-
-                            <div class="widget">
-                                <h3 class="widget-title">Yazar</h3>
-                                <div class="widget-body">
-                                    <select class="form-control single" data-placeholder="Yazar Seçiniz" name="yazar" onchange="location = this.options[this.selectedIndex].value;">
-                                        <option value="">Yazar Seçiniz</option>
-                                        @foreach($Author as $item)
-                                            <option value="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ $item->id }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1=1800&yil2=2022">
-                                                {{  $item->title }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                        </div>
+                        <div class="widget">
+                            <h3 class="widget-title">Yazar</h3>
+                            <div class="widget-body">
+                                <select class="form-control single" data-placeholder="Yazar Seçiniz" name="yazar" onchange="location = this.options[this.selectedIndex].value;">
+                                    <option value="">Yazar Seçiniz</option>
+                                    @foreach($Author as $item)
+                                        <option value="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ $item->id }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ (request('yil1')) ?  request('yil1') : 1800 }}&yil2={{ (request('yil2')) ?  request('yil2') : date('Y') }}"
+                                            {{ ($item->id == request('author')) ? 'selected' : null }}>
+                                            {{  $item->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
+                        </div>
+                        <div class="widget">
+                            <h3 class="widget-title">Çevirmen</h3>
+                            <div class="widget-body">
 
-                            <div class="widget">
-                                <h3 class="widget-title">Çevirmen</h3>
-                                <div class="widget-body">
-
-                                    <select class="form-control single" data-placeholder="Çevirmen Seçiniz" name="cevirmen" onchange="location = this.options[this.selectedIndex].value;">
-                                        <option value="">Çevirmen Seçiniz</option>
-                                        @foreach($Translator as $item)
-                                            <option value="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ $item->id }}&yayinevi={{ request('yayinevi') }}&yil1=1800&yil2=2022">
-                                                {{  $item->title }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                <select class="form-control single" data-placeholder="Çevirmen Seçiniz" name="cevirmen" onchange="location = this.options[this.selectedIndex].value;">
+                                    <option value="">Çevirmen Seçiniz</option>
+                                    @foreach($Translator as $item)
+                                        <option value="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ $item->id }}&yayinevi={{ request('yayinevi') }}&yil1={{ (request('yil1')) ?  request('yil1') : 1800 }}&yil2={{ (request('yil2')) ?  request('yil2') : date('Y') }}"
+                                            {{ ($item->id == request('cevirmen')) ? 'selected' : null }}>
+                                            {{  $item->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
-
-                            <div class="widget">
-                                <h3 class="widget-title">Yayınevi</h3>
-                                <div class="widget-body">
-                                    <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="yayinevi" onchange="location = this.options[this.selectedIndex].value;">
-                                        <option value="">Yayınevi Seçiniz</option>
-                                        @foreach($Publisher as $item)
-                                            <option value="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ $item->id }}&yil1=1800&yil2=2022">
-                                                {{  $item->title }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                        </div>
+                        <div class="widget">
+                            <h3 class="widget-title">Yayınevi</h3>
+                            <div class="widget-body">
+                                <select class="form-control single" data-placeholder="Yayınevi Seçiniz" name="yayinevi" onchange="location = this.options[this.selectedIndex].value;">
+                                    <option value="">Yayınevi Seçiniz</option>
+                                    @foreach($Publisher as $item)
+                                        <option value="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ $item->id }}&yil1={{ (request('yil1')) ?  request('yil1') : 1800 }}&yil2={{ (request('yil2')) ?  request('yil2') : date('Y') }}"
+                                            {{ ($item->id == request('yayinevi')) ? 'selected' : null }}>
+                                            {{  $item->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
-
-                            <div class="widget">
-                                <h3 class="widget-title">Basım Yılı</h3>
-                                <div class="widget-body">
-                                    <select class="form-control single" data-placeholder="Yıl Seçiniz" name="yil1" onchange="location = this.options[this.selectedIndex].value;">
-                                        @foreach($Years as $item)
-                                            <option value="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ $item->title }}&yil2=2022">
-                                                {{  $item->title }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <select class="form-control single" data-placeholder="Yıl Seçiniz" name="yil2" onchange="location = this.options[this.selectedIndex].value;">
-                                        @foreach($Years->sortbyDesc('id') as $item)
-                                            <option value="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ (request('yil1')) ?  request('yil1') : 1800 }}&yil2={{ $item->title }}">
-                                                {{  $item->title }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                        </div>
+                        <div class="widget">
+                            <h3 class="widget-title">Basım Yılı</h3>
+                            <div class="widget-body">
+                                <select class="form-control single" data-placeholder="Yıl Seçiniz" name="yil1" onchange="location = this.options[this.selectedIndex].value;">
+                                    @foreach($Years as $item)
+                                        <option value="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ $item->title }}&yil2={{ (request('yil2')) ?  request('yil2') : date('Y') }}"
+                                            {{ ($item->id == request('yil1')) ? 'selected' : null }}>
+                                            {{  $item->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <select class="form-control single" data-placeholder="Yıl Seçiniz" name="yil2" onchange="location = this.options[this.selectedIndex].value;">
+                                    @foreach($Years->sortbyDesc('id') as $item)
+                                        <option value="?id={{ $Detay->id }}&filtre=1&dil={{ request('dil') }}&yazar={{ request('yazar') }}&cevirmen={{ request('cevirmen') }}&yayinevi={{ request('yayinevi') }}&yil1={{ (request('yil1')) ?  request('yil1') : 1800 }}&yil2={{ $item->title }}"
+                                            {{ ($item->id == request('yil2')) ? 'selected' : null }}>
+                                            {{  $item->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
+                        </div>
+                        <div class="widget">
+                            <h3 class="widget-title">Kondisyon</h3>
 
-                            <div class="widget">
-                                <h3 class="widget-title">Kondisyon</h3>
-
-                                <div class="widget-body">
-                                    <div class="filter-items">
-                                        <div class="filter-item">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="radio" class="custom-control-input" id="cus-rating-1" name="kondisyon" value="5" @if (request('kondisyon') === 5) ? checked : null @endif">
-                                                <label class="custom-control-label" for="cus-rating-1">
-                                                    <span class="ratings-container">
-                                                        <span class="ratings">
-                                                            <span class="ratings-val" style="width: 100%;"></span>
-                                                        </span>
+                            <div class="widget-body">
+                                <div class="filter-items">
+                                    <div class="filter-item">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="radio" class="custom-control-input" id="cus-rating-1" name="kondisyon" value="5" @if (request('kondisyon') === 5) ? checked : null @endif">
+                                            <label class="custom-control-label" for="cus-rating-1">
+                                                <span class="ratings-container">
+                                                    <span class="ratings">
+                                                        <span class="ratings-val" style="width: 100%;"></span>
                                                     </span>
-                                                </label>
-                                            </div>
+                                                </span>
+                                            </label>
                                         </div>
-
-                                        <div class="filter-item">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="radio" class="custom-control-input" id="cus-rating-2" name="kondisyon" value="4" {{ (request('kondisyon') === 4) ? checked : null }}">
-                                                <label class="custom-control-label" for="cus-rating-2">
-                                                    <span class="ratings-container">
-                                                        <span class="ratings">
-                                                            <span class="ratings-val" style="width: 80%;"></span>
-                                                        </span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="filter-item">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="radio" class="custom-control-input" id="cus-rating-3" name="kondisyon" value="3">
-                                                <label class="custom-control-label" for="cus-rating-3">
-                                                    <span class="ratings-container">
-                                                        <span class="ratings">
-                                                            <span class="ratings-val" style="width: 60%;"></span>
-                                                        </span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="filter-item">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="radio" class="custom-control-input" id="cus-rating-4" name="kondisyon" value="2">
-                                                <label class="custom-control-label" for="cus-rating-4">
-                                                    <span class="ratings-container">
-                                                        <span class="ratings">
-                                                            <span class="ratings-val" style="width: 40%;"></span>
-                                                        </span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="filter-item">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="radio" class="custom-control-input" id="cus-rating-5" name="kondisyon" value="1">
-                                                <label class="custom-control-label" for="cus-rating-5">
-                                                    <span class="ratings-container">
-                                                        <span class="ratings">
-                                                            <span class="ratings-val" style="width: 20%;"></span>
-                                                        </span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <button type="submit" class="btn btn-primary mb-1 btn-block">Filtrele</button>
-                                        <a href="{{ url()->current() }}?id={{$Detay->id}}" class="btn btn-primary btn-block" id="reset">Reset</a>
-
                                     </div>
+
+                                    <div class="filter-item">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="radio" class="custom-control-input" id="cus-rating-2" name="kondisyon" value="4" {{ (request('kondisyon') === 4) ? checked : null }}">
+                                            <label class="custom-control-label" for="cus-rating-2">
+                                                <span class="ratings-container">
+                                                    <span class="ratings">
+                                                        <span class="ratings-val" style="width: 80%;"></span>
+                                                    </span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="filter-item">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="radio" class="custom-control-input" id="cus-rating-3" name="kondisyon" value="3">
+                                            <label class="custom-control-label" for="cus-rating-3">
+                                                <span class="ratings-container">
+                                                    <span class="ratings">
+                                                        <span class="ratings-val" style="width: 60%;"></span>
+                                                    </span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="filter-item">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="radio" class="custom-control-input" id="cus-rating-4" name="kondisyon" value="2">
+                                            <label class="custom-control-label" for="cus-rating-4">
+                                                <span class="ratings-container">
+                                                    <span class="ratings">
+                                                        <span class="ratings-val" style="width: 40%;"></span>
+                                                    </span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="filter-item">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="radio" class="custom-control-input" id="cus-rating-5" name="kondisyon" value="1">
+                                            <label class="custom-control-label" for="cus-rating-5">
+                                                <span class="ratings-container">
+                                                    <span class="ratings">
+                                                        <span class="ratings-val" style="width: 20%;"></span>
+                                                    </span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary mb-1 btn-block">Filtrele</button>
+                                    <a href="{{ url()->current() }}?id={{$Detay->id}}" class="btn btn-primary btn-block" id="reset">Reset</a>
+
                                 </div>
                             </div>
-                    {{--    </form>--}}
+                        </div>
+
                     </div>
                 </aside>
             </div>

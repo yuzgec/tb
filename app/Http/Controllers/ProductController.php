@@ -13,6 +13,7 @@ use App\Models\Publisher;
 use App\Models\Translator;
 use App\Models\Years;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
 
@@ -137,6 +138,7 @@ class ProductController extends Controller
                 $Url->slug = $K.'/'.$Y.'/'.$Url->slug.'?urunno='.$Url->sku;
                 $Url->save();
 
+            Artisan::call('cache:clear');
 
 
         });
@@ -154,12 +156,6 @@ class ProductController extends Controller
     {
         $Edit = Product::with(['getCategory', 'getAuthor', 'getLanguage', 'getPublisher', 'getTranslator', 'getYear'])->find($id);
         $Pivot = ProductCategoryPivot::where(['product_id'=> $id])->get();
-        //dd($Edit);
-        $Years =  Years::all();
-        $Author = Author::all();
-        $Publisher = Publisher::all();
-        $Language = Language::all();
-        $Translator = Translator::all();
 
         $a= [];
         foreach ($Edit->getAuthor as $item){
@@ -167,7 +163,7 @@ class ProductController extends Controller
         }
         $Authors = AuthorPivot::select('author_id')->whereIn('author_id',$a)->get();
 
-        return view('backend.product.edit', compact('Edit','Pivot', 'Years', 'Author', 'Authors','Publisher', 'Language', 'Translator'));
+        return view('backend.product.edit', compact('Edit','Pivot', 'Authors'));
     }
 
     public function update(ProductRequest $request, $id)
@@ -273,7 +269,10 @@ class ProductController extends Controller
                 $Url->slug = $K . '/' . $Y . '/' . $Url->slug . '?urunno=' . $Url->sku;
                 $Url->save();
 
+
         });
+
+        Artisan::call('cache:clear');
 
         toast(SWEETALERT_MESSAGE_UPDATE,'success');
 
@@ -285,6 +284,7 @@ class ProductController extends Controller
     {
         $Delete = Product::findOrFail($id);
         $Delete->delete();
+        Artisan::call('cache:clear');
 
         toast(SWEETALERT_MESSAGE_DELETE,'success');
         return redirect()->route('product.index');
@@ -302,9 +302,9 @@ class ProductController extends Controller
     }
 
     public function getSwitch(Request $request){
-        //dd($request);
         $status = ($request->status == "true") ? 1 : 0;
         Product::where('id', $request->id)->update(['status' => $status]);
+        Artisan::call('cache:clear');
     }
 
     public function postUpload(Request $request)
@@ -326,13 +326,9 @@ class ProductController extends Controller
     }
 
     public function deleteGaleriDelete($id){
-
         $Delete = Product::find($id);
         $Delete->media()->where('id', \request('image_id'))->delete();
-
         toast(SWEETALERT_MESSAGE_DELETE,'success');
         return redirect()->route('product.edit', $id);
     }
-
-
 }

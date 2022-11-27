@@ -12,16 +12,17 @@
                         <div class="col-lg-9">
                             <h2 class="checkout-title">İletişim Bilgileri</h2>
                             <div class="row">
+
                                 <div class="col-sm-6">
                                     <label>Adınız Soyadınız *</label>
-                                    <input value="{{old('name')}}" type="text" class="form-control  @if($errors->has('name')) is-invalid @endif" name="name"  autocomplete="off">
+                                    <input value="{{(auth()->check()) ? auth()->user()->name : old('name')}}" type="text" class="form-control  @if($errors->has('name')) is-invalid @endif" name="name"  autocomplete="off">
                                     @if($errors->has('name'))
                                         <div class="invalid-feedback">{{$errors->first('name')}}</div>
                                     @endif
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <label>Adınız Soyadınız *</label>
+                                    <label>Soyadınız *</label>
                                     <input value="{{old('surname')}}" type="text" class="form-control  @if($errors->has('surname')) is-invalid @endif" name="surname" autocomplete="off">
                                     @if($errors->has('surname'))
                                         <div class="invalid-feedback">{{$errors->first('surname')}}</div>

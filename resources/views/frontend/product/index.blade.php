@@ -135,6 +135,8 @@
                                 {!! $Detay->short  !!}
                             </div>
 
+                            @if($Detay->status == 0 )
+                                <a href="https://api.whatsapp.com/send?phone={{ config('settings.whatspp') }}&text={{ $Detay->title }} isimli kitabı satın almak istiyorum. {{ route('urun', $Detay->slug) }}" class="btn btn-success btn-block">Whatspp Bilgi</a>                            @endif
 
                             @if($Detay->status != 0 )
                             <form action="{{ route('sepeteekle') }}" method="POST">

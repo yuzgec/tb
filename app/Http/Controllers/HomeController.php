@@ -25,6 +25,7 @@ use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Support\Period;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Artesaos\SEOTools\Facades\SEOTools;
@@ -32,7 +33,6 @@ use Iyzipay\Model\BasketItem;
 use Iyzipay\Model\Buyer;
 use Iyzipay\Model\CheckoutFormInitialize;
 use Iyzipay\Options;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -113,12 +113,6 @@ class HomeController extends Controller
         SEOTools::opengraph()->addProperty('type', 'category');
         SEOTools::jsonLd()->addImage($Detay->getFirstMediaUrl('page','thumb'));
 
-        $Language = Language::select('id', 'title')->get();
-        $Publisher = Publisher::select('id', 'title')->orderBy('title', 'asc')->get();
-        $Translator = Translator::select('id', 'title')->orderBy('title', 'asc')->get();
-        $Author = Author::select('id', 'title')->orderBy('title', 'asc')->get();
-        $Years = Years::select('id', 'title')->get();
-
         $ad = request('ad')  ? request('ad') : 'desc';
         $fiyat = request('fiyat')  ? request('fiyat') : 'desc';
         $basimtarihi = request('basimtarihi')  ? request('basimtarihi') : 'desc';
@@ -133,7 +127,7 @@ class HomeController extends Controller
                 ->select('products.language','products.year','products.id','products.title','products.condition','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
                 ->orderBy("products.year", $basimtarihi )
                 ->paginate(21);
-            return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
+            return view('frontend.category.index', compact('Detay', 'ProductList'));
         }
         if(request()->filled('ad')){
             $ProductList = Product::with(['getCategory'])
@@ -145,7 +139,7 @@ class HomeController extends Controller
                 ->select('products.language','products.year','products.id','products.title','products.condition','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
                 ->orderBy("products.title", $ad )
                 ->paginate(21);
-            return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
+            return view('frontend.category.index', compact('Detay', 'ProductList'));
         }
         if(request()->filled('fiyat')){
             $ProductList = Product::with(['getCategory'])
@@ -157,7 +151,7 @@ class HomeController extends Controller
                 ->select('products.language','products.year','products.id','products.title','products.condition','products.rank','products.slug','products.price','products.old_price','products.slug','product_category_pivots.category_id', 'product_categories.parent_id')
                 ->orderBy("products.price", $fiyat )
                 ->paginate(21);
-            return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
+            return view('frontend.category.index', compact('Detay', 'ProductList'));
         }
 
         if ($request->filtre == 1){
@@ -199,7 +193,7 @@ class HomeController extends Controller
                 ->where('publisher', 'like', $publisher.'%')*/
                 ->paginate(100);
             //dd($ProductList);
-            return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language', 'request'));
+            return view('frontend.category.index', compact('Detay', 'ProductList','request'));
         }
 
 
@@ -214,9 +208,8 @@ class HomeController extends Controller
             ->orderBy('products.price','asc')
             ->paginate(21);
 
-        return view('frontend.category.index', compact('Detay', 'ProductList', 'Publisher', 'Translator', 'Author', 'Years','Language'));
+        return view('frontend.category.index', compact('Detay', 'ProductList'));
     }
-
     public function yayinevi($slug){
         $Detay = Publisher::where('slug', $slug)->first();
 
@@ -334,9 +327,9 @@ class HomeController extends Controller
     }
     public function cekim(Request $gelen){
 
-        if (request()->isMethod('get')) {
+      /*  if (request()->isMethod('get')) {
             return redirect()->to('/');
-        }
+        }*/
 
         $token = $gelen->input('token');
 
@@ -356,7 +349,7 @@ class HomeController extends Controller
             if (request()->isMethod('post')) {
 
                 DB::transaction(function () use($payment){
-                    $ShopCart = new ShopCart;
+                    $ShopCart                   = new ShopCart;
                     $ShopCart->cart_id          = $payment->getBasketId();
                     $ShopCart->user_id          = (auth::check()) ? auth()->user()->id : $payment->getBasketId();
                     $ShopCart->basket_total	    = cargoToplam(Cart::instance('shopping')->total());
@@ -372,6 +365,10 @@ class HomeController extends Controller
                     $ShopCart->save();
 
                     foreach (Cart::instance('shopping')->content() as $c) {
+                        Product::where('id', $c->id)->update(['status' => 0]);
+                    }
+
+                    foreach (Cart::instance('shopping')->content() as $c) {
                         $Order                  = new Order;
                         $Order->cart_id         = $payment->getBasketId();
                         $Order->product_id      = $c->id;
@@ -381,6 +378,7 @@ class HomeController extends Controller
                         $Order->save();
                     }
 
+                    Artisan::call('cache:clear');
                     Cart::instance('shopping')->destroy();
                     session()->flush();
                 });
